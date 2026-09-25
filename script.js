@@ -229,6 +229,9 @@ function updateActive(item, center) {
   document.getElementById("itemReadout").textContent =
     String(index + 1).padStart(2, "0") + " / " + String(visible.length).padStart(2, "0");
 
+  const microStatus = document.getElementById("microStatus");
+  if (microStatus) microStatus.textContent = project.code + " / LOCKED";
+
   if (center) centerItem(item, true);
 }
 
@@ -294,6 +297,17 @@ function openProject(id) {
   if (!project) return;
 
   activeId = id || activeId;
+
+  const sourceItem = items.find(function (item) {
+    return item.dataset.project === activeId;
+  });
+  const sourceDisc = sourceItem && sourceItem.querySelector(".disc");
+  if (sourceDisc) {
+    const rect = sourceDisc.getBoundingClientRect();
+    takeover.style.setProperty("--origin-x", (rect.left + rect.width / 2) + "px");
+    takeover.style.setProperty("--origin-y", (rect.top + rect.height / 2) + "px");
+  }
+
   takeover.className = "takeover theme-" + project.theme + " is-open";
   takeover.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -388,10 +402,27 @@ function updateClock() {
 
 rail.addEventListener("scroll", detectNearest, { passive: true });
 
+let wheelTarget = 0;
+let wheelFrame = 0;
+
+function runWheelInertia() {
+  const delta = wheelTarget - rail.scrollLeft;
+  rail.scrollLeft += delta * 0.14;
+
+  if (Math.abs(delta) > 0.7) {
+    wheelFrame = requestAnimationFrame(runWheelInertia);
+  } else {
+    rail.scrollLeft = wheelTarget;
+    wheelFrame = 0;
+  }
+}
+
 rail.addEventListener("wheel", function (event) {
   if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
     event.preventDefault();
-    rail.scrollLeft += event.deltaY;
+    const max = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    wheelTarget = Math.max(0, Math.min(max, (wheelFrame ? wheelTarget : rail.scrollLeft) + event.deltaY * 1.05));
+    if (!wheelFrame) wheelFrame = requestAnimationFrame(runWheelInertia);
   }
 }, { passive: false });
 
@@ -408,6 +439,11 @@ rail.addEventListener("pointerdown", function (event) {
 
   dragging = true;
   dragMoved = false;
+  wheelTarget = rail.scrollLeft;
+  if (wheelFrame) {
+    cancelAnimationFrame(wheelFrame);
+    wheelFrame = 0;
+  }
   dragStartX = event.clientX;
   dragStartScroll = rail.scrollLeft;
   rail.classList.add("is-dragging");
@@ -531,6 +567,155 @@ if (document.readyState === "loading") {
   initializeArchive();
 }
 
+
+/* Continuous scene motion */
+const root = document.documentElement;
+const cursorUI = document.getElementById("cursorUI");
+const cursorLabel = document.getElementById("cursorLabel");
+const hudX = document.getElementById("hudX");
+const hudY = document.getElementById("hudY");
+const sceneX = document.getElementById("sceneX");
+const sceneY = document.getElementById("sceneY");
+const railPos = document.getElementById("railPos");
+const depthReadout = document.getElementById("depthReadout");
+
+let pointerTargetX = window.innerWidth * 0.5;
+let pointerTargetY = window.innerHeight * 0.5;
+let pointerSmoothX = pointerTargetX;
+let pointerSmoothY = pointerTargetY;
+let motionFrame = 0;
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function setPointer(event) {
+  pointerTargetX = event.clientX;
+  pointerTargetY = event.clientY;
+
+  const nx = clamp((event.clientX / Math.max(window.innerWidth, 1) - 0.5) * 2, -1, 1);
+  const ny = clamp((event.clientY / Math.max(window.innerHeight, 1) - 0.5) * 2, -1, 1);
+
+  root.style.setProperty("--px", nx.toFixed(4));
+  root.style.setProperty("--py", ny.toFixed(4));
+
+  if (hudX) hudX.textContent = String(Math.round(event.clientX)).padStart(3, "0");
+  if (hudY) hudY.textContent = String(Math.round(event.clientY)).padStart(3, "0");
+  if (sceneX) sceneX.textContent = String(Math.round(event.clientX)).padStart(3, "0");
+  if (sceneY) sceneY.textContent = String(Math.round(event.clientY)).padStart(3, "0");
+}
+
+function updateDiscField(now) {
+  const railRect = rail.getBoundingClientRect();
+  const center = railRect.left + railRect.width / 2;
+  const range = Math.max(railRect.width * 0.58, 1);
+  let activeDepth = 1;
+
+  visibleItems().forEach(function (item, itemIndex) {
+    const rect = item.getBoundingClientRect();
+    const itemCenter = rect.left + rect.width / 2;
+    const normalized = clamp((itemCenter - center) / range, -1.35, 1.35);
+    const abs = Math.min(Math.abs(normalized), 1);
+
+    const scale = 1 - abs * 0.19;
+    const lift = abs * 25 + Math.sin(now * 0.0017 + itemIndex * 0.8) * (item.classList.contains("is-active") ? 4 : 2);
+    const rotateY = normalized * -22;
+    const rotateZ = normalized * 3.2;
+    const opacity = 1 - abs * 0.56;
+    const blur = abs > 0.82 ? (abs - 0.82) * 2.5 : 0;
+
+    item.style.setProperty("--scale", scale.toFixed(4));
+    item.style.setProperty("--lift", lift.toFixed(2) + "px");
+    item.style.setProperty("--ry", rotateY.toFixed(2) + "deg");
+    item.style.setProperty("--rz", rotateZ.toFixed(2) + "deg");
+    item.style.setProperty("--opacity", opacity.toFixed(3));
+    item.style.setProperty("--blur", blur.toFixed(2) + "px");
+
+    const disc = item.querySelector(".disc");
+    if (disc) {
+      const idleSpin = Math.sin(now * 0.00085 + itemIndex * 1.3) * (item.classList.contains("is-active") ? 0.8 : 0.32);
+      disc.style.setProperty("--disc-spin", (idleSpin + normalized * -3.2).toFixed(2) + "deg");
+    }
+
+    if (item.classList.contains("is-active")) activeDepth = scale;
+  });
+
+  if (railPos) {
+    const max = Math.max(rail.scrollWidth - rail.clientWidth, 1);
+    railPos.textContent = ((rail.scrollLeft / max) * 100).toFixed(2);
+  }
+  if (depthReadout) depthReadout.textContent = activeDepth.toFixed(2);
+}
+
+function motionLoop(now) {
+  pointerSmoothX += (pointerTargetX - pointerSmoothX) * 0.16;
+  pointerSmoothY += (pointerTargetY - pointerSmoothY) * 0.16;
+
+  root.style.setProperty("--cursor-x", pointerSmoothX.toFixed(2) + "px");
+  root.style.setProperty("--cursor-y", pointerSmoothY.toFixed(2) + "px");
+
+  updateDiscField(now);
+  motionFrame = requestAnimationFrame(motionLoop);
+}
+
+if (!reducedMotion) {
+  window.addEventListener("pointermove", setPointer, { passive: true });
+  motionFrame = requestAnimationFrame(motionLoop);
+} else {
+  updateDiscField(0);
+}
+
+items.forEach(function (item) {
+  const disc = item.querySelector(".disc");
+  const button = item.querySelector(".disc-button");
+  if (!disc || !button) return;
+
+  button.addEventListener("pointermove", function (event) {
+    if (reducedMotion) return;
+    const rect = button.getBoundingClientRect();
+    const localX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+    const localY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+    const tiltY = (localX - 0.5) * 13;
+    const tiltX = (0.5 - localY) * 13;
+
+    disc.style.setProperty("--tilt-x", tiltX.toFixed(2) + "deg");
+    disc.style.setProperty("--tilt-y", tiltY.toFixed(2) + "deg");
+    disc.style.setProperty("--shine-x", (localX * 100).toFixed(1) + "%");
+    disc.style.setProperty("--shine-y", (localY * 100).toFixed(1) + "%");
+    disc.style.setProperty("--shine-shift", ((localX - 0.5) * 28).toFixed(1) + "%");
+  });
+
+  button.addEventListener("pointerleave", function () {
+    disc.style.setProperty("--tilt-x", "0deg");
+    disc.style.setProperty("--tilt-y", "0deg");
+    disc.style.setProperty("--shine-x", "48%");
+    disc.style.setProperty("--shine-y", "42%");
+    disc.style.setProperty("--shine-shift", "0%");
+  });
+});
+
+document.addEventListener("pointerover", function (event) {
+  if (!cursorUI || !cursorLabel) return;
+  const action = event.target.closest("button, a, .disc-button");
+  if (!action) return;
+
+  cursorUI.classList.add("is-action");
+  if (action.classList.contains("disc-button")) cursorLabel.textContent = "OPEN";
+  else if (action.id === "openIndex") cursorLabel.textContent = "INDEX";
+  else if (action.closest(".takeover-controls")) cursorLabel.textContent = "CONTROL";
+  else cursorLabel.textContent = "SELECT";
+});
+
+document.addEventListener("pointerout", function (event) {
+  if (!cursorUI) return;
+  const nextAction = event.relatedTarget && event.relatedTarget.closest
+    ? event.relatedTarget.closest("button, a, .disc-button")
+    : null;
+  if (!nextAction) cursorUI.classList.remove("is-action");
+});
+
 window.addEventListener("resize", function () {
   centerItem(activeItem(), false);
+  wheelTarget = rail.scrollLeft;
 });
+
