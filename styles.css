@@ -956,3 +956,7 @@ img{display:block;max-width:100%}
   }
   .takeover{clip-path:none!important}
 }
+
+.media-rail.is-inertia{
+  scroll-snap-type:none!important;
+}
