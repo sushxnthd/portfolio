@@ -1,328 +1,335 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#f3f1eb" />
-  <meta name="description" content="Sushanth Dasari — AI systems, autonomous science, human sensing, and experimental research." />
-  <meta property="og:title" content="Sushanth Dasari" />
-  <meta property="og:description" content="Interactive ASCII portfolio — research, systems, and experiments." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://sushxnthd.github.io/portfolio/" />
-  <link rel="canonical" href="https://sushxnthd.github.io/portfolio/" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <title>Sushanth Dasari</title>
-  <link rel="stylesheet" href="styles.css?v=ascii-1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f3f2ec">
+  <meta name="description" content="Sushanth Dasari — AI systems, autonomous science, human sensing, and research prototypes.">
+  <title>Sushanth Dasari · AI Lab</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=garage-1">
 </head>
 <body>
   <a class="skip-link" href="#work">Skip to work</a>
 
-  <header class="site-header">
-    <a class="wordmark" href="#top" aria-label="Sushanth Dasari home">
-      <span class="wordmark-name">SUSHANTH DASARI</span>
-      <span class="wordmark-meta">GURUGRAM / 2026</span>
-    </a>
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="jump-btn" id="jumpButton" type="button">
+        <span>Jump to</span><kbd>⌘</kbd><kbd>K</kbd>
+      </button>
+    </div>
 
-    <nav class="site-nav" aria-label="Primary">
-      <a href="#work">WORK</a>
-      <a href="#research">RESEARCH</a>
-      <a href="#about">ABOUT</a>
-      <button type="button" id="openIndex">INDEX</button>
-    </nav>
+    <a class="site-mark" href="#top" aria-label="Sushanth Dasari home">SD</a>
 
-    <div class="header-status" aria-hidden="true">
-      <span class="status-dot"></span>
-      <span id="headerMode">ASCII / LIVE</span>
+    <div class="topbar-right">
+      <button class="terminal-trigger pulse-once" id="terminalTrigger" type="button" aria-label="Open terminal">&gt;_</button>
     </div>
   </header>
 
   <main id="top">
-    <section class="hero" id="hero">
-      <canvas id="asciiHero" class="ascii-hero" aria-hidden="true"></canvas>
-      <div class="hero-noise" aria-hidden="true"></div>
+    <section class="intro-section">
+      <div class="intro-shell">
+        <p class="eyebrow">SUSHANTH DASARI · AI / SYSTEMS / RESEARCH</p>
 
-      <div class="hero-copy">
-        <p class="hero-kicker">AI SYSTEMS · AUTONOMOUS SCIENCE · HUMAN SENSING</p>
-        <h1>
-          <span>I build things</span>
-          <span>that have to</span>
-          <span class="hero-em">survive reality.</span>
-        </h1>
-        <p class="hero-intro">
-          I’m Sushanth. I work on AI systems, experimental science,
-          hardware-aware search, and sensing problems where the interesting
-          part starts after the first idea breaks.
-        </p>
+        <h1>AI Lab</h1>
+
+        <div class="intro-copy">
+          <p>
+            AI Lab by Sushanth Dasari. Based in Gurugram, building systems that
+            move between research, software, hardware-aware search, and human sensing.
+          </p>
+          <p>
+            I care about experiments that can fail, measurements that can be checked,
+            and ideas that still look interesting after implementation.
+          </p>
+        </div>
+
+        <div class="intro-actions">
+          <button type="button" id="openTerminalInline">Open terminal <span>&gt;_</span></button>
+          <a href="#contact">Say hi ↗</a>
+        </div>
+
+        <div class="mini-timeline" aria-label="Recent timeline">
+          <div class="year-ruler">
+            <span>2023</span><span>2024</span><span>2025</span><span>2026</span><span>2027</span><span>2028</span>
+          </div>
+          <div class="timeline-rule"><i></i></div>
+          <div class="timeline-roles">
+            <span class="role-chip role-a">Research · AI systems</span>
+            <span class="role-chip role-b">Somno · mobile AI</span>
+            <span class="role-chip role-c">Kernellum · AI × hardware</span>
+            <span class="role-chip role-d">Theorica · autonomous science</span>
+          </div>
+        </div>
+
+        <a class="view-work" href="#work">View work ↗</a>
       </div>
-
-      <div class="hero-console" aria-hidden="true">
-        <div><span>POINTER</span><b id="pointerReadout">000,000</b></div>
-        <div><span>DENSITY</span><b id="densityReadout">0.72</b></div>
-        <div><span>VELOCITY</span><b id="velocityReadout">0.00</b></div>
-      </div>
-
-      <div class="hero-instruction" aria-hidden="true">
-        <span>[ move ] deform field</span>
-        <span>[ scroll ] change density</span>
-        <span>[ click project ] resolve</span>
-      </div>
-
-      <a class="hero-scroll" href="#work">
-        <span>ENTER ARCHIVE</span>
-        <i>↓</i>
-      </a>
     </section>
 
     <section class="work-section" id="work">
-      <div class="section-head">
-        <p>01 / SELECTED WORK</p>
-        <h2>Projects with<br><em>something to prove.</em></h2>
-        <span>Hover to inspect. Click to open.</span>
-      </div>
-
-      <div class="work-layout">
-        <div class="project-list" id="projectList">
-          <button class="project-row is-active" type="button" data-project="kernellum">
-            <span class="project-index">001</span>
-            <span class="project-name">Kernellum</span>
-            <span class="project-type">AI × Hardware</span>
-            <span class="project-result">36 / 36</span>
-            <span class="project-arrow">↗</span>
-          </button>
-
-          <button class="project-row" type="button" data-project="theorica">
-            <span class="project-index">002</span>
-            <span class="project-name">Theorica</span>
-            <span class="project-type">Autonomous Science</span>
-            <span class="project-result">345 / 345</span>
-            <span class="project-arrow">↗</span>
-          </button>
-
-          <button class="project-row" type="button" data-project="somno">
-            <span class="project-index">003</span>
-            <span class="project-name">Somno</span>
-            <span class="project-type">Mobile AI</span>
-            <span class="project-result">BUILD v27</span>
-            <span class="project-arrow">↗</span>
-          </button>
-
-          <button class="project-row" type="button" data-project="lucent">
-            <span class="project-index">004</span>
-            <span class="project-name">Lucent</span>
-            <span class="project-type">Human Sensing</span>
-            <span class="project-result">00:05</span>
-            <span class="project-arrow">↗</span>
-          </button>
-        </div>
-
-        <aside class="project-stage" id="projectStage" aria-live="polite">
-          <div class="stage-topline">
-            <span id="stageCode">KERNEL / ROUTE</span>
-            <span id="stageStatus">ACTIVE RESEARCH</span>
+      <div class="work-grid">
+        <article class="work-card card-large" data-open-card="kernellum">
+          <div class="card-meta">
+            <span>03</span>
+            <span>RESEARCH SYSTEM · FPGA</span>
           </div>
+          <h2>Kernellum</h2>
+          <p>
+            Route-aware architecture search for AI accelerators. Predict, synthesize,
+            route, falsify, update.
+          </p>
+          <div class="tag-row">
+            <span>RTL</span><span>ECP5</span><span>Search</span><span>Physical Design</span>
+          </div>
+          <div class="card-art kernel-art" aria-hidden="true">
+            <div class="kernel-grid"></div>
+            <div class="kernel-route r1"></div>
+            <div class="kernel-route r2"></div>
+            <div class="kernel-route r3"></div>
+            <strong>36 / 36</strong>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
 
-          <div class="ascii-frame">
-            <canvas id="projectAscii" aria-hidden="true"></canvas>
-            <div class="ascii-scan" aria-hidden="true"></div>
-            <div class="ascii-corners" aria-hidden="true">
-              <span>+</span><span>+</span><span>+</span><span>+</span>
+        <article class="work-card" data-open-card="theorica">
+          <div class="card-meta">
+            <span>02</span>
+            <span>EXPERIMENT · AUTONOMOUS SCIENCE</span>
+          </div>
+          <h2>Theorica</h2>
+          <p>
+            An AI scientist that changes representation when its current theory breaks.
+          </p>
+          <div class="tag-row">
+            <span>Structure Discovery</span><span>Falsification</span><span>Math</span>
+          </div>
+          <div class="card-art theorica-art" aria-hidden="true">
+            <span>F : S × S → S</span>
+            <i>Lₓ(y)=F(x,y)</i>
+            <b>345 / 345</b>
+          </div>
+          <span class="card-arrow">→</span>
+        </article>
+
+        <article class="work-card" data-open-card="somno">
+          <div class="card-meta">
+            <span>01</span>
+            <span>PRODUCT · ANDROID</span>
+          </div>
+          <h2>Somno</h2>
+          <p>
+            Privacy-first fatigue awareness from personal baseline, reaction time,
+            facial signals, and sleep history.
+          </p>
+          <div class="tag-row">
+            <span>React Native</span><span>On-device AI</span><span>Android</span>
+          </div>
+          <div class="card-art somno-art" aria-hidden="true">
+            <div class="phone-shell">
+              <img src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/result.png" alt="">
             </div>
           </div>
+          <span class="card-arrow">→</span>
+        </article>
 
-          <div class="stage-meta">
-            <h3 id="stageTitle">Kernellum</h3>
-            <p id="stageDescription">
-              Route-aware architecture search that asks whether predicted
-              accelerator advantages survive synthesis and place-and-route.
-            </p>
-            <div class="stage-stats" id="stageStats">
-              <span><b>36 / 36</b><i>held-out wins</i></span>
-              <span><b>23.56%</b><i>mean latency improvement</i></span>
-              <span><b>1.44%</b><i>oracle regret</i></span>
-            </div>
+        <article class="work-card card-soon" data-open-card="lucent">
+          <div class="card-meta">
+            <span>04</span>
+            <span>COMING NEXT</span>
           </div>
-        </aside>
+          <h2>Lucent</h2>
+          <p>How much functional state survives in five seconds of ordinary face video?</p>
+          <div class="tag-row"><span>Vision</span><span>Human Sensing</span><span>00:05</span></div>
+          <div class="card-art lucent-art" aria-hidden="true"><span>00:05</span></div>
+          <span class="card-arrow">→</span>
+        </article>
       </div>
     </section>
 
-    <section class="research-section" id="research">
-      <div class="research-ascii" aria-hidden="true">
-        <pre id="researchAscii">
-┌──────────────────────────────┐
-│ confidence  ≠  ordering      │
-│                              │
-│  score ────────────────►     │
-│         ╲                    │
-│          ╲ selective risk    │
-│           ╲                  │
-│            ●──── coverage    │
-└──────────────────────────────┘
-        </pre>
-      </div>
-
-      <div class="research-copy">
-        <p class="eyebrow">02 / RESEARCH SHELF</p>
-        <h2>Questions I keep<br>pulling apart.</h2>
-
-        <div class="research-list">
-          <article>
-            <span>CALIBRATION</span>
-            <h3>What survives post-hoc calibration when confidence scores tie?</h3>
-            <p>Finite-sample behavior, selective risk, AURC envelopes, and diagnostics.</p>
-          </article>
-          <article>
-            <span>COMPUTER VISION</span>
-            <h3>Can segmentation turn visual evidence into reproducible measurements?</h3>
-            <p>Blood-pattern segmentation, contour geometry, and morphometrics.</p>
-          </article>
-          <article>
-            <span>AI INFRASTRUCTURE</span>
-            <h3>What physical externalities disappear when AI is discussed only as software?</h3>
-            <p>Energy, water, carbon, and infrastructure-scale accounting.</p>
-          </article>
-        </div>
-      </div>
+    <section class="manifesto-section">
+      <p class="eyebrow">PROTOTYPE-FIRST · AI EXPERIMENTS</p>
+      <h2>Build the interaction. Put it in motion.<br>Learn what holds up with real behavior.</h2>
     </section>
 
-    <section class="principle-section">
-      <div class="principle-ascii" aria-hidden="true">
-        <span>░</span><span>▒</span><span>▓</span><span>█</span>
-      </div>
-      <blockquote>
-        A result gets more interesting when the system is allowed to
-        <em>fail loudly.</em>
-      </blockquote>
-      <p>
-        I keep failed benchmarks, negative results, and current boundaries visible.
-        The point is not to make every project look finished. It is to make the
-        evidence legible.
-      </p>
+    <section class="garage-strip" aria-label="Selected experiments">
+      <article class="strip-item strip-link">
+        <span>00A</span>
+        <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">repositories ↗</a>
+      </article>
+
+      <article class="strip-item strip-link">
+        <span>01A</span>
+        <a href="#contact">say hi ↗</a>
+      </article>
+
+      <article class="strip-item photo-a">
+        <div class="halftone-art" aria-hidden="true">
+          <span>░▒▓██▓▒░</span>
+          <span>▒▓████▓▒</span>
+          <span>░▒▓██▓▒░</span>
+        </div>
+        <div class="strip-caption"><span>02A</span><b>route / measure / repeat</b></div>
+      </article>
+
+      <article class="strip-item photo-b">
+        <div class="halftone-art matrix" aria-hidden="true">
+          <span>F  S×S  →  S</span>
+          <span>└─ action ─┘</span>
+          <span>base → table</span>
+        </div>
+        <div class="strip-caption"><span>03A</span><b>structure before law</b></div>
+      </article>
+
+      <article class="strip-item photo-c">
+        <div class="halftone-art face" aria-hidden="true">
+          <span>··::++**##</span>
+          <span>::+*####*+:</span>
+          <span>:+#@    @#+</span>
+          <span>::+*####*+:</span>
+        </div>
+        <div class="strip-caption"><span>04A</span><b>five-second sensing</b></div>
+      </article>
     </section>
 
-    <section class="about-section" id="about">
-      <div class="about-head">
-        <p>03 / ABOUT</p>
-        <h2>Student.<br>Builder.<br>Researcher.</h2>
-      </div>
+    <div class="strip-instruction">
+      <span class="desktop-copy">scroll to explore · hover to develop</span>
+      <span class="mobile-copy">swipe · tap to develop</span>
+    </div>
 
-      <div class="about-grid">
-        <div class="about-copy">
-          <p>
-            Class 12 CBSE student in Gurugram, India. Physics, Chemistry,
-            Mathematics, and AI. Most of my work sits somewhere between
-            software, research, and experiments that are slightly too ambitious
-            for the amount of hardware I currently own.
-          </p>
-          <p>
-            I’m particularly interested in systems that discover structure,
-            reason experimentally, or replace expensive sensing with useful
-            computation.
-          </p>
-        </div>
-
-        <div class="about-data">
-          <div><span>LOCATION</span><b>Gurugram, India</b></div>
-          <div><span>CLASS</span><b>2027</b></div>
-          <div><span>LANGUAGE</span><b>Cambridge C1 · 196</b></div>
-          <div><span>OTHER</span><b>STEM Racing · MUN · Leadership</b></div>
-        </div>
+    <section class="cli-entrance" id="showcaseEntry">
+      <div class="cli-command">
+        <span>sushanth@lab ~ %</span>
+        <strong>showcase --3d-timeline</strong>
       </div>
+      <div class="run-row">
+        <div class="run-bar" aria-hidden="true">
+          <i id="runProgress"></i>
+          <div class="run-cells" id="runCells"></div>
+        </div>
+        <span id="runLabel">scroll to run ↓</span>
+      </div>
+      <a class="fallback-showcase" href="#timeline" id="fallbackShowcase">Open timeline ↗</a>
     </section>
 
-    <section class="contact-section">
-      <div class="contact-ascii" aria-hidden="true">
-<pre>
-███████╗██████╗ 
-██╔════╝██╔══██╗
-███████╗██║  ██║
-╚════██║██║  ██║
-███████║██████╔╝
-╚══════╝╚═════╝ 
-</pre>
+    <section class="contact-section" id="contact">
+      <div>
+        <p class="eyebrow">CONTACT</p>
+        <h2>Have a question,<br>collaboration, or weird idea?</h2>
       </div>
-      <div class="contact-copy">
-        <p>04 / END OF FILE</p>
-        <h2>Everything else<br>is in the repos.</h2>
-        <div class="contact-links">
-          <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href="EVIDENCE.md">Evidence ledger ↗</a>
-          <button type="button" id="copyHandle">Copy @sushxnthd</button>
-        </div>
+      <div class="contact-links">
+        <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <a href="https://sushxnthd.github.io/somno/" target="_blank" rel="noreferrer">Somno ↗</a>
       </div>
+      <p class="contact-note">Class of 2027 · Gurugram, India</p>
     </section>
   </main>
 
-  <aside class="index-panel" id="indexPanel" aria-hidden="true">
-    <div class="index-top">
-      <span>INDEX / 006 FILES</span>
-      <button type="button" id="closeIndex">CLOSE [ESC]</button>
+  <section class="terminal-window" id="terminalWindow" aria-hidden="true">
+    <div class="terminal-bar">
+      <span>Garage CLI</span>
+      <button id="closeTerminal" type="button">×</button>
     </div>
-    <nav class="index-links" aria-label="Project index">
-      <button type="button" data-open-project="kernellum"><span>001</span><b>Kernellum</b><i>AI × Hardware</i></button>
-      <button type="button" data-open-project="theorica"><span>002</span><b>Theorica</b><i>Autonomous Science</i></button>
-      <button type="button" data-open-project="somno"><span>003</span><b>Somno</b><i>Mobile AI</i></button>
-      <button type="button" data-open-project="lucent"><span>004</span><b>Lucent</b><i>Human Sensing</i></button>
-      <a href="#research"><span>005</span><b>Research Shelf</b><i>ML / Vision / Infra</i></a>
-      <a href="#about"><span>006</span><b>About</b><i>Context</i></a>
-    </nav>
-    <div class="index-bottom">
-      <span>SUSHANTH.DASARI / PORTFOLIO</span>
-      <span>ASCII SYSTEM v1.0</span>
+    <div class="terminal-screen" id="terminalScreen">
+      <div class="terminal-output" id="terminalOutput"></div>
+      <form class="terminal-form" id="terminalForm">
+        <label for="terminalInput">sushanth@lab ~ %</label>
+        <input id="terminalInput" autocomplete="off" spellcheck="false" aria-label="Terminal command">
+      </form>
     </div>
-  </aside>
+  </section>
 
-  <section class="project-view" id="projectView" aria-hidden="true" role="dialog" aria-modal="true">
-    <canvas id="transitionAscii" class="transition-ascii" aria-hidden="true"></canvas>
-
-    <div class="project-view-inner">
-      <header class="project-view-head">
-        <span id="viewCode">PROJECT / 001</span>
-        <div>
-          <button type="button" id="prevProject">PREV</button>
-          <button type="button" id="nextProject">NEXT</button>
-          <button type="button" id="closeProject">CLOSE [ESC]</button>
-        </div>
-      </header>
-
-      <div class="project-view-hero">
-        <div class="project-view-title">
-          <span id="viewNumber">001</span>
-          <h2 id="viewTitle">Kernellum</h2>
-          <p id="viewSubtitle">AI × Hardware</p>
-        </div>
-
-        <div class="project-view-art">
-          <canvas id="detailAscii" aria-hidden="true"></canvas>
-          <img id="viewImage" alt="" hidden />
-        </div>
+  <section class="jump-palette" id="jumpPalette" aria-hidden="true">
+    <div class="jump-card">
+      <div class="jump-search">
+        <span>⌘K</span>
+        <input id="jumpInput" placeholder="Jump to…" autocomplete="off">
+        <button id="closeJump" type="button">ESC</button>
       </div>
-
-      <div class="project-view-grid">
-        <div>
-          <span class="detail-label">QUESTION</span>
-          <p id="viewQuestion"></p>
-        </div>
-        <div>
-          <span class="detail-label">EVIDENCE</span>
-          <div class="detail-stats" id="viewStats"></div>
-        </div>
-        <div>
-          <span class="detail-label">CURRENT BOUNDARY</span>
-          <p id="viewBoundary"></p>
-        </div>
-        <div>
-          <span class="detail-label">LINKS</span>
-          <div class="detail-links" id="viewLinks"></div>
-        </div>
+      <div class="jump-list" id="jumpList">
+        <button data-jump="#work"><span>01</span><b>Selected work</b></button>
+        <button data-jump="#showcaseEntry"><span>02</span><b>3D timeline</b></button>
+        <button data-terminal><span>03</span><b>Garage CLI</b></button>
+        <button data-jump="#contact"><span>04</span><b>Contact</b></button>
       </div>
     </div>
   </section>
 
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <span class="cursor-box"></span>
-    <span class="cursor-text" id="cursorText">EXPLORE</span>
-  </div>
+  <section class="timeline-overlay" id="timeline" aria-hidden="true">
+    <div class="pixel-transition" id="pixelTransition" aria-hidden="true"></div>
 
-  <script src="script.js?v=ascii-1" defer></script>
+    <header class="timeline-head">
+      <div>
+        <span>AI LAB</span>
+        <b>PROJECT TIMELINE</b>
+      </div>
+      <div class="timeline-controls">
+        <button id="timelineMinus" type="button">−</button>
+        <span id="timelineZoomLabel">1.0×</span>
+        <button id="timelinePlus" type="button">+</button>
+        <button id="closeTimeline" type="button">Close</button>
+      </div>
+    </header>
+
+    <div class="timeline-stage">
+      <div class="timeline-years" id="timelineYears">
+        <span>2023</span><span>2024</span><span>2025</span><span>2026</span><span>2027</span><span>2028</span>
+      </div>
+      <div class="timeline-axis"></div>
+
+      <div class="timeline-world" id="timelineWorld">
+        <button class="timeline-card track-top" data-timeline-index="0" data-project="calibration">
+          <span class="tc-year">2024</span>
+          <b>Calibration</b>
+          <p>Reliability, ties, selective risk.</p>
+          <small>RESEARCH</small>
+        </button>
+
+        <button class="timeline-card track-bottom" data-timeline-index="1" data-project="somno">
+          <span class="tc-year">2025</span>
+          <b>Somno</b>
+          <p>Fatigue awareness without a wearable.</p>
+          <small>PRODUCT</small>
+        </button>
+
+        <button class="timeline-card track-top" data-timeline-index="2" data-project="theorica">
+          <span class="tc-year">2026</span>
+          <b>Theorica</b>
+          <p>Discover representation. Falsify aggressively.</p>
+          <small>AUTONOMOUS SCIENCE</small>
+        </button>
+
+        <button class="timeline-card track-bottom" data-timeline-index="3" data-project="kernellum">
+          <span class="tc-year">2026</span>
+          <b>Kernellum</b>
+          <p>Architecture search meets physical design.</p>
+          <small>AI × HARDWARE</small>
+        </button>
+
+        <div class="timeline-quote" data-timeline-index="4">
+          <p>“A breakthrough is only real when its evidence survives implementation.”</p>
+        </div>
+
+        <button class="timeline-card track-top" data-timeline-index="5" data-project="lucent">
+          <span class="tc-year">2026</span>
+          <b>Lucent</b>
+          <p>Five seconds. One camera. What survives?</p>
+          <small>HUMAN SENSING</small>
+        </button>
+      </div>
+
+      <div class="timeline-hint">scroll / drag to move · click a card to focus</div>
+    </div>
+
+    <aside class="timeline-detail" id="timelineDetail" aria-hidden="true">
+      <button class="detail-close" id="closeTimelineDetail" type="button">×</button>
+      <span id="detailEyebrow">PROJECT</span>
+      <h3 id="detailTitle">Kernellum</h3>
+      <p id="detailText"></p>
+      <div id="detailStats" class="detail-stats"></div>
+      <div id="detailLinks" class="detail-links"></div>
+    </aside>
+  </section>
+
+  <script src="script.js?v=garage-1" defer></script>
 </body>
 </html>
