@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://sushxnthd.github.io/portfolio/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <title>Sushanth Dasari — Archive</title>
-  <link rel="stylesheet" href="styles.css?v=20260925-2" />
+  <link rel="stylesheet" href="styles.css?v=20260925-4" />
 </head>
 <body>
   <a class="skip-link" href="#archive">Skip to archive</a>
@@ -37,12 +37,38 @@
 
   <main>
     <section class="archive-stage" id="archive">
+      <div class="ambient-grid" aria-hidden="true"></div>
+      <div class="ambient-scan" aria-hidden="true"></div>
+
+      <div class="computer-decor decor-left" aria-hidden="true">
+        <div class="decor-head"><span>PROCESS</span><b>ACTIVE</b></div>
+        <div class="decor-row"><span>archive.bin</span><i><b style="--p:82%"></b></i></div>
+        <div class="decor-row"><span>motion.sys</span><i><b style="--p:64%"></b></i></div>
+        <div class="decor-row"><span>research.db</span><i><b style="--p:93%"></b></i></div>
+        <div class="decor-foot">PID 026 · USER SD</div>
+      </div>
+
+      <div class="computer-decor decor-right" aria-hidden="true">
+        <div class="signal-head">INPUT_MONITOR</div>
+        <svg class="signal-trace" viewBox="0 0 220 70" preserveAspectRatio="none">
+          <path d="M0 39 L18 39 L24 18 L30 53 L38 34 L50 34 L58 11 L66 59 L74 36 L92 36 L100 23 L106 47 L114 32 L130 32 L139 15 L146 54 L154 35 L173 35 L181 25 L188 45 L196 34 L220 34"/>
+        </svg>
+        <div class="signal-values"><span>X <b id="hudX">000</b></span><span>Y <b id="hudY">000</b></span></div>
+      </div>
+
       <div class="stage-copy">
         <p class="stage-eyebrow">Interactive portfolio archive · drag / wheel to browse</p>
         <h1>Discover the work<br>of <em>Sushanth Dasari</em></h1>
       </div>
 
       <div class="rail-shell" id="railShell">
+        <div class="rail-axis" aria-hidden="true"><span>−</span><i></i><span>+</span></div>
+        <div class="rail-hud rail-hud-left" aria-hidden="true">
+          <span>ARCHIVE.POS</span><b id="railPos">000.00</b>
+        </div>
+        <div class="rail-hud rail-hud-right" aria-hidden="true">
+          <span>OBJECT.DEPTH</span><b id="depthReadout">1.00</b>
+        </div>
         <div class="media-rail" id="mediaRail" role="list" aria-label="Project archive">
           <div class="rail-spacer" aria-hidden="true"></div>
 
@@ -178,6 +204,12 @@
         </div>
       </div>
 
+      <div class="micro-console" aria-hidden="true">
+        <span>&gt; SELECT_OBJECT</span>
+        <i></i>
+        <span id="microStatus">READY</span>
+      </div>
+
       <div class="project-readout" id="projectReadout" aria-live="polite">
         <div class="readout-main">
           <h2 id="readoutTitle">Kernellum</h2>
@@ -239,7 +271,11 @@
   </aside>
 
   <section class="takeover" id="takeover" aria-hidden="true" aria-modal="true" role="dialog">
+    <div class="takeover-portal" aria-hidden="true"></div>
     <div class="takeover-bg" id="takeoverBg"></div>
+    <div class="scene-grid" aria-hidden="true"></div>
+    <div class="scene-corner scene-corner-a" aria-hidden="true">A24.SD / 26</div>
+    <div class="scene-corner scene-corner-b" aria-hidden="true">X <span id="sceneX">000</span> · Y <span id="sceneY">000</span></div>
     <div class="crt-noise" aria-hidden="true"></div>
 
     <div class="takeover-head">
@@ -293,6 +329,12 @@
     </div>
   </section>
 
-  <script src="script.js?v=20260925-2" defer></script>
+  <div class="cursor-ui" id="cursorUI" aria-hidden="true">
+    <span class="cursor-ring"></span>
+    <span class="cursor-dot"></span>
+    <span class="cursor-label" id="cursorLabel">BROWSE</span>
+  </div>
+
+  <script src="script.js?v=20260925-4" defer></script>
 </body>
 </html>
