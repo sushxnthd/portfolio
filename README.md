@@ -34,7 +34,7 @@ Open http://localhost:8000.
 
 ## Deployment
 
-The repository includes a GitHub Pages workflow in `.github/workflows/pages.yml`. If Pages has not yet been enabled for this repository, select **Settings → Pages → Build and deployment → Source → GitHub Actions** once.
+The repository deploys through `.github/workflows/pages.yml`. GitHub Pages is enabled and the production deployment is live at https://sushxnthd.github.io/portfolio/.
 
 ## Editing rule
 
