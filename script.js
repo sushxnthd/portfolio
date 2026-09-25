@@ -513,13 +513,25 @@ window.addEventListener("keydown", function (event) {
 window.setInterval(updateClock, 1000);
 updateClock();
 
-window.addEventListener("load", function () {
-  setMode("work", "kernellum");
+function dismissBoot() {
+  const boot = document.getElementById("bootScreen");
+  if (!boot) return;
+  boot.classList.add("is-gone");
+}
 
-  window.setTimeout(function () {
-    document.getElementById("bootScreen").classList.add("is-gone");
-  }, reducedMotion ? 0 : 720);
-});
+function initializeArchive() {
+  setMode("work", "kernellum");
+  window.setTimeout(dismissBoot, reducedMotion ? 0 : 420);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeArchive, { once: true });
+} else {
+  initializeArchive();
+}
+
+// Absolute failsafe: never allow the boot overlay to trap the page.
+window.setTimeout(dismissBoot, 1800);
 
 window.addEventListener("resize", function () {
   centerItem(activeItem(), false);
