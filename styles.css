@@ -227,9 +227,9 @@ img{display:block;max-width:100%}
 .index-panel{
   position:fixed;inset:0;z-index:120;background:#111;color:#f1efe9;padding:22px var(--pad) 28px;
   display:grid;grid-template-rows:auto 1fr auto;transform:translateY(-102%);
-  transition:transform .6s cubic-bezier(.75,0,.15,1);visibility:hidden;
+  transition:transform .6s cubic-bezier(.75,0,.15,1);visibility:hidden;pointer-events:none;
 }
-.index-panel.is-open{transform:none;visibility:visible}
+.index-panel.is-open{transform:none;visibility:visible;pointer-events:auto}
 .index-head,.index-footer{display:flex;align-items:center;justify-content:space-between;gap:20px;font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .index-head{border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:14px}
 .index-head button{border:0;background:transparent;color:#fff;font:9px var(--mono)}
@@ -249,9 +249,9 @@ img{display:block;max-width:100%}
 /* Takeover */
 .takeover{
   position:fixed;inset:0;z-index:110;background:#0d0e0d;color:#f4f2ec;
-  visibility:hidden;opacity:0;transition:opacity .35s ease,visibility .35s ease;overflow:auto;
+  visibility:hidden;opacity:0;pointer-events:none;transition:opacity .35s ease,visibility .35s ease;overflow:auto;
 }
-.takeover.is-open{visibility:visible;opacity:1}
+.takeover.is-open{visibility:visible;opacity:1;pointer-events:auto}
 .takeover-bg{position:absolute;inset:0;overflow:hidden;background:#20211f;transition:background .3s ease}
 .takeover-bg:after{
   content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1),rgba(0,0,0,.38) 72%,rgba(0,0,0,.83));
