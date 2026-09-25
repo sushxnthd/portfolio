@@ -414,6 +414,10 @@ function runWheelInertia() {
   } else {
     rail.scrollLeft = wheelTarget;
     wheelFrame = 0;
+    rail.classList.remove("is-inertia");
+    window.setTimeout(function () {
+      centerItem(activeItem(), true);
+    }, 45);
   }
 }
 
@@ -422,6 +426,7 @@ rail.addEventListener("wheel", function (event) {
     event.preventDefault();
     const max = Math.max(0, rail.scrollWidth - rail.clientWidth);
     wheelTarget = Math.max(0, Math.min(max, (wheelFrame ? wheelTarget : rail.scrollLeft) + event.deltaY * 1.05));
+    rail.classList.add("is-inertia");
     if (!wheelFrame) wheelFrame = requestAnimationFrame(runWheelInertia);
   }
 }, { passive: false });
@@ -446,6 +451,7 @@ rail.addEventListener("pointerdown", function (event) {
   }
   dragStartX = event.clientX;
   dragStartScroll = rail.scrollLeft;
+  rail.classList.remove("is-inertia");
   rail.classList.add("is-dragging");
 
   if (rail.setPointerCapture) {
