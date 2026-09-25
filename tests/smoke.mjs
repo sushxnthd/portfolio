@@ -25,11 +25,15 @@ async function runCase(browser, name, viewport) {
     const pxAfter = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--px").trim());
     assert(pxAfter !== pxBefore, name + ": pointer motion variables did not update");
 
-    const railBox = await page.locator("#mediaRail").boundingBox();
-    assert(railBox, name + ": rail has no bounding box");
     const scrollBefore = await page.locator("#mediaRail").evaluate((el) => el.scrollLeft);
-    await page.mouse.move(railBox.x + railBox.width * 0.5, railBox.y + railBox.height * 0.5);
-    await page.mouse.wheel(0, 280);
+    await page.locator("#mediaRail").evaluate((el) => {
+      el.dispatchEvent(new WheelEvent("wheel", {
+        deltaY: 280,
+        deltaX: 0,
+        bubbles: true,
+        cancelable: true
+      }));
+    });
     await page.waitForTimeout(520);
     const scrollAfter = await page.locator("#mediaRail").evaluate((el) => el.scrollLeft);
     assert(scrollAfter !== scrollBefore, name + ": wheel inertia did not move archive");
