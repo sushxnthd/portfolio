@@ -3,379 +3,304 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#f4f0e7" />
-  <meta name="description" content="Sushanth Dasari — student builder and AI researcher making products, experiments, and research projects." />
-  <meta property="og:title" content="Sushanth Dasari — Portfolio" />
-  <meta property="og:description" content="Selected work across AI, research, hardware, and human sensing." />
+  <meta name="theme-color" content="#eeece6" />
+  <meta name="description" content="Sushanth Dasari — an interactive archive of projects, research, and experiments in AI, hardware, and human sensing." />
+  <meta property="og:title" content="Sushanth Dasari — Archive" />
+  <meta property="og:description" content="Browse projects as a computer-media archive." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sushxnthd.github.io/portfolio/" />
   <link rel="canonical" href="https://sushxnthd.github.io/portfolio/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <title>Sushanth Dasari — Portfolio</title>
+  <title>Sushanth Dasari — Archive</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#archive">Skip to archive</a>
 
-  <header class="topbar">
-    <div class="wrap nav">
-      <a class="wordmark" href="#top">Sushanth Dasari</a>
-      <nav aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#research">Research</a>
-        <a href="#about">About</a>
-      </nav>
-      <a class="github-link" href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub ↗</a>
+  <div class="boot-screen" id="bootScreen" aria-hidden="true">
+    <div class="boot-copy">
+      <span>SUSHANTH.DASARI</span>
+      <span>PORTFOLIO_OS 26.09</span>
+      <span class="boot-caret">█</span>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <a class="brand" href="#archive" aria-label="Sushanth Dasari home">
+      <span class="brand-mark">SD</span>
+      <span class="brand-copy">Sushanth<br>Dasari</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-tab is-active" type="button" data-mode="work">Work</button>
+      <button class="nav-tab" type="button" data-mode="research">Research</button>
+      <button class="nav-tab" type="button" id="openIndex">Index</button>
+    </nav>
+
+    <div class="system-head">
+      <span class="system-led"></span>
+      <span>SYS: ONLINE</span>
+      <span class="system-clock" id="systemClock">19:31:00</span>
     </div>
   </header>
 
-  <main id="main">
-    <section id="top" class="hero wrap">
-      <div class="hero-kicker reveal">
-        <span class="dot"></span>
-        <span>17 · Gurugram, India · Class of 2027</span>
+  <main>
+    <section class="archive-stage" id="archive">
+      <div class="stage-copy">
+        <p class="stage-eyebrow">Interactive portfolio archive · drag / wheel to browse</p>
+        <h1>Discover the work<br>of <em>Sushanth Dasari</em></h1>
       </div>
 
-      <div class="hero-grid">
-        <div class="hero-title reveal">
-          <h1>
-            I make
-            <span class="serif">software, research,</span>
-            and things I’m not quite sure how to build yet.
-          </h1>
-        </div>
+      <div class="rail-shell" id="railShell">
+        <div class="media-rail" id="mediaRail" role="list" aria-label="Project archive">
+          <div class="rail-spacer" aria-hidden="true"></div>
 
-        <aside class="hero-note reveal">
-          <p>
-            I’m Sushanth. Most of my time goes into AI, scientific discovery, hardware, and human sensing.
-            I like projects with a clear question, a real test, and enough room to fail in interesting ways.
-          </p>
-          <a href="#work">Selected work ↓</a>
-        </aside>
-      </div>
-
-      <div class="hero-collage reveal" aria-label="Portfolio preview">
-        <div class="collage-card orange-card">
-          <span class="card-label">NOW</span>
-          <strong>Can 5 seconds of video tell us anything useful?</strong>
-          <span class="scribble">Lucent</span>
-        </div>
-
-        <div class="collage-card image-card somno-preview">
-          <img src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/home.png" alt="Somno app home screen" />
-          <div class="image-caption">
-            <span>SHIPPED</span>
-            <strong>Somno v27</strong>
-          </div>
-        </div>
-
-        <div class="collage-card paper-card">
-          <span class="card-label">RESEARCH NOTE</span>
-          <div class="math-note">F : S × S → S</div>
-          <p>What structure can you recover from a black-box operation without being told its family?</p>
-          <span class="tiny">Theorica</span>
-        </div>
-
-        <div class="collage-card black-card">
-          <span class="card-label">HARDWARE</span>
-          <strong>36 / 36</strong>
-          <p>held-out routed cases beat the broadcast-only implementation</p>
-          <span class="tiny">Kernellum</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span>AI</span><i>•</i><span>SCIENTIFIC DISCOVERY</span><i>•</i><span>HARDWARE</span><i>•</i><span>HUMAN SENSING</span><i>•</i><span>ANDROID</span><i>•</i><span>RESEARCH</span><i>•</i>
-        <span>AI</span><i>•</i><span>SCIENTIFIC DISCOVERY</span><i>•</i><span>HARDWARE</span><i>•</i><span>HUMAN SENSING</span><i>•</i><span>ANDROID</span><i>•</i><span>RESEARCH</span><i>•</i>
-      </div>
-    </section>
-
-    <section id="work" class="section wrap">
-      <div class="section-heading reveal">
-        <span class="section-no">01</span>
-        <div>
-          <p class="eyebrow">Selected work</p>
-          <h2>A few things I’ve taken unusually far.</h2>
-        </div>
-      </div>
-
-      <article class="project project-kernellum reveal">
-        <div class="project-copy">
-          <div class="project-topline">
-            <span>01</span>
-            <span>AI × HARDWARE</span>
-            <span>2026</span>
-          </div>
-          <h3>Kernellum</h3>
-          <p class="project-intro">
-            An attempt to make AI-designed accelerator architectures survive synthesis and place-and-route, instead of looking good only inside an analytical model.
-          </p>
-
-          <div class="project-facts">
-            <div><strong>36 / 36</strong><span>held-out deployment wins</span></div>
-            <div><strong>23.56%</strong><span>mean workload-latency improvement</span></div>
-            <div><strong>1.44%</strong><span>mean regret vs routed oracle</span></div>
-          </div>
-
-          <p class="project-footnote">
-            These are routed FPGA results, not board-level latency or power measurements. The next gate is physical execution.
-          </p>
-
-          <div class="project-links">
-            <a href="https://github.com/sushxnthd/kernellum" target="_blank" rel="noreferrer">Repo ↗</a>
-            <a href="https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md" target="_blank" rel="noreferrer">Read the result ↗</a>
-          </div>
-        </div>
-
-        <div class="project-visual kernellum-visual" aria-hidden="true">
-          <div class="result-window">
-            <div class="window-bar"><span></span><span></span><span></span></div>
-            <div class="result-title">route-aware portfolio / held-out deployment</div>
-            <div class="bar-chart">
-              <div class="bar-row"><span>broadcast</span><i style="--w:88%"></i><b>baseline</b></div>
-              <div class="bar-row"><span>portfolio</span><i style="--w:63%"></i><b>−23.56%</b></div>
+          <article class="media-item is-active" role="listitem" data-project="kernellum" data-kind="work" tabindex="0">
+            <div class="selection-ring" aria-hidden="true">
+              <svg viewBox="0 0 360 360" preserveAspectRatio="none">
+                <path d="M54 183C51 98 101 42 186 45c80 2 132 51 127 138-5 90-52 132-139 130-81-2-124-45-120-130Z"/>
+                <path d="M61 175c3-79 49-122 124-124 82-2 128 43 121 132-7 80-49 120-130 123-76 3-119-43-115-131Z"/>
+              </svg>
             </div>
-            <div class="result-grid">
-              <div><small>CASES</small><strong>36/36</strong></div>
-              <div><small>ROUTES</small><strong>72/72</strong></div>
-              <div><small>REGRET</small><strong>1.44%</strong></div>
-              <div><small>STATUS</small><strong>PASS</strong></div>
-            </div>
-          </div>
-          <div class="sticky-note note-one">next: put it on a real board</div>
-        </div>
-      </article>
-
-      <article class="project project-theorica reveal">
-        <div class="project-visual theorica-visual">
-          <div class="notebook">
-            <div class="notebook-date">THEORICA / 2026</div>
-            <h4>Can a machine discover the representation before it learns the law?</h4>
-            <div class="formula">
-              <span>F : S × S → S</span>
-              <span>↓</span>
-              <span>L<sub>x</sub>(y) = F(x,y)</span>
-              <span>↓</span>
-              <span>base signature → reconstruction</span>
-            </div>
-            <div class="margin-note">v1.1 failed.<br>good.</div>
-          </div>
-        </div>
-
-        <div class="project-copy">
-          <div class="project-topline">
-            <span>02</span>
-            <span>AUTONOMOUS SCIENCE</span>
-            <span>2026</span>
-          </div>
-          <h3>Theorica</h3>
-          <p class="project-intro">
-            A research project about experimental science: infer hidden structure, choose informative interventions, and revise the representation when the current one breaks.
-          </p>
-
-          <div class="project-facts">
-            <div><strong>345 / 345</strong><span>eligible public holdout reconstructions</span></div>
-            <div><strong>0 / 150</strong><span>false acceptances on controls</span></div>
-            <div><strong>1,100 / 1,100</strong><span>external BOC decisions</span></div>
-          </div>
-
-          <div class="failure-inline">
-            <span>THE PART I LIKE MOST</span>
-            <p>
-              v1.1 only reconstructed 297 / 345 cases. I kept the failure public, changed one scientific behavior, and reran the same challenge. v1.2 reached 345 / 345.
-            </p>
-          </div>
-
-          <div class="project-links">
-            <a href="https://github.com/sushxnthd/theorica" target="_blank" rel="noreferrer">Repo ↗</a>
-            <a href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md" target="_blank" rel="noreferrer">v1.2 report ↗</a>
-            <a href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_1_FAILURE.md" target="_blank" rel="noreferrer">The failed run ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="project project-somno reveal">
-        <div class="project-copy">
-          <div class="project-topline">
-            <span>03</span>
-            <span>MOBILE AI</span>
-            <span>SHIPPED</span>
-          </div>
-          <h3>Somno</h3>
-          <p class="project-intro">
-            A privacy-first Android app for understanding fatigue relative to your own alert baseline, without making a wearable the center of the experience.
-          </p>
-
-          <ul class="plain-list">
-            <li>Reaction-time testing</li>
-            <li>On-device facial + ocular features</li>
-            <li>Sleep-history and subjective-state inputs</li>
-            <li>Recovery modelling, trends, alarms, and Smart Wake</li>
-          </ul>
-
-          <div class="project-links">
-            <a href="https://sushxnthd.github.io/somno/" target="_blank" rel="noreferrer">Product site ↗</a>
-            <a href="https://github.com/sushxnthd/somno/releases/tag/v27" target="_blank" rel="noreferrer">v27 release ↗</a>
-            <a href="https://github.com/sushxnthd/somno" target="_blank" rel="noreferrer">Repo ↗</a>
-          </div>
-        </div>
-
-        <div class="project-visual somno-visual">
-          <div class="phone-stack">
-            <img class="phone phone-back" src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/recovery.png" alt="Somno recovery screen" />
-            <img class="phone phone-mid" src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/result.png" alt="Somno fatigue result screen" />
-            <img class="phone phone-front" src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/home.png" alt="Somno home screen" />
-          </div>
-          <span class="app-tag">actual Android build · v27</span>
-        </div>
-      </article>
-
-      <article class="project project-lucent reveal">
-        <div class="project-visual lucent-visual" aria-hidden="true">
-          <div class="video-frame">
-            <div class="frame-corner c1"></div>
-            <div class="frame-corner c2"></div>
-            <div class="frame-corner c3"></div>
-            <div class="frame-corner c4"></div>
-            <div class="face-outline"></div>
-            <div class="video-time">00:05</div>
-          </div>
-        </div>
-
-        <div class="project-copy">
-          <div class="project-topline">
-            <span>04</span>
-            <span>HUMAN SENSING</span>
-            <span>IN PROGRESS</span>
-          </div>
-          <h3>Lucent</h3>
-          <p class="project-intro">
-            A deliberately aggressive question: how much useful information about someone’s current functional state can be extracted from five seconds of face video?
-          </p>
-
-          <div class="lucent-callout">
-            <strong>Not a breakthrough yet.</strong>
-            <p>The five-second target is the hypothesis. The real work is finding the limit and publishing the answer even if the limit turns out to be fifteen seconds, thirty seconds, or “not enough.”</p>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <section id="research" class="section research-section">
-      <div class="wrap">
-        <div class="section-heading reveal">
-          <span class="section-no">02</span>
-          <div>
-            <p class="eyebrow">Research shelf</p>
-            <h2>Other questions I keep coming back to.</h2>
-          </div>
-        </div>
-
-        <div class="research-list">
-          <article class="research-item reveal">
-            <span class="research-index">A</span>
-            <div>
-              <h3>Post-hoc calibration under ties</h3>
-              <p>Finite-sample characterization, selective-risk bounds, AURC envelopes, and tie-aware diagnostics.</p>
-            </div>
-            <span class="research-tag">ML RELIABILITY</span>
+            <button class="disc-button" type="button" aria-label="Open Kernellum project">
+              <div class="disc disc-kernellum">
+                <div class="disc-shine"></div>
+                <div class="disc-label">
+                  <span class="label-top">KERNEL / 001</span>
+                  <strong>KERNELLUM</strong>
+                  <span class="label-sub">ROUTE-AWARE ARCHITECTURE SEARCH</span>
+                  <div class="label-code">36/36<br>23.56%</div>
+                </div>
+                <span class="disc-hole"></span>
+              </div>
+            </button>
+            <p class="media-caption"><span>Kernellum</span><span>2026</span></p>
           </article>
-          <article class="research-item reveal">
-            <span class="research-index">B</span>
-            <div>
-              <h3>Cross-operator calibration</h3>
-              <p>When does calibration survive a change in corruption or distribution operator rather than just a single benchmark split?</p>
+
+          <article class="media-item" role="listitem" data-project="theorica" data-kind="work" tabindex="0">
+            <div class="selection-ring" aria-hidden="true">
+              <svg viewBox="0 0 360 360" preserveAspectRatio="none">
+                <path d="M54 183C51 98 101 42 186 45c80 2 132 51 127 138-5 90-52 132-139 130-81-2-124-45-120-130Z"/>
+              </svg>
             </div>
-            <span class="research-tag">ROBUSTNESS</span>
+            <button class="disc-button" type="button" aria-label="Open Theorica project">
+              <div class="disc disc-theorica">
+                <div class="disc-shine"></div>
+                <div class="disc-label">
+                  <span class="label-top">THEORY / 002</span>
+                  <strong>THEORICA</strong>
+                  <span class="label-sub">AUTONOMOUS EXPERIMENTAL SCIENCE</span>
+                  <div class="label-math">F:S×S→S<br>Lₓ(y)=F(x,y)</div>
+                </div>
+                <span class="disc-hole"></span>
+              </div>
+            </button>
+            <p class="media-caption"><span>Theorica</span><span>2026</span></p>
           </article>
-          <article class="research-item reveal">
-            <span class="research-index">C</span>
-            <div>
-              <h3>Blood-pattern morphometrics</h3>
-              <p>Computer-vision segmentation and measurement for making pattern analysis more quantitative.</p>
+
+          <article class="media-item" role="listitem" data-project="somno" data-kind="work" tabindex="0">
+            <div class="selection-ring" aria-hidden="true">
+              <svg viewBox="0 0 360 360" preserveAspectRatio="none">
+                <path d="M54 183C51 98 101 42 186 45c80 2 132 51 127 138-5 90-52 132-139 130-81-2-124-45-120-130Z"/>
+              </svg>
             </div>
-            <span class="research-tag">VISION</span>
+            <button class="disc-button" type="button" aria-label="Open Somno project">
+              <div class="disc disc-somno">
+                <div class="disc-shine"></div>
+                <div class="disc-label">
+                  <img src="https://raw.githubusercontent.com/sushxnthd/somno/main/assets/icon.png" alt="" />
+                  <span class="label-top">ANDROID / 003</span>
+                  <strong>SOMNO</strong>
+                  <span class="label-sub">PERSONAL FATIGUE AWARENESS</span>
+                  <div class="label-code">BUILD v27</div>
+                </div>
+                <span class="disc-hole"></span>
+              </div>
+            </button>
+            <p class="media-caption"><span>Somno</span><span>2026</span></p>
           </article>
-          <article class="research-item reveal">
-            <span class="research-index">D</span>
-            <div>
-              <h3>AI infrastructure externalities</h3>
-              <p>Energy, water, and carbon accounting for large-scale AI systems, with attention to the assumptions that dominate the estimate.</p>
+
+          <article class="media-item" role="listitem" data-project="lucent" data-kind="work" tabindex="0">
+            <div class="selection-ring" aria-hidden="true">
+              <svg viewBox="0 0 360 360" preserveAspectRatio="none">
+                <path d="M54 183C51 98 101 42 186 45c80 2 132 51 127 138-5 90-52 132-139 130-81-2-124-45-120-130Z"/>
+              </svg>
             </div>
-            <span class="research-tag">AI × ENVIRONMENT</span>
+            <button class="disc-button" type="button" aria-label="Open Lucent project">
+              <div class="disc disc-lucent">
+                <div class="disc-shine"></div>
+                <div class="disc-label">
+                  <span class="label-top">VISION / 004</span>
+                  <strong>LUCENT</strong>
+                  <span class="label-sub">5 SECOND HUMAN-STATE SENSING</span>
+                  <div class="face-scan-mini"><i></i><i></i><i></i></div>
+                </div>
+                <span class="disc-hole"></span>
+              </div>
+            </button>
+            <p class="media-caption"><span>Lucent</span><span>2026</span></p>
           </article>
+
+          <article class="media-item" role="listitem" data-project="calibration" data-kind="research" tabindex="0">
+            <div class="selection-ring" aria-hidden="true">
+              <svg viewBox="0 0 360 360" preserveAspectRatio="none">
+                <path d="M54 183C51 98 101 42 186 45c80 2 132 51 127 138-5 90-52 132-139 130-81-2-124-45-120-130Z"/>
+              </svg>
+            </div>
+            <button class="disc-button" type="button" aria-label="Open Calibration research">
+              <div class="disc disc-calibration">
+                <div class="disc-shine"></div>
+                <div class="disc-label">
+                  <span class="label-top">RESEARCH / 005</span>
+                  <strong>CALIBRATION</strong>
+                  <span class="label-sub">POST-HOC / TIES / SELECTIVE RISK</span>
+                  <div class="curve-mini"><i></i><i></i></div>
+                </div>
+                <span class="disc-hole"></span>
+              </div>
+            </button>
+            <p class="media-caption"><span>Calibration</span><span>2026</span></p>
+          </article>
+
+          <article class="media-item" role="listitem" data-project="vision" data-kind="research" tabindex="0">
+            <div class="selection-ring" aria-hidden="true">
+              <svg viewBox="0 0 360 360" preserveAspectRatio="none">
+                <path d="M54 183C51 98 101 42 186 45c80 2 132 51 127 138-5 90-52 132-139 130-81-2-124-45-120-130Z"/>
+              </svg>
+            </div>
+            <button class="disc-button" type="button" aria-label="Open Computer Vision research">
+              <div class="disc disc-vision">
+                <div class="disc-shine"></div>
+                <div class="disc-label">
+                  <span class="label-top">RESEARCH / 006</span>
+                  <strong>VISION</strong>
+                  <span class="label-sub">SEGMENTATION + MORPHOMETRICS</span>
+                  <div class="pixel-mini"></div>
+                </div>
+                <span class="disc-hole"></span>
+              </div>
+            </button>
+            <p class="media-caption"><span>Vision research</span><span>2026</span></p>
+          </article>
+
+          <div class="rail-spacer" aria-hidden="true"></div>
         </div>
       </div>
-    </section>
 
-    <section id="about" class="section wrap about-section">
-      <div class="about-grid">
-        <div class="about-title reveal">
-          <span class="section-no">03</span>
-          <h2>About</h2>
+      <div class="project-readout" id="projectReadout" aria-live="polite">
+        <div class="readout-main">
+          <h2 id="readoutTitle">Kernellum</h2>
+          <div class="meta-block">
+            <span>BUILT BY</span>
+            <strong>Sushanth Dasari</strong>
+          </div>
+          <div class="meta-block">
+            <span>YEAR</span>
+            <strong id="readoutYear">2026</strong>
+          </div>
+          <div class="meta-block">
+            <span>TYPE</span>
+            <strong id="readoutType">AI × Hardware</strong>
+          </div>
         </div>
 
-        <div class="about-copy reveal">
-          <p class="big-about">
-            I’m a Class 12 CBSE student studying Physics, Chemistry, Mathematics, and AI.
-          </p>
-          <p>
-            I started with competitions and school projects, then got much more interested in the part after the idea:
-            actually making the thing work, finding the ugly failure mode, and trying again.
-          </p>
-          <p>
-            Right now I’m most interested in systems that can discover structure, reason experimentally, or replace expensive sensing with something lighter.
-          </p>
-
-          <div class="about-details">
-            <div><span>BASED IN</span><strong>Gurugram, India</strong></div>
-            <div><span>CLASS</span><strong>2027</strong></div>
-            <div><span>ENGLISH</span><strong>Cambridge C1 Advanced · 196</strong></div>
-            <div><span>OUTSIDE RESEARCH</span><strong>F1 in Schools / STEM Racing · MUN · school leadership</strong></div>
+        <div class="readout-results">
+          <div class="result-quote">
+            <span id="resultSourceA">HELD-OUT DEPLOYMENT</span>
+            <strong id="resultQuoteA">36 / 36 route-aware wins</strong>
+          </div>
+          <div class="result-quote">
+            <span id="resultSourceB">MEAN LATENCY</span>
+            <strong id="resultQuoteB">23.56% improvement</strong>
           </div>
         </div>
       </div>
 
-      <div class="haa-note reveal">
-        <div>
-          <span class="handwritten">for HAA</span>
-          <h3>What I actually want from the environment</h3>
-        </div>
-        <p>
-          Harder critics, better collaborators, access to physical systems, and a year where building something difficult is the default way to learn.
-          I’d use that to physically validate Kernellum, externally stress-test Theorica, and run a serious preregistered Lucent study.
-        </p>
-      </div>
-    </section>
-
-    <section class="contact-section">
-      <div class="wrap contact-grid">
-        <div class="contact-title reveal">
-          <p class="eyebrow">That’s the portfolio.</p>
-          <h2>Everything else is in the repos.</h2>
-        </div>
-        <div class="contact-links reveal">
-          <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">
-            <span>GitHub</span><b>↗</b>
-          </a>
-          <a href="https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md" target="_blank" rel="noreferrer">
-            <span>Evidence ledger</span><b>↗</b>
-          </a>
-          <button type="button" id="copyHandle" data-copy="@sushxnthd">
-            <span>@sushxnthd</span><b>copy</b>
-          </button>
-        </div>
+      <div class="system-strip">
+        <span><b>MODE</b> <i id="modeReadout">WORK</i></span>
+        <span><b>ITEM</b> <i id="itemReadout">01 / 04</i></span>
+        <span><b>INPUT</b> <i>WHEEL / DRAG / ARROWS</i></span>
+        <span class="sys-memory"><b>MEM</b> <i>64K OK</i></span>
       </div>
     </section>
   </main>
 
-  <footer class="footer wrap">
-    <span>Sushanth Dasari · 2026</span>
-    <span>Built in Gurugram.</span>
-    <a href="#top">Back to top ↑</a>
-  </footer>
+  <aside class="index-panel" id="indexPanel" aria-hidden="true">
+    <div class="index-head">
+      <span>INDEX.DIR</span>
+      <button type="button" id="closeIndex">Close [ESC]</button>
+    </div>
+
+    <div class="index-grid">
+      <button type="button" data-jump="kernellum"><span>01</span><strong>Kernellum</strong><i>AI × Hardware</i><b>2026</b></button>
+      <button type="button" data-jump="theorica"><span>02</span><strong>Theorica</strong><i>Autonomous Science</i><b>2026</b></button>
+      <button type="button" data-jump="somno"><span>03</span><strong>Somno</strong><i>Mobile AI</i><b>2026</b></button>
+      <button type="button" data-jump="lucent"><span>04</span><strong>Lucent</strong><i>Human Sensing</i><b>2026</b></button>
+      <button type="button" data-jump="calibration"><span>05</span><strong>Calibration</strong><i>ML Reliability</i><b>2026</b></button>
+      <button type="button" data-jump="vision"><span>06</span><strong>Vision Research</strong><i>Computer Vision</i><b>2026</b></button>
+    </div>
+
+    <div class="index-footer">
+      <span>GURUGRAM, INDIA</span>
+      <span>CLASS OF 2027</span>
+      <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GITHUB ↗</a>
+    </div>
+  </aside>
+
+  <section class="takeover" id="takeover" aria-hidden="true" aria-modal="true" role="dialog">
+    <div class="takeover-bg" id="takeoverBg"></div>
+    <div class="crt-noise" aria-hidden="true"></div>
+
+    <div class="takeover-head">
+      <div class="takeover-id">
+        <span id="takeoverCode">PROJECT_001</span>
+        <span id="takeoverStatus">STATUS: ACTIVE</span>
+      </div>
+      <div class="takeover-controls">
+        <button type="button" id="prevProject">PREV</button>
+        <button type="button" id="nextProject">NEXT</button>
+        <button type="button" id="closeTakeover">CLOSE [ESC]</button>
+      </div>
+    </div>
+
+    <div class="takeover-stage">
+      <div class="takeover-title" id="takeoverTitle" aria-label="Kernellum">
+        <span>KERNEL</span>
+        <span>LUM</span>
+      </div>
+
+      <div class="computer-window" id="computerWindow">
+        <div class="window-top">
+          <span class="window-dots"><i></i><i></i><i></i></span>
+          <span id="windowTitle">KERNELLUM://RESULTS</span>
+          <span>□</span>
+        </div>
+        <div class="window-content" id="windowContent"></div>
+      </div>
+    </div>
+
+    <div class="takeover-info">
+      <div class="takeover-copy">
+        <span class="info-label">ABOUT THE PROJECT</span>
+        <p id="takeoverDescription"></p>
+      </div>
+
+      <div class="takeover-evidence">
+        <span class="info-label">EVIDENCE / LINKS</span>
+        <div id="takeoverLinks"></div>
+      </div>
+
+      <div class="takeover-boundary">
+        <span class="info-label">CURRENT BOUNDARY</span>
+        <p id="takeoverBoundary"></p>
+      </div>
+    </div>
+
+    <div class="takeover-statusbar">
+      <span id="takeoverFooter">SUSHANTH.DASARI / PROJECT ARCHIVE</span>
+      <span>PRESS ESC TO RETURN</span>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
