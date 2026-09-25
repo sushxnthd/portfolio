@@ -183,7 +183,7 @@ let activeId = "kernellum";
 let scrollFrame = 0;
 let dragging = false;
 let dragStartX = 0;
-let dragStartScroll = 0;
+let dragStartScroll = 0;\nlet dragMoved = false;
 
 function visibleItems() {
   return items.filter((item) => !item.hidden);
