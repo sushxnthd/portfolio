@@ -349,8 +349,10 @@ img{display:block;max-width:100%}
   .takeover-info{grid-template-columns:1fr 1fr}.takeover-boundary{grid-column:1/-1}
 }
 @media(max-width:720px){
-  .site-head{grid-template-columns:1fr auto;height:64px}
-  .main-nav{display:none}
+  .site-head{grid-template-columns:1fr auto auto;height:64px;gap:10px}
+  .main-nav{display:flex}
+  .main-nav .nav-tab[data-mode]{display:none}
+  .main-nav #openIndex{display:block;padding:8px 9px}
   .system-head span:nth-child(2),.system-clock{display:none}
   .archive-stage{padding-top:78px;padding-bottom:115px}
   .stage-copy{padding-top:20px}.stage-copy h1{font-size:clamp(39px,11vw,64px)}
