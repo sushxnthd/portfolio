@@ -1,21 +1,41 @@
-# Sushanth Dasari — HAA Portfolio
+# Sushanth Dasari — HAA application portfolio
 
-A dependency-free static portfolio designed around proof of work, builder trajectory, research, and current direction.
+A static, dependency-free proof-of-work portfolio built for a fast technical review.
 
-## Run locally
+**Live URL target:** https://sushxnthd.github.io/portfolio/
 
-Open `index.html` directly, or serve the folder:
+## Design principle
+
+The site is ordered by inspectability rather than by résumé prestige:
+
+1. strongest public quantitative evidence;
+2. exact experimental boundaries;
+3. preserved failures and negative results;
+4. shipped product evidence;
+5. current hypotheses labeled as hypotheses;
+6. concrete next pursuits.
+
+The current hierarchy is:
+
+- **Kernellum** — AI-native computer architecture research with routed physical-design feedback;
+- **Theorica** — autonomous experimental science / structure discovery;
+- **Somno** — shipped Android fatigue-awareness product;
+- **Lucent** — current five-second human-state sensing research target.
+
+See [EVIDENCE.md](EVIDENCE.md) for claim-to-source provenance.
+
+## Local preview
 
 ```bash
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
+Open http://localhost:8000.
 
-## Deploy
+## Deployment
 
-This folder can be deployed directly to GitHub Pages, Vercel, Netlify, Cloudflare Pages, or any static host.
+The repository includes a GitHub Pages workflow in `.github/workflows/pages.yml`. If Pages has not yet been enabled for this repository, select **Settings → Pages → Build and deployment → Source → GitHub Actions** once.
 
-## Before applying
+## Editing rule
 
-Replace or add any missing direct proof links (papers, demos, repositories, videos) as they become public. The strongest version of this site should make every major claim one click away from evidence.
+Do not add a quantitative claim to the homepage unless its source is linked in `EVIDENCE.md`, or the copy clearly labels it as an in-progress hypothesis / personal background statement.
