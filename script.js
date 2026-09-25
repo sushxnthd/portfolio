@@ -443,7 +443,7 @@ document.querySelectorAll("[data-open-card]").forEach((card) => {
     const timelineCard = document.querySelector('.timeline-card[data-project="' + id + '"]');
     if (timelineCard) state.timelineOffset = Number(timelineCard.dataset.timelineIndex);
     openTimeline();
-    window.setTimeout(() => openTimelineDetail(id), reducedMotion ? 0 : 650);
+    openTimelineDetail(id);
   });
 });
 
