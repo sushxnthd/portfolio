@@ -398,6 +398,14 @@ rail.addEventListener("wheel", function (event) {
 rail.addEventListener("pointerdown", function (event) {
   if (event.pointerType === "mouse" && event.button !== 0) return;
 
+  // Do not capture clicks that start on a project button.
+  // Pointer capture here can steal pointerup/click from the button.
+  if (event.target.closest(".disc-button")) {
+    dragging = false;
+    dragMoved = false;
+    return;
+  }
+
   dragging = true;
   dragMoved = false;
   dragStartX = event.clientX;
