@@ -3,246 +3,508 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#090b0a" />
-  <meta name="description" content="Sushanth Dasari — builder and researcher working on AI systems, scientific discovery, and human-state inference." />
-  <title>Sushanth Dasari — Builder / Researcher</title>
+  <meta name="theme-color" content="#080a08" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Sushanth Dasari — proof of work across AI-native hardware research, autonomous scientific discovery, and human-state sensing." />
+  <meta property="og:title" content="Sushanth Dasari — Proof of Work" />
+  <meta property="og:description" content="Projects, experiments, failures, and reproducible evidence from an AI researcher and builder." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sushxnthd.github.io/portfolio/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://sushxnthd.github.io/portfolio/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <title>Sushanth Dasari — Proof of Work</title>
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Sushanth Dasari",
+    "url":"https://sushxnthd.github.io/portfolio/",
+    "sameAs":["https://github.com/sushxnthd"],
+    "description":"Student builder and AI researcher working on scientific discovery, computer architecture, and human-state sensing."
+  }
+  </script>
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="spotlight" id="spotlight"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  <header class="nav shell">
-    <a class="brand" href="#top" aria-label="Home">
-      <span class="brand-mark" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-      </span>
-      <span>SD</span>
-    </a>
-    <nav aria-label="Primary navigation">
-      <a href="#work">Work</a>
-      <a href="#research">Research</a>
-      <a href="#trajectory">Trajectory</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="nav-cta" href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub ↗</a>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="identity" href="#top" aria-label="Sushanth Dasari, home">
+        <span class="identity-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>Sushanth Dasari</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#proof">Proof</a>
+        <a href="#kernellum">Kernellum</a>
+        <a href="#theorica">Theorica</a>
+        <a href="#somno">Somno</a>
+        <a href="#next">Next</a>
+      </nav>
+
+      <a class="nav-pill" href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero shell section">
-      <div class="eyebrow reveal"><span class="pulse"></span> Gurgaon, India · Class of 2027</div>
-      <h1 class="hero-title reveal">
-        I build things that<br />
-        <span class="muted">shouldn’t work yet.</span>
-      </h1>
-      <div class="hero-lower reveal">
-        <p class="hero-copy">
-          I’m <strong>Sushanth Dasari</strong>, a student builder and AI researcher exploring how software can measure, reason, experiment, and discover with less human scaffolding.
+  <main id="main">
+    <section id="top" class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="kicker"><span class="live-dot"></span> Class of 2027 · Gurugram, India · AI / research / product</p>
+        <h1>I build until the<br><em>claim survives.</em></h1>
+        <p class="lede">
+          I’m Sushanth Dasari. I use AI to attack problems in scientific discovery, computer architecture, and human sensing. The work below is organized around what can be inspected, reproduced, or falsified.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#work">See proof of work</a>
-          <a class="button ghost" href="#now">What I’m building now</a>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#proof">Inspect the work</a>
+          <a class="btn btn-secondary" href="#next">What I’d pursue next</a>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="orb orb-a"></div>
-        <div class="orb orb-b"></div>
-        <div class="orbit orbit-a"><i></i></div>
-        <div class="orbit orbit-b"><i></i></div>
-        <div class="crosshair"></div>
-        <div class="signal-label l1">BUILD</div>
-        <div class="signal-label l2">TEST</div>
-        <div class="signal-label l3">FALSIFY</div>
-        <div class="signal-label l4">SHIP</div>
-      </div>
-    </section>
 
-    <section class="proof-strip">
-      <div class="shell proof-grid">
-        <div class="metric reveal"><span class="metric-kicker">01</span><strong>Builder</strong><p>Products that turn research ideas into things people can actually use.</p></div>
-        <div class="metric reveal"><span class="metric-kicker">02</span><strong>Researcher</strong><p>Work across calibration, autonomous discovery, computer vision, and scientific ML.</p></div>
-        <div class="metric reveal"><span class="metric-kicker">03</span><strong>Operator</strong><p>I like tight loops: formulate → build → break → measure → rebuild.</p></div>
-        <div class="metric reveal"><span class="metric-kicker">04</span><strong>Ambitious</strong><p>The target is not another demo. It is a result that changes what becomes possible.</p></div>
-      </div>
-    </section>
-
-    <section id="work" class="shell section work-section">
-      <div class="section-head reveal">
-        <p class="section-index">01 / PROOF OF WORK</p>
-        <h2>Selected builds.</h2>
-        <p>Four projects that best explain how I think: find a hard bottleneck, compress the interface, then test whether software can do more than expected.</p>
-      </div>
-
-      <div class="projects">
-        <article class="project project-feature reveal" data-tilt>
-          <div class="project-meta"><span>01</span><span>AI × SCIENCE</span><span>ACTIVE</span></div>
-          <div class="project-body">
-            <div>
-              <h3>Kernellum</h3>
-              <p class="project-thesis">A research effort aimed at making AI-generated discoveries survive contact with implementation.</p>
-              <p>I’m building a workflow around hypothesis generation, automated criticism, falsification, and evidence accumulation. The goal is to reduce the gap between “interesting model output” and a result strong enough to reproduce.</p>
-            </div>
-            <div class="project-aside">
-              <span>FOCUS</span>
-              <strong>Reliable machine-assisted discovery</strong>
-              <a href="https://github.com/sushxnthd/kernellum" target="_blank" rel="noreferrer">Repository ↗</a>
-            </div>
-          </div>
-          <div class="project-art kernellum-art"><div class="mesh"></div><div class="mesh glow"></div></div>
-        </article>
-
-        <div class="project-grid">
-          <article class="project reveal" data-tilt>
-            <div class="project-meta"><span>02</span><span>COMPUTATIONAL SCIENCE</span></div>
-            <div class="project-body compact">
-              <div>
-                <h3>Theorica</h3>
-                <p class="project-thesis">Can an AI system recover latent mathematical structure instead of merely fitting outputs?</p>
-                <p>Experiments on operation worlds, structure discovery, algebraic baselines, and external falsification.</p>
-              </div>
-            </div>
-            <div class="mini-art theory-art"><span>f</span><i>(x ⊙ y)</i><b>→</b><em>structure?</em></div>
-          </article>
-
-          <article class="project reveal" data-tilt>
-            <div class="project-meta"><span>03</span><span>HUMAN SENSING</span></div>
-            <div class="project-body compact">
-              <div>
-                <h3>Lucent</h3>
-                <p class="project-thesis">A five-second video as a general-purpose signal for human functional state.</p>
-                <p>Researching whether short facial video can reveal useful state changes without requiring a wearable or lengthy test.</p>
-              </div>
-            </div>
-            <div class="mini-art lucent-art"><div class="face-grid"></div><div class="scanline"></div><small>5.00s</small></div>
-          </article>
-
-          <article class="project reveal" data-tilt>
-            <div class="project-meta"><span>04</span><span>MOBILE AI</span><span>BUILT</span></div>
-            <div class="project-body compact">
-              <div>
-                <h3>Somno</h3>
-                <p class="project-thesis">Sleep-debt tracking without asking people to buy another device.</p>
-                <p>A privacy-first Android app combining personal baselines, reaction time, facial fatigue signals, subjective sleepiness, and recovery modeling.</p>
-                <a class="inline-link" href="https://sushxnthd.github.io/somno/" target="_blank" rel="noreferrer">Open project ↗</a>
-              </div>
-            </div>
-            <div class="mini-art somno-art"><div class="ring"></div><span>SDI</span><b>0.71</b></div>
-          </article>
-
-          <article class="project reveal" data-tilt>
-            <div class="project-meta"><span>05</span><span>BENCHMARKS</span></div>
-            <div class="project-body compact">
-              <div>
-                <h3>Autonomous Science Benchmark</h3>
-                <p class="project-thesis">Evaluate AI scientists on experimental reasoning, not just answer generation.</p>
-                <p>A benchmark concept for agents that must design experiments, collect noisy measurements, recover from failure, and infer physical relationships.</p>
-              </div>
-            </div>
-            <div class="mini-art bench-art"><span>H₀</span><span>→</span><span>EXP</span><span>→</span><span>Δ</span></div>
-          </article>
+      <aside class="hero-ledger reveal" aria-label="Selected evidence">
+        <div class="ledger-head">
+          <span>SELECTED EVIDENCE</span>
+          <span>2026.09</span>
         </div>
+        <div class="hero-stat">
+          <strong>36 / 36</strong>
+          <p>Kernellum held-out routed deployment cases beat the broadcast-only implementation.</p>
+        </div>
+        <div class="hero-stat">
+          <strong>345 / 345</strong>
+          <p>Theorica eligible public holdout cases reconstructed exactly in the v1.2 cross-family challenge.</p>
+        </div>
+        <div class="hero-stat">
+          <strong>0 / 150</strong>
+          <p>Theorica false acceptances on sampled out-of-promise controls.</p>
+        </div>
+        <div class="hero-stat">
+          <strong>v27</strong>
+          <p>Somno Android release with public APK, app architecture, and scientific basis.</p>
+        </div>
+        <p class="ledger-note">Metrics are linked to their public reports below. Routed FPGA results are not presented as board measurements.</p>
+      </aside>
+
+      <div class="hero-field" aria-hidden="true">
+        <div class="field-grid"></div>
+        <div class="field-orbit orbit-one"><span></span></div>
+        <div class="field-orbit orbit-two"><span></span></div>
+        <div class="field-core"></div>
       </div>
     </section>
 
-    <section id="research" class="research section">
+    <section class="signal-strip" aria-label="Working style">
+      <div class="shell signal-grid">
+        <div><span>01</span><strong>Build</strong><p>Turn the question into an executable system.</p></div>
+        <div><span>02</span><strong>Measure</strong><p>Freeze metrics and compare against a real baseline.</p></div>
+        <div><span>03</span><strong>Falsify</strong><p>Preserve failures instead of rewriting the story.</p></div>
+        <div><span>04</span><strong>Ship</strong><p>Make the evidence inspectable by someone else.</p></div>
+      </div>
+    </section>
+
+    <section id="proof" class="section shell">
+      <div class="section-intro reveal">
+        <p class="eyebrow">01 / PROOF OF WORK</p>
+        <h2>Three projects carry the portfolio.</h2>
+        <p>The site is intentionally narrow. These are the projects with the strongest combination of technical depth, public artifacts, explicit baselines, and a next falsifiable gate.</p>
+      </div>
+
+      <div class="proof-index">
+        <a class="proof-index-card reveal" href="#kernellum">
+          <span class="proof-no">01</span>
+          <div><strong>Kernellum</strong><p>AI-native computer architecture research with physical-design feedback.</p></div>
+          <span class="arrow">↓</span>
+        </a>
+        <a class="proof-index-card reveal" href="#theorica">
+          <span class="proof-no">02</span>
+          <div><strong>Theorica</strong><p>Autonomous experimental science and structure discovery.</p></div>
+          <span class="arrow">↓</span>
+        </a>
+        <a class="proof-index-card reveal" href="#somno">
+          <span class="proof-no">03</span>
+          <div><strong>Somno</strong><p>A shipped Android system for personal fatigue awareness.</p></div>
+          <span class="arrow">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="kernellum" class="case-study section case-dark">
       <div class="shell">
-        <div class="section-head reveal">
-          <p class="section-index">02 / RESEARCH</p>
-          <h2>I use papers as build artifacts.</h2>
-          <p>Research is most useful to me when it forces an idea to become falsifiable, measurable, and explicit.</p>
+        <div class="case-top reveal">
+          <div>
+            <p class="eyebrow">CASE 01 · AI × HARDWARE</p>
+            <h2>Kernellum</h2>
+          </div>
+          <div class="case-thesis">
+            <p class="large-copy">Can automated architecture search pick accelerator designs whose predicted advantages survive synthesis and place-and-route?</p>
+            <div class="status-row"><span class="status status-live">ACTIVE</span><span class="status">PUBLIC REPRODUCTION PATH</span></div>
+          </div>
         </div>
 
-        <div class="research-list">
-          <article class="research-row reveal">
-            <span class="r-num">A</span>
-            <div><h3>Post-hoc calibration under ties</h3><p>Finite-sample characterization, selective-risk bounds, AURC envelopes, and diagnostics for tied confidence scores.</p></div>
-            <span class="tag">ML RELIABILITY</span>
+        <div class="case-stage kernellum-stage reveal" aria-hidden="true">
+          <div class="chip chip-a"><span>SEARCH</span></div>
+          <div class="chip chip-b"><span>RTL</span></div>
+          <div class="chip chip-c"><span>P&amp;R</span></div>
+          <div class="trace trace-a"></div><div class="trace trace-b"></div><div class="trace trace-c"></div>
+          <div class="route-ring rr1"></div><div class="route-ring rr2"></div>
+          <div class="stage-label">WORKLOAD → MODEL → ACQUISITION → RTL → ROUTE → FEEDBACK ↺</div>
+        </div>
+
+        <div class="evidence-grid reveal">
+          <article class="evidence-card accent">
+            <span class="evidence-label">HELD-OUT DEPLOYMENT</span>
+            <strong>36 / 36</strong>
+            <p>Route-aware portfolio choices beat the best broadcast-only implementation across unseen deployment cases.</p>
           </article>
-          <article class="research-row reveal">
-            <span class="r-num">B</span>
-            <div><h3>Cross-operator calibration</h3><p>Studying how calibration behavior changes across distribution and corruption operators, with an emphasis on reproducible evaluation.</p></div>
-            <span class="tag">ROBUSTNESS</span>
+          <article class="evidence-card">
+            <span class="evidence-label">MEAN LATENCY DELTA</span>
+            <strong>23.56%</strong>
+            <p>Mean workload-latency improvement in the preregistered portfolio confirmation.</p>
           </article>
-          <article class="research-row reveal">
-            <span class="r-num">C</span>
-            <div><h3>AI infrastructure externalities</h3><p>Quantifying the energy, water, and carbon consequences of large-scale AI infrastructure and the assumptions that dominate estimates.</p></div>
-            <span class="tag">AI × ENVIRONMENT</span>
+          <article class="evidence-card">
+            <span class="evidence-label">CLOSED-LOOP SEARCH</span>
+            <strong>12 / 12</strong>
+            <p>Transformer GEMMs where active search improved the routed optimum; equal-budget random improved 0 / 12.</p>
           </article>
-          <article class="research-row reveal">
-            <span class="r-num">D</span>
-            <div><h3>Computer vision for blood-pattern analysis</h3><p>Using segmentation and morphometrics to test whether image-based measurement can make pattern analysis more quantitative.</p></div>
-            <span class="tag">VISION</span>
+          <article class="evidence-card">
+            <span class="evidence-label">ROUTED REGRET</span>
+            <strong>1.44%</strong>
+            <p>Mean regret versus the full routed oracle in the route-aware portfolio study.</p>
           </article>
+        </div>
+
+        <div class="case-details reveal">
+          <div class="detail-column">
+            <p class="detail-title">What I built</p>
+            <p>A parameterized INT8 tiled GEMM engine, analytical architecture model, RTL and simulation path, ECP5 synthesis/place-and-route loop, final-route-Fmax surrogate, active acquisition policy, and experiment ledger.</p>
+          </div>
+          <div class="detail-column">
+            <p class="detail-title">What survived</p>
+            <p>Nine initial routed architectures produced mean workload-ranking Spearman ρ = 0.944. A later bounded-feedback portfolio study completed 72 / 72 new final-route implementations and passed all 13 frozen confirmation criteria.</p>
+          </div>
+          <div class="detail-column boundary">
+            <p class="detail-title">Boundary</p>
+            <p>This is final-route evidence, not physical-board latency, power, energy, or vendor-independent validation. K2 is board-ready; the next gate is real FPGA measurement.</p>
+          </div>
+        </div>
+
+        <div class="source-bar reveal">
+          <span>INSPECT</span>
+          <a href="https://github.com/sushxnthd/kernellum" target="_blank" rel="noreferrer">Repository ↗</a>
+          <a href="https://github.com/sushxnthd/kernellum/blob/main/docs/K1_CLOSED_LOOP_REPORT.md" target="_blank" rel="noreferrer">K1 closed-loop report ↗</a>
+          <a href="https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md" target="_blank" rel="noreferrer">Portfolio confirmation ↗</a>
+          <a href="https://github.com/sushxnthd/kernellum/blob/main/docs/K2_PLAN.md" target="_blank" rel="noreferrer">Next gate: K2 ↗</a>
         </div>
       </div>
     </section>
 
-    <section id="trajectory" class="shell section trajectory">
-      <div class="section-head reveal">
-        <p class="section-index">03 / TRAJECTORY</p>
-        <h2>Evidence of slope.</h2>
-        <p>I care more about rate of learning and output than collecting credentials. These are the moments that changed the slope.</p>
-      </div>
-      <div class="timeline">
-        <div class="timeline-line"></div>
-        <article class="moment reveal"><time>2024</time><div><h3>First serious technical work</h3><p>Moved from learning tools to using them on open-ended STEM problems and competitions.</p></div></article>
-        <article class="moment reveal"><time>2025</time><div><h3>Research became the default</h3><p>Started treating questions as things to test, model, write up, and submit rather than just read about.</p></div></article>
-        <article class="moment reveal"><time>2026</time><div><h3>Products + research converged</h3><p>Built Somno, expanded into autonomous scientific discovery, calibration, sensing, and research tooling.</p></div></article>
-        <article class="moment reveal"><time>NOW</time><div><h3>Trying to make the leap</h3><p>Working toward systems that produce genuinely new, externally falsifiable results and products built around those capabilities.</p></div></article>
+    <section id="theorica" class="case-study section case-light">
+      <div class="shell">
+        <div class="case-top reveal">
+          <div>
+            <p class="eyebrow">CASE 02 · AUTONOMOUS SCIENCE</p>
+            <h2>Theorica</h2>
+          </div>
+          <div class="case-thesis">
+            <p class="large-copy">Can an AI scientist infer hidden mathematical structure, choose informative interventions, and know when its representation is wrong?</p>
+            <div class="status-row"><span class="status status-live">ACTIVE</span><span class="status">ZERO PERSONAL SPEND</span></div>
+          </div>
+        </div>
+
+        <div class="theory-board reveal" aria-label="Theorica reconstruction idea">
+          <div class="equation">F : S × S → S</div>
+          <div class="theory-arrow">↓</div>
+          <div class="equation">L<sub>x</sub>(y) = F(x,y)</div>
+          <div class="theory-arrow">↓</div>
+          <div class="equation highlight">translation action → base signature → reconstruction</div>
+          <p>Query a small set of translations, infer their permutation action, and use compact signatures to reconstruct the remaining operation table under explicit conditions.</p>
+        </div>
+
+        <div class="evidence-grid light-grid reveal">
+          <article class="evidence-card accent">
+            <span class="evidence-label">PUBLIC HOLDOUT</span>
+            <strong>345 / 345</strong>
+            <p>Exact reconstructions across eligible v1.2 public cross-family task/repeat cases.</p>
+          </article>
+          <article class="evidence-card">
+            <span class="evidence-label">OUT-OF-PROMISE</span>
+            <strong>0 / 150</strong>
+            <p>False acceptances on sampled ineligible SmallQuandle controls.</p>
+          </article>
+          <article class="evidence-card">
+            <span class="evidence-label">EXTERNAL BOC HOLDOUT</span>
+            <strong>1,100 / 1,100</strong>
+            <p>Correct accept/reject decisions across 11 published operations × 100 acquisition seeds.</p>
+          </article>
+          <article class="evidence-card">
+            <span class="evidence-label">MEDIAN TABLE QUERIED</span>
+            <strong>13.021%</strong>
+            <p>Adaptive median queried fraction in the public cross-family challenge.</p>
+          </article>
+        </div>
+
+        <div class="failure-card reveal">
+          <div class="failure-kicker">THE FAILURE IS PART OF THE RESULT</div>
+          <div class="failure-main">
+            <strong>v1.1 failed at 297 / 345.</strong>
+            <p>All 48 misses were public order-6 loops. Instead of hiding the miss, I preserved the report, changed one scientific behavior, and reran the same corpus and gates. The resulting v1.2 reached 345 / 345. A separate hostile audit also invalidated broader novelty and query-efficiency claims before a narrower translation-base contribution survived as the stronger hypothesis.</p>
+          </div>
+        </div>
+
+        <div class="case-details reveal">
+          <div class="detail-column">
+            <p class="detail-title">What I built</p>
+            <p>A family-agnostic finite-operation discovery path, public-catalogue challenge, theorem-routed experiment loop, native external benchmarks, and reproducible GitHub Actions workflows.</p>
+          </div>
+          <div class="detail-column">
+            <p class="detail-title">What survived</p>
+            <p>The translation-base method has a conditional n(r+b) recovery bound, a matching Ω(n) transcript lower bound on a natural promise subclass, public cross-family correctness, and external Binary Operation Completion holdout evidence.</p>
+          </div>
+          <div class="detail-column boundary">
+            <p class="detail-title">Boundary</p>
+            <p>The priority claim is deliberately narrow: plausible first-priority methodological contribution, not certified first-publication priority. The project also contains negative results where stronger specialist baselines win.</p>
+          </div>
+        </div>
+
+        <div class="source-bar reveal">
+          <span>INSPECT</span>
+          <a href="https://github.com/sushxnthd/theorica" target="_blank" rel="noreferrer">Repository ↗</a>
+          <a href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md" target="_blank" rel="noreferrer">Public challenge v1.2 ↗</a>
+          <a href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_1_FAILURE.md" target="_blank" rel="noreferrer">Preserved v1.1 failure ↗</a>
+          <a href="https://github.com/sushxnthd/theorica/blob/main/results/EXTERNAL_FALSIFICATION_REPORT.md" target="_blank" rel="noreferrer">Falsification audit ↗</a>
+          <a href="https://github.com/sushxnthd/theorica/actions/runs/36138175775" target="_blank" rel="noreferrer">Clean workflow ↗</a>
+        </div>
       </div>
     </section>
 
-    <section id="now" class="now-section section">
-      <div class="shell now-grid">
-        <div class="now-copy reveal">
-          <p class="section-index">04 / NOW</p>
-          <h2>The current question.</h2>
-          <p class="big-question">How much of scientific discovery can be turned into a reliable software loop?</p>
-          <p>I’m testing this across two directions: systems that reason about latent structure, and systems that compress expensive measurements into lightweight signals.</p>
+    <section id="somno" class="case-study section case-dark">
+      <div class="shell">
+        <div class="case-top reveal">
+          <div>
+            <p class="eyebrow">CASE 03 · MOBILE AI</p>
+            <h2>Somno</h2>
+          </div>
+          <div class="case-thesis">
+            <p class="large-copy">A smartphone system for measuring fatigue relative to your own alert baseline without requiring a wearable.</p>
+            <div class="status-row"><span class="status status-shipped">SHIPPED</span><span class="status">ANDROID</span><span class="status">PRIVACY-FIRST</span></div>
+          </div>
         </div>
-        <div class="terminal reveal" aria-label="Current operating loop">
-          <div class="terminal-top"><span></span><span></span><span></span><p>current_loop.sh</p></div>
-          <div class="terminal-body">
-            <p><b>$</b> define_claim --must_be_falsifiable</p>
-            <p><b>$</b> build_minimum_test</p>
-            <p><b>$</b> compare --baseline strongest_available</p>
-            <p><b>$</b> attack_result --adversarial</p>
-            <p><b>$</b> reproduce --outside_own_world</p>
-            <p><b>$</b> ship_if_survives <span class="cursor">█</span></p>
+
+        <div class="somno-stage reveal">
+          <div class="phone-shell">
+            <div class="phone-top"></div>
+            <div class="somno-screen">
+              <div class="screen-head"><span>SOMNO</span><small>DAILY STATE</small></div>
+              <div class="sdi-ring"><div><small>SDI</small><strong>0.71</strong></div></div>
+              <div class="signal-lines">
+                <p><span>Reaction time</span><b>40%</b></p>
+                <p><span>Face + ocular</span><b>25%</b></p>
+                <p><span>Sleep history</span><b>20%</b></p>
+                <p><span>KSS</span><b>15%</b></p>
+              </div>
+            </div>
+          </div>
+          <div class="somno-flow">
+            <span>BASELINE</span><i>→</i><span>4 SIGNALS</span><i>→</i><span>QUALITY</span><i>→</i><span>FUSION</span><i>→</i><span>ACTION</span>
+          </div>
+        </div>
+
+        <div class="case-details reveal">
+          <div class="detail-column">
+            <p class="detail-title">Product</p>
+            <p>React Native / Expo Android app combining short reaction-time testing, on-device facial and ocular features, subjective sleepiness, recent sleep history, recovery modelling, trends, and Smart Wake.</p>
+          </div>
+          <div class="detail-column">
+            <p class="detail-title">Privacy</p>
+            <p>Facial analysis is performed on-device and raw face images are not retained for cloud sync. The scoring path is explicit rather than a black-box “readiness” number.</p>
+          </div>
+          <div class="detail-column boundary">
+            <p class="detail-title">What shipping changed</p>
+            <p>Somno forced research ideas through Android permissions, alarm reliability, onboarding, calibration, offline behavior, privacy controls, packaging, and actual device testing.</p>
+          </div>
+        </div>
+
+        <div class="source-bar reveal">
+          <span>USE / INSPECT</span>
+          <a href="https://sushxnthd.github.io/somno/" target="_blank" rel="noreferrer">Product site ↗</a>
+          <a href="https://github.com/sushxnthd/somno/releases/tag/v27" target="_blank" rel="noreferrer">v27 release ↗</a>
+          <a href="https://github.com/sushxnthd/somno/releases/download/v27/somno-v27-release.apk" target="_blank" rel="noreferrer">APK ↗</a>
+          <a href="https://github.com/sushxnthd/somno" target="_blank" rel="noreferrer">Repository ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="current" class="section shell">
+      <div class="section-intro reveal">
+        <p class="eyebrow">02 / CURRENT PURSUIT</p>
+        <h2>Lucent: five seconds of signal.</h2>
+        <p>The research question is intentionally aggressive: how much useful information about a person’s current functional state can be extracted from a five-second face video, without a wearable or a long test?</p>
+      </div>
+
+      <div class="lucent-layout">
+        <div class="lucent-visual reveal" aria-hidden="true">
+          <div class="face-wire">
+            <span class="eye e1"></span><span class="eye e2"></span>
+            <span class="nose"></span><span class="mouth"></span>
+          </div>
+          <div class="scan"></div>
+          <div class="timer">00:05.00</div>
+          <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+        </div>
+
+        <div class="lucent-copy reveal">
+          <div class="honesty-block">
+            <span>STATUS</span>
+            <strong>Hypothesis, not breakthrough.</strong>
+            <p>The five-second target is not yet validated. The next useful result is a preregistered study that establishes which outcomes can actually be predicted, against what baselines, and how performance degrades as the clip gets shorter.</p>
+          </div>
+          <div class="mini-roadmap">
+            <div><span>01</span><p>Define measurable targets and personal-baseline protocol.</p></div>
+            <div><span>02</span><p>Build five-second video feature + representation pipeline.</p></div>
+            <div><span>03</span><p>Compare against self-report, simple ocular baselines, and longer-video controls.</p></div>
+            <div><span>04</span><p>Publish the failures if five seconds is insufficient.</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="principles shell section">
-      <div class="section-head reveal">
-        <p class="section-index">05 / HOW I WORK</p>
-        <h2>Operating principles.</h2>
-      </div>
-      <div class="principle-grid">
-        <div class="principle reveal"><span>01</span><h3>Start from the bottleneck.</h3><p>A polished interface around the wrong problem is still the wrong problem.</p></div>
-        <div class="principle reveal"><span>02</span><h3>Make claims expensive.</h3><p>If a claim matters, it should survive stronger baselines, adversarial tests, and reproduction.</p></div>
-        <div class="principle reveal"><span>03</span><h3>Use AI as leverage, not theater.</h3><p>The point is to compress iteration cycles and attempt work that would otherwise be inaccessible.</p></div>
-        <div class="principle reveal"><span>04</span><h3>Build in public evidence.</h3><p>Repos, demos, experiments, failed branches, measurements. Output should be inspectable.</p></div>
+    <section class="section research-band">
+      <div class="shell">
+        <div class="section-intro compact reveal">
+          <p class="eyebrow">03 / OTHER RESEARCH</p>
+          <h2>Questions I’ve taken seriously enough to formalize.</h2>
+        </div>
+
+        <div class="research-rows">
+          <article class="research-row reveal">
+            <span>CALIBRATION</span>
+            <h3>Post-hoc calibration under ties</h3>
+            <p>Finite-sample characterization, selective-risk bounds, AURC envelopes, and tie-aware diagnostics.</p>
+          </article>
+          <article class="research-row reveal">
+            <span>ROBUSTNESS</span>
+            <h3>Cross-operator calibration</h3>
+            <p>Studying when calibration behavior survives distribution and corruption operators rather than only a single benchmark split.</p>
+          </article>
+          <article class="research-row reveal">
+            <span>VISION</span>
+            <h3>Blood-pattern morphometrics</h3>
+            <p>Segmentation and measurement pipelines for making image-based blood-pattern analysis more quantitative.</p>
+          </article>
+          <article class="research-row reveal">
+            <span>INFRASTRUCTURE</span>
+            <h3>AI environmental externalities</h3>
+            <p>Energy, water, and carbon accounting for large-scale AI infrastructure, with emphasis on assumptions that dominate estimates.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="contact section">
-      <div class="shell contact-inner reveal">
-        <p class="section-index">06 / CONTACT</p>
-        <h2>If the problem is hard enough,<br><span>send it over.</span></h2>
-        <p>I’m especially interested in AI research, scientific discovery, human sensing, and unusually ambitious zero-to-one projects.</p>
+    <section class="section shell" id="failures">
+      <div class="section-intro reveal">
+        <p class="eyebrow">04 / FAILURE LEDGER</p>
+        <h2>Claims I am not making.</h2>
+        <p>A project becomes more credible when its boundaries are visible. These are the current limits I would expect a skeptical reviewer to care about.</p>
+      </div>
+
+      <div class="boundary-grid">
+        <article class="boundary-card reveal">
+          <span>KERNELLUM</span>
+          <strong>No board-level hardware result yet.</strong>
+          <p>Place-and-route timing is not the same thing as measured latency, power, thermals, or energy on a physical device.</p>
+        </article>
+        <article class="boundary-card reveal">
+          <span>THEORICA</span>
+          <strong>No broad “AI discovers math” claim.</strong>
+          <p>Several broad novelty claims were killed by the literature audit. The surviving translation-base claim is narrower and still needs independent priority/reproduction scrutiny.</p>
+        </article>
+        <article class="boundary-card reveal">
+          <span>LUCENT</span>
+          <strong>No five-second inference breakthrough yet.</strong>
+          <p>The premise is a research target. The study has to determine what five seconds can and cannot support.</p>
+        </article>
+        <article class="boundary-card reveal">
+          <span>RESEARCH</span>
+          <strong>No publication-count theater.</strong>
+          <p>I would rather show a reproducible negative result than inflate an unfinished manuscript into a credential.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="next" class="section next-section">
+      <div class="shell">
+        <div class="next-head reveal">
+          <p class="eyebrow">05 / WHAT I’D PURSUE AT HAA</p>
+          <h2>I want a year where the default unit of learning is a hard project.</h2>
+          <p>HAA’s Pursuit / Course / Co-op model matches how I already work: pick a difficult question, use AI and people as leverage, build the smallest test, and iterate until the answer changes.</p>
+        </div>
+
+        <div class="pursuit-grid">
+          <article class="pursuit reveal">
+            <span>01 · PHYSICAL VALIDATION</span>
+            <h3>Take Kernellum off the router and onto hardware.</h3>
+            <p>Run K2 on real FPGA boards, measure achieved clock, kernel latency, power, and energy, then test whether the route-aware search still predicts useful winners across devices.</p>
+          </article>
+          <article class="pursuit reveal">
+            <span>02 · EXTERNAL FALSIFICATION</span>
+            <h3>Make Theorica survive people I don’t control.</h3>
+            <p>Get independent reproduction, test the translation-base method against stronger structure-learning baselines, and move from curated operation worlds toward real experimental systems.</p>
+          </article>
+          <article class="pursuit reveal">
+            <span>03 · HUMAN SENSING</span>
+            <h3>Find the actual limit of a five-second video.</h3>
+            <p>Preregister Lucent’s targets, collect data, benchmark against simple baselines, and discover whether the useful interface is five seconds, fifteen, or something else entirely.</p>
+          </article>
+        </div>
+
+        <div class="haa-fit reveal">
+          <div>
+            <span>WHY THIS ENVIRONMENT</span>
+            <p>I can do a lot with free compute, open-source tools, and persistence. The next bottlenecks are physical access, strong technical critics, collaborators, and repeated exposure to people operating at a higher bar.</p>
+          </div>
+          <a href="https://a16z.com/announcement/incubating-horowitz-andreessen-academy/" target="_blank" rel="noreferrer">HAA program context ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell context-section">
+      <div class="context-grid">
+        <div class="context-main reveal">
+          <p class="eyebrow">06 / CONTEXT</p>
+          <h2>I’m still in school.</h2>
+          <p>I’m a Class 12 CBSE student studying Physics, Chemistry, Mathematics, and AI. Most of the work on this page has been built around school and evening classes, with free/open tooling wherever possible.</p>
+        </div>
+        <div class="context-list reveal">
+          <div><span>LOCATION</span><strong>Gurugram, India</strong></div>
+          <div><span>ACADEMICS</span><strong>CBSE · PCM + AI · Class of 2027</strong></div>
+          <div><span>ENGLISH</span><strong>Cambridge C1 Advanced · 196</strong></div>
+          <div><span>TEAMS</span><strong>School leadership · F1 in Schools / STEM Racing · MUN</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="shell contact-wrap reveal">
+        <p class="eyebrow">07 / CONTACT</p>
+        <h2>Everything important<br>should be inspectable.</h2>
+        <p>The repositories are the fastest way to see what I actually did, what failed, and what I’m doing next.</p>
         <div class="contact-actions">
-          <a class="button primary" href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <button class="button ghost" id="copyName" type="button">Copy name</button>
+          <a class="btn btn-primary" href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">Open GitHub ↗</a>
+          <button class="btn btn-secondary" id="copyHandle" type="button" data-copy="@sushxnthd">Copy @sushxnthd</button>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer shell">
-    <p>SUSHANTH DASARI · 2026</p>
-    <p>BUILT TO SHOW THE WORK.</p>
+  <footer class="site-footer">
+    <div class="shell">
+      <p>© 2026 Sushanth Dasari</p>
+      <p>Built as proof of work, not proof of polish.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
   </footer>
 
   <script src="script.js"></script>
