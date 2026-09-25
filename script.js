@@ -69,6 +69,10 @@ const entry = document.getElementById("showcaseEntry");
 const garageStrip = document.querySelector(".garage-strip");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
 for (let i = 0; i < 24; i += 1) {
   runCells.appendChild(document.createElement("span"));
 }
