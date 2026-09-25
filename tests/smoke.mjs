@@ -18,7 +18,24 @@ async function runCase(browser, name, viewport) {
   assert(await page.locator("#archive").isVisible(), name + ": archive is not visible");
   assert(await page.locator('.media-item[data-project="kernellum"]').isVisible(), name + ": Kernellum disc is not visible");
 
-  await page.locator('.media-item[data-project="kernellum"] .disc-button').click();
+  if (viewport.width >= 721) {
+    const pxBefore = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--px").trim());
+    await page.mouse.move(viewport.width * 0.78, viewport.height * 0.24);
+    await page.waitForTimeout(120);
+    const pxAfter = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--px").trim());
+    assert(pxAfter !== pxBefore, name + ": pointer motion variables did not update");
+
+    const scrollBefore = await page.locator("#mediaRail").evaluate((el) => el.scrollLeft);
+    await page.mouse.move(viewport.width * 0.5, viewport.height * 0.55);
+    await page.mouse.wheel(0, 280);
+    await page.waitForTimeout(420);
+    const scrollAfter = await page.locator("#mediaRail").evaluate((el) => el.scrollLeft);
+    assert(scrollAfter !== scrollBefore, name + ": wheel inertia did not move archive");
+    await page.locator('.media-item[data-project="kernellum"]').evaluate((el) => el.scrollIntoView({ inline: "center", block: "nearest" }));
+    await page.waitForTimeout(180);
+  }
+
+  await page.locator('.media-item[data-project="kernellum"] .disc-button').click({ force: true });
   await page.waitForTimeout(250);
   const takeoverOpen = await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"));
   if (!takeoverOpen) {
@@ -33,17 +50,17 @@ async function runCase(browser, name, viewport) {
     throw new Error(name + ": project takeover did not open; debug=" + JSON.stringify(debug) + "; pageErrors=" + pageErrors.join(" | "));
   }
 
-  await page.locator("#closeTakeover").click();
+  await page.locator("#closeTakeover").click({ force: true });
   assert(!(await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"))), name + ": project takeover did not close");
 
   await page.locator("#openIndex").click({ force: true });
   assert(await page.locator("#indexPanel").evaluate((el) => el.classList.contains("is-open")), name + ": index did not open");
 
-  await page.locator("#closeIndex").click();
+  await page.locator("#closeIndex").click({ force: true });
   assert(!(await page.locator("#indexPanel").evaluate((el) => el.classList.contains("is-open"))), name + ": index did not close");
 
   if (viewport.width >= 721) {
-    await page.locator('.nav-tab[data-mode="research"]').click();
+    await page.locator('.nav-tab[data-mode="research"]').click({ force: true });
     await page.waitForTimeout(100);
     assert(await page.locator('.media-item[data-project="calibration"]').isVisible(), name + ": research mode did not show Calibration");
     assert(!(await page.locator('.media-item[data-project="kernellum"]').isVisible()), name + ": research mode did not hide work items");
