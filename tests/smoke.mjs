@@ -1,0 +1,52 @@
+import { chromium } from "playwright";
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+async function runCase(browser, name, viewport) {
+  const page = await browser.newPage({ viewport });
+  const pageErrors = [];
+  page.on("pageerror", (error) => pageErrors.push(error.message));
+
+  await page.goto("http://127.0.0.1:8000/", {
+    waitUntil: "domcontentloaded",
+    timeout: 15000
+  });
+
+  assert((await page.locator(".boot-screen").count()) === 0, name + ": boot overlay still exists");
+  assert(await page.locator("#archive").isVisible(), name + ": archive is not visible");
+  assert(await page.locator('.media-item[data-project="kernellum"]').isVisible(), name + ": Kernellum disc is not visible");
+
+  await page.locator('.media-item[data-project="kernellum"] .disc-button').click();
+  await page.waitForTimeout(250);
+  assert(await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open")), name + ": project takeover did not open");
+
+  await page.locator("#closeTakeover").click();
+  assert(!(await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"))), name + ": project takeover did not close");
+
+  await page.locator("#openIndex").click({ force: true });
+  assert(await page.locator("#indexPanel").evaluate((el) => el.classList.contains("is-open")), name + ": index did not open");
+
+  await page.locator("#closeIndex").click();
+  assert(!(await page.locator("#indexPanel").evaluate((el) => el.classList.contains("is-open"))), name + ": index did not close");
+
+  if (viewport.width >= 721) {
+    await page.locator('.nav-tab[data-mode="research"]').click();
+    await page.waitForTimeout(100);
+    assert(await page.locator('.media-item[data-project="calibration"]').isVisible(), name + ": research mode did not show Calibration");
+    assert(!(await page.locator('.media-item[data-project="kernellum"]').isVisible()), name + ": research mode did not hide work items");
+  }
+
+  assert(pageErrors.length === 0, name + ": browser page errors: " + pageErrors.join(" | "));
+  await page.close();
+}
+
+const browser = await chromium.launch({ headless: true });
+try {
+  await runCase(browser, "desktop", { width: 1440, height: 900 });
+  await runCase(browser, "mobile", { width: 390, height: 844 });
+  console.log("SMOKE_PASS");
+} finally {
+  await browser.close();
+}
