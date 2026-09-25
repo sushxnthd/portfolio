@@ -42,7 +42,7 @@ async function runCase(browser, name, viewport) {
   }
 
   await page.locator('.media-item[data-project="kernellum"] .disc-button').click({ force: true });
-  await page.waitForTimeout(250);
+  await page.waitForTimeout(1050);
   const takeoverOpen = await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"));
   if (!takeoverOpen) {
     const debug = await page.evaluate(() => ({
