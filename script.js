@@ -394,32 +394,40 @@ timelineStage.addEventListener("pointercancel", finishTimelineDrag);
 
 function openTimelineDetail(id) {
   const project = PROJECTS[id];
-  if (!project) return;
-  document.getElementById("detailEyebrow").textContent = project.eyebrow;
-  document.getElementById("detailTitle").textContent = project.title;
-  document.getElementById("detailText").textContent = project.text;
-
-  const stats = document.getElementById("detailStats");
-  stats.innerHTML = "";
-  project.stats.forEach(([value,label]) => {
-    const row = document.createElement("div");
-    row.innerHTML = "<b>" + value + "</b><span>" + label + "</span>";
-    stats.appendChild(row);
-  });
-
-  const links = document.getElementById("detailLinks");
-  links.innerHTML = "";
-  project.links.forEach(([label,href]) => {
-    const a = document.createElement("a");
-    a.href = href;
-    a.target = "_blank";
-    a.rel = "noreferrer";
-    a.textContent = label + " ↗";
-    links.appendChild(a);
-  });
+  if (!project || !timelineDetail) return;
 
   timelineDetail.classList.add("is-open");
   timelineDetail.setAttribute("aria-hidden", "false");
+
+  const eyebrow = document.getElementById("detailEyebrow");
+  const title = document.getElementById("detailTitle");
+  const textNode = document.getElementById("detailText");
+  if (eyebrow) eyebrow.textContent = project.eyebrow || "PROJECT";
+  if (title) title.textContent = project.title || id;
+  if (textNode) textNode.textContent = project.text || "";
+
+  const stats = document.getElementById("detailStats");
+  if (stats) {
+    stats.innerHTML = "";
+    (project.stats || []).forEach(([value,label]) => {
+      const row = document.createElement("div");
+      row.innerHTML = "<b>" + value + "</b><span>" + label + "</span>";
+      stats.appendChild(row);
+    });
+  }
+
+  const links = document.getElementById("detailLinks");
+  if (links) {
+    links.innerHTML = "";
+    (project.links || []).forEach(([label,href]) => {
+      const a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      a.textContent = label + " ↗";
+      links.appendChild(a);
+    });
+  }
 }
 function closeTimelineDetail() {
   timelineDetail.classList.remove("is-open");
