@@ -513,15 +513,8 @@ window.addEventListener("keydown", function (event) {
 window.setInterval(updateClock, 1000);
 updateClock();
 
-function dismissBoot() {
-  const boot = document.getElementById("bootScreen");
-  if (!boot) return;
-  boot.classList.add("is-gone");
-}
-
 function initializeArchive() {
   setMode("work", "kernellum");
-  window.setTimeout(dismissBoot, reducedMotion ? 0 : 420);
 }
 
 if (document.readyState === "loading") {
@@ -529,9 +522,6 @@ if (document.readyState === "loading") {
 } else {
   initializeArchive();
 }
-
-// Absolute failsafe: never allow the boot overlay to trap the page.
-window.setTimeout(dismissBoot, 1800);
 
 window.addEventListener("resize", function () {
   centerItem(activeItem(), false);
