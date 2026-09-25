@@ -20,7 +20,18 @@ async function runCase(browser, name, viewport) {
 
   await page.locator('.media-item[data-project="kernellum"] .disc-button').click();
   await page.waitForTimeout(250);
-  assert(await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open")), name + ": project takeover did not open");
+  const takeoverOpen = await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"));
+  if (!takeoverOpen) {
+    const debug = await page.evaluate(() => ({
+      dragging: typeof dragging !== "undefined" ? dragging : "missing",
+      dragMoved: typeof dragMoved !== "undefined" ? dragMoved : "missing",
+      activeId: typeof activeId !== "undefined" ? activeId : "missing",
+      openProjectType: typeof openProject,
+      takeoverClass: document.getElementById("takeover")?.className || "missing",
+      pageReady: document.readyState
+    }));
+    throw new Error(name + ": project takeover did not open; debug=" + JSON.stringify(debug) + "; pageErrors=" + pageErrors.join(" | "));
+  }
 
   await page.locator("#closeTakeover").click();
   assert(!(await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"))), name + ": project takeover did not close");
