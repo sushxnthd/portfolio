@@ -4,6 +4,17 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+async function waitForClass(page, selector, className, present=true, timeout=2500) {
+  await page.waitForFunction(
+    ({ selector, className, present }) => {
+      const el = document.querySelector(selector);
+      return !!el && el.classList.contains(className) === present;
+    },
+    { selector, className, present },
+    { timeout }
+  );
+}
+
 async function runCase(browser, name, viewport) {
   const page = await browser.newPage({ viewport });
   const pageErrors = [];
@@ -14,64 +25,59 @@ async function runCase(browser, name, viewport) {
     timeout: 15000
   });
 
-  assert((await page.locator(".boot-screen").count()) === 0, name + ": boot overlay still exists");
-  assert(await page.locator("#archive").isVisible(), name + ": archive is not visible");
-  assert(await page.locator('.media-item[data-project="kernellum"]').isVisible(), name + ": Kernellum disc is not visible");
+  await page.waitForTimeout(350);
 
-  if (viewport.width >= 721) {
-    const pxBefore = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--px").trim());
-    await page.mouse.move(viewport.width * 0.78, viewport.height * 0.24);
+  assert(await page.locator("#hero").isVisible(), name + ": hero is not visible");
+  assert(await page.locator("#asciiHero").isVisible(), name + ": hero ASCII canvas is not visible");
+  assert((await page.locator(".boot-screen").count()) === 0, name + ": obsolete loader exists");
+
+  const heroCanvasState = await page.locator("#asciiHero").evaluate((canvas) => ({
+    width: canvas.width,
+    height: canvas.height,
+    dataLength: canvas.toDataURL().length
+  }));
+  assert(heroCanvasState.width > 0 && heroCanvasState.height > 0, name + ": hero canvas has no dimensions");
+  assert(heroCanvasState.dataLength > 500, name + ": hero ASCII canvas appears blank");
+
+  if (viewport.width >= 761) {
+    const pointerBefore = await page.locator("#pointerReadout").textContent();
+    await page.mouse.move(viewport.width * 0.82, viewport.height * 0.23);
     await page.waitForTimeout(120);
-    const pxAfter = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--px").trim());
-    assert(pxAfter !== pxBefore, name + ": pointer motion variables did not update");
-
-    const scrollBefore = await page.locator("#mediaRail").evaluate((el) => el.scrollLeft);
-    await page.locator("#mediaRail").evaluate((el) => {
-      el.dispatchEvent(new WheelEvent("wheel", {
-        deltaY: 280,
-        deltaX: 0,
-        bubbles: true,
-        cancelable: true
-      }));
-    });
-    await page.waitForTimeout(520);
-    const scrollAfter = await page.locator("#mediaRail").evaluate((el) => el.scrollLeft);
-    assert(scrollAfter !== scrollBefore, name + ": wheel inertia did not move archive");
-    await page.locator('.media-item[data-project="kernellum"]').evaluate((el) => el.scrollIntoView({ inline: "center", block: "nearest" }));
-    await page.waitForTimeout(180);
+    const pointerAfter = await page.locator("#pointerReadout").textContent();
+    assert(pointerAfter !== pointerBefore, name + ": pointer readout did not react");
   }
 
-  await page.locator('.media-item[data-project="kernellum"] .disc-button').click({ force: true });
-  await page.waitForTimeout(1050);
-  const takeoverOpen = await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"));
-  if (!takeoverOpen) {
-    const debug = await page.evaluate(() => ({
-      dragging: typeof dragging !== "undefined" ? dragging : "missing",
-      dragMoved: typeof dragMoved !== "undefined" ? dragMoved : "missing",
-      activeId: typeof activeId !== "undefined" ? activeId : "missing",
-      openProjectType: typeof openProject,
-      takeoverClass: document.getElementById("takeover")?.className || "missing",
-      pageReady: document.readyState
-    }));
-    throw new Error(name + ": project takeover did not open; debug=" + JSON.stringify(debug) + "; pageErrors=" + pageErrors.join(" | "));
-  }
+  await page.locator("#work").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(250);
 
-  await page.locator("#closeTakeover").click({ force: true });
-  assert(!(await page.locator("#takeover").evaluate((el) => el.classList.contains("is-open"))), name + ": project takeover did not close");
+  assert(await page.locator('.project-row[data-project="kernellum"]').isVisible(), name + ": Kernellum row missing");
+  assert(await page.locator("#projectAscii").isVisible(), name + ": project ASCII canvas missing");
+
+  await page.locator('.project-row[data-project="theorica"]').hover({ force: true });
+  await page.waitForTimeout(120);
+  const stageTitle = await page.locator("#stageTitle").textContent();
+  assert(stageTitle === "Theorica", name + ": hover did not update project ASCII stage");
+
+  await page.locator('.project-row[data-project="kernellum"]').click({ force: true });
+  await waitForClass(page, "#projectView", "is-open", true, 2500);
+  assert(await page.locator("#projectView").isVisible(), name + ": project view did not open");
+  assert((await page.locator("#viewTitle").textContent()) === "Kernellum", name + ": wrong project view title");
+
+  const detailCanvasState = await page.locator("#detailAscii").evaluate((canvas) => ({
+    width: canvas.width,
+    height: canvas.height
+  }));
+  assert(detailCanvasState.width > 0 && detailCanvasState.height > 0, name + ": detail ASCII canvas has no dimensions");
+
+  await page.locator("#closeProject").click({ force: true });
+  await waitForClass(page, "#projectView", "is-open", false, 2500);
 
   await page.locator("#openIndex").click({ force: true });
-  assert(await page.locator("#indexPanel").evaluate((el) => el.classList.contains("is-open")), name + ": index did not open");
-  await page.waitForTimeout(700);
+  await waitForClass(page, "#indexPanel", "is-open", true, 1500);
+  assert(await page.locator("#indexPanel").isVisible(), name + ": index did not open");
 
   await page.locator("#closeIndex").click({ force: true });
-  assert(!(await page.locator("#indexPanel").evaluate((el) => el.classList.contains("is-open"))), name + ": index did not close");
-
-  if (viewport.width >= 721) {
-    await page.locator('.nav-tab[data-mode="research"]').click({ force: true });
-    await page.waitForTimeout(100);
-    assert(await page.locator('.media-item[data-project="calibration"]').isVisible(), name + ": research mode did not show Calibration");
-    assert(!(await page.locator('.media-item[data-project="kernellum"]').isVisible()), name + ": research mode did not hide work items");
-  }
+  await waitForClass(page, "#indexPanel", "is-open", false, 1500);
 
   assert(pageErrors.length === 0, name + ": browser page errors: " + pageErrors.join(" | "));
   await page.close();
@@ -81,7 +87,7 @@ const browser = await chromium.launch({ headless: true });
 try {
   await runCase(browser, "desktop", { width: 1440, height: 900 });
   await runCase(browser, "mobile", { width: 390, height: 844 });
-  console.log("SMOKE_PASS");
+  console.log("ASCII_SMOKE_PASS");
 } finally {
   await browser.close();
 }
