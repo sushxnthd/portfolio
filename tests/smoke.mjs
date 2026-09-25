@@ -75,6 +75,7 @@ async function runCase(browser, name, viewport) {
   await page.locator("#openIndex").click({ force: true });
   await waitForClass(page, "#indexPanel", "is-open", true, 1500);
   assert(await page.locator("#indexPanel").isVisible(), name + ": index did not open");
+  await page.waitForTimeout(800);
 
   await page.locator("#closeIndex").click({ force: true });
   await waitForClass(page, "#indexPanel", "is-open", false, 1500);
