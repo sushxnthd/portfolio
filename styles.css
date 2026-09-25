@@ -372,7 +372,7 @@ img{display:block;max-width:100%}
   padding:22px var(--pad);
   transform:translateY(-102%);
   visibility:hidden;pointer-events:none;
-  transition:transform .72s cubic-bezier(.78,0,.16,1),visibility .72s;
+  transition:transform .72s cubic-bezier(.78,0,.16,1);
 }
 .index-panel.is-open{transform:none;visibility:visible;pointer-events:auto}
 .index-top,.index-bottom{
@@ -407,7 +407,7 @@ img{display:block;max-width:100%}
   position:fixed;inset:0;z-index:130;
   background:var(--paper);
   visibility:hidden;pointer-events:none;opacity:0;
-  transition:opacity .25s ease,visibility .25s;
+  transition:opacity .25s ease;
   overflow:auto;
 }
 .project-view.is-open{visibility:visible;pointer-events:auto;opacity:1}
