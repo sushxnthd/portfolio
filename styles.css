@@ -181,3 +181,85 @@ a:hover{text-decoration:none}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+
+/* Native vertical scrolling drives a pinned horizontal canvas. The original
+   overflow-x layout above remains the accessible no-JS fallback. */
+html.js-ready, html.js-ready body {
+  height: auto;
+  overflow-x: clip;
+}
+html.js-ready .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+html.js-ready .bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+html.js-ready #portfolio {
+  position: relative;
+  min-height: 100dvh;
+  /* JS writes height: viewport height + exact horizontal travel distance. */
+}
+html.js-ready .rail {
+  position: sticky;
+  top: var(--head);
+  height: calc(100dvh - var(--head) - var(--foot));
+  min-height: 355px;
+  display: block;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  scroll-snap-type: none;
+  touch-action: auto;
+  overscroll-behavior: auto;
+}
+html.js-ready .rail-track {
+  width: max-content;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  gap: clamp(15px,1.7vw,27px);
+  padding: clamp(20px,3.1vh,38px) clamp(24px,5.8vw,92px);
+  transform: translate3d(0,0,0);
+}
+html.js-ready .stack,
+html.js-ready .intro-panel {
+  scroll-snap-align: none;
+}
+html.js-ready .stack__cover {
+  box-shadow: 5px 5px 0 -1px var(--bg), 5px 5px 0 0 #e6e8e3;
+  border-radius: 2px;
+}
+html.js-ready .stack__cover:hover {
+  box-shadow: 5px 5px 0 -1px var(--bg), 5px 5px 0 0 #c9cec7;
+}
+html.js-ready .stack.is-open .stack__cover { box-shadow: none; }
+html.js-ready .intro-panel h1 {
+  font-size: clamp(34px,3.3vw,51px);
+  font-weight: 500;
+}
+@media(max-width:1000px){
+  html.js-ready .rail-track {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+@media(max-width:730px){
+  html.js-ready .rail-track {
+    gap: 14px;
+    padding: 18px 18px 24px;
+  }
+}
+@media(max-width:400px){
+  html.js-ready .rail-track {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
