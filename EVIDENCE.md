@@ -58,3 +58,13 @@ Lucent is presented as an in-progress research hypothesis. The portfolio explici
 ## Additional research
 
 The calibration, computer-vision, and AI-infrastructure items are presented as research directions rather than publication-status claims. Public links should be added here when canonical paper or code artifacts are available.
+
+## Selected personal milestones
+
+These are biographical claims reported by the portfolio author, distinct from the public, repository-verifiable experimental metrics above. Public organizer-specific verification links or primary acceptance notices should be attached when available.
+
+- **AIYES Fall 2026 Gold:** Somno; award reported by the author. Organizer: https://www.aiyes.org/. Public individual award citation not yet linked here.
+- **QHack 2026:** 23/23 coding challenges completed; captured leaderboard snapshot showed 13th out of 1,651 teams. Contest information: https://qhack.ai/. This is a **provisional screenshot-based placement**, not a certified final organizer result.
+- **IEEE ICA 2026:** Sole-authored research paper accepted for presentation, as reported by the author. Public proceedings / accepted-paper page not yet linked. Do not equate acceptance with publication or in-person presentation.
+
+The portfolio keeps these recognitions lower on the page. The main project-specific quantitative results above have public primary artifacts.
