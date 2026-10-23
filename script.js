@@ -144,12 +144,14 @@
       measure();
       return;
     }
-    if (event.key === 'ArrowRight' && !event.target.closest('input,textarea')) {
+    const interactive = event.target.closest('a,button,input,textarea,select,[contenteditable="true"]');
+    if (interactive) return;
+    if (event.key === 'ArrowRight') {
       event.preventDefault();
-      goToScene(scenes[Math.min(scenes.length - 1, active + 1)],
-        scenes[Math.min(scenes.length - 1, active + 1)].classList.contains('chapter'), false);
+      const target = scenes[Math.min(scenes.length - 1, active + 1)];
+      goToScene(target, target.classList.contains('chapter'), false);
     }
-    if (event.key === 'ArrowLeft' && !event.target.closest('input,textarea')) {
+    if (event.key === 'ArrowLeft') {
       event.preventDefault();
       goToScene(scenes[Math.max(0, active - 1)], false, false);
     }
