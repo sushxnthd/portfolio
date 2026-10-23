@@ -39,7 +39,7 @@ a{text-decoration:none}
 .chapter-card__number{font:10px/1 var(--mono);color:#969893;font-variant-numeric:tabular-nums}
 .chapter-card__body{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .chapter-card__eyebrow{display:none}
-.chapter-card__body strong{font-size:clamp(50px,6vw,92px);line-height:.94;letter-spacing:-.075em;font-weight:500;max-width:830px}
+.chapter-card__body strong{font-size:clamp(72px,9.4vw,142px);line-height:.9;letter-spacing:-.075em;font-weight:500;max-width:830px}
 .chapter-card__subtitle{margin-top:23px;max-width:440px;font-size:clamp(14px,1.25vw,17px);line-height:1.55;color:#777a74}
 .chapter-card__footer{display:flex;align-items:center;justify-content:space-between;color:#8e908a;font:10px/1 var(--mono);text-transform:uppercase}
 .chapter-card__plus{font:26px/1 var(--ui);font-weight:400;color:#30312e;transition:transform var(--motion) ease}
@@ -86,7 +86,7 @@ a{text-decoration:none}
   .intro-card__orb{width:62vw;right:-25vw;opacity:.96}
   .intro-card__hint{left:22px;bottom:20px}
   .chapter-card{padding:26px 22px}
-  .chapter-card__body strong{font-size:clamp(44px,12vw,62px)}
+  .chapter-card__body strong{font-size:clamp(54px,15vw,78px)}
   .chapter-card__subtitle{font-size:14px;max-width:300px}
   .work-card{width:84vw;padding:25px 22px}
   .work-card h3{font-size:clamp(38px,11vw,54px)}
