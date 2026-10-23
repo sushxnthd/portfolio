@@ -7,6 +7,7 @@
   const track = document.getElementById('track');
   const chapters = [...document.querySelectorAll('.chapter')];
   const scenes = [document.getElementById('intro'), ...chapters].filter(Boolean);
+  const frameCards = [document.getElementById('intro'), ...chapters.map(chapter => chapter.querySelector('.chapter-card'))].filter(Boolean);
   const navLinks = [...document.querySelectorAll('.chrome__nav a')];
   const label = document.getElementById('scene-label');
   const count = document.getElementById('scene-count');
@@ -103,6 +104,18 @@
     const x = xNow();
     track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
     if (progress) progress.style.width = (maxX ? (x / maxX) * 100 : 100) + '%';
+
+    const viewportCenter = window.innerWidth / 2;
+    frameCards.forEach(card => {
+      if (reduceMotion.matches) {
+        card.style.transform = 'scale(1)';
+        return;
+      }
+      const rect = card.getBoundingClientRect();
+      const distance = Math.min(1,
+        Math.abs((rect.left + rect.width / 2) - viewportCenter) / window.innerWidth);
+      card.style.transform = 'scale(' + (1 - distance * 0.015).toFixed(4) + ')';
+    });
 
     const probe = Math.min(220, window.innerWidth * .25);
     let nearest = 0;
