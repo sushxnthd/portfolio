@@ -2,368 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f3f2ec">
-  <meta name="description" content="Sushanth Dasari — AI systems, autonomous science, human sensing, and research prototypes.">
-  <title>Sushanth Dasari · AI Lab</title>
-  <link rel="canonical" href="https://sushxnthd.github.io/portfolio/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f4">
+  <meta name="description" content="Sushanth Dasari is an independent student researcher building AI systems, autonomous science experiments, and privacy-first software. Explore the code, results, and failures.">
   <meta property="og:type" content="profile">
-  <meta property="og:title" content="Sushanth Dasari · AI Lab">
-  <meta property="og:description" content="AI systems, autonomous science, human sensing, and research prototypes by Sushanth Dasari.">
+  <meta property="og:title" content="Sushanth Dasari — Research, built in public">
+  <meta property="og:description" content="AI systems, scientific discovery, and working software. The code, the experiments, and what the results actually mean.">
   <meta property="og:url" content="https://sushxnthd.github.io/portfolio/">
-  <meta property="og:site_name" content="Sushanth Dasari · AI Lab">
   <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "ProfilePage",
-          "@id": "https://sushxnthd.github.io/portfolio/#webpage",
-          "url": "https://sushxnthd.github.io/portfolio/",
-          "name": "Sushanth Dasari · AI Lab",
-          "mainEntity": {
-            "@id": "https://sushxnthd.github.io/portfolio/#person"
-          }
-        },
-        {
-          "@type": "Person",
-          "@id": "https://sushxnthd.github.io/portfolio/#person",
-          "name": "Sushanth Dasari",
-          "alternateName": "sushxnthd",
-          "url": "https://sushxnthd.github.io/portfolio/",
-          "description": "Based in Gurugram, building systems that move between research, software, hardware-aware search, and human sensing.",
-          "sameAs": [
-            "https://github.com/sushxnthd"
-          ]
-        }
-      ]
-    }
-  </script>
+  <link rel="canonical" href="https://sushxnthd.github.io/portfolio/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=garage-1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=haa-1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://sushxnthd.github.io/portfolio/#webpage",
+        "url": "https://sushxnthd.github.io/portfolio/",
+        "name": "Sushanth Dasari — Research, built in public",
+        "mainEntity": {"@id": "https://sushxnthd.github.io/portfolio/#person"}
+      },
+      {
+        "@type": "Person",
+        "@id": "https://sushxnthd.github.io/portfolio/#person",
+        "name": "Sushanth Dasari",
+        "alternateName": "sushxnthd",
+        "url": "https://sushxnthd.github.io/portfolio/",
+        "description": "Independent student researcher building AI systems, scientific experiments, and privacy-first software.",
+        "sameAs": ["https://github.com/sushxnthd"]
+      }
+    ]
+  }
+  </script>
+  <title>Sushanth Dasari — Research, built in public</title>
 </head>
 <body>
-  <a class="skip-link" href="#work">Skip to work</a>
-
-  <header class="topbar">
-    <div class="topbar-left">
-      <button class="jump-btn" id="jumpButton" type="button">
-        <span>Jump to</span><kbd>⌘</kbd><kbd>K</kbd>
-      </button>
-    </div>
-
-    <a class="site-mark" href="#top" aria-label="Sushanth Dasari home">SD</a>
-
-    <div class="topbar-right">
-      <button class="terminal-trigger pulse-once" id="terminalTrigger" type="button" aria-label="Open terminal">&gt;_</button>
-    </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page-progress" aria-hidden="true"><span id="progress"></span></div>
+  <header class="site-header" id="top">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Sushanth Dasari, back to top"><span class="brand-icon">sd<span class="brand-dot">.</span></span><span class="brand-name">Sushanth Dasari <small>Independent research / building</small></span></a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#method">Method</a>
+        <a href="#more">More</a>
+      </div>
+      <a class="nav-cta" href="https://github.com/sushxnthd" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="intro-section">
-      <div class="intro-shell">
-        <p class="eyebrow">SUSHANTH DASARI · AI / SYSTEMS / RESEARCH</p>
-
-        <h1>AI Lab</h1>
-
-        <div class="intro-copy">
-          <p>
-            AI Lab by Sushanth Dasari. Based in Gurugram, building systems that
-            move between research, software, hardware-aware search, and human sensing.
-          </p>
-          <p>
-            I care about experiments that can fail, measurements that can be checked,
-            and ideas that still look interesting after implementation.
-          </p>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-main">
+        <div class="overline"><span class="status-dot"></span> STUDENT RESEARCHER <span class="overline-sep">/</span> GURUGRAM, INDIA <span class="overline-sep">/</span> CLASS OF 2027</div>
+        <h1 id="hero-title">I build things.<br><em>Then I try to<br>break them.</em></h1>
+        <p class="hero-lead">I'm Sushanth. I work on AI systems, autonomous scientific discovery, and software that people can actually use. I'm most interested in the moment a good-looking idea meets a test it wasn't designed to pass.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">See the work <span aria-hidden="true">↘</span></a>
+          <a class="text-link" href="https://github.com/sushxnthd" target="_blank" rel="noopener noreferrer">Browse the code <span aria-hidden="true">↗</span></a>
         </div>
+      </div>
+      <aside class="hero-note" aria-label="Research philosophy">
+        <div class="note-top"><span>FIELD NOTES</span><span>001 — 2026</span></div>
+        <div class="note-equation" aria-hidden="true"><span>hypothesis</span><i>↘</i><span>experiment</span><i>↘</i><span>counterexample</span><i>↘</i><strong>better model</strong></div>
+        <p>I'd rather show the failed run and the fix than pretend the first version worked.</p>
+        <span class="note-footer">EVERY CLAIM SHOULD HAVE A TRAIL <span aria-hidden="true">↗</span></span>
+      </aside>
+      <div class="hero-bottom"><span>SCROLL TO INSPECT THE WORK</span><span aria-hidden="true">↓</span></div>
+    </section>
 
-        <div class="intro-actions">
-          <button type="button" id="openTerminalInline">Open terminal <span>&gt;_</span></button>
-          <a href="#contact">Say hi ↗</a>
-        </div>
+    <section class="evidence-band" aria-label="Selected measurable results">
+      <div class="wrap evidence-grid">
+        <a href="https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md" target="_blank" rel="noopener noreferrer" class="evidence-item">
+          <div class="evidence-value">36<span>/36</span></div>
+          <div><strong>Kernellum</strong><p>Unseen routed deployment cases outperformed the broadcast baseline.</p></div>
+          <span class="evidence-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md" target="_blank" rel="noopener noreferrer" class="evidence-item">
+          <div class="evidence-value">345<span>/345</span></div>
+          <div><strong>Theorica</strong><p>Eligible public holdout reconstructions in the frozen v1.2 experiment.</p></div>
+          <span class="evidence-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a href="https://github.com/sushxnthd/somno/releases/tag/v27" target="_blank" rel="noopener noreferrer" class="evidence-item">
+          <div class="evidence-value">v<span>27</span></div>
+          <div><strong>Somno</strong><p>Public Android release, with an installable app and source code.</p></div>
+          <span class="evidence-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="wrap evidence-disclaimer">These are results within specific experimental setups, not universal performance or real-world deployment guarantees. Each links to its evidence.</div>
+    </section>
 
-        <div class="mini-timeline" aria-label="Recent timeline">
-          <div class="year-ruler">
-            <span>2023</span><span>2024</span><span>2025</span><span>2026</span><span>2027</span><span>2028</span>
+    <section class="section wrap work-intro" id="work" aria-labelledby="work-title">
+      <div class="section-label">01 <span class="rule"></span> SELECTED WORK</div>
+      <div class="section-heading"><h2 id="work-title">The work, <em>not the pitch.</em></h2><p>Three different kinds of building: a system that learns from physical constraints, a scientific method that learns from counterexamples, and an app someone can install.</p></div>
+    </section>
+
+    <section class="case wrap" id="kernellum" aria-labelledby="kernellum-title">
+      <div class="case-index"><span>PROJECT 01 / 03</span><span>AI SYSTEMS · COMPUTER ARCHITECTURE</span></div>
+      <div class="case-layout">
+        <div class="case-content">
+          <h3 id="kernellum-title">Kernellum<span class="project-period">.</span></h3>
+          <p class="case-lead">What if hardware architecture search used the actual constraints of routing, rather than stopping at theoretical performance?</p>
+          <p>I built a closed-loop search pipeline that moves from candidate architectures to RTL, synthesis, place-and-route, and back to the next decision. Physical feedback changes what the system chooses.</p>
+          <div class="case-data">
+            <div><strong>23.56%</strong><span>Mean modeled latency gain against the best broadcast-only design</span></div>
+            <div><strong>1.44%</strong><span>Mean regret relative to the full routed oracle</span></div>
           </div>
-          <div class="timeline-rule"><i></i></div>
-          <div class="timeline-roles">
-            <span class="role-chip role-a">Research · AI systems</span>
-            <span class="role-chip role-b">Somno · mobile AI</span>
-            <span class="role-chip role-c">Kernellum · AI × hardware</span>
-            <span class="role-chip role-d">Theorica · autonomous science</span>
+          <p class="boundary"><strong>Scope matters.</strong> ECP5 final-route FPGA implementation results; latency is model-derived from cycle counts and final routed timing, not measured on an FPGA board. Resource use also increases.</p>
+          <div class="case-links">
+            <a class="button button-dark" href="https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md" target="_blank" rel="noopener noreferrer">Read the experiment <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://github.com/sushxnthd/kernellum" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-
-        <a class="view-work" href="#work">View work ↗</a>
+        <div class="case-visual hardware-visual" role="img" aria-label="Illustrative closed-loop pipeline: workload, candidate selection, synthesis, route evaluation, and updated search.">
+          <div class="visual-bar"><span>KERNELLUM / SYSTEM LOOP</span><span>FIG. 01</span></div>
+          <div class="pipeline">
+            <div class="pipeline-block"><small>INPUT</small><strong>Workload</strong><span>matrix kernels</span></div>
+            <div class="pipeline-wire"></div>
+            <div class="pipeline-block active"><small>SEARCH</small><strong>Candidate RTL</strong><span>design-space policy</span></div>
+            <div class="pipeline-wire"></div>
+            <div class="pipeline-block"><small>TOOLCHAIN</small><strong>Final route</strong><span>placement + timing</span></div>
+            <div class="pipeline-feedback"><span>↰ routed timing becomes new evidence</span></div>
+          </div>
+          <div class="visual-bottom"><span>36 / 36</span><span>DISJOINT DEPLOYMENT CASES VS BROADCAST BASELINE</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="work-section" id="work">
-      <div class="work-grid">
-        <article class="work-card card-large" data-open-card="kernellum">
-          <div class="card-meta">
-            <span>03</span>
-            <span>RESEARCH SYSTEM · FPGA</span>
+    <section class="case wrap" id="theorica" aria-labelledby="theorica-title">
+      <div class="case-index"><span>PROJECT 02 / 03</span><span>SCIENTIFIC DISCOVERY · REPRESENTATION</span></div>
+      <div class="case-layout">
+        <div class="case-content">
+          <h3 id="theorica-title">Theorica<span class="project-period">.</span></h3>
+          <p class="case-lead">Can a system discover a more useful representation by using its own failed predictions?</p>
+          <p>I built an adaptive reconstruction method for algebraic operations. The first frozen cross-family run failed on nonassociative loops. The failure revealed a missing step: counterexamples should trigger acquisition of new structure, not just rejection.</p>
+          <div class="case-data">
+            <div><strong>345/345</strong><span>Exact reconstructions among eligible public holdout cases after correction</span></div>
+            <div><strong>0/150</strong><span>False acceptances on the out-of-promise controls</span></div>
           </div>
-          <h2>Kernellum</h2>
-          <p>
-            Route-aware architecture search for AI accelerators. Predict, synthesize,
-            route, falsify, update.
-          </p>
-          <div class="tag-row">
-            <span>RTL</span><span>ECP5</span><span>Search</span><span>Physical Design</span>
+          <p class="boundary"><strong>Scope matters.</strong> This is a defined algebraic reconstruction benchmark with an eligibility promise. It is not evidence of general-purpose autonomous scientific discovery.</p>
+          <div class="case-links">
+            <a class="button button-dark" href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md" target="_blank" rel="noopener noreferrer">Read the results <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_1_FAILURE.md" target="_blank" rel="noopener noreferrer">Read the failed run <span aria-hidden="true">↗</span></a>
           </div>
-          <div class="card-art kernel-art" aria-hidden="true">
-            <div class="kernel-grid"></div>
-            <div class="kernel-route r1"></div>
-            <div class="kernel-route r2"></div>
-            <div class="kernel-route r3"></div>
-            <strong>36 / 36</strong>
+        </div>
+        <div class="case-visual science-visual" role="group" aria-label="Experimental progression from frozen v1.1 failure to corrected v1.2">
+          <div class="visual-bar"><span>THEORICA / EXPERIMENT LOG</span><span>FIG. 02</span></div>
+          <div class="experiment-stack">
+            <div class="experiment-row old"><div class="exp-left"><small>V1.1 / FROZEN</small><strong>297 <span>/ 345</span></strong></div><div class="exp-right"><span class="exp-status">FAILED GATE</span><p>48 loop cases exposed a missing generator.</p></div></div>
+            <div class="experiment-divider"><span>COUNTEREXAMPLE → NEW TRANSLATION → RETEST</span><b aria-hidden="true">↓</b></div>
+            <div class="experiment-row new"><div class="exp-left"><small>V1.2 / FROZEN</small><strong>345 <span>/ 345</span></strong></div><div class="exp-right"><span class="exp-status">PASSED GATE</span><p>Same public corpus and budgets; corrected acquisition.</p></div></div>
           </div>
-          <span class="card-arrow">→</span>
-        </article>
-
-        <article class="work-card" data-open-card="theorica">
-          <div class="card-meta">
-            <span>02</span>
-            <span>EXPERIMENT · AUTONOMOUS SCIENCE</span>
-          </div>
-          <h2>Theorica</h2>
-          <p>
-            An AI scientist that changes representation when its current theory breaks.
-          </p>
-          <div class="tag-row">
-            <span>Structure Discovery</span><span>Falsification</span><span>Math</span>
-          </div>
-          <div class="card-art theorica-art" aria-hidden="true">
-            <span>F : S × S → S</span>
-            <i>Lₓ(y)=F(x,y)</i>
-            <b>345 / 345</b>
-          </div>
-          <span class="card-arrow">→</span>
-        </article>
-
-        <article class="work-card" data-open-card="somno">
-          <div class="card-meta">
-            <span>01</span>
-            <span>PRODUCT · ANDROID</span>
-          </div>
-          <h2>Somno</h2>
-          <p>
-            Privacy-first fatigue awareness from personal baseline, reaction time,
-            facial signals, and sleep history.
-          </p>
-          <div class="tag-row">
-            <span>React Native</span><span>On-device AI</span><span>Android</span>
-          </div>
-          <div class="card-art somno-art" aria-hidden="true">
-            <div class="phone-shell">
-              <img src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/result.png" alt="">
-            </div>
-          </div>
-          <span class="card-arrow">→</span>
-        </article>
-
-        <article class="work-card card-soon" data-open-card="lucent">
-          <div class="card-meta">
-            <span>04</span>
-            <span>COMING NEXT</span>
-          </div>
-          <h2>Lucent</h2>
-          <p>How much functional state survives in five seconds of ordinary face video?</p>
-          <div class="tag-row"><span>Vision</span><span>Human Sensing</span><span>00:05</span></div>
-          <div class="card-art lucent-art" aria-hidden="true"><span>00:05</span></div>
-          <span class="card-arrow">→</span>
-        </article>
+          <div class="visual-bottom"><span>13.021%</span><span>MEDIAN TABLE QUERIED IN THE V1.2 ELIGIBLE SET</span></div>
+        </div>
       </div>
     </section>
 
-    <section class="manifesto-section">
-      <p class="eyebrow">PROTOTYPE-FIRST · AI EXPERIMENTS</p>
-      <h2>Build the interaction. Put it in motion.<br>Learn what holds up with real behavior.</h2>
+    <section class="case wrap" id="somno" aria-labelledby="somno-title">
+      <div class="case-index"><span>PROJECT 03 / 03</span><span>SHIPPED PRODUCT · ON-DEVICE AI</span></div>
+      <div class="case-layout">
+        <div class="case-content">
+          <h3 id="somno-title">Somno<span class="project-period">.</span></h3>
+          <p class="case-lead">How do you make fatigue awareness useful without requiring an expensive wearable?</p>
+          <p>I built an Android app that combines reaction-time testing, on-device facial signals, self-reported sleepiness, and sleep history into a personal fatigue estimate. The raw face images stay local, and the app is available as a public release.</p>
+          <div class="case-data">
+            <div><strong>4</strong><span>Complementary signal families used to estimate fatigue</span></div>
+            <div><strong>Android</strong><span>Installable public v27 release and source repository</span></div>
+          </div>
+          <p class="boundary"><strong>Scope matters.</strong> Somno provides fatigue-awareness estimates, not a medical diagnosis or sleep-stage detection from a camera.</p>
+          <div class="case-links">
+            <a class="button button-dark" href="https://sushxnthd.github.io/somno/" target="_blank" rel="noopener noreferrer">Explore Somno <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://github.com/sushxnthd/somno/releases/tag/v27" target="_blank" rel="noopener noreferrer">Download / release <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="https://github.com/sushxnthd/somno" target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="case-visual somno-visual">
+          <div class="visual-bar"><span>SOMNO / PRODUCT PREVIEW</span><span>FIG. 03</span></div>
+          <div class="app-preview">
+            <div class="app-orbit orbit-a"></div><div class="app-orbit orbit-b"></div>
+            <div class="phone-frame"><img src="https://raw.githubusercontent.com/sushxnthd/somno/main/listing/play/result.png" width="350" height="735" loading="lazy" alt="Somno app result screen showing its fatigue-awareness interface"></div>
+          </div>
+          <div class="visual-bottom"><span>ON DEVICE</span><span>PERSONAL BASELINE · REACTION TIME · SLEEP HISTORY</span></div>
+        </div>
+      </div>
     </section>
 
-    <section class="garage-strip" aria-label="Selected experiments">
-      <article class="strip-item strip-link">
-        <span>00A</span>
-        <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">repositories ↗</a>
-      </article>
-
-      <article class="strip-item strip-link">
-        <span>01A</span>
-        <a href="#contact">say hi ↗</a>
-      </article>
-
-      <article class="strip-item photo-a">
-        <div class="halftone-art" aria-hidden="true">
-          <span>░▒▓██▓▒░</span>
-          <span>▒▓████▓▒</span>
-          <span>░▒▓██▓▒░</span>
-        </div>
-        <div class="strip-caption"><span>02A</span><b>route / measure / repeat</b></div>
-      </article>
-
-      <article class="strip-item photo-b">
-        <div class="halftone-art matrix" aria-hidden="true">
-          <span>F  S×S  →  S</span>
-          <span>└─ action ─┘</span>
-          <span>base → table</span>
-        </div>
-        <div class="strip-caption"><span>03A</span><b>structure before law</b></div>
-      </article>
-
-      <article class="strip-item photo-c">
-        <div class="halftone-art face" aria-hidden="true">
-          <span>··::++**##</span>
-          <span>::+*####*+:</span>
-          <span>:+#@    @#+</span>
-          <span>::+*####*+:</span>
-        </div>
-        <div class="strip-caption"><span>04A</span><b>five-second sensing</b></div>
-      </article>
+    <section class="section wrap method-section" id="method" aria-labelledby="method-title">
+      <div class="section-label">02 <span class="rule"></span> HOW I WORK</div>
+      <div class="method-grid">
+        <div class="method-lead"><h2 id="method-title">The interesting part is usually <em>where it fails.</em></h2><p>These aren't rules I always get right. They're the ones I keep coming back to.</p></div>
+        <ol class="principles">
+          <li><span>01</span><div><h3>Make the claim testable.</h3><p>Choose the benchmark, the threshold, and the baseline before celebrating the result.</p></div></li>
+          <li><span>02</span><div><h3>Keep the uncomfortable evidence.</h3><p>A failed run should stay visible, especially if it changed the method.</p></div></li>
+          <li><span>03</span><div><h3>Care about the boundary.</h3><p>Simulated timing isn't a board measurement. A promising benchmark isn't universal intelligence.</p></div></li>
+          <li><span>04</span><div><h3>Leave a path to reproduce it.</h3><p>Publish code, exact reports, and the assumptions someone else would need to check my work.</p></div></li>
+        </ol>
+      </div>
+      <a class="ledger-link" href="https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md" target="_blank" rel="noopener noreferrer"><span>CLAIM-TO-SOURCE LEDGER</span><strong>Inspect the evidence behind this site <span aria-hidden="true">↗</span></strong></a>
     </section>
 
-    <div class="strip-instruction">
-      <span class="desktop-copy">scroll to explore · hover to develop</span>
-      <span class="mobile-copy">swipe · tap to develop</span>
-    </div>
-
-    <section class="contact-section" id="contact">
-      <div>
-        <p class="eyebrow">CONTACT</p>
-        <h2>Have a question,<br>collaboration, or weird idea?</h2>
+    <section class="section more-section" id="more" aria-labelledby="more-title">
+      <div class="wrap">
+        <div class="section-label">03 <span class="rule"></span> IN THE MARGINS</div>
+        <div class="more-head"><h2 id="more-title">And outside <em>the three projects.</em></h2><p>I also spend time on mathematical questions, ML reliability, quantum computing, and the less glamorous work of getting a result ready for someone else's scrutiny.</p></div>
+        <div class="more-grid">
+          <div class="more-card"><span>RESEARCH / ONGOING</span><h3>When confidence stops meaning what we think it means.</h3><p>Calibration, tied prediction scores, selective risk, and the limits of inferring mechanisms from model behavior.</p></div>
+          <div class="more-card"><span>OPEN QUESTION / EXPLORATORY</span><h3>How much state fits in five seconds?</h3><p>Lucent is a research question about short facial video and functional-state estimation, not a validated result.</p></div>
+          <div class="more-card"><span>BUILDING / LEARNING</span><h3>There is more than one way to build.</h3><p>Beyond research, I have worked on student conferences, engineering competitions, and projects that need more than just code.</p></div>
+        </div>
       </div>
-      <div class="contact-links">
-        <a href="https://github.com/sushxnthd" target="_blank" rel="noreferrer">GitHub ↗</a>
-        <a href="https://sushxnthd.github.io/somno/" target="_blank" rel="noreferrer">Somno ↗</a>
-      </div>
-      <p class="contact-note">Class of 2027 · Gurugram, India</p>
     </section>
 
-    <section class="cli-entrance" id="showcaseEntry">
-      <div class="cli-command">
-        <span>sushanth@lab ~ %</span>
-        <strong>showcase --3d-timeline</strong>
-      </div>
-      <div class="run-row">
-        <div class="run-bar" aria-hidden="true">
-          <i id="runProgress"></i>
-          <div class="run-cells" id="runCells"></div>
-        </div>
-        <span id="runLabel">scroll to run ↓</span>
-      </div>
-      <a class="fallback-showcase" href="#timeline" id="fallbackShowcase">Open timeline ↗</a>
+    <section class="closing wrap" id="contact">
+      <div><div class="section-label">04 <span class="rule"></span> CONTACT</div><h2>Have a difficult question?<br><em>I'd like to hear it.</em></h2><p>I'm interested in scientific discovery, reliable AI, and working with people who care more about the experiment than the demo.</p><a class="button button-primary" href="https://github.com/sushxnthd" target="_blank" rel="noopener noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a></div>
+      <div class="closing-index"><span>INDEPENDENT RESEARCH</span><span>GURUGRAM · INDIA</span><span>2026 / 2027</span></div>
     </section>
   </main>
-
-  <section class="terminal-window" id="terminalWindow" aria-hidden="true">
-    <div class="terminal-bar">
-      <span>Garage CLI</span>
-      <button id="closeTerminal" type="button">×</button>
-    </div>
-    <div class="terminal-screen" id="terminalScreen">
-      <div class="terminal-output" id="terminalOutput"></div>
-      <form class="terminal-form" id="terminalForm">
-        <label for="terminalInput">sushanth@lab ~ %</label>
-        <input id="terminalInput" autocomplete="off" spellcheck="false" aria-label="Terminal command">
-      </form>
-    </div>
-  </section>
-
-  <section class="jump-palette" id="jumpPalette" aria-hidden="true">
-    <div class="jump-card">
-      <div class="jump-search">
-        <span>⌘K</span>
-        <input id="jumpInput" placeholder="Jump to…" autocomplete="off">
-        <button id="closeJump" type="button">ESC</button>
-      </div>
-      <div class="jump-list" id="jumpList">
-        <button data-jump="#work"><span>01</span><b>Selected work</b></button>
-        <button data-jump="#showcaseEntry"><span>02</span><b>3D timeline</b></button>
-        <button data-terminal><span>03</span><b>Garage CLI</b></button>
-        <button data-jump="#contact"><span>04</span><b>Contact</b></button>
-      </div>
-    </div>
-  </section>
-
-  <section class="timeline-overlay" id="timeline" aria-hidden="true">
-    <div class="pixel-transition" id="pixelTransition" aria-hidden="true"></div>
-
-    <header class="timeline-head">
-      <div>
-        <span>AI LAB</span>
-        <b>PROJECT TIMELINE</b>
-      </div>
-      <div class="timeline-controls">
-        <button id="timelineMinus" type="button">−</button>
-        <span id="timelineZoomLabel">1.0×</span>
-        <button id="timelinePlus" type="button">+</button>
-        <button id="closeTimeline" type="button">Close</button>
-      </div>
-    </header>
-
-    <div class="timeline-stage">
-      <div class="timeline-years" id="timelineYears">
-        <span>2023</span><span>2024</span><span>2025</span><span>2026</span><span>2027</span><span>2028</span>
-      </div>
-      <div class="timeline-axis"></div>
-
-      <div class="timeline-world" id="timelineWorld">
-        <button class="timeline-card track-top" data-timeline-index="0" data-project="calibration">
-          <span class="tc-year">2024</span>
-          <b>Calibration</b>
-          <p>Reliability, ties, selective risk.</p>
-          <small>RESEARCH</small>
-        </button>
-
-        <button class="timeline-card track-bottom" data-timeline-index="1" data-project="somno">
-          <span class="tc-year">2025</span>
-          <b>Somno</b>
-          <p>Fatigue awareness without a wearable.</p>
-          <small>PRODUCT</small>
-        </button>
-
-        <button class="timeline-card track-top" data-timeline-index="2" data-project="theorica">
-          <span class="tc-year">2026</span>
-          <b>Theorica</b>
-          <p>Discover representation. Falsify aggressively.</p>
-          <small>AUTONOMOUS SCIENCE</small>
-        </button>
-
-        <button class="timeline-card track-bottom" data-timeline-index="3" data-project="kernellum">
-          <span class="tc-year">2026</span>
-          <b>Kernellum</b>
-          <p>Architecture search meets physical design.</p>
-          <small>AI × HARDWARE</small>
-        </button>
-
-        <div class="timeline-quote" data-timeline-index="4">
-          <p>“A breakthrough is only real when its evidence survives implementation.”</p>
-        </div>
-
-        <button class="timeline-card track-top" data-timeline-index="5" data-project="lucent">
-          <span class="tc-year">2026</span>
-          <b>Lucent</b>
-          <p>Five seconds. One camera. What survives?</p>
-          <small>HUMAN SENSING</small>
-        </button>
-      </div>
-
-      <div class="timeline-hint">scroll / drag to move · click a card to focus</div>
-    </div>
-
-    <aside class="timeline-detail" id="timelineDetail" aria-hidden="true">
-      <button class="detail-close" id="closeTimelineDetail" type="button">×</button>
-      <span id="detailEyebrow">PROJECT</span>
-      <h3 id="detailTitle">Kernellum</h3>
-      <p id="detailText"></p>
-      <div id="detailStats" class="detail-stats"></div>
-      <div id="detailLinks" class="detail-links"></div>
-    </aside>
-  </section>
-
-  <script src="script.js?v=garage-1" defer></script>
+  <footer class="footer"><div class="wrap footer-inner"><span>© 2026 Sushanth Dasari</span><span>Built as a record of work in progress.</span><a href="#top">Back to top ↑</a></div></footer>
+  <script src="script.js?v=haa-1" defer></script>
 </body>
 </html>
