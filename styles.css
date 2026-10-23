@@ -17,10 +17,10 @@ a{text-decoration:none}
 
 #scroll-root{position:relative;min-height:100vh}
 .stage{position:sticky;top:0;height:100dvh;overflow:hidden;background:var(--bg)}
-.chrome{position:absolute;top:0;left:0;right:0;z-index:30;height:54px;padding:0 var(--pad);display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-.chrome__name,.chrome__role,.chrome__github{font-size:11px;line-height:1;color:#767873;white-space:nowrap}
+.chrome{position:absolute;top:0;left:0;right:0;z-index:30;height:54px;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.chrome__name,.chrome__github{font-size:11px;line-height:1;color:#767873;white-space:nowrap}
 .chrome__name{justify-self:start;color:var(--ink);font-weight:540;letter-spacing:-.015em}
-.chrome__role{justify-self:center}
+
 .chrome__github{justify-self:end}
 @media(hover:hover){
   .chrome__github:hover,.chrome__name:hover{color:#000}
@@ -78,7 +78,6 @@ a{text-decoration:none}
 
 @media(max-width:900px){
   .chrome{grid-template-columns:1fr 1fr}
-  .chrome__role{display:none}
   .intro-card{width:90vw}
   .intro-card__copy{width:82%}
   .intro-card__orb{width:clamp(240px,40vw,380px)}
