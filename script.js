@@ -1,19 +1,18 @@
-// The page works without JavaScript. This script only adds reading progress.
+/* Field Notes: only enhance navigation. The archive stays usable without JS. */
 (() => {
-  const indicator = document.getElementById("progress");
-  if (!indicator) return;
-  let scheduled = false;
-  const refresh = () => {
-    const remaining = document.documentElement.scrollHeight - window.innerHeight;
-    const fraction = remaining > 0 ? window.scrollY / remaining : 0;
-    indicator.style.width = Math.max(0, Math.min(100, fraction * 100)) + "%";
-    scheduled = false;
-  };
-  window.addEventListener("scroll", () => {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(refresh);
-  }, { passive: true });
-  window.addEventListener("resize", refresh, { passive: true });
-  refresh();
+  const links = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  const targets = links
+    .map(link => ({link, section: document.querySelector(link.getAttribute('href'))}))
+    .filter(item => item.section);
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      targets.forEach(({link, section}) => {
+        if (section === entry.target) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+  }, {rootMargin: '-10% 0px -66% 0px'});
+  targets.forEach(({section}) => observer.observe(section));
 })();
