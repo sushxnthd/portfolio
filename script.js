@@ -66,6 +66,7 @@
 
   for (const stack of stacks) {
     drawerOf(stack).inert = true;
+    coverOf(stack).setAttribute('aria-expanded', 'false');
     coverOf(stack).addEventListener('click', () => {
       if (expanded === stack) collapse(stack);
       else expand(stack);
