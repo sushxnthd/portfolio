@@ -1,81 +1,100 @@
-# Portfolio art direction / 2026-10-23
+# Portfolio design direction — revised October 23, 2026
 
-## Working concept
-**An independent researcher's homepage, with experiments hiding beneath the links.**
+## The actual brief
 
-Reference balance: roughly 75% [Paco Coursey](https://paco.me/) (restraint, reading speed, precise language) and 25% [Rauno Freiberg](https://rauno.me/) (responsive micro-interactions, tactile states, meaningful novelty). Study their principles, not copy their branding or components.
+**Rauno Freiberg's immersive horizontal navigation, with Paco Coursey's minimal aesthetic.**
 
-### Why this pivot
+This supersedes the earlier "mostly static vertical homepage with a project preview on hover" brief. That brief misunderstood the desired interface.
 
-The two earlier versions over-designed a generic portfolio archetype: an oversized slogan, stylized section backgrounds, three metric-heavy case studies, and a large closing pitch. Even the later editorial treatment felt staged. This site should look and behave like a personal working space, not a template optimized to appear impressive.
+- **Take from Rauno:** the horizontal *architecture* of the experience. Multiple distinct, near-viewport-width scenes sit alongside one another in a continuous side-scrolling sequence. Wheel/trackpad movement advances sideways on desktop. Visitors can drag or swipe; there is quiet positional feedback and an easy path to every project.
+- **Take from Paco:** the visual *expression*. White or lightly warm white canvas, natural dark text, beautifully tuned small typography, sparse headings, thoughtful spaces, almost no ornament, plain links, and genuinely concise text.
+- **Do not take:** Rauno's yellow or OS dock, oversized billboard slogans, a neon accent, glowing 3D effects, decorative cards; or Paco's static vertical information architecture. This must be a blend of *different* ingredients, not an imitation of either site.
 
-Paco's own note on simplifying his site: https://paco.me/writing/redesign-2021
-Rauno's essay on novelty: https://rauno.me/craft/novelty
-Rauno on invisible interaction details: https://rauno.me/craft/interaction-design
+Primary references:
+- Rauno: https://rauno.me/ — horizontally framed work (capture and reference also documented at https://step1.dev/gallery/dUU9wqguUj1yI8rkNLf07)
+- Paco: https://paco.me/ — concise introduction, compact type, restrained link-first presentation.
 
-## Homepage / first fifteen seconds
+## Core experience: a horizontal canvas
 
-No splash screen, preloader, scroll hijacking, giant name art, illustrative decorations, hero image, floating dock, generic bento cards, artificial 3D mockups, pitch-deck copy, or distracting awards carousel.
+Imagine a very clean Paco-style personal website stretched sideways into five sections.
 
-Suggested reading order:
+Desktop scene order:
 
-1. **Sushanth Dasari.** Small, confident name and real personal introduction.
-2. **One or two sentences** stating independent AI systems research, experiments, and shipping software. Don't claim general breakthroughs.
-3. **Selected work**, immediately visible and presented as compact typographic entries:
-   - Kernellum — architectures selected using FPGA physical-design feedback.
-   - Theorica — an algebraic reconstruction method revised after counterexamples.
-   - Somno — Android fatigue-awareness app, publicly installable.
-4. **Research notes** — concise entries linking to actual reports, including failure reports.
-5. **Elsewhere** — GitHub, published work, accurately sourced recognition, and contact.
+**01 / INTRO**
+- Left-aligned small name "Sushanth Dasari", a one- or two-sentence introduction and two simple links.
+- Lots of empty white space.
+- An understated "Scroll to explore →" cue and an unobtrusive thin progress indicator.
+- Let part of the next scene peek in on wide screens so horizontal navigation is immediately discoverable.
 
-Each work row: title, 8–16 word human-written description, year/status, and a clear link. The **first screen should contain at least the beginning of the work index on an ordinary desktop**.
+**02 / KERNELLUM**
+- Compact title and one-sentence explanation.
+- Real routed-timing comparison figure, inspectable and sourced.
+- Quick actions "Case study" and "Source".
+- Avoid sales metrics disconnected from methodology.
 
-Proposed layout: 620–740px readable primary column; optional 240–330px interaction/preview rail on wide screens. Compact, readable and flexible on phones. Prefer small deliberate type and breathing room over giant display type.
+**03 / THEORICA**
+- Compact project introduction plus one inspectable real reconstruction/failure comparison (v1.1 against v1.2).
+- Links to both reports and code.
+- Representation matters more than a giant statistic.
 
-## Color and type
+**04 / SOMNO**
+- Actual phone interface screenshot(s), horizontally browsable within the scene or with a focused gallery interaction.
+- Clear link to APK/release and repository.
 
-- Mostly white / near-white canvas. Neutral ink and no visible themed section backgrounds.
-- One optional accent used only for focus, selection, or a genuinely meaningful data state, not for decoration.
-- Use a thoughtfully tuned sans-serif plus optional serif italic in editorial notes; no generic huge serif headlines.
-- Subtle rules, excellent text rendering, real line-wrap decisions and typographic rhythm.
-- No faux handwriting, stamp graphics, notebook gimmicks, fake diagrams, random symbols, auroras, gradients, or unnecessary motion.
+**05 / ELSEWHERE**
+- Small list of research writing, verified publication/recognition references and GitHub/contact.
+- No closing slogan or invented persona.
 
-## Rauno-level detail, not Rauno imitation
+A section can occupy 70–110% of the viewport width based on content, not uniform slide-template boxes. The track should feel like a continuous, editorial space, not a PowerPoint deck.
 
-The homepage is almost static. Hovering or focusing a project row may reveal a lightweight, real source-based preview in a reserved side area. It should feel almost instantaneous (around 150–200ms), respect reduced motion, behave with keyboard focus, and never be the only way to access essential content.
+## Visual system
 
-Each project gets its **own real experiment or tool** instead of a common slideshow template:
+- Background: #fff or a barely warm off-white, not tan paper textures.
+- Ink: near-black for text, gentle grey for metadata. No multicolored sections.
+- Typography: Paco-inspired confident small sans-serif (e.g. Inter/system sans), readable at 14–17px; compact headings with disciplined sizes rather than ultra-bold 100px display fonts.
+- Links are obvious but quiet: restrained underlines / text hover states.
+- Thin rules and project numerals are acceptable as information, not as decorative stamps.
+- **Images only when they ARE the work**: real app screenshots, plots generated from actual reported data, code/code output. No stock, AI-rendered mockups, abstract tech art, decorative SVG doodles.
+- A touch of interaction delight (150–250ms ease, subtle transitions) should be nearly invisible at rest.
 
-- **Kernellum:** inspect per-seed routed comparisons from the public SIMILARITY report, distinguishing estimated workload latency from hardware-board measurements. Use only actual sourced data.
-- **Theorica:** a faithful walkthrough of a real v1.1 counterexample and what v1.2 changed, with the frozen reports and reproducible setup linked.
-- **Somno:** a swipeable or click-controlled gallery of actual application screens; include real release/install/source links. No simulated medical inference.
-  
-Keep navigation instant, retain normal links and scroll, ensure back navigation works, focus is visible, and hover features have touch/keyboard alternatives. Skip gimmicky cursor replacements and command palettes.
+## Interaction contract
 
-## Detail-page anatomy
+1. Desktop wheel/trackpad movement moves through the horizontal scene track, smoothly and predictably.
+2. Trackpad horizontal scrolling also works normally.
+3. Drag-to-scroll works for pointer users and swipe is native on touch.
+4. A tiny progress / position indicator and scene links provide a clear sense of location. Scene labels can be clicked to jump.
+5. No forced easing that makes the controls feel delayed, no endlessly repeated scroll animation, and no transition that traps a user.
+6. Keyboard navigation: Tab reaches all links, ArrowLeft/ArrowRight navigate the track when appropriate, and focus causes the targeted scene to scroll into view.
+7. Respect prefers-reduced-motion. Deep links (#kernellum, #theorica, #somno) must open the correct position.
+8. Mobile: preserve swipe-driven horizontal exploration with readable layouts and an obvious 'swipe →' hint. If viewport constraints make details hard to read, let the detail page scroll vertically while the top-level collection stays horizontal.
+9. Disable horizontal wheel interception on a nested scrollable area, dialogs, or detailed tool, if any. Avoid hijacking keyboard shortcuts.
+10. All essential copy and links must remain in the document and usable without JavaScript. Use native CSS overflow scrolling as a graceful fallback if motion enhancement fails.
 
-1. One-sentence problem statement (plain language)
-2. The thing actually built, with code and direct link
-3. One meaningful real demonstration / data interaction
-4. Measured results, scoped by benchmark and methodology
-5. Failure, caveat, or what's not established
-6. Links to source, report, releases, reproduction steps
+## Detail pages
 
-Each project's visual identity should be a consequence of its artifacts (graphs, traces, screens), not arbitrary gradients or color theming.
+Not every long project explanation belongs inside a horizontal slide. Each project has an uncluttered dedicated case-study page linked from its scene.
 
-## HAA review principles
+- One meaningful interactive demo per project only if built from real data.
+- Kernellum: plotted routed comparison from the documented experiments.
+- Theorica: authentic v1.1 failure and v1.2 correction.
+- Somno: accessible actual screenshot gallery, release APK, repo.
+- Every result accompanied by method, limitations, source links, and no exaggerated novelty claims.
 
-A reviewer should find a working artifact within two clicks and discover whether the results are genuine without searching GitHub manually. The site is not titled or badged "HAA application." The site must stand alone for researchers, potential collaborators, and other visitors as well.
+## Constraints / anti-patterns
 
-Claims are limited to the sources in EVIDENCE.md; undocumented accomplishments must be clearly qualified or omitted. No fabricated benchmarks, phantom users, made-up screenshots or reviews.
+- Never make the site a usual vertically stacked homepage with a horizontal carousel dropped into the middle.
+- Never use visual flourishes to compensate for generic copy or weak actual project evidence.
+- No faux handwritten notes, paper stamps, editorial magazine gimmicks, big hero typography, artificial 3D objects, neon/glowing gradients, dock replicas, or fabricated scientific diagrams.
+- No client-side framework is necessary just to support horizontal scroll; prefer semantic HTML/CSS and lightweight enhancement.
+- HAA reviewer should reach a real project/source in one or two interactions.
 
-## Constraints and quality gates
+## Definition of done
 
-- Keep existing GitHub Pages deployment and identity/SEO metadata.
-- Main content readable without JavaScript.
-- Fast first load, no large UI framework by default, progressive enhancement for interactive results.
-- Test 360, 390, 768, 1280, and 1440px viewports, keyboard-only navigation, reduced-motion, contrast, deep-links, disabled-JS, print, and accessible link text.
-- Perform actual visual browser testing before publishing, not only HTML/JS syntax checks.
-- Compare the candidate homepage against live Paco and Rauno sites for restraint and detail, while avoiding visual cloning.
+- Build a true horizontally progressing homepage with an intro and three real-work scenes.
+- Test actual desktop input (wheel + trackpad) and touch swipe, keyboard, resize, reduced motion and deep links.
+- Check common viewports 360, 390, 768, 1280, 1440px for clipped text, overlapping panels and hidden content.
+- Visually inspect **actual screenshots**, not just valid HTML / CSS.
+- Preserve Google indexing schema, sitemap and canonical URL.
+- Only publish a reviewed, working version; structural note alone is not implementation.
 
-**Current status:** design direction agreed in conversation. This document does not redesign or deploy the homepage. Begin with homepage composition and a single high-quality project preview, test them, then extend.
+**Status:** User clarified intended art direction. Specification corrected. The deployed homepage remains unchanged pending implementation and visual testing.
