@@ -114,7 +114,7 @@
       const rect = card.getBoundingClientRect();
       const distance = Math.min(1,
         Math.abs((rect.left + rect.width / 2) - viewportCenter) / window.innerWidth);
-      card.style.transform = 'scale(' + (1 - distance * 0.015).toFixed(4) + ')';
+      card.style.transform = 'scale(' + (1 - distance * 0.02).toFixed(4) + ')';
     });
 
     const probe = Math.min(220, window.innerWidth * .25);
