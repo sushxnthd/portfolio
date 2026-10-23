@@ -38,6 +38,7 @@
     if (drawer.contains(document.activeElement)) coverOf(stack).focus({ preventScroll: true });
     stack.classList.remove('is-open');
     coverOf(stack).setAttribute('aria-expanded', 'false');
+    coverOf(stack).setAttribute('aria-label', 'Expand ' + stack.dataset.title + ' category');
     drawer.inert = true;
     if (expanded === stack) expanded = null;
   };
@@ -56,6 +57,7 @@
     measure();
     stack.classList.add('is-open');
     coverOf(stack).setAttribute('aria-expanded', 'true');
+    coverOf(stack).setAttribute('aria-label', 'Collapse ' + stack.dataset.title + ' category');
     drawerOf(stack).inert = false;
     expanded = stack;
     if (reveal) ensureCoverVisible(stack);
