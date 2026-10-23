@@ -42,10 +42,7 @@ a{text-decoration:none}
 .intro-card__hint span{font:19px/1 var(--ui)}
 
 .chapter{height:min(72vh,660px);display:flex;align-items:stretch;flex:none;position:relative}
-.chapter-card{position:relative;z-index:2;width:min(70vw,980px);height:100%;flex:none;display:flex;flex-direction:column;text-align:left;padding:clamp(28px,3.6vw,54px);overflow:visible;transition:border-color var(--motion) ease;background:#fff}
-.chapter-card:before,.chapter-card:after{content:"";position:absolute;z-index:-1;inset:6px -6px -6px 6px;background:#f8f8f6;border:1px solid #dfe0dc;transition:transform var(--motion) ease,opacity var(--motion) ease}
-.chapter-card:after{inset:12px -12px -12px 12px;background:#f2f2ef;border-color:#e1e2de}
-.chapter.is-open .chapter-card:before,.chapter.is-open .chapter-card:after{opacity:0;transform:translateX(-8px)}
+.chapter-card{position:relative;z-index:2;width:min(70vw,980px);height:100%;flex:none;display:flex;flex-direction:column;text-align:left;padding:clamp(28px,3.6vw,54px);overflow:visible;transition:border-color var(--motion) ease,box-shadow var(--motion) ease;background:#fff;user-select:none;box-shadow:6px 6px 0 #f8f8f6,7px 7px 0 #dfe0dc,12px 12px 0 #f2f2ef,13px 13px 0 #e1e2de}
 .chapter-card__number{font:10px/1 var(--mono);color:#969893;font-variant-numeric:tabular-nums}
 .chapter-card__body{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .chapter-card__eyebrow{display:none}
@@ -53,6 +50,7 @@ a{text-decoration:none}
 .chapter-card__subtitle{margin-top:23px;max-width:440px;font-size:clamp(14px,1.25vw,17px);line-height:1.55;color:#777a74}
 .chapter-card__footer{display:flex;align-items:center;justify-content:space-between;color:#8e908a;font:10px/1 var(--mono);text-transform:uppercase}
 .chapter-card__plus{font:26px/1 var(--ui);font-weight:400;color:#30312e;transition:transform var(--motion) ease}
+.chapter.is-open .chapter-card{box-shadow:none}
 .chapter.is-open .chapter-card__plus{transform:rotate(45deg)}
 @media(hover:hover){
   .chapter-card:hover{border-color:#b8bab4}
