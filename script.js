@@ -1,228 +1,180 @@
+
 (() => {
   'use strict';
 
-  const main = document.getElementById('portfolio');
-  const rail = document.getElementById('rail');
-  if (!main || !rail) return;
+  const root = document.getElementById('scroll-root');
+  const stage = document.getElementById('stage');
+  const track = document.getElementById('track');
+  const chapters = [...document.querySelectorAll('.chapter')];
+  const scenes = [document.getElementById('intro'), ...chapters].filter(Boolean);
+  const navLinks = [...document.querySelectorAll('.chrome__nav a')];
+  const label = document.getElementById('scene-label');
+  const count = document.getElementById('scene-count');
+  const progress = document.getElementById('progress');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!root || !stage || !track) return;
 
-  // Use actual vertical document scrolling as the input, not wheel interception.
-  const track = document.createElement('div');
-  track.className = 'rail-track';
-  while (rail.firstChild) track.appendChild(rail.firstChild);
-  rail.appendChild(track);
+  let maxX = 0;
+  let raf = 0;
+  let active = 0;
+  let openChapter = null;
 
-  const stacks = [...track.querySelectorAll('.stack')];
-  const scenes = [...track.querySelectorAll('[data-section]')];
-  const links = [...document.querySelectorAll('.topnav a')];
-  const progress = document.getElementById('progress-fill');
-  const label = document.getElementById('location-label');
-  const count = document.getElementById('location-count');
-  const previous = document.getElementById('go-prev');
-  const next = document.getElementById('go-next');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let expanded = null, range = 0, frame = 0, active = 0, pointer = null;
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
+  const xNow = () => clamp(window.scrollY - rootTop(), 0, maxX);
+  const sceneX = el => el.offsetLeft - parseFloat(getComputedStyle(track).paddingLeft || 0);
 
-  const behavior = () => reducedMotion.matches ? 'instant' : 'smooth';
-  const cover = stack => stack.querySelector('.stack__cover');
-  const drawer = stack => stack.querySelector('.stack__drawer');
-  const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
-  const scrollStart = () => main.getBoundingClientRect().top + window.scrollY;
-  const logicalX = element =>
-    element.getBoundingClientRect().left - track.getBoundingClientRect().left;
-  const currentX = () => clamp(window.scrollY - scrollStart(), 0, range);
+  function measureChapter(chapter) {
+    const drawer = chapter.querySelector('.chapter-drawer');
+    const inner = chapter.querySelector('.chapter-drawer__inner');
+    if (!drawer || !inner) return;
+    drawer.style.setProperty('--drawer-w', Math.ceil(inner.scrollWidth + 1) + 'px');
+  }
 
-  const measureDrawers = () => {
-    for (const stack of stacks) {
-      const inner = stack.querySelector('.stack__drawer-inner');
-      drawer(stack).style.setProperty('--drawer-width',
-        Math.ceil(inner.scrollWidth + 2) + 'px');
-    }
-  };
-  const layout = () => {
-    const nextRange = Math.max(0, Math.ceil(track.scrollWidth - rail.clientWidth));
-    if (Math.abs(range - nextRange) > 0.5) {
-      range = nextRange;
-      // One native vertical pixel == one horizontal pixel.
-      main.style.height = Math.ceil(window.innerHeight + range) + 'px';
-    }
-    schedule();
-  };
+  function measure() {
+    chapters.forEach(measureChapter);
+    maxX = Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
+    root.style.height = Math.ceil(window.innerHeight + maxX) + 'px';
+    requestPaint();
+  }
 
-  const close = stack => {
-    if (!stack) return;
-    const pane = drawer(stack);
-    if (pane.contains(document.activeElement)) {
-      cover(stack).focus({ preventScroll: true });
-    }
-    stack.classList.remove('is-open');
-    cover(stack).setAttribute('aria-expanded', 'false');
-    cover(stack).setAttribute('aria-label',
-      'Expand ' + stack.dataset.title + ' category');
-    pane.inert = true;
-    if (expanded === stack) expanded = null;
-  };
-  const open = stack => {
-    if (!stack) return;
-    if (expanded && expanded !== stack) close(expanded);
-    measureDrawers();
-    stack.classList.add('is-open');
-    cover(stack).setAttribute('aria-expanded', 'true');
-    cover(stack).setAttribute('aria-label',
-      'Collapse ' + stack.dataset.title + ' category');
-    drawer(stack).inert = false;
-    expanded = stack;
-    layout();
-  };
+  function closeChapter(chapter) {
+    if (!chapter) return;
+    const button = chapter.querySelector('.chapter-card');
+    const drawer = chapter.querySelector('.chapter-drawer');
+    chapter.classList.remove('is-open');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', 'Open ' + chapter.dataset.title);
+    drawer.inert = true;
+    if (openChapter === chapter) openChapter = null;
+  }
 
-  for (const stack of stacks) {
-    drawer(stack).inert = true;
-    cover(stack).setAttribute('aria-expanded', 'false');
-    cover(stack).addEventListener('click', () => {
-      expanded === stack ? close(stack) : open(stack);
-      layout();
+  function open(chapter) {
+    if (!chapter) return;
+    if (openChapter && openChapter !== chapter) closeChapter(openChapter);
+    const button = chapter.querySelector('.chapter-card');
+    const drawer = chapter.querySelector('.chapter-drawer');
+    measureChapter(chapter);
+    chapter.classList.add('is-open');
+    button.setAttribute('aria-expanded', 'true');
+    button.setAttribute('aria-label', 'Close ' + chapter.dataset.title);
+    drawer.inert = false;
+    openChapter = chapter;
+    requestAnimationFrame(measure);
+  }
+
+  chapters.forEach(chapter => {
+    const button = chapter.querySelector('.chapter-card');
+    const drawer = chapter.querySelector('.chapter-drawer');
+    drawer.inert = true;
+    button.setAttribute('aria-label', 'Open ' + chapter.dataset.title);
+    button.addEventListener('click', () => {
+      if (chapter === openChapter) closeChapter(chapter);
+      else open(chapter);
+      requestAnimationFrame(measure);
+    });
+  });
+
+  function scrollToX(x, smooth = true) {
+    window.scrollTo({
+      top: rootTop() + clamp(x, 0, maxX),
+      behavior: smooth && !reduceMotion.matches ? 'smooth' : 'auto'
     });
   }
 
-  // With JavaScript off, the original overflow track stays horizontally scrollable.
-  document.documentElement.classList.add('js-ready');
-  measureDrawers();
-  layout();
-
-  const toX = (x, smooth = true) => window.scrollTo({
-    top: scrollStart() + clamp(x, 0, range),
-    behavior: smooth ? behavior() : 'instant'
-  });
-  const toScene = (scene, expand = false, push = true) => {
+  function goToScene(scene, expand = false, push = true) {
     if (!scene) return;
-    if (expand && scene.classList.contains('stack')) open(scene);
+    if (expand && scene.classList.contains('chapter')) open(scene);
     if (push) history.pushState(null, '', '#' + scene.id);
-    const leftPadding = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-    toX(logicalX(scene) - leftPadding);
-  };
+    requestAnimationFrame(() => scrollToX(sceneX(scene)));
+  }
 
   document.addEventListener('click', event => {
     const anchor = event.target.closest('a[href^="#"]');
     if (!anchor) return;
-    const scene = document.getElementById(anchor.hash.slice(1));
-    if (!scene || !track.contains(scene)) return;
+    const target = document.getElementById(anchor.hash.slice(1));
+    if (!target || !track.contains(target)) return;
     event.preventDefault();
-    toScene(scene, scene.classList.contains('stack'));
+    goToScene(target, target.classList.contains('chapter'));
   });
 
-  const paint = () => {
-    frame = 0;
-    const x = currentX();
+  function paint() {
+    raf = 0;
+    const x = xNow();
     track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
-    if (progress) progress.style.width =
-      (range ? x / range * 100 : 100) + '%';
+    if (progress) progress.style.width = (maxX ? (x / maxX) * 100 : 100) + '%';
 
-    const checkpoint = rail.getBoundingClientRect().left +
-      Math.min(190, rail.clientWidth * .24);
-    let nearest = 0, distance = Infinity;
+    const probe = Math.min(220, window.innerWidth * .25);
+    let nearest = 0;
+    let best = Infinity;
     scenes.forEach((scene, i) => {
       const rect = scene.getBoundingClientRect();
-      if (rect.left <= checkpoint && rect.right >= checkpoint) {
-        nearest = i; distance = -1;
-      } else if (distance !== -1) {
-        const d = Math.abs(rect.left - checkpoint);
-        if (d < distance) { nearest = i; distance = d; }
+      const d = rect.left <= probe && rect.right >= probe ? -1 : Math.abs(rect.left - probe);
+      if (d < best) {
+        best = d;
+        nearest = i;
       }
     });
     active = nearest;
-    const section = scenes[active];
-    if (!section) return;
-    if (label) label.textContent = section.id === 'intro'
-      ? 'Introduction' : section.dataset.title;
-    if (count) count.textContent =
-      String(active).padStart(2, '0') + ' / 05';
-    links.forEach(link => {
-      if (link.hash === '#' + section.id)
-        link.setAttribute('aria-current', 'location');
+    const scene = scenes[active];
+    if (label) label.textContent = scene.id === 'intro' ? 'Introduction' : scene.dataset.title;
+    if (count) count.textContent = String(active).padStart(2, '0') + ' / 05';
+    navLinks.forEach(link => {
+      if (link.hash === '#' + scene.id) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-    if (previous) previous.disabled = active === 0 && x <= 6;
-    if (next) next.disabled =
-      active === scenes.length - 1 && x >= range - 6;
-  };
-  function schedule() {
-    if (!frame) frame = requestAnimationFrame(paint);
+
+    const ticks = [...document.querySelectorAll('.position__ticks i')];
+    if (ticks.length) {
+      const lit = Math.round((maxX ? x / maxX : 0) * (ticks.length - 1));
+      ticks.forEach((tick, i) => tick.style.opacity = i <= lit ? '1' : '.25');
+    }
   }
 
-  window.addEventListener('scroll', schedule, { passive: true });
-  if (previous) previous.addEventListener('click', () =>
-    toScene(scenes[Math.max(0, active - 1)], false, false));
-  if (next) next.addEventListener('click', () =>
-    toScene(scenes[Math.min(scenes.length - 1, active + 1)], true, false));
+  function requestPaint() {
+    if (!raf) raf = requestAnimationFrame(paint);
+  }
 
-  // Optional mouse drag, mapped to the same native vertical scroll coordinate.
-  rail.addEventListener('pointerdown', event => {
-    if (event.button !== 0 || event.pointerType === 'touch' ||
-        event.target.closest('a,button')) return;
-    pointer = { id: event.pointerId, startX: event.clientX,
-      startY: window.scrollY };
-    rail.setPointerCapture(event.pointerId);
-  });
-  rail.addEventListener('pointermove', event => {
-    if (!pointer || pointer.id !== event.pointerId) return;
-    const dx = event.clientX - pointer.startX;
-    if (Math.abs(dx) > 3) {
-      rail.classList.add('is-dragging');
-      window.scrollTo({ top: pointer.startY - dx, behavior: 'instant' });
-    }
-  });
-  const endDrag = () => {
-    pointer = null; rail.classList.remove('is-dragging');
-  };
-  rail.addEventListener('pointerup', endDrag);
-  rail.addEventListener('pointercancel', endDrag);
-  rail.addEventListener('lostpointercapture', endDrag);
+  window.addEventListener('scroll', requestPaint, { passive: true });
+  window.addEventListener('resize', measure, { passive: true });
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && expanded) {
-      close(expanded); layout(); return;
+    if (event.key === 'Escape' && openChapter) {
+      closeChapter(openChapter);
+      measure();
+      return;
     }
-    if (document.activeElement !== rail) return;
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+    if (event.key === 'ArrowRight' && !event.target.closest('input,textarea')) {
       event.preventDefault();
-      const offset = event.key === 'ArrowRight' ? 1 : -1;
-      toScene(scenes[clamp(active + offset, 0, scenes.length - 1)],
-        offset > 0, false);
+      goToScene(scenes[Math.min(scenes.length - 1, active + 1)],
+        scenes[Math.min(scenes.length - 1, active + 1)].classList.contains('chapter'), false);
+    }
+    if (event.key === 'ArrowLeft' && !event.target.closest('input,textarea')) {
+      event.preventDefault();
+      goToScene(scenes[Math.max(0, active - 1)], false, false);
     }
   });
 
-  rail.addEventListener('focusin', event => {
-    const leaf = event.target.closest('.leaf');
-    if (!leaf) return;
-    const rect = leaf.getBoundingClientRect();
-    const view = rail.getBoundingClientRect();
-    if (rect.left < view.left + 12 || rect.right > view.right - 12) {
-      toX(currentX() + rect.left - view.left - 22);
-    }
-  });
+  const resizeObserver = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null;
+  if (resizeObserver) resizeObserver.observe(track);
 
-  const restoreHash = () => {
+  function restoreHash() {
     const id = decodeURIComponent(location.hash.slice(1));
-    const scene = document.getElementById(id);
-    if (!scene || !track.contains(scene)) return;
-    if (scene.classList.contains('stack')) open(scene);
-    requestAnimationFrame(() => toScene(scene, false, false));
-  };
-
-  const observer = typeof ResizeObserver !== 'undefined'
-    ? new ResizeObserver(layout) : null;
-  if (observer) {
-    observer.observe(track);
-    observer.observe(rail);
+    const target = document.getElementById(id);
+    if (!target || !track.contains(target)) return;
+    if (target.classList.contains('chapter')) open(target);
+    requestAnimationFrame(() => scrollToX(sceneX(target), false));
   }
-  window.addEventListener('resize', () => {
-    measureDrawers(); layout();
-  }, { passive: true });
+
   window.addEventListener('hashchange', restoreHash);
   window.addEventListener('popstate', restoreHash);
   window.addEventListener('load', () => {
-    measureDrawers(); layout(); restoreHash();
+    measure();
+    restoreHash();
+    requestPaint();
   }, { once: true });
 
+  measure();
   restoreHash();
-  schedule();
+  requestPaint();
 })();
