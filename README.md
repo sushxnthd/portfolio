@@ -1,42 +1,45 @@
-# Sushanth Dasari / Working Notes
+# Sushanth Dasari / Portfolio
 
-A personal research archive, built as a small editorial publication rather than a SaaS landing page.
+A horizontally scrolling portfolio of research, software projects, labs/ventures, and selected recognition.
 
-**Site:** https://sushxnthd.github.io/portfolio/
+**Public site:** https://sushxnthd.github.io/portfolio/
 
-## Art direction
+## Design
 
-Big condensed type, cream stock, black rules, orange pencil marks, and intentionally different layouts for each experiment. Technical drawings are written as SVG directly in the HTML. The only photographs are actual screenshots from Somno.
+Rauno-inspired horizontal spatial navigation with Paco Coursey's minimal visual restraint. The category cards behave like filing stacks: selecting a category unfolds its children to the right, displacing later categories in a **single horizontal track**. The result avoids nested carousels and doesn't demand a framework.
 
-The homepage is a sequence of pages:
+Main chapters:
 
-- **Cover:** A proper personal introduction, not a product value proposition.
-- **Index:** Three pieces of work, immediately navigable.
-- **Case 001 / Kernellum:** The architecture search → route → timing → update loop, with prospective FPGA test evidence.
-- **Case 002 / Theorica:** A preserved failed experiment alongside the corrected run; both source reports linked.
-- **Case 003 / Somno:** Real installable Android software and actual application screens.
-- **Margin notes:** Unfinished research questions and selected author-reported milestones.
-- **Last page:** Direct route to source code and the evidence ledger.
+00. Introduction
+01. Research (Theorica, Kernellum experiments, Trace Corpus, CR-ZNE)
+02. Projects (Somno, Hush, Lattice)
+03. Labs & Ventures (Kernellum, agnXiv)
+04. Recognition (AIYES, QHack, IEEE ICA)
+05. Elsewhere (GitHub, evidence ledger, contact)
 
-## Trust and provenance
+Some statuses are author-reported, not independently substantiated by public award or acceptance notices. BigData and ICA manuscripts are not linked until public copies are available. Experimental metrics are explicitly scoped to their benchmarks.
 
-Numerical results are drawn from their specific public primary reports in the linked repositories. The limitations are visible inline. See [EVIDENCE.md](EVIDENCE.md). The QHack placement is labeled as a leaderboard snapshot, not a certified final rank.
+## Accessibility and interaction
 
-## Technology
+- Desktop wheel, native horizontal trackpad scrolling, pointer drag, and touch swipe.
+- Expand/collapse buttons with `aria-expanded` and `aria-controls`.
+- Only one deck open at a time; closed child links marked inert.
+- Category deep links, keyboard Arrow navigation when the horizontal rail has focus, Escape to close open decks, and Tab to reach child links.
+- Reduced-motion support. With JavaScript disabled, all child links remain exposed through the native horizontal track.
+- Layouts responsive from small phones to desktop monitors.
 
-Plain HTML, CSS, two hosted web font families plus mono, inline SVG illustrations, and a tiny optional IntersectionObserver navigation enhancer. No React, build step, paid APIs, tracking scripts, stock assets, or generated imagery.
+## Sources
 
-Everything should remain navigable with JavaScript disabled.
+- Numerical research claims: [EVIDENCE.md](EVIDENCE.md)
+- Detailed design specification: [DESIGN_DIRECTION.md](DESIGN_DIRECTION.md)
+- Project code and source reports are linked directly from their cards.
 
-## Editing and local preview
+## Editing and preview
 
-Run `python -m http.server 8000` from the repository root, then visit http://localhost:8000.
+No build system or framework. Serve locally using `python -m http.server 8000` and visit http://localhost:8000.
 
-- **Content / project links:** `index.html`
-- **Typography / layouts:** `styles.css`
-- **Active section highlighting:** `script.js`
-- **Verifiable claims:** `EVIDENCE.md`
+- Content/category membership: `index.html`.
+- Layout and styling: `styles.css`.
+- Horizontal navigation and unfolding behavior: `script.js`.
 
-Test at approximately 360, 768, 1024, and 1440 pixels, including keyboard navigation and reduced-motion mode.
-
-Github Pages publishes from `main` via the existing deployment workflow.
+The repository's existing GitHub Pages workflow publishes the main branch. Preserve identity metadata and the canonical URL if modifying the page.
