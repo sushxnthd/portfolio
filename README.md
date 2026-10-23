@@ -1,51 +1,42 @@
-# Sushanth Dasari — research portfolio
+# Sushanth Dasari / Working Notes
 
-A dependency-free, evidence-first personal website for a fast, skeptical review of real work.
+A personal research archive, built as a small editorial publication rather than a SaaS landing page.
 
-**Production website:** https://sushxnthd.github.io/portfolio/
+**Site:** https://sushxnthd.github.io/portfolio/
 
-## Purpose
+## Art direction
 
-The site answers three questions:
+Big condensed type, cream stock, black rules, orange pencil marks, and intentionally different layouts for each experiment. Technical drawings are written as SVG directly in the HTML. The only photographs are actual screenshots from Somno.
 
-1. What has Sushanth built?
-2. What are the results, and where can I check them?
-3. What is the limitation or next validation step?
+The homepage is a sequence of pages:
 
-The design prioritizes evidence and working artifacts over animation, illustrations, or unverified claims.
+- **Cover:** A proper personal introduction, not a product value proposition.
+- **Index:** Three pieces of work, immediately navigable.
+- **Case 001 / Kernellum:** The architecture search → route → timing → update loop, with prospective FPGA test evidence.
+- **Case 002 / Theorica:** A preserved failed experiment alongside the corrected run; both source reports linked.
+- **Case 003 / Somno:** Real installable Android software and actual application screens.
+- **Margin notes:** Unfinished research questions and selected author-reported milestones.
+- **Last page:** Direct route to source code and the evidence ledger.
 
-## Featured work
+## Trust and provenance
 
-| Project | Evidence | Important boundary |
-| --- | --- | --- |
-| **Kernellum** | [Prospective routed deployment report](https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md) | ECP5 final-route timing and cycle-model estimates; **not** physical-board measurements. |
-| **Theorica** | [Frozen cross-family v1.2 report](https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md) and [preserved v1.1 failure](https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_1_FAILURE.md) | Algebraic tasks under explicit eligibility promises; **not** general autonomous discovery. |
-| **Somno** | [Android v27 release](https://github.com/sushxnthd/somno/releases/tag/v27) and [source](https://github.com/sushxnthd/somno) | Fatigue-awareness estimates; **not** medical diagnosis or sleep-stage classification. |
+Numerical results are drawn from their specific public primary reports in the linked repositories. The limitations are visible inline. See [EVIDENCE.md](EVIDENCE.md). The QHack placement is labeled as a leaderboard snapshot, not a certified final rank.
 
-Exact claim-to-source provenance is maintained in [EVIDENCE.md](EVIDENCE.md).
+## Technology
 
-## Technical design
+Plain HTML, CSS, two hosted web font families plus mono, inline SVG illustrations, and a tiny optional IntersectionObserver navigation enhancer. No React, build step, paid APIs, tracking scripts, stock assets, or generated imagery.
 
-- Native HTML and CSS with lightweight progressive-enhancement JavaScript.
-- Responsive layouts at 1130px, 800px, and 560px.
-- Semantic headings, visible keyboard focus, a skip link, and reduced-motion support.
-- No client-side framework, analytics scripts, stock art, or dependency-heavy interactions.
-- Schema.org Person/ProfilePage metadata, canonical URL, and sitemap.
+Everything should remain navigable with JavaScript disabled.
 
-## Local preview
+## Editing and local preview
 
-Run 'python -m http.server 8000' from the repository root and visit http://localhost:8000.
+Run `python -m http.server 8000` from the repository root, then visit http://localhost:8000.
 
-Check at 375px, 768px, and 1440px viewports; test keyboard tab navigation, direct anchor links, and JavaScript-disabled rendering.
+- **Content / project links:** `index.html`
+- **Typography / layouts:** `styles.css`
+- **Active section highlighting:** `script.js`
+- **Verifiable claims:** `EVIDENCE.md`
 
-## Editing checklist
+Test at approximately 360, 768, 1024, and 1440 pixels, including keyboard navigation and reduced-motion mode.
 
-1. Edit content in index.html, style in styles.css, and enhancement in script.js.
-2. Verify every numerical claim against a source report and update EVIDENCE.md when its meaning changes.
-3. Check that external links lead to accessible repositories, releases, or reports.
-4. Test both mobile and desktop layouts.
-5. Merge changes to main to deploy through GitHub Pages.
-
-## Accuracy
-
-The selected numbers are scoped to documented experiments. This site does not imply independent state-of-the-art status, physical-board deployment, clinical efficacy, or certified novelty.
+Github Pages publishes from `main` via the existing deployment workflow.
