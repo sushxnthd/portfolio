@@ -43,6 +43,7 @@
     if (!chapter) return;
     const button = chapter.querySelector('.chapter-card');
     const drawer = chapter.querySelector('.chapter-drawer');
+    if (drawer.contains(document.activeElement)) button.focus({ preventScroll: true });
     chapter.classList.remove('is-open');
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-label', 'Open ' + chapter.dataset.title);
@@ -167,6 +168,17 @@
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       goToScene(scenes[Math.max(0, active - 1)], false, false);
+    }
+  });
+
+  track.addEventListener('focusin', event => {
+    const card = event.target.closest('.work-card');
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const safeLeft = 24;
+    const safeRight = window.innerWidth - 24;
+    if (rect.left < safeLeft || rect.right > safeRight) {
+      scrollToX(xNow() + rect.left - safeLeft);
     }
   });
 
