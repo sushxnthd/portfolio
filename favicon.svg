@@ -1,5 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#efede6"/>
-  <text x="5" y="49" font-family="Impact,Arial Narrow,sans-serif" font-size="48" font-weight="900" letter-spacing="-5" fill="#161a15">SD</text>
-  <path d="M46 7v22M35 18h22M38.5 10.5l15 15M53.5 10.5l-15 15" stroke="#e95029" stroke-width="3"/>
+<rect width="64" height="64" rx="12" fill="#fafaf8"/>
+<text x="32" y="43" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="500" fill="#242522" letter-spacing="-3">sd</text>
 </svg>
