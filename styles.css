@@ -1,6 +1,6 @@
 :root{
-  --bg:#ededeb;--paper:#fff;--ink:#11120f;--muted:#787a75;--line:#d9dad6;
-  --yellow:#ffff02;--pad:clamp(18px,2.4vw,36px);--gap:10px;--frame-w:min(1200px,calc(100vw - 160px));--frame-h:min(720px,calc(100dvh - 160px));
+  --bg:#ebebeb;--paper:#fff;--ink:#000;--muted:#666;--line:#d8d8d8;
+  --yellow:#ffff00;--pad:clamp(18px,2.4vw,36px);--gap:10px;--frame-w:min(1200px,calc(100vw - 160px));--frame-h:min(720px,calc(100dvh - 160px));
   --ui:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--motion:160ms
 }
