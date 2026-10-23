@@ -17,21 +17,13 @@ a{text-decoration:none}
 
 #scroll-root{position:relative;min-height:100vh}
 .stage{position:sticky;top:0;height:100dvh;overflow:hidden;background:var(--bg)}
-.chrome{position:absolute;top:0;left:0;right:0;z-index:30;height:54px;padding:0 var(--pad);display:grid;grid-template-columns:1fr 1fr;align-items:center}
-.chrome__name,.chrome__github{font-size:11px;line-height:1;color:#767873;white-space:nowrap}
-.chrome__name{justify-self:start;color:var(--ink);font-weight:540;letter-spacing:-.015em}
 
-.chrome__github{justify-self:end}
-@media(hover:hover){
-  .chrome__github:hover,.chrome__name:hover{color:#000}
-}
-
-.position{position:absolute;z-index:31;top:14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;pointer-events:none}
+.position{position:absolute;z-index:31;top:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;pointer-events:none}
 .position__tick{width:13px;height:6px;border:1px solid #a9aaa5;background:#f7f7f5}
 .position__ticks{display:flex;gap:2px}
 .position__ticks i{display:block;width:1px;height:6px;background:#bfc0bc;opacity:.25}
 
-.track{position:absolute;top:54px;left:0;height:calc(100dvh - 54px);display:flex;align-items:center;gap:var(--gap);width:max-content;padding:0 var(--pad) 28px;transform:translate3d(0,0,0);will-change:transform}
+.track{position:absolute;top:0;left:0;height:100dvh;display:flex;align-items:center;gap:var(--gap);width:max-content;padding:0 var(--pad);transform:translate3d(0,0,0);will-change:transform}
 
 .intro-card,.chapter-card,.work-card{background:var(--paper);border:1px solid #dedfdb;border-radius:0;box-shadow:none}
 .intro-card{position:relative;isolation:isolate;width:var(--frame-w);height:var(--frame-h);flex:none;display:flex;align-items:center;overflow:hidden;padding:clamp(30px,4vw,64px)}
@@ -78,7 +70,6 @@ a{text-decoration:none}
 .end-cap span:last-child{display:none}
 
 @media(max-width:900px){
-  .chrome{grid-template-columns:1fr 1fr}
   .intro-card{width:90vw}
   .intro-card__copy{width:82%}
   .intro-card__orb{width:clamp(240px,40vw,380px)}
@@ -87,10 +78,8 @@ a{text-decoration:none}
 }
 @media(max-width:600px){
   :root{--pad:14px;--gap:9px;--frame-w:calc(100vw - 28px);--frame-h:min(620px,calc(100dvh - 92px))}
-  .chrome{height:48px}
-  .chrome__name,.chrome__github{font-size:10px}
   .position{display:none}
-  .track{top:48px;height:calc(100dvh - 48px);padding-bottom:18px}
+  .track{top:0;height:100dvh}
   .intro-card{padding:26px 22px}
   .intro-card__copy{width:91%}
   .intro-card h1{font-size:clamp(40px,11.2vw,58px)}
