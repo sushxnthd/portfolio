@@ -158,6 +158,14 @@ img{max-width:100%;height:auto}
 .more-card>span{color:var(--muted);font-size:9px}
 .more-card h3{font:550 clamp(24px,2.35vw,34px)/1.13 var(--sans);letter-spacing:-.05em;margin:35px 0 15px}
 .more-card p{margin:auto 0 0;color:var(--soft);font-size:13px;line-height:1.65}
+.recognition{display:grid;grid-template-columns:minmax(170px,.42fr) minmax(0,1.58fr);gap:45px;margin-top:75px;padding-top:26px;border-top:1px solid #bfc8c1}
+.recognition-label{display:flex;flex-direction:column;gap:8px;font:500 10px var(--mono);color:var(--muted)}
+.recognition-label span{font-size:9px;color:#98a39b}
+.recognition-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.recognition-list>div{border-left:1px solid #cbd3cc;padding-left:16px;min-height:130px}
+.recognition-list>div>span{display:block;font:500 10px var(--mono);color:var(--accent);margin-bottom:11px}
+.recognition-list strong{display:block;font:600 17px var(--sans);letter-spacing:-.035em}
+.recognition-list p{color:var(--soft);font:400 12px/1.6 var(--sans);margin:8px 0 0}
 .closing{padding-top:clamp(125px,14vw,200px);padding-bottom:clamp(100px,12vw,175px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:35px}
 .closing h2{margin:36px 0 25px;font-size:clamp(48px,6.4vw,95px)}
 .closing h2 em{color:var(--accent)}
@@ -210,6 +218,8 @@ img{max-width:100%;height:auto}
  .method-lead h2{max-width:700px}
  .more-grid{grid-template-columns:1fr 1fr}
  .more-card:last-child{grid-column:1/-1}
+ .recognition{grid-template-columns:1fr;gap:24px}
+ .recognition-list{gap:18px}
 }
 @media(max-width:560px){
  :root{--gutter:20px}
@@ -277,6 +287,9 @@ img{max-width:100%;height:auto}
  .more-grid{grid-template-columns:1fr}
  .more-card,.more-card:last-child{grid-column:auto;min-height:250px}
  .more-card h3{font-size:29px}
+ .recognition{margin-top:55px}
+ .recognition-list{grid-template-columns:1fr;gap:14px}
+ .recognition-list>div{min-height:auto;padding-bottom:13px}
  .closing{grid-template-columns:1fr;padding-top:105px}
  .closing-index{align-items:flex-start;text-align:left;margin-top:60px}
  .footer-inner{min-height:90px;flex-wrap:wrap;justify-content:space-between;gap:10px 20px;padding:22px 0}
