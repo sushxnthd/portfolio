@@ -26,7 +26,7 @@ a:hover{text-decoration:none}
 .rail::-webkit-scrollbar{height:0}
 .rail.is-dragging{cursor:grabbing;scroll-snap-type:none}
 .rail.is-dragging *{user-select:none}
-@media(pointer:coarse){.rail{touch-action:pan-x}}
+@media(pointer:coarse){.rail{touch-action:auto}}
 
 .rail:focus-visible{outline:2px solid #6d8173;outline-offset:-4px}
 .intro-panel{flex:0 0 clamp(440px,54vw,760px);height:100%;display:flex;flex-direction:column;padding:15px clamp(12px,3.3vw,50px) 10px 3px;scroll-snap-align:start}
@@ -63,7 +63,7 @@ a:hover{text-decoration:none}
 .stack__drawer-inner{display:flex;align-items:stretch;gap:clamp(12px,1.4vw,22px);height:100%;width:max-content;padding-left:clamp(12px,1.4vw,22px);padding-right:4px}
 .js-ready .stack__drawer{width:0;overflow:hidden;opacity:0;transform:translateX(-34px);pointer-events:none;transition:width var(--speed) cubic-bezier(.22,.75,.2,1),transform var(--speed) cubic-bezier(.22,.75,.2,1),opacity 190ms ease}
 .js-ready .stack.is-open .stack__drawer{width:var(--drawer-width,0px);opacity:1;transform:translateX(0);pointer-events:auto}
-.leaf{display:flex;flex:none;flex-direction:column;min-width:0;width:clamp(258px,25vw,360px);height:100%;background:#fff;border:1px solid var(--line);padding:clamp(18px,2.1vw,29px);border-radius:3px;overflow:hidden;position:relative}
+.leaf{display:flex;flex:none;flex-direction:column;min-width:0;width:clamp(258px,25vw,360px);height:100%;background:#fff;border:1px solid var(--line);padding:clamp(18px,2.1vw,29px);border-radius:3px;overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;position:relative}
 .leaf__top{font-size:9px;letter-spacing:.02em;display:flex;gap:15px;justify-content:space-between;color:#a1a39f}
 .leaf__content{margin-top:clamp(22px,4vh,57px)}
 .leaf__caption{color:#808982;letter-spacing:.025em;font-size:9px}
