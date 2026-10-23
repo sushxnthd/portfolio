@@ -138,4 +138,4 @@ Every panel has a clear typographic hierarchy and enough blank space to breathe.
 - Keep canonical metadata, structured Person identity and sitemap intact.
 - Build/inspect a complete candidate before replacing the currently live site.
 
-**Status:** Category-based horizontal architecture is the current agreed direction. This design-spec update does **not** deploy a new homepage.
+**Status (October 23, 2026):** The horizontal category-deck homepage has been implemented and merged to `main` via PR #4. The live page and versioned CSS/JavaScript were verified after deployment with a cache-busting URL. Static QA passed; screenshot-level cross-browser QA and hands-on trackpad/touch interaction testing remain outstanding.
