@@ -233,6 +233,10 @@ html.js-ready .stack,
 html.js-ready .intro-panel {
   scroll-snap-align: none;
 }
+html.js-ready .leaf {
+  /* Do not consume vertical wheel/touch gestures inside individual cards. */
+  overflow-y: clip;
+}
 html.js-ready .stack__cover {
   box-shadow: 5px 5px 0 -1px var(--bg), 5px 5px 0 0 #e6e8e3;
   border-radius: 2px;
