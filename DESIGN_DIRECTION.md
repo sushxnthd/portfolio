@@ -20,6 +20,33 @@ Primary references:
 
 Do not implement separate nested sideways carousels for each category; that would create competing scroll gestures. Scene widths may vary naturally. Navigation labels and a slim position indicator remain visible.
 
+## Prototype interaction: category cards unfold from a stack
+
+**New candidate behavior (to prototype before treating as final):** Instead of an always-open scene containing a list, each category occupies one clean, comparatively compact top-level card in the continuous horizontal track. Two or three very subtle edges peeking out behind it communicate that the category holds more.
+
+- Clicking/tapping **Research** causes the category to stay anchored while its child cards emerge **from behind it toward the right**. The section widens and downstream category cards shift to make room; do not float content over unrelated categories.
+- The movement reads as a short **deck unfolding**, not a bouncy accordion, popup, page transition, decorative card fan, or secondary nested carousel.
+- At rest, the deck uses Paco-like white space, thin rules, readable small type and no loud visual effects. No fake papers, gradients, shadows, 3D tilts, or giant titles.
+- Child cards are independent navigable links, with a short human-written explanation, status and one authentic artifact/preview. Clicking a child navigates to the project's own detail page or live artifact.
+- Only **one category** needs to be expanded at once. Opening a different category collapses the existing stack, preserving the user's sense of place.
+- Suggested child sets: Research → BigData paper, ICA paper, Theorica experiment, Kernellum experiment, selected calibration research. Projects → Somno, Hush, Lattice (only when legitimate public artifacts exist). Labs & Ventures → Kernellum laboratory, agnXiv, verified other venture. Recognition → awards and competitions with qualified evidence. Elsewhere → writing, GitHub, contact.
+- Intro is a single static card and does not need nested content.
+
+### Animation and accessibility
+
+- The collapsed category gives a *small physical hint* of two stacked surfaces behind the main face (approximately 6–12px offsets). Expanded children slide out horizontally and settle into readable spacing, maintaining the same horizontal document track.
+- Aim for an unobtrusive 220–330ms transform/opacity transition, and avoid easing that feels like a trendy component demo.
+- Keep layout stable by managing an animated width/allocated rail space. Preserve the selected parent's position rather than unexpectedly scrolling to a new chapter.
+- The category is a semantic **button** with `aria-expanded` and `aria-controls`; children are normal hyperlinks in the DOM, reachable by Tab. Enter/Space opens; Escape closes, returning focus to the parent.
+- The expanded state must be visible with `prefers-reduced-motion` (no movement), touch, small screens, and without hover. Prevent focus from entering visually closed children.
+- On phones, keep horizontal swipe across categories and let expanded child cards take full or nearly full viewport width in the same track, with a clear Back to category control. No nested swipe rail competing for the gesture.
+- Direct hashes (`#research`, `#projects`, etc.) open their parent category. Project hashes or detail links can open/lead directly to the relevant content.
+- With JavaScript disabled, show accessible expanded lists or straightforward links; no essential content should disappear.
+
+**Success test:** Category selection feels like drawing a few related works out of a filing stack. It should be interesting for a second and then get out of the way of reading the research. A faster, simpler state change wins over a theatrical one.
+
+
+
 ### 00 / Introduction
 
 - "Sushanth Dasari" and a short, genuinely personal description of the work.
