@@ -24,6 +24,10 @@ a:hover{text-decoration:none}
 #portfolio{height:calc(100dvh - var(--head) - var(--foot));min-height:355px}
 .rail{height:100%;width:100%;display:flex;align-items:stretch;gap:clamp(15px,1.7vw,27px);padding:clamp(20px,3.1vh,38px) clamp(24px,5.8vw,92px);overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none;scroll-snap-type:x proximity;scroll-padding-inline:clamp(24px,5.8vw,92px);position:relative;outline:none}
 .rail::-webkit-scrollbar{height:0}
+.rail.is-dragging{cursor:grabbing;scroll-snap-type:none}
+.rail.is-dragging *{user-select:none}
+@media(pointer:coarse){.rail{touch-action:pan-x}}
+
 .rail:focus-visible{outline:2px solid #6d8173;outline-offset:-4px}
 .intro-panel{flex:0 0 clamp(440px,54vw,760px);height:100%;display:flex;flex-direction:column;padding:15px clamp(12px,3.3vw,50px) 10px 3px;scroll-snap-align:start}
 .intro-panel__top,.intro-panel__bottom,.stack__top,.stack__bottom,.leaf__top,.leaf__caption,.leaf__unavailable,.leaf__link,.rail-end,.bottom-bar,.kicker,.availability,.record-preview,.lattice-flow,.text-terminal,.link-figure{font-family:var(--mono)}
