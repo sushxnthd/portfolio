@@ -1,6 +1,6 @@
 :root{
   --bg:#ededeb;--paper:#fff;--ink:#11120f;--muted:#787a75;--line:#d9dad6;
-  --yellow:#ffff02;--pad:clamp(18px,2.4vw,36px);--gap:clamp(12px,1.2vw,18px);
+  --yellow:#ffff02;--pad:clamp(18px,2.4vw,36px);--gap:10px;--frame-w:min(1200px,calc(100vw - 160px));--frame-h:min(720px,calc(100dvh - 160px));
   --ui:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--motion:160ms
 }
@@ -34,15 +34,16 @@ a{text-decoration:none}
 .track{position:absolute;top:54px;left:0;height:calc(100dvh - 54px);display:flex;align-items:center;gap:var(--gap);width:max-content;padding:0 var(--pad) 28px;transform:translate3d(0,0,0);will-change:transform}
 
 .intro-card,.chapter-card,.work-card{background:var(--paper);border:1px solid #dedfdb;border-radius:0;box-shadow:none}
-.intro-card{position:relative;isolation:isolate;width:min(87vw,1240px);height:min(72vh,660px);flex:none;display:flex;align-items:center;overflow:hidden;padding:clamp(30px,4vw,64px)}
+.intro-card{position:relative;isolation:isolate;width:var(--frame-w);height:var(--frame-h);flex:none;display:flex;align-items:center;overflow:hidden;padding:clamp(30px,4vw,64px)}
 .intro-card__copy{position:relative;z-index:2;width:min(76%,900px)}
 .intro-card h1{margin:0;font-size:clamp(48px,6.15vw,94px);line-height:.98;letter-spacing:-.073em;font-weight:500}
 .intro-card__orb{position:absolute;z-index:1;width:clamp(270px,33vw,490px);aspect-ratio:1;border-radius:50%;background:var(--yellow);right:clamp(-110px,-5vw,-45px);top:50%;transform:translateY(-50%)}
+.intro-card__orb:after{content:"+";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font:12px/1 var(--mono);color:#373800}
 .intro-card__hint{position:absolute;z-index:3;left:clamp(30px,4vw,64px);bottom:26px;display:flex;align-items:center;gap:12px;font:10px/1 var(--mono);text-transform:uppercase;color:#8d8e89}
 .intro-card__hint span{font:19px/1 var(--ui)}
 
-.chapter{height:min(72vh,660px);display:flex;align-items:stretch;flex:none;position:relative}
-.chapter-card{position:relative;z-index:2;width:min(70vw,980px);height:100%;flex:none;display:flex;flex-direction:column;text-align:left;padding:clamp(28px,3.6vw,54px);overflow:visible;transition:border-color var(--motion) ease,box-shadow var(--motion) ease;background:#fff;user-select:none;box-shadow:6px 6px 0 #f8f8f6,7px 7px 0 #dfe0dc,12px 12px 0 #f2f2ef,13px 13px 0 #e1e2de}
+.chapter{height:var(--frame-h);display:flex;align-items:stretch;flex:none;position:relative}
+.chapter-card{position:relative;z-index:2;width:var(--frame-w);height:100%;flex:none;display:flex;flex-direction:column;text-align:left;padding:clamp(28px,3.6vw,54px);overflow:visible;transition:border-color var(--motion) ease,box-shadow var(--motion) ease;background:#fff;user-select:none;box-shadow:6px 6px 0 #f8f8f6,7px 7px 0 #dfe0dc,12px 12px 0 #f2f2ef,13px 13px 0 #e1e2de}
 .chapter-card__number{font:10px/1 var(--mono);color:#969893;font-variant-numeric:tabular-nums}
 .chapter-card__body{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
 .chapter-card__eyebrow{display:none}
@@ -73,7 +74,7 @@ a{text-decoration:none}
 }
 .muted-link{color:#9a9c97}
 
-.end-cap{height:min(72vh,660px);width:120px;display:flex;flex:none;align-items:flex-end;padding:0 0 18px 6px;color:#a1a39d;font:10px/1 var(--mono);text-transform:uppercase}
+.end-cap{height:var(--frame-h);width:120px;display:flex;flex:none;align-items:flex-end;padding:0 0 18px 6px;color:#a1a39d;font:10px/1 var(--mono);text-transform:uppercase}
 .end-cap span:last-child{display:none}
 
 @media(max-width:900px){
@@ -85,18 +86,17 @@ a{text-decoration:none}
   .work-card{width:62vw}
 }
 @media(max-width:600px){
-  :root{--pad:14px;--gap:9px}
+  :root{--pad:14px;--gap:9px;--frame-w:calc(100vw - 28px);--frame-h:min(620px,calc(100dvh - 92px))}
   .chrome{height:48px}
   .chrome__name,.chrome__github{font-size:10px}
   .position{display:none}
   .track{top:48px;height:calc(100dvh - 48px);padding-bottom:18px}
-  .intro-card,.chapter{height:min(75vh,620px)}
-  .intro-card{width:91vw;padding:26px 22px}
+  .intro-card{padding:26px 22px}
   .intro-card__copy{width:91%}
   .intro-card h1{font-size:clamp(40px,11.2vw,58px)}
   .intro-card__orb{width:62vw;right:-25vw;opacity:.96}
   .intro-card__hint{left:22px;bottom:20px}
-  .chapter-card{width:87vw;padding:26px 22px}
+  .chapter-card{padding:26px 22px}
   .chapter-card__body strong{font-size:clamp(44px,12vw,62px)}
   .chapter-card__subtitle{font-size:14px;max-width:300px}
   .work-card{width:84vw;padding:25px 22px}
