@@ -96,21 +96,30 @@
     navigate(dest, dest.classList.contains('stack'));
   });
 
-  // Vertical wheel deltas advance the page sideways; actual horizontal deltas
-  // remain native so trackpads retain their expected inertia.
-  rail.addEventListener('wheel', event => {
-    if (event.ctrlKey || event.metaKey) return;
-    if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-    if (Math.abs(event.deltaY) < 1 || rail.scrollWidth <= rail.clientWidth) return;
-    const innerScroll = event.target.closest('.leaf');
-    if (innerScroll && innerScroll.scrollHeight > innerScroll.clientHeight + 3) {
-      const canScrollDown = innerScroll.scrollTop + innerScroll.clientHeight < innerScroll.scrollHeight - 2;
-      const canScrollUp = innerScroll.scrollTop > 2;
-      if ((event.deltaY > 0 && canScrollDown) || (event.deltaY < 0 && canScrollUp)) return;
-    }
-    event.preventDefault();
-    const factor = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? rail.clientWidth : 1;
-    rail.scrollLeft += event.deltaY * factor;
+  // The whole viewport belongs to the horizontal portfolio. A conventional
+  // vertical mouse-wheel gesture moves the rail even above the cards, header,
+  // or footer. Native side-to-side trackpad gestures inside the rail stay native.
+  window.addEventListener('wheel', event => {
+    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+
+    const multiplier = event.deltaMode === 1 ? 16 :
+      event.deltaMode === 2 ? rail.clientWidth : 1;
+    const overRail = rail.contains(event.target);
+    const verticalDominant = Math.abs(event.deltaY) >= Math.abs(event.deltaX);
+
+    // Handle regular wheel scrolling everywhere; preserve the trackpad's
+    // natural horizontal inertia when the gesture starts inside the rail.
+    if (!verticalDominant && overRail) return;
+    const delta = (verticalDominant ? event.deltaY : event.deltaX) * multiplier;
+    const maxScroll = Math.max(0, rail.scrollWidth - rail.clientWidth);
+    if (Math.abs(delta) < 0.5 || maxScroll <= 0) return;
+
+    const destination = Math.max(0, Math.min(maxScroll, rail.scrollLeft + delta));
+    // At the ends, don't trap scrolling that has nowhere to go.
+    if (Math.abs(destination - rail.scrollLeft) < 0.5) return;
+
+    if (event.cancelable) event.preventDefault();
+    rail.scrollLeft = destination;
   }, { passive: false });
 
   // Native touch panning is preserved; pointer drag is for mouse and pen.
