@@ -1,9 +1,8 @@
 (() => {
   "use strict";
-  // Pointer-responsive image impressions, using locally stored project assets.
-  const sources = ["assets/trail/somno.png","assets/trail/hush.webp","assets/trail/kernellum-die.svg","assets/trail/greengroove.webp","assets/trail/somno-pvt.png","assets/trail/hush-dawn.webp","assets/trail/kernellum-routing.svg","assets/trail/greengroove-social.png"];
-  const media = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const sources = ["assets/art/routing.svg","assets/art/copycat.svg","assets/art/interference.svg","assets/art/signal.svg","assets/art/boundary.svg","assets/art/orbit.svg","assets/art/fabric.svg","assets/art/proof.svg","assets/art/latent.svg","assets/art/refinement.svg","assets/art/density.svg","assets/art/events.svg","assets/art/contours.svg","assets/art/search.svg"];
+  const media = matchMedia("(hover: hover) and (pointer: fine)");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const key = "portfolio-image-trail";
   const toggle = document.querySelector(".trail-toggle");
   if (!toggle || !("animate" in HTMLElement.prototype)) return;
@@ -13,97 +12,97 @@
   layer.className = "image-trail";
   layer.setAttribute("aria-hidden", "true");
   document.body.append(layer);
-  const ready = new Map();
-  const items = new Map();
-  let primed = false, index = 0, last = null, lastTime = 0;
+  const ready = new Map(), items = new Map();
+  let primed = false, index = 0, last = null, latest = null, lastSpawn = -1000, raf = 0, carry = 0;
   const enabled = () => preferred && media.matches && !reduce.matches && !document.hidden;
-  function prime() {
-    if (primed) return;
-    primed = true;
-    sources.forEach(src => {
-      const image = new Image();
-      image.decoding = "async";
-      image.onload = () => { if (image.naturalWidth) ready.set(src, image); };
-      image.src = src;
+  const clamp = (v, min, max) => Math.max(min,Math.min(max,v));
+  function prime(){
+    if(primed)return;
+    primed=true;
+    sources.forEach(src=>{
+      const img=new Image();img.decoding="async";
+      img.onload=()=>{if(img.naturalWidth)ready.set(src,img);};
+      img.src=src;
     });
   }
-  function discard(node) {
-    const animation = items.get(node);
-    if (!animation) return;
+  function discard(node){
+    const animations=items.get(node);
+    if(!animations)return;
     items.delete(node);
-    animation.onfinish = null;
-    animation.cancel();
+    animations.forEach(a=>{a.onfinish=null;a.cancel();});
     node.remove();
   }
-  function clear() {
-    for (const node of items.keys()) discard(node);
-    last = null;
-    lastTime = 0;
+  function clear(){
+    if(raf)cancelAnimationFrame(raf);
+    raf=0;latest=null;last=null;carry=0;lastSpawn=-1000;
+    for(const node of items.keys())discard(node);
   }
-  function sync() {
-    toggle.hidden = !media.matches || reduce.matches;
-    toggle.setAttribute("aria-pressed", String(preferred));
-    toggle.querySelector(".trail-state").textContent = preferred ? "on" : "off";
-    if (!enabled()) clear();
-    else prime();
+  function sync(){
+    toggle.hidden=!media.matches||reduce.matches;
+    toggle.setAttribute("aria-pressed",String(preferred));
+    toggle.querySelector(".trail-state").textContent=preferred?"on":"off";
+    if(enabled())prime();else clear();
   }
-  function spawn(x, y, dx, dy) {
-    const available = sources.filter(src => ready.has(src));
-    if (!available.length) return;
-    const src = available[index++ % available.length];
-    const original = ready.get(src);
-    const image = original.cloneNode();
-    image.className = "image-trail__item";
-    image.alt = "";
-    image.draggable = false;
-    const landscape = original.naturalWidth >= original.naturalHeight;
-    const width = landscape ? Math.min(182, Math.max(126, innerWidth * .125)) : Math.min(118, Math.max(92, innerWidth * .085));
-    const height = Math.min(180, width * original.naturalHeight / original.naturalWidth);
-    const tilt = Math.max(-5, Math.min(5, dx * .035));
-    image.style.setProperty("--trail-width", width + "px");
-    // Position around the cursor, retaining a small safe margin at the viewport edge.
-    image.style.left = Math.max(5, Math.min(innerWidth - width - 5, x - width * .5)) + "px";
-    image.style.top = Math.max(5, Math.min(innerHeight - height - 5, y - height * .5)) + "px";
-    while (items.size >= 6) discard(items.keys().next().value);
-    layer.append(image);
-    const driftX = Math.max(-14, Math.min(14, dx * .16));
-    const driftY = Math.max(-10, Math.min(10, dy * .12)) + 11;
-    const animation = image.animate([
-      { opacity: 0, transform: "translate(0, 0) scale(.82) rotate(" + tilt + "deg)", offset: 0 },
-      { opacity: .96, transform: "translate(0, 0) scale(1) rotate(" + tilt + "deg)", offset: .15 },
-      { opacity: .96, transform: "translate(" + driftX*.3 + "px, " + driftY*.3 + "px) scale(1) rotate(" + tilt + "deg)", offset: .43 },
-      { opacity: 0, transform: "translate(" + driftX + "px, " + driftY + "px) scale(.88) rotate(" + (tilt*.5) + "deg)", offset: 1 }
-    ], { duration: 1050, easing: "cubic-bezier(.2,.65,.25,1)", fill: "both" });
-    items.set(image, animation);
-    animation.onfinish = () => discard(image);
+  function spawn(x,y,dx,dy,speed){
+    const available=sources.filter(s=>ready.has(s));if(!available.length)return;
+    const slot=index++;
+    const src=available[slot%available.length],img=ready.get(src).cloneNode();
+    img.className="image-trail__item";img.alt="";img.draggable=false;
+    const width=clamp(innerWidth*(.186+((slot%3)-1)*.022),170,292);
+    const height=width*.75;
+    const ux=dx/(Math.hypot(dx,dy)||1),uy=dy/(Math.hypot(dx,dy)||1);
+    const offset=clamp(speed*.055,7,44);
+    const startX=-ux*offset,startY=-uy*offset;
+    const endX=ux*clamp(speed*.045,12,37),endY=uy*clamp(speed*.045,12,37)-18;
+    const tilt=clamp(ux*3.8+((slot%3)-1)*1.1,-5.5,5.5);
+    img.style.setProperty("--trail-width",width+"px");
+    img.style.left=clamp(x-width*.5,8,Math.max(8,innerWidth-width-8))+"px";
+    img.style.top=clamp(y-height*.5,8,Math.max(8,innerHeight-height-8))+"px";
+    while(items.size>=9)discard(items.keys().next().value);
+    layer.append(img);
+    const duration=840;
+    const transform=img.animate([
+      {transform:"translate("+startX+"px,"+startY+"px) scale(.86) rotate("+(-tilt*.35)+"deg)",opacity:0,offset:0,easing:"cubic-bezier(.16,1,.3,1)"},
+      {transform:"translate(0,0) scale(1) rotate("+tilt+"deg)",opacity:1,offset:.23,easing:"linear"},
+      {transform:"translate("+endX*.2+"px,"+endY*.2+"px) scale(1) rotate("+tilt+"deg)",opacity:1,offset:.46,easing:"cubic-bezier(.4,0,.8,.3)"},
+      {transform:"translate("+endX+"px,"+endY+"px) scale(.95) rotate("+(tilt*.65)+"deg)",opacity:0,offset:1}
+    ],{duration,fill:"both"});
+    const wipe=img.animate([
+      {clipPath:"inset(0 0 0 0)",offset:0},
+      {clipPath:"inset(0 0 0 0)",offset:.50,easing:"cubic-bezier(.45,0,.85,.3)"},
+      {clipPath:Math.abs(dx)>=Math.abs(dy)?(dx>=0?"inset(0 0 0 100%)":"inset(0 100% 0 0)"):(dy>=0?"inset(100% 0 0 0)":"inset(0 0 100% 0)"),offset:1}
+    ],{duration,fill:"both"});
+    items.set(img,[transform,wipe]);transform.onfinish=()=>discard(img);
   }
-  window.addEventListener("pointermove", event => {
-    if (!enabled() || event.pointerType !== "mouse" || event.buttons ||
-        event.target.closest("a,button,input,textarea,select,summary,[contenteditable],.footer") ||
-        (window.getSelection() && !window.getSelection().isCollapsed)) {
-      last = null;
-      return;
+  function process(now){
+    raf=0;if(!latest||!enabled())return;
+    const p=latest;latest=null;
+    if(!last){last=p;return;}
+    const dx=p.x-last.x,dy=p.y-last.y,dist=Math.hypot(dx,dy);
+    const dt=clamp(p.t-last.t,8,100);
+    const speed=dist/dt*1000;
+    const step=clamp(53+speed*.012,53,84);
+    if(dist>0){
+      carry+=dist;
+      if(carry>=step&&now-lastSpawn>=39){
+        spawn(p.x,p.y,dx,dy,speed);lastSpawn=now;carry=carry%step;
+      }
     }
-    const now = performance.now(), x = event.clientX, y = event.clientY;
-    if (!last) { last = {x,y}; return; }
-    const dx = x-last.x, dy = y-last.y;
-    if (Math.hypot(dx,dy) < 66 || now-lastTime < 62) return;
-    last = {x,y}; lastTime = now;
-    spawn(x,y,dx,dy);
-  }, {passive:true});
-  document.documentElement.addEventListener("pointerleave", () => { last = null; });
-  window.addEventListener("pointerdown", clear, {passive:true});
-  window.addEventListener("blur", clear);
-  window.addEventListener("resize", clear, {passive:true});
-  window.addEventListener("scroll", clear, {passive:true});
-  document.addEventListener("visibilitychange", sync);
-  document.addEventListener("keydown", e => { if (e.key === "Escape") clear(); });
-  toggle.addEventListener("click", () => {
-    preferred = !preferred;
-    try { localStorage.setItem(key, preferred ? "on" : "off"); } catch {}
-    sync();
-  });
-  media.addEventListener("change",sync);
-  reduce.addEventListener("change",sync);
-  sync();
+    last=p;
+  }
+  window.addEventListener("pointermove",e=>{
+    if(!enabled()||e.pointerType!=="mouse"||e.buttons||!(e.target instanceof Element))return;
+    if(e.target.closest("a,button,input,textarea,select,summary,[contenteditable],.footer")||(getSelection()&&!getSelection().isCollapsed)){clear();return;}
+    latest={x:e.clientX,y:e.clientY,t:performance.now()};
+    if(!raf)raf=requestAnimationFrame(process);
+  },{passive:true});
+  document.documentElement.addEventListener("pointerleave",()=>{last=null;latest=null;carry=0;});
+  window.addEventListener("pointerdown",clear,{passive:true});
+  window.addEventListener("blur",clear);
+  window.addEventListener("resize",clear,{passive:true});
+  window.addEventListener("scroll",clear,{passive:true});
+  document.addEventListener("visibilitychange",sync);
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"||e.key==="Tab")clear();});
+  toggle.addEventListener("click",()=>{preferred=!preferred;try{localStorage.setItem(key,preferred?"on":"off");}catch{}sync();});
+  media.addEventListener("change",sync);reduce.addEventListener("change",sync);sync();
 })();
