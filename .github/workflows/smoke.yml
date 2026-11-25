@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   smoke:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -28,8 +28,13 @@ jobs:
       - name: Install Playwright
         run: |
           npm init -y >/dev/null 2>&1
-          npm install --no-save playwright@1.55.0
+          npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check script.js
+          node --check tests/smoke.mjs
 
       - name: Start local site
         run: |

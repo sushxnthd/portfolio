@@ -25,7 +25,7 @@ python3 -m http.server 8000
 Visit http://localhost:8000. For the browser suite:
 
 ```sh
-npm install --no-save playwright@1.55.0
+npm install --no-save playwright@1.56.1
 npx playwright install chromium
 node tests/smoke.mjs
 ```

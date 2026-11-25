@@ -44,6 +44,7 @@ async function runCase(width,height,reducedMotion="reduce"){
   await settle(page,old=>document.querySelector(".rail").scrollLeft>old,before);
   await page.locator('nav a[href="#intro"]').click();
   await settle(page,()=>document.querySelector(".rail").scrollLeft<5);
+  await settle(page,()=>document.querySelector('nav a[href="#intro"]').getAttribute("aria-current")==="location");
   await rail.focus();
   await page.keyboard.press("ArrowRight");
   await settle(page,()=>document.querySelector("#research button").getAttribute("aria-expanded")==="true");
