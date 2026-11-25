@@ -33,3 +33,7 @@ A neutral graphite background (#151515), off-white headings (#e7e7e7), soft gray
 ## Ephemeral image trail
 
 Requested reference: https://vshslv.com/ (also described as an image trail by Mindsparkle Mag and CSS Winner). Homepage-only, native Web Animations implementation: images appear along the pointer's path at roughly 66px movement intervals, drift slightly and disappear within 1.05 seconds. Up to six images coexist. No custom cursor or click interception. Real assets are locally copied from the owner's Somno, Hush, Kernellum and Green Groove repositories; no imagery from the reference site is reused. Desktop fine pointer only, with reduced-motion support and a persistent opt-out in the footer; Escape, click, scroll, blur and tab visibility clear impressions. This is an original adaptation, not a frame-accurate reproduction of the reference animation.
+
+## Approved refinement baseline
+
+The original project-asset trail is preferred over the rejected Field Studies artwork. Trail images have sharp, square corners and no rotation at any animation stage. Keep the small image size, disappearance, and native pointer response unless an evidence-backed improvement is demonstrated. Keep the Paco-inspired typography-led layout and both color schemes. Treat the current production site as the baseline for incremental experiments; radical redesigns should be previewed separately rather than silently replacing the working design.

@@ -121,7 +121,7 @@ html{background:var(--bg)}
 
 /* An ephemeral portfolio image trail. It is never part of the reading or hit-test tree. */
 .image-trail{position:fixed;inset:0;overflow:hidden;z-index:10;pointer-events:none;user-select:none;contain:strict}
-.image-trail__item{position:absolute;display:block;width:var(--trail-width,156px);max-height:180px;height:auto;object-fit:contain;transform-origin:center;pointer-events:none;will-change:transform,opacity;box-shadow:0 5px 24px #0002;border-radius:2px}
+.image-trail__item{position:absolute;display:block;width:var(--trail-width,156px);max-height:180px;height:auto;object-fit:contain;transform-origin:center;pointer-events:none;will-change:transform,opacity;box-shadow:0 5px 24px #0002;border-radius:0}
 .trail-toggle{appearance:none;border:0;background:none;color:var(--muted);font:inherit;padding:4px 0;cursor:pointer;white-space:nowrap}
 .trail-toggle[hidden]{display:none}
 .trail-toggle:hover{color:var(--ink)}

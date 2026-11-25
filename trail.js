@@ -59,7 +59,6 @@
     const landscape = original.naturalWidth >= original.naturalHeight;
     const width = landscape ? Math.min(182, Math.max(126, innerWidth * .125)) : Math.min(118, Math.max(92, innerWidth * .085));
     const height = Math.min(180, width * original.naturalHeight / original.naturalWidth);
-    const tilt = Math.max(-5, Math.min(5, dx * .035));
     image.style.setProperty("--trail-width", width + "px");
     // Position around the cursor, retaining a small safe margin at the viewport edge.
     image.style.left = Math.max(5, Math.min(innerWidth - width - 5, x - width * .5)) + "px";
@@ -69,10 +68,10 @@
     const driftX = Math.max(-14, Math.min(14, dx * .16));
     const driftY = Math.max(-10, Math.min(10, dy * .12)) + 11;
     const animation = image.animate([
-      { opacity: 0, transform: "translate(0, 0) scale(.82) rotate(" + tilt + "deg)", offset: 0 },
-      { opacity: .96, transform: "translate(0, 0) scale(1) rotate(" + tilt + "deg)", offset: .15 },
-      { opacity: .96, transform: "translate(" + driftX*.3 + "px, " + driftY*.3 + "px) scale(1) rotate(" + tilt + "deg)", offset: .43 },
-      { opacity: 0, transform: "translate(" + driftX + "px, " + driftY + "px) scale(.88) rotate(" + (tilt*.5) + "deg)", offset: 1 }
+      { opacity: 0, transform: "translate(0, 0) scale(.82)", offset: 0 },
+      { opacity: .96, transform: "translate(0, 0) scale(1)", offset: .15 },
+      { opacity: .96, transform: "translate(" + driftX*.3 + "px, " + driftY*.3 + "px) scale(1)", offset: .43 },
+      { opacity: 0, transform: "translate(" + driftX + "px, " + driftY + "px) scale(.88)", offset: 1 }
     ], { duration: 1050, easing: "cubic-bezier(.2,.65,.25,1)", fill: "both" });
     items.set(image, animation);
     animation.onfinish = () => discard(image);

@@ -96,6 +96,11 @@ try{
   assert(impressions>0 && impressions<=6,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
+  assert(await trail.locator(".image-trail__item").evaluateAll(nodes=>nodes.every(node=>{
+    const style=getComputedStyle(node);
+    const matrix=new DOMMatrixReadOnly(style.transform);
+    return style.borderRadius==="0px" && Math.abs(matrix.b)<1e-6 && Math.abs(matrix.c)<1e-6;
+  })));
   await trail.screenshot({path:"qa-screenshots/image-trail-1440.png"});
   await trail.waitForTimeout(1200);
   assert.equal(await trail.locator(".image-trail__item").count(),0);
