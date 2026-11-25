@@ -25,5 +25,3 @@ The second visual pass refines the reading measure, type scale, mobile project l
 The site supports light, dark and system color schemes. The small footer control stores the choice locally; the system preference works without JavaScript. Use `?theme=dark` to open the dark theme explicitly.
 
 The homepage includes an ephemeral image trail made of local project artwork. It only responds to a desktop mouse, honors reduced motion, and can be disabled with the Trail control in the footer.
-
-[Field studies](https://sushxnthd.github.io/portfolio/art/) contains 14 original vector compositions. The artwork is abstract and does not represent experimental data. The homepage trail uses those assets and a directional disappearing animation; the previous screenshots are no longer used by the site.

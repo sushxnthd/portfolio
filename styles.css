@@ -129,19 +129,3 @@ html{background:var(--bg)}
 .trail-toggle .trail-state{margin-left:2px;color:var(--ink)}
 @media(prefers-reduced-motion:reduce),(hover:none),(pointer:coarse){.image-trail,.trail-toggle{display:none!important}}
 @media print{.image-trail,.trail-toggle{display:none!important}}
-
-/* Field studies — art direction and trail v2. */
-.image-trail{z-index:10}
-.image-trail__item{width:var(--trail-width,250px);max-height:none;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:0;box-shadow:none;will-change:transform,opacity,clip-path;backface-visibility:hidden}
-.art-link{margin-left:auto}
-.footer .art-link+.site-source{margin-left:0}
-.art-site{--measure:880px}
-.art-site .archive-intro{max-width:640px;margin-bottom:35px}
-.art-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 22px}
-.art-study{min-width:0}
-.art-study img{width:100%;height:auto;display:block;aspect-ratio:4/3;background:var(--line)}
-.art-study figcaption{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:var(--muted);line-height:1.5}
-.art-study figcaption span:first-child{color:var(--ink)}
-.record-figure .original-figure{border:0;padding:0;max-width:520px;gap:10px}
-.original-figure img{display:block;width:100%;height:auto}
-@media(max-width:620px){.art-grid{grid-template-columns:1fr;gap:25px}.art-link{margin-left:0}.footer .art-link+.site-source{margin-left:auto}}

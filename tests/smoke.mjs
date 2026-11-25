@@ -91,18 +91,16 @@ try{
   await trail.waitForLoadState("networkidle");
   assert(await trail.locator(".trail-toggle").isVisible());
   await trail.mouse.move(50,200);
-  for(let i=1;i<=7;i++){await trail.mouse.move(50+i*49,200+(i%2)*90);await trail.waitForTimeout(65);}
+  for(let i=1;i<=8;i++){await trail.mouse.move(50+i*70,200+(i%2)*70);await trail.waitForTimeout(80);}
   const impressions=await trail.locator(".image-trail__item").count();
-  assert(impressions>0 && impressions<=9,"trail bounds: "+impressions);
+  assert(impressions>0 && impressions<=6,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
   await trail.screenshot({path:"qa-screenshots/image-trail-1440.png"});
   await trail.waitForTimeout(1200);
   assert.equal(await trail.locator(".image-trail__item").count(),0);
   await trail.mouse.move(80,250);
-  await trail.waitForTimeout(55);
   await trail.mouse.move(170,250);
-  await trail.waitForTimeout(65);
   await trail.keyboard.press("Escape");
   assert.equal(await trail.locator(".image-trail__item").count(),0);
   await trail.locator(".trail-toggle").click();
@@ -113,16 +111,6 @@ try{
   await trail.mouse.move(150,200);
   assert.equal(await trail.locator(".image-trail__item").count(),0);
   await trail.close();
-  const gallery=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark",reducedMotion:"reduce"});
-  await gallery.goto(base+"art/");
-  assert.equal(await gallery.locator(".art-study").count(),14);
-  await gallery.locator(".art-study img").evaluateAll(imgs=>Promise.all(imgs.map(img=>{img.loading="eager";return img.decode();})));
-  assert(await gallery.locator(".art-study img").evaluateAll(imgs=>imgs.every(img=>img.naturalWidth===640&&img.naturalHeight===480)));
-  await gallery.screenshot({path:"qa-screenshots/artwork-1440.png",fullPage:true});
-  await gallery.setViewportSize({width:390,height:844});
-  assert.equal(await gallery.locator(".art-grid").evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(" ").length),1);
-  assert.equal(await gallery.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
-  await gallery.close();
   const reduced=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:"reduce"});
   await reduced.goto(base);
   assert.equal(await reduced.locator(".trail-toggle").isVisible(),false);
