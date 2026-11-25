@@ -82,6 +82,43 @@ try{
   assert.equal(await darkNoJS.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(21, 21, 21)");
   assert.equal(await darkNoJS.locator(".theme-control").isVisible(),false);
   await darkNoJS.close();
+
+  // Desktop mouse trail: actual local image impressions, bounded count, fade,
+  // pointer transparency, Escape, persistent opt-out and reduced motion.
+  const trail=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark",reducedMotion:"no-preference"});
+  trail.on("pageerror",e=>errors.push(e.message));
+  await inspect(trail,"",0);
+  await trail.waitForLoadState("networkidle");
+  assert(await trail.locator(".trail-toggle").isVisible());
+  await trail.mouse.move(50,200);
+  for(let i=1;i<=8;i++){await trail.mouse.move(50+i*70,200+(i%2)*70);await trail.waitForTimeout(80);}
+  const impressions=await trail.locator(".image-trail__item").count();
+  assert(impressions>0 && impressions<=6,"trail bounds: "+impressions);
+  assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
+  assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
+  await trail.screenshot({path:"qa-screenshots/image-trail-1440.png"});
+  await trail.waitForTimeout(1200);
+  assert.equal(await trail.locator(".image-trail__item").count(),0);
+  await trail.mouse.move(80,250);
+  await trail.mouse.move(170,250);
+  await trail.keyboard.press("Escape");
+  assert.equal(await trail.locator(".image-trail__item").count(),0);
+  await trail.locator(".trail-toggle").click();
+  assert.equal(await trail.locator(".trail-toggle").getAttribute("aria-pressed"),"false");
+  await trail.reload();
+  assert.equal(await trail.locator(".trail-toggle").getAttribute("aria-pressed"),"false");
+  await trail.mouse.move(50,200);
+  await trail.mouse.move(150,200);
+  assert.equal(await trail.locator(".image-trail__item").count(),0);
+  await trail.close();
+  const reduced=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:"reduce"});
+  await reduced.goto(base);
+  assert.equal(await reduced.locator(".trail-toggle").isVisible(),false);
+  await reduced.mouse.move(40,120);
+  await reduced.mouse.move(200,120);
+  assert.equal(await reduced.locator(".image-trail__item").count(),0);
+  await reduced.close();
+
   assert.deepEqual(errors,[]);
   console.log("QUIET_PORTFOLIO_SMOKE_PASS");
 }finally{await browser.close();}

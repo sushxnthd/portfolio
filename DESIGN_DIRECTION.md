@@ -29,3 +29,7 @@ Reviewed actual Chromium screenshots of the first implementation at 390 and 1440
 ## Dark theme
 
 A neutral graphite background (#151515), off-white headings (#e7e7e7), soft gray body text (#bdbdbd), and muted labels (#a0a0a0). The layout and hierarchy are unchanged. A small unlabelled-visually but accessible sun/moon/system switch sits in the footer. The system scheme is the initial default; manual choice persists across pages. Scientific diagrams retain their original colors on a light substrate. No forced inversion, gradients, or theme animation. Print remains light. Browser tests cover system preferences, explicit overrides, persistence, dark mobile and no-JS fallback.
+
+## Ephemeral image trail
+
+Requested reference: https://vshslv.com/ (also described as an image trail by Mindsparkle Mag and CSS Winner). Homepage-only, native Web Animations implementation: images appear along the pointer's path at roughly 66px movement intervals, drift slightly and disappear within 1.05 seconds. Up to six images coexist. No custom cursor or click interception. Real assets are locally copied from the owner's Somno, Hush, Kernellum and Green Groove repositories; no imagery from the reference site is reused. Desktop fine pointer only, with reduced-motion support and a persistent opt-out in the footer; Escape, click, scroll, blur and tab visibility clear impressions. This is an original adaptation, not a frame-accurate reproduction of the reference animation.

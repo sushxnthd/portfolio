@@ -23,3 +23,5 @@ The suite tests five screen widths, all archive pages, navigation, font load, no
 The second visual pass refines the reading measure, type scale, mobile project list, chronology, and archive hierarchy after inspection of the original browser screenshots.
 
 The site supports light, dark and system color schemes. The small footer control stores the choice locally; the system preference works without JavaScript. Use `?theme=dark` to open the dark theme explicitly.
+
+The homepage includes an ephemeral image trail made of local project artwork. It only responds to a desktop mouse, honors reduced motion, and can be disabled with the Trail control in the footer.
