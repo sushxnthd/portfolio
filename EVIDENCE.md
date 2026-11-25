@@ -68,3 +68,31 @@ These are biographical claims reported by the portfolio author, distinct from th
 - **IEEE ICA 2026:** Sole-authored research paper accepted for presentation, as reported by the author. Public proceedings / accepted-paper page not yet linked. Do not equate acceptance with publication or in-person presentation.
 
 The portfolio keeps these recognitions lower on the page. The main project-specific quantitative results above have public primary artifacts.
+
+## Publication status
+
+- **IEEE BigData 2026:** regular-paper acceptance for the Trace Corpus research, author-reported; 25,031 trajectories and 654,021 steps as reported by the author. The public manuscript and official proceedings link are not yet attached. Acceptance is not the same as publication or presentation.
+- **IEEE ICA 2026 / GRIT:** paper on refinement-invariant agent evaluation, acceptance reported by the author. Public manuscript and proceedings links are pending.
+- **CopyCAT:** [repository, manuscript, data lineage and certificates](https://github.com/sushxnthd/copyCAT); [supplementary compilation](https://github.com/sushxnthd/copyCAT/actions/runs/43876320841). The pinned MMLU-ProX-Lite archive covers 588 aligned questions and ten configurations. No acceptance is claimed.
+- **ScholarQA-CS2 audit:** [research workspace](https://github.com/sushxnthd/sandboxedwchatgpt), [reproduction run](https://github.com/sushxnthd/sandboxedwchatgpt/actions/runs/44152138841). The manuscript is a workshop submission; no acceptance is claimed.
+- **CR-ZNE:** [animation and project materials](https://github.com/sushxnthd/crzne-speedrun). The animation is not a substitute for the manuscript; no public manuscript link is asserted.
+
+## Additional software and research
+
+- [Hush](https://github.com/sushxnthd/hush): browser early access, native release candidate. See its [launch checklist](https://github.com/sushxnthd/hush/blob/main/PRODUCTION_LAUNCH_CHECKLIST.md) for unresolved external gates.
+- [agnXiv](https://github.com/sushxnthd/agnXiv): public beta; verification is claim- and evidence-specific. [Production gates](https://github.com/sushxnthd/agnXiv/blob/main/docs/PRODUCTION_READINESS.md).
+- [Orynt](https://github.com/sushxnthd/orynt): deployable foundation and synthetic demo; external school pilot and review are not established.
+- [Lattice](https://github.com/sushxnthd/lattice): research agenda, not a finished language or compiler.
+- [Lucent](https://github.com/sushxnthd/lucent), [NOESIS](https://github.com/sushxnthd/noesis), [Vektor](https://github.com/sushxnthd/vektor): ongoing research programs. No clinical validation, general algorithm certificate, or physical GPU performance is asserted.
+- [Green Groove](https://github.com/sushxnthd/greengroove): repository documents the PRAYAAS selection, ₹50,000 development grant and IIT Delhi association. This is project-reported evidence; no enrollment, independent field validation or commercial traction is claimed.
+- [Evalrift](https://github.com/sushxnthd/evalrift), [Flowseal](https://github.com/sushxnthd/flowseal-agent), [Shiftglass](https://github.com/sushxnthd/shiftglass): focused open-source implementations with tests and benchmark examples; no claim of external adoption.
+
+## Selected recognition
+
+AIYES Gold and QHack are scoped in the personal milestones above. Additional author-reported milestones (primary organizer records not publicly linked):
+
+- IRIS National Fair 2026–27: national finalist in Physics. No award or ISEF qualification claimed.
+- ARSSDC 2024: runner-up; team qualified for ISSDC international finals through resubmission. Qualification does not imply attendance or an award at the finals.
+- NCERT PRAYAAS: Green Groove grant and selection as documented in its repository.
+
+Last content review: 26 November 2026. Replace author-reported labels only after attaching public primary evidence.

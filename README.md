@@ -1,45 +1,35 @@
 # Sushanth Dasari / Portfolio
 
-A horizontally scrolling portfolio of research, software projects, labs/ventures, and selected recognition.
+[Public portfolio](https://sushxnthd.github.io/portfolio/) · [Evidence ledger](EVIDENCE.md) · [Design direction](DESIGN_DIRECTION.md)
 
-**Public site:** https://sushxnthd.github.io/portfolio/
+A curated, single-track portfolio of independent research, software, labs and selected recognition. The existing horizontal filing-stack design is preserved: a category opens its child cards into the same rail, and only one deck stays open.
 
-## Design
+## Structure
 
-Rauno-inspired horizontal spatial navigation with Paco Coursey's minimal visual restraint. The category cards behave like filing stacks: selecting a category unfolds its children to the right, displacing later categories in a **single horizontal track**. The result avoids nested carousels and doesn't demand a framework.
+- Research: 10 papers and experiments, including CopyCAT, the ScholarQA-CS2 audit, accepted-paper records, and ongoing research.
+- Projects: 5 cards covering Somno, Hush, Orynt, Lattice and focused open-source tools.
+- Labs & ventures: 3 cards.
+- Recognition: 5 cards, with author-reported distinctions and limitations.
+- Elsewhere: 3 cards for source, provenance and public contact.
 
-Main chapters:
+## Interaction
 
-00. Introduction
-01. Research (Theorica, Kernellum experiments, Trace Corpus, CR-ZNE)
-02. Projects (Somno, Hush, Lattice)
-03. Labs & Ventures (Kernellum, agnXiv)
-04. Recognition (AIYES, QHack, IEEE ICA)
-05. Elsewhere (GitHub, evidence ledger, contact)
+Native horizontal overflow supports trackpads and touch; vertical desktop wheel input is translated into horizontal movement when appropriate. Mouse drag is available on non-interactive surfaces. Category and individual-card hashes are shareable. The rail supports keyboard arrow navigation, Escape closes a deck, and closed drawers are inert. Reduced motion, a short-viewport vertical layout and a no-JavaScript vertical content fallback are included.
 
-Some statuses are author-reported, not independently substantiated by public award or acceptance notices. BigData and ICA manuscripts are not linked until public copies are available. Experimental metrics are explicitly scoped to their benchmarks.
+## Run locally
 
-## Accessibility and interaction
+```sh
+python3 -m http.server 8000
+```
 
-- Desktop wheel, native horizontal trackpad scrolling, pointer drag, and touch swipe.
-- Expand/collapse buttons with `aria-expanded` and `aria-controls`.
-- Only one deck open at a time; closed child links marked inert.
-- Category deep links, keyboard Arrow navigation when the horizontal rail has focus, Escape to close open decks, and Tab to reach child links.
-- Reduced-motion support. With JavaScript disabled, all child links remain exposed through the native horizontal track.
-- Layouts responsive from small phones to desktop monitors.
+Visit http://localhost:8000. For the browser suite:
 
-## Sources
+```sh
+npm install --no-save playwright@1.55.0
+npx playwright install chromium
+node tests/smoke.mjs
+```
 
-- Numerical research claims: [EVIDENCE.md](EVIDENCE.md)
-- Detailed design specification: [DESIGN_DIRECTION.md](DESIGN_DIRECTION.md)
-- Project code and source reports are linked directly from their cards.
+The browser suite checks actual chapter and card counts, keyboard focus, inert drawers, hash navigation, scrolling, mobile sizes, reduced motion and no-JavaScript fallback. GitHub Actions runs it on main. Deployment status and test status are independent until the workflows report success.
 
-## Editing and preview
-
-No build system or framework. Serve locally using `python -m http.server 8000` and visit http://localhost:8000.
-
-- Content/category membership: `index.html`.
-- Layout and styling: `styles.css`.
-- Horizontal navigation and unfolding behavior: `script.js`.
-
-The repository's existing GitHub Pages workflow publishes the main branch. Preserve identity metadata and the canonical URL if modifying the page.
+Content is in `index.html`, styling in `styles.css`, interaction in `script.js`. The evidence ledger records the boundaries of research and recognition claims; do not substitute acceptance for publication or prototype status for validation.

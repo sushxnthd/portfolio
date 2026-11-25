@@ -1,88 +1,72 @@
 import { chromium } from "playwright";
-
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
-}
-
-async function waitForClass(page, selector, className, present=true, timeout=3500) {
-  await page.waitForFunction(
-    ({selector,className,present}) => {
-      const el=document.querySelector(selector);
-      return !!el && el.classList.contains(className)===present;
-    },
-    {selector,className,present},
-    {timeout}
-  );
-}
-
-async function runCase(browser,name,viewport){
-  const page=await browser.newPage({viewport});
-  const errors=[];
-  page.on("pageerror",e=>errors.push(e.message));
-
-  await page.goto("http://127.0.0.1:8000/",{waitUntil:"domcontentloaded",timeout:15000});
-  await page.waitForTimeout(250);
-
-  assert(await page.locator(".intro-section").isVisible(),name+": intro missing");
-  assert((await page.locator(".work-card").count())===4,name+": expected four work cards");
-  assert(await page.locator("#openTerminalInline").isVisible(),name+": terminal entry missing");
-
-  // Command palette
-  await page.locator("#jumpButton").click({force:true});
-  await waitForClass(page,"#jumpPalette","is-open",true);
-  assert(await page.locator("#jumpPalette").isVisible(),name+": jump palette failed");
-  await page.locator("#closeJump").click({force:true});
-  await waitForClass(page,"#jumpPalette","is-open",false);
-
-  // Terminal opens and eventually becomes usable.
-  await page.locator("#openTerminalInline").click({force:true});
-  await waitForClass(page,"#terminalWindow","is-open",true);
-  assert(await page.locator("#terminalWindow").isVisible(),name+": terminal failed to open");
-  await page.waitForFunction(()=>!document.querySelector("#terminalInput").disabled,{timeout:6000});
-  await page.locator("#terminalInput").fill("projects");
-  await page.locator("#terminalInput").press("Enter");
-  assert((await page.locator("#terminalOutput").textContent()).includes("kernellum"),name+": CLI projects command failed");
-  await page.locator("#closeTerminal").click({force:true});
-  await waitForClass(page,"#terminalWindow","is-open",false);
-
-  // Project card must open spatial timeline and detail.
-  await page.locator('[data-open-card="kernellum"]').click({force:true});
-  await waitForClass(page,"#timeline","is-open",true,2500);
-  assert(await page.locator("#timeline").isVisible(),name+": timeline failed to open");
-  await page.waitForTimeout(850);
-  await waitForClass(page,"#timelineDetail","is-open",true,2500);
-  assert((await page.locator("#detailTitle").textContent())==="Kernellum",name+": wrong timeline detail");
-
-  // Timeline movement
-  const firstBefore=await page.locator('.timeline-card[data-project="kernellum"]').evaluate(el=>el.style.left);
-  await page.locator(".timeline-stage").evaluate(el=>{
-    el.dispatchEvent(new WheelEvent("wheel",{deltaY:180,bubbles:true,cancelable:true}));
-  });
-  await page.waitForTimeout(120);
-  const firstAfter=await page.locator('.timeline-card[data-project="kernellum"]').evaluate(el=>el.style.left);
-  assert(firstBefore!==firstAfter,name+": timeline did not move");
-
-  await page.locator("#closeTimelineDetail").click({force:true});
-  await waitForClass(page,"#timelineDetail","is-open",false);
-  await page.locator("#closeTimeline").click({force:true});
-  await waitForClass(page,"#timeline","is-open",false);
-
-  // Fallback timeline entry remains usable without scroll theatrics.
-  await page.locator("#fallbackShowcase").scrollIntoViewIfNeeded();
-  await page.locator("#fallbackShowcase").click({force:true});
-  await waitForClass(page,"#timeline","is-open",true,2500);
-  await page.locator("#closeTimeline").click({force:true});
-  await waitForClass(page,"#timeline","is-open",false);
-
-  assert(errors.length===0,name+": browser page errors: "+errors.join(" | "));
+import assert from "node:assert/strict";
+const base="http://127.0.0.1:8000/";
+const expected={research:10,projects:5,ventures:3,recognition:5,elsewhere:3};
+const browser=await chromium.launch({headless:true});
+const settle=async(page,fn,arg)=>page.waitForFunction(fn,arg,{timeout:5000});
+async function runCase(width,height,reducedMotion="reduce"){
+  const page=await browser.newPage({viewport:{width,height},reducedMotion});
+  const errors=[];page.on("pageerror",e=>errors.push(e.message));
+  await page.goto(base);
+  await settle(page,()=>document.documentElement.classList.contains("enhanced"));
+  assert.equal(await page.locator("h1").count(),1);
+  assert.match(await page.locator("h1").innerText(),/Sushanth\s+Dasari/);
+  assert.equal(await page.locator(".chapter").count(),5);
+  for(const [id,n] of Object.entries(expected)){
+    assert.equal(await page.locator("#"+id+" .work-card").count(),n);
+    assert.equal(await page.locator("#"+id+" button").getAttribute("aria-expanded"),"false");
+    assert.equal(await page.locator("#"+id+"-drawer").evaluate(el=>el.inert),true);
+  }
+  const rail=page.locator(".rail");
+  assert(await rail.evaluate(el=>el.scrollWidth>el.clientWidth));
+  await page.locator('nav a[href="#research"]').click();
+  await settle(page,()=>document.querySelector("#research button").getAttribute("aria-expanded")==="true");
+  await settle(page,()=>document.querySelector("#research .chapter-card").getBoundingClientRect().left>=-2 && document.querySelector("#research .chapter-card").getBoundingClientRect().left<80);
+  assert.equal(await page.locator("#research-drawer").evaluate(el=>el.inert),false);
+  await page.locator("#research button").press("Tab");
+  await settle(page,()=>document.activeElement.closest(".work-card")?.id==="copycat");
+  await settle(page,()=>{let r=document.getElementById("copycat").getBoundingClientRect();return r.left>=-2&&r.right<=innerWidth+2;});
+  await page.keyboard.press("Escape");
+  assert.equal(await page.locator("#research button").getAttribute("aria-expanded"),"false");
+  assert.equal(await page.locator("#research button").evaluate(el=>el===document.activeElement),true);
+  await page.locator('nav a[href="#projects"]').click();
+  await settle(page,()=>document.querySelector("#projects button").getAttribute("aria-expanded")==="true");
+  await page.locator('nav a[href="#ventures"]').click();
+  await settle(page,()=>document.querySelector("#ventures button").getAttribute("aria-expanded")==="true");
+  assert.equal(await page.locator("#projects button").getAttribute("aria-expanded"),"false");
+  assert.equal(await page.locator(".chapter.is-open").count(),1);
+  await page.goto(base+"#somno");
+  await settle(page,()=>document.querySelector("#projects button").getAttribute("aria-expanded")==="true");
+  await settle(page,()=>{let r=document.getElementById("somno").getBoundingClientRect();return r.left>=-2&&r.right<=innerWidth+2;});
+  assert.match(await page.locator("#somno").innerText(),/Android v27/);
+  const before=await rail.evaluate(el=>el.scrollLeft);
+  await rail.evaluate(el=>el.dispatchEvent(new WheelEvent("wheel",{deltaY:150,bubbles:true,cancelable:true})));
+  await settle(page,old=>document.querySelector(".rail").scrollLeft>old,before);
+  await page.locator('nav a[href="#intro"]').click();
+  await settle(page,()=>document.querySelector(".rail").scrollLeft<5);
+  await rail.focus();
+  await page.keyboard.press("ArrowRight");
+  await settle(page,()=>document.querySelector("#research button").getAttribute("aria-expanded")==="true");
+  assert.equal(await page.locator("body").evaluate(el=>el.scrollWidth<=innerWidth+1),true);
+  // All open work card text fits horizontally; vertical overflow is scrollable.
+  const clipping=await page.locator("#research .work-card").evaluateAll(cards=>cards.filter(c=>c.scrollWidth>c.clientWidth+2).map(c=>c.id));
+  assert.deepEqual(clipping,[]);
+  assert.deepEqual(errors,[]);
   await page.close();
 }
-
-const browser=await chromium.launch({headless:true});
 try{
-  await runCase(browser,"desktop",{width:1440,height:900});
-  await runCase(browser,"mobile",{width:390,height:844});
-  console.log("GARAGE_SMOKE_PASS");
-}finally{
-  await browser.close();
-}
+  for(const [w,h] of [[360,640],[390,844],[768,1024],[1280,800],[1440,900]]) await runCase(w,h);
+  await runCase(1440,900,"no-preference");
+  const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
+  await nojs.goto(base);
+  assert.equal(await nojs.locator(".work-card").count(),26);
+  assert(await nojs.locator("#somno a").first().isVisible());
+  assert(await nojs.locator("#contact a").first().isVisible());
+  await nojs.close();
+  const short=await browser.newPage({viewport:{width:844,height:390},reducedMotion:"reduce"});
+  await short.goto(base+"#projects");
+  assert.equal(await short.locator("#projects button").getAttribute("aria-expanded"),"true");
+  assert(await short.locator("#somno").isVisible());
+  await short.close();
+  console.log("PORTFOLIO_DECK_SMOKE_PASS");
+}finally{await browser.close();}

@@ -1,207 +1,150 @@
-
 (() => {
   'use strict';
-
-  const root = document.getElementById('scroll-root');
-  const stage = document.getElementById('stage');
+  const rail = document.querySelector('.rail');
   const track = document.getElementById('track');
-  const chapters = [...document.querySelectorAll('.chapter')];
-  const scenes = [document.getElementById('intro'), ...chapters].filter(Boolean);
-  const frameCards = [document.getElementById('intro'), ...chapters.map(chapter => chapter.querySelector('.chapter-card'))].filter(Boolean);
-  const navLinks = [...document.querySelectorAll('.chrome__nav a')];
+  if (!rail || !track) return;
+  const chapters = [...track.querySelectorAll('.chapter')];
+  const scenes = [document.getElementById('intro'), ...chapters];
+  const nav = [...document.querySelectorAll('.chrome__nav a')];
+  const progress = document.getElementById('progress');
   const label = document.getElementById('scene-label');
   const count = document.getElementById('scene-count');
-  const progress = document.getElementById('progress');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!root || !stage || !track) return;
-
-  let maxX = 0;
-  let raf = 0;
-  let active = 0;
-  let openChapter = null;
-
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-  const rootTop = () => root.getBoundingClientRect().top + window.scrollY;
-  const xNow = () => clamp(window.scrollY - rootTop(), 0, maxX);
-  const sceneX = el => el.offsetLeft - parseFloat(getComputedStyle(track).paddingLeft || 0);
-
-  function measureChapter(chapter) {
-    const drawer = chapter.querySelector('.chapter-drawer');
-    const inner = chapter.querySelector('.chapter-drawer__inner');
-    if (!drawer || !inner) return;
-    drawer.style.setProperty('--drawer-w', Math.ceil(inner.scrollWidth + 1) + 'px');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const vertical = matchMedia('(max-height: 510px)');
+  let openChapter = null, active = 0, pending = 0, drag = null, suppressClick = false;
+  const scrollBehavior = smooth => smooth && !motion.matches ? 'smooth' : 'instant';
+  const anchorOffset = () => parseFloat(getComputedStyle(track).paddingLeft) || 0;
+  const targetOf = ch => ch.querySelector('.chapter-card');
+  function setOpen(ch, state) {
+    const button = targetOf(ch), drawer = ch.querySelector('.chapter-drawer');
+    ch.classList.toggle('is-open', state);
+    button.setAttribute('aria-expanded', String(state));
+    drawer.inert = !state;
+    if (!state) drawer.setAttribute('aria-hidden','true');
+    else drawer.removeAttribute('aria-hidden');
   }
-
-  function measure() {
-    chapters.forEach(measureChapter);
-    maxX = Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
-    root.style.height = Math.ceil(window.innerHeight + maxX) + 'px';
+  function changeDeck(ch, state, preserve = true) {
+    const button = targetOf(ch);
+    const before = button.getBoundingClientRect().left;
+    if (openChapter && openChapter !== ch) {
+      const old = openChapter;
+      if (old.querySelector('.chapter-drawer').contains(document.activeElement)) targetOf(old).focus({preventScroll:true});
+      setOpen(old, false);
+      openChapter = null;
+    }
+    if (!state && ch.querySelector('.chapter-drawer').contains(document.activeElement)) button.focus({preventScroll:true});
+    setOpen(ch, state);
+    openChapter = state ? ch : null;
+    if (preserve && !vertical.matches) rail.scrollLeft += button.getBoundingClientRect().left - before;
     requestPaint();
   }
-
-  function closeChapter(chapter) {
-    if (!chapter) return;
-    const button = chapter.querySelector('.chapter-card');
-    const drawer = chapter.querySelector('.chapter-drawer');
-    if (drawer.contains(document.activeElement)) button.focus({ preventScroll: true });
-    chapter.classList.remove('is-open');
-    button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-label', 'Open ' + chapter.dataset.title);
-    drawer.inert = true;
-    if (openChapter === chapter) openChapter = null;
-  }
-
-  function open(chapter) {
-    if (!chapter) return;
-    if (openChapter && openChapter !== chapter) closeChapter(openChapter);
-    const button = chapter.querySelector('.chapter-card');
-    const drawer = chapter.querySelector('.chapter-drawer');
-    measureChapter(chapter);
-    chapter.classList.add('is-open');
-    button.setAttribute('aria-expanded', 'true');
-    button.setAttribute('aria-label', 'Close ' + chapter.dataset.title);
-    drawer.inert = false;
-    openChapter = chapter;
-    requestAnimationFrame(measure);
-  }
-
-  chapters.forEach(chapter => {
-    const button = chapter.querySelector('.chapter-card');
-    const drawer = chapter.querySelector('.chapter-drawer');
-    drawer.inert = true;
-    button.setAttribute('aria-label', 'Open ' + chapter.dataset.title);
-    button.addEventListener('click', () => {
-      if (chapter === openChapter) closeChapter(chapter);
-      else open(chapter);
-      requestAnimationFrame(measure);
-    });
-  });
-
-  function scrollToX(x, smooth = true) {
-    window.scrollTo({
-      top: rootTop() + clamp(x, 0, maxX),
-      behavior: smooth && !reduceMotion.matches ? 'smooth' : 'auto'
-    });
-  }
-
-  function goToScene(scene, expand = false, push = true) {
-    if (!scene) return;
-    if (expand && scene.classList.contains('chapter')) open(scene);
-    if (push) history.pushState(null, '', '#' + scene.id);
-    requestAnimationFrame(() => scrollToX(sceneX(scene)));
-  }
-
-  document.addEventListener('click', event => {
-    const anchor = event.target.closest('a[href^="#"]');
-    if (!anchor) return;
-    const target = document.getElementById(anchor.hash.slice(1));
-    if (!target || !track.contains(target)) return;
-    event.preventDefault();
-    goToScene(target, target.classList.contains('chapter'));
-  });
-
-  function paint() {
-    raf = 0;
-    const x = xNow();
-    track.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
-    if (progress) progress.style.width = (maxX ? (x / maxX) * 100 : 100) + '%';
-
-    const viewportCenter = window.innerWidth / 2;
-    frameCards.forEach(card => {
-      if (reduceMotion.matches) {
-        card.style.transform = 'scale(1)';
-        return;
-      }
-      const rect = card.getBoundingClientRect();
-      const distance = Math.min(1,
-        Math.abs((rect.left + rect.width / 2) - viewportCenter) / window.innerWidth);
-      card.style.transform = 'scale(' + (1 - distance * 0.02).toFixed(4) + ')';
-    });
-
-    const probe = Math.min(220, window.innerWidth * .25);
-    let nearest = 0;
-    let best = Infinity;
-    scenes.forEach((scene, i) => {
-      const rect = scene.getBoundingClientRect();
-      const d = rect.left <= probe && rect.right >= probe ? -1 : Math.abs(rect.left - probe);
-      if (d < best) {
-        best = d;
-        nearest = i;
-      }
-    });
-    active = nearest;
-    const scene = scenes[active];
-    if (label) label.textContent = scene.id === 'intro' ? 'Introduction' : scene.dataset.title;
-    if (count) count.textContent = String(active).padStart(2, '0') + ' / 05';
-    navLinks.forEach(link => {
-      if (link.hash === '#' + scene.id) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
-
-    const ticks = [...document.querySelectorAll('.position__ticks i')];
-    if (ticks.length) {
-      const lit = Math.round((maxX ? x / maxX : 0) * (ticks.length - 1));
-      ticks.forEach((tick, i) => tick.style.opacity = i <= lit ? '1' : '.25');
-    }
-  }
-
-  function requestPaint() {
-    if (!raf) raf = requestAnimationFrame(paint);
-  }
-
-  window.addEventListener('scroll', requestPaint, { passive: true });
-  window.addEventListener('resize', measure, { passive: true });
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && openChapter) {
-      closeChapter(openChapter);
-      measure();
+  function moveTo(el, smooth = true) {
+    if (vertical.matches) {
+      el.scrollIntoView({block:'start',behavior:scrollBehavior(smooth)});
       return;
     }
-    const interactive = event.target.closest('a,button,input,textarea,select,[contenteditable="true"]');
-    if (interactive) return;
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      const target = scenes[Math.min(scenes.length - 1, active + 1)];
-      goToScene(target, target.classList.contains('chapter'), false);
-    }
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      goToScene(scenes[Math.max(0, active - 1)], false, false);
-    }
-  });
-
-  track.addEventListener('focusin', event => {
-    const card = event.target.closest('.work-card');
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const safeLeft = 24;
-    const safeRight = window.innerWidth - 24;
-    if (rect.left < safeLeft || rect.right > safeRight) {
-      scrollToX(xNow() + rect.left - safeLeft);
-    }
-  });
-
-  const resizeObserver = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null;
-  if (resizeObserver) resizeObserver.observe(track);
-
-  function restoreHash() {
-    const id = decodeURIComponent(location.hash.slice(1));
-    const target = document.getElementById(id);
-    if (!target || !track.contains(target)) return;
-    if (target.classList.contains('chapter')) open(target);
-    requestAnimationFrame(() => scrollToX(sceneX(target), false));
-  }
-
-  window.addEventListener('hashchange', restoreHash);
-  window.addEventListener('popstate', restoreHash);
-  window.addEventListener('load', () => {
-    measure();
-    restoreHash();
+    const x = rail.scrollLeft + el.getBoundingClientRect().left - rail.getBoundingClientRect().left - anchorOffset();
+    rail.scrollTo({left:Math.max(0,x),behavior:scrollBehavior(smooth)});
     requestPaint();
-  }, { once: true });
-
-  measure();
-  restoreHash();
-  requestPaint();
+  }
+  function goTo(el, {push = true, smooth = true, focus = false} = {}) {
+    if (!el || !track.contains(el)) return;
+    const ch = el.closest('.chapter');
+    if (ch && openChapter !== ch) changeDeck(ch, true, false);
+    if (!ch && el.id === 'intro' && openChapter) changeDeck(openChapter, false, false);
+    if (push && location.hash !== '#' + el.id) history.pushState(null,'','#' + el.id);
+    if (focus) {
+      const target = el.classList.contains('chapter') ? targetOf(el) : el.querySelector('a') || el;
+      if (!target.matches('a,button')) target.tabIndex = -1;
+      target.focus({preventScroll:true});
+    }
+    moveTo(el.classList.contains('chapter') ? targetOf(el) : el, smooth);
+  }
+  function restoreHash() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    goTo(document.getElementById(id || 'intro'),{push:false,smooth:false});
+  }
+  function paint() {
+    pending = 0;
+    const max = Math.max(0,rail.scrollWidth-rail.clientWidth);
+    progress.style.width = (max ? 100*rail.scrollLeft/max : 0) + '%';
+    const probe = rail.getBoundingClientRect().left + rail.clientWidth*.32;
+    let nearest=0,best=Infinity;
+    scenes.forEach((el,i) => {
+      const rect=el.getBoundingClientRect();
+      const d=rect.left<=probe && rect.right>=probe ? 0 : Math.min(Math.abs(rect.left-probe),Math.abs(rect.right-probe));
+      if(d<best){best=d;nearest=i;}
+    });
+    active=nearest;
+    const scene=scenes[active];
+    label.textContent=scene.dataset.title || 'Introduction';
+    count.textContent=String(active).padStart(2,'0')+' / 05';
+    nav.forEach(a => a.hash==='#'+scene.id ? a.setAttribute('aria-current','location') : a.removeAttribute('aria-current'));
+  }
+  function requestPaint(){if(!pending) pending=requestAnimationFrame(paint);}
+  chapters.forEach(ch=>{
+    setOpen(ch,false);
+    targetOf(ch).addEventListener('click',()=>{
+      const state=openChapter!==ch;
+      changeDeck(ch,state);
+      if(state && location.hash!=='#'+ch.id) history.replaceState(null,'','#'+ch.id);
+      else if(!state && location.hash==='#'+ch.id) history.replaceState(null,'',location.pathname+location.search);
+    });
+  });
+  document.documentElement.classList.add('enhanced');
+  document.addEventListener('click',e=>{
+    if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;return;}
+    const a=e.target.closest('a[href^="#"]');
+    if(!a || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button!==0)return;
+    let id;try{id=decodeURIComponent(a.hash.slice(1));}catch{return;}
+    const el=document.getElementById(id);
+    if(!el || !track.contains(el))return;
+    e.preventDefault();goTo(el,{focus:true});
+  },true);
+  rail.addEventListener('wheel',e=>{
+    if(vertical.matches || e.ctrlKey || e.shiftKey || Math.abs(e.deltaX)>=Math.abs(e.deltaY))return;
+    const card=e.target.closest('.work-card,.intro-card,.chapter-card');
+    if(card && card.scrollHeight>card.clientHeight+2){
+      const down=e.deltaY>0;
+      if(down ? card.scrollTop+card.clientHeight<card.scrollHeight-1 : card.scrollTop>0)return;
+    }
+    const scale=e.deltaMode===1?16:e.deltaMode===2?rail.clientWidth:1;
+    const dx=e.deltaY*scale, max=rail.scrollWidth-rail.clientWidth;
+    if((dx>0 && rail.scrollLeft<max-1)||(dx<0 && rail.scrollLeft>1)){
+      e.preventDefault();rail.scrollLeft+=dx;
+    }
+  },{passive:false});
+  rail.addEventListener('pointerdown',e=>{
+    suppressClick=false;
+    if(vertical.matches || e.pointerType!=='mouse' || e.button!==0 || e.target.closest('a,button,input,textarea'))return;
+    if(e.target.closest('.work-card__body,.intro-card__copy,.work-card__evidence'))return;
+    drag={id:e.pointerId,x:e.clientX,left:rail.scrollLeft,moved:false};
+  });
+  rail.addEventListener('pointermove',e=>{
+    if(!drag || e.pointerId!==drag.id)return;
+    const dx=e.clientX-drag.x;
+    if(!drag.moved && Math.abs(dx)>7){drag.moved=true;rail.setPointerCapture(e.pointerId);rail.classList.add('is-dragging');}
+    if(drag.moved){e.preventDefault();rail.scrollLeft=drag.left-dx;}
+  });
+  function endDrag(){if(drag?.moved){suppressClick=true;setTimeout(()=>suppressClick=false,0);}drag=null;rail.classList.remove('is-dragging');}
+  rail.addEventListener('pointerup',endDrag);rail.addEventListener('pointercancel',endDrag);rail.addEventListener('lostpointercapture',endDrag);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape' && openChapter){const old=openChapter;changeDeck(old,false);targetOf(old).focus({preventScroll:true});moveTo(targetOf(old),false);history.replaceState(null,'',location.pathname+location.search);return;}
+    if(vertical.matches || e.target!==rail)return;
+    const map={ArrowRight:Math.min(scenes.length-1,active+1),ArrowLeft:Math.max(0,active-1),Home:0,End:scenes.length-1};
+    if(Object.prototype.hasOwnProperty.call(map,e.key)){e.preventDefault();goTo(scenes[map[e.key]],{push:false});}
+  });
+  rail.addEventListener('focusin',e=>{
+    if(vertical.matches)return;
+    const card=e.target.closest('.work-card,.chapter-card,.intro-card');
+    if(!card)return;
+    const rect=card.getBoundingClientRect(),bounds=rail.getBoundingClientRect();
+    if(rect.left<bounds.left || rect.right>bounds.right)moveTo(card,false);
+  });
+  rail.addEventListener('scroll',requestPaint,{passive:true});
+  window.addEventListener('resize',requestPaint,{passive:true});
+  window.addEventListener('hashchange',restoreHash);
+  window.addEventListener('popstate',restoreHash);
+  restoreHash();requestPaint();
 })();
