@@ -32,7 +32,7 @@ try{
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
     await page.keyboard.press("Tab");
     assert.equal(await page.evaluate(()=>document.activeElement.className),"skip");
-    await page.locator('a[href="research/#copycat"]').click();
+    await page.locator('#selected-copycat a').click();
     await page.waitForURL("**/research/#copycat");
     assert(await page.locator("#copycat").isVisible());
     for(const [url,count] of Object.entries(archives)){
@@ -50,7 +50,7 @@ try{
   }
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
   await inspect(nojs,"",0);
-  await nojs.locator('a[href="research/#copycat"]').click();
+  await nojs.locator('#selected-copycat a').click();
   assert(await nojs.locator("#copycat").isVisible());
   await nojs.close();
   for (const colorScheme of ["light","dark"]) {
