@@ -80,7 +80,7 @@
     if (!enabled() || event.pointerType !== "mouse" || event.buttons ||
         event.target.closest("a,button,input,textarea,select,summary,[contenteditable],.footer") ||
         (window.getSelection() && !window.getSelection().isCollapsed)) {
-      last = null;
+      clear();
       return;
     }
     const now = performance.now(), x = event.clientX, y = event.clientY;
@@ -93,10 +93,12 @@
   document.documentElement.addEventListener("pointerleave", () => { last = null; });
   window.addEventListener("pointerdown", clear, {passive:true});
   window.addEventListener("blur", clear);
+  document.addEventListener("focusin", clear);
+  document.addEventListener("selectionchange", () => { if (getSelection() && !getSelection().isCollapsed) clear(); });
   window.addEventListener("resize", clear, {passive:true});
   window.addEventListener("scroll", clear, {passive:true});
   document.addEventListener("visibilitychange", sync);
-  document.addEventListener("keydown", e => { if (e.key === "Escape") clear(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" || e.key === "Tab") clear(); });
   toggle.addEventListener("click", () => {
     preferred = !preferred;
     try { localStorage.setItem(key, preferred ? "on" : "off"); } catch {}

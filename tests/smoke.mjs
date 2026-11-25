@@ -102,6 +102,17 @@ try{
     return style.borderRadius==="0px" && Math.abs(matrix.b)<1e-6 && Math.abs(matrix.c)<1e-6;
   })));
   await trail.screenshot({path:"qa-screenshots/image-trail-1440.png"});
+  // A visible trail must not obscure the next keyboard focus or hovered link.
+  await trail.keyboard.press("Tab");
+  assert.equal(await trail.locator(".image-trail__item").count(),0);
+  await trail.mouse.move(40,180);
+  await trail.mouse.move(140,180);
+  assert(await trail.locator(".image-trail__item").count()>0);
+  await trail.locator("#selected-copycat a").hover();
+  assert.equal(await trail.locator(".image-trail__item").count(),0);
+  await trail.mouse.move(40,180);
+  await trail.mouse.move(140,180);
+  assert(await trail.locator(".image-trail__item").count()>0);
   await trail.waitForTimeout(1200);
   assert.equal(await trail.locator(".image-trail__item").count(),0);
   await trail.mouse.move(80,250);

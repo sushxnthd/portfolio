@@ -2,14 +2,14 @@ name: Portfolio browser smoke test
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'design/**']
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: portfolio-smoke
+  group: portfolio-smoke-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -34,6 +34,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check script.js
+          node --check trail.js
           node --check tests/smoke.mjs
 
       - name: Start local site
