@@ -53,6 +53,35 @@ try{
   await nojs.locator('a[href="research/#copycat"]').click();
   assert(await nojs.locator("#copycat").isVisible());
   await nojs.close();
+  for (const colorScheme of ["light","dark"]) {
+    const page=await browser.newPage({viewport:{width:1440,height:900},colorScheme,reducedMotion:"reduce"});
+    page.on("pageerror",e=>errors.push(e.message));
+    await inspect(page,"",0);
+    assert.equal(await page.locator("html").getAttribute("data-theme"),colorScheme);
+    assert.equal(await page.locator('.theme-control [data-choice="system"]').getAttribute("aria-pressed"),"true");
+    await page.locator('.theme-control [data-choice="dark"]').click();
+    assert.equal(await page.locator("html").getAttribute("data-theme"),"dark");
+    assert.equal(await page.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(21, 21, 21)");
+    await page.screenshot({path:"qa-screenshots/dark-home-"+colorScheme+".png",fullPage:true});
+    await inspect(page,"research/",10);
+    assert.equal(await page.locator("html").getAttribute("data-theme"),"dark");
+    await page.screenshot({path:"qa-screenshots/dark-research-"+colorScheme+".png",fullPage:true});
+    await page.locator('.theme-control [data-choice="light"]').click();
+    await page.reload();
+    assert.equal(await page.locator("html").getAttribute("data-theme"),"light");
+    await page.locator('.theme-control [data-choice="system"]').click();
+    assert.equal(await page.locator("html").getAttribute("data-theme"),colorScheme);
+    await page.close();
+  }
+  const darkMobile=await browser.newPage({viewport:{width:390,height:844},colorScheme:"dark"});
+  await inspect(darkMobile,"",0);
+  await darkMobile.screenshot({path:"qa-screenshots/dark-home-390.png",fullPage:true});
+  await darkMobile.close();
+  const darkNoJS=await browser.newPage({viewport:{width:390,height:844},colorScheme:"dark",javaScriptEnabled:false});
+  await inspect(darkNoJS,"",0);
+  assert.equal(await darkNoJS.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(21, 21, 21)");
+  assert.equal(await darkNoJS.locator(".theme-control").isVisible(),false);
+  await darkNoJS.close();
   assert.deepEqual(errors,[]);
   console.log("QUIET_PORTFOLIO_SMOKE_PASS");
 }finally{await browser.close();}
