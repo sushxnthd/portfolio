@@ -1,25 +1,7 @@
+// Preserve older incoming project hashes after moving records to dedicated pages.
 (() => {
-  'use strict';
-  const nav = [...document.querySelectorAll('.masthead nav a[href^="#"]')];
-  const sections = nav.map(a => document.getElementById(a.hash.slice(1))).filter(Boolean);
-  if (!sections.length || !('IntersectionObserver' in window)) return;
-  let active = null;
-  const update = () => {
-    const line = Math.min(160, innerHeight * .26);
-    let selected = null;
-    for (const section of sections) {
-      if (section.getBoundingClientRect().top <= line) selected = section.id;
-    }
-    if (selected === active) return;
-    active = selected;
-    for (const a of nav) {
-      if (a.hash === '#' + active) a.setAttribute('aria-current','location');
-      else a.removeAttribute('aria-current');
-    }
-  };
-  const observer = new IntersectionObserver(update,{rootMargin:'-15% 0px -70% 0px',threshold:0});
-  sections.forEach(s => observer.observe(s));
-  window.addEventListener('hashchange',update);
-  window.addEventListener('resize',update,{passive:true});
-  update();
+  const legacy = {"copycat":"research/#copycat","crzne":"research/#crzne","scholarqa":"research/#scholarqa","trace-corpus":"research/#trace-corpus","grit":"research/#grit","theorica":"research/#theorica","k1":"research/#k1","lucent":"research/#lucent","noesis":"research/#noesis","vektor":"research/#vektor","somno":"projects/#somno","hush":"projects/#hush","orynt":"projects/#orynt","lattice":"projects/#lattice","open-tools":"projects/#open-tools","agnxiv":"building/#agnxiv","kernellum":"building/#kernellum","greengroove":"building/#greengroove","aiyes":"recognition/#aiyes","qhack":"recognition/#qhack","iris":"recognition/#iris","issdc":"recognition/#issdc","prayaas":"recognition/#prayaas"};
+  let id;
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+  if (Object.prototype.hasOwnProperty.call(legacy,id) && !document.getElementById(id)) location.replace(legacy[id]);
 })();

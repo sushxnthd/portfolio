@@ -1,30 +1,23 @@
-# Design direction — Personal Research Archive
+# Quiet personal site — design direction
 
-Supersedes the horizontal card-deck concept. November 26, 2026.
+Approved direction: Paco Coursey's minimal personal-site approach (https://paco.me/), interpreted rather than copied. Replaces the earlier horizontal deck and research-journal designs.
 
-## Research
+## Principles
 
-- Andrej Karpathy (https://karpathy.ai/): clearly identifies the person and foregrounds work rather than ornamental interaction.
-- Distill (https://distill.pub/): article-oriented scientific communication and diagrams tied to concepts.
-- Maggie Appleton (https://maggieappleton.com/): distinguishes exploratory notes from developed essays; a personal archive can evolve without pretending everything is final.
-- Chris Olah (https://colah.github.io/): organizes work by substantive topics and labels rough notes.
-- Anthropic Research (https://www.anthropic.com/research): separates research themes and concrete findings in an editorial index.
-- Steph Ango (https://stephango.com/): restrained typography, dated work, and uncluttered structure.
-- Nielsen Norman Group (https://www.nngroup.com/articles/how-users-read-on-the-web/ and https://www.nngroup.com/articles/progressive-disclosure/): scan-friendly hierarchy, descriptive links, and progressive detail.
-- WCAG 2.2 reference (https://www.w3.org/WAI/WCAG22/quickref/): design target, not a certification.
+- The site is a quiet personal introduction, not a sales landing page.
+- Plain white, near-black text, muted secondary text, small typographic hierarchy, modest underline interactions.
+- 664px centered reading width, 128px desktop top spacing, 64px between sections; three compact columns on desktop, single-column mobile.
+- Inter variable and Newsreader italic are hosted locally with their upstream SIL Open Font Licenses. No third-party runtime font service.
+- No decorative hero, graphical cards, dashboard, navigation bar, scroll hijacking, or animation beyond restrained link feedback.
+- Full details are on four dedicated archive pages. The homepage links to nine selected records, all archive pages, evidence and source. Building also links to related research experiments.
+- All 26 original records are preserved across archives and homepage source/contact entries; the research archive retains the original optional figures.
+- Legacy project hashes redirect to the relevant archive when JavaScript is available. Ordinary navigation is entirely native HTML and works without JavaScript.
+- Evidence and status qualifiers are retained. No new achievement claims are made.
 
-These sources motivate design decisions; the site is not a replica or a claim that any layout guarantees admissions outcomes.
+## References
 
-## Visual system
+Primary: https://paco.me/ . Complementary references from the earlier design investigation: https://frankchimero.com/ , https://manuelmoreale.com/ , https://cmhb.de/ . Typeface sources: https://github.com/rsms/inter and https://github.com/google/fonts/tree/main/ofl/newsreader .
 
-Warm paper #f8f7f1, near-black #20251f, pine #355841, quiet hairlines. Georgia for editorial hierarchy, system sans for body, monospace for technical annotation. No external font dependency. One normal vertical document; direct navigation, stable anchors, no hidden project cards. Desktop editorial columns become a single readable mobile column. Explicit captions distinguish conceptual figures from results, and the Somno artwork is sourced from its actual repository.
+## Review
 
-## Information architecture
-
-An introduction identifies the student researcher and three questions of interest. Selected research features CopyCAT and CR-ZNE, followed by the eight remaining research records; software features Somno, and labs/ventures features agnXiv. Recognition is an index rather than a trophy wall. The homepage preserves all 26 earlier entries, direct artifacts, and the evidence ledger, including existing project hashes.
-
-The core presentation is HTML and CSS, available without JavaScript. JavaScript only enhances current navigation indication. No tracking, external scripts, or scroll hijacking.
-
-## QA
-
-Browser regression tests check 360/390/768/1280/1440px, no-JS, direct hashes, no horizontal overflow, unique IDs and all 26 visible records. The design should also receive independent screenshot-level and assistive-technology review before claiming fully verified accessibility. The live product screenshot is a public cross-repository image and depends on that repository's availability.
+Chromium regression tests cover five viewport sizes, archive counts, local navigation, legacy hashes, font load, overflow, keyboard skip link and JS-disabled navigation. Screenshot artifacts are collected for desktop and mobile home and research pages. A passing browser suite is not a substitute for human visual review or complete WCAG conformance.

@@ -43,3 +43,11 @@ jobs:
 
       - name: Run browser smoke test
         run: node tests/smoke.mjs
+
+      - name: Upload viewport screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-viewport-screenshots
+          path: qa-screenshots/
+          if-no-files-found: ignore
