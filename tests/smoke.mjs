@@ -24,6 +24,9 @@ try{
     page.on("pageerror",e=>errors.push(e.message));
     await inspect(page,"",0);
     assert.equal(await page.locator(".home-list li").count(),12);
+    assert.equal(await page.locator(".recent-list li").count(),3);
+    assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
+    assert.equal(await page.locator(".home-list li p").first().evaluate(el=>getComputedStyle(el).fontSize),"14px");
     assert.equal(await page.locator(".home-columns").evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?1:3);
     assert.equal(await page.evaluate(()=>document.fonts.check("italic 450 17px Newsreader")),true);
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
@@ -34,6 +37,8 @@ try{
     assert(await page.locator("#copycat").isVisible());
     for(const [url,count] of Object.entries(archives)){
       await inspect(page,url,count);
+      assert.equal(await page.locator(".archive-nav [aria-current=page]").count(),1);
+      if(url==="research/")assert.equal(await page.locator(".archive-group").count(),2);
       if((width===390||width===1440)&&url==="research/")await page.screenshot({path:"qa-screenshots/research-"+width+".png",fullPage:true});
     }
     await page.goto(base+"#somno");

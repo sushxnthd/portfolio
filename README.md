@@ -19,3 +19,5 @@ node tests/smoke.mjs
 ```
 
 The suite tests five screen widths, all archive pages, navigation, font load, no-JavaScript fallback and produces desktop and mobile screenshots. GitHub Actions runs the suite and publishes the site.
+
+The second visual pass refines the reading measure, type scale, mobile project list, chronology, and archive hierarchy after inspection of the original browser screenshots.
