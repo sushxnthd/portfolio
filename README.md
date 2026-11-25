@@ -1,28 +1,18 @@
-# Sushanth Dasari / Portfolio
+# Sushanth Dasari — Research & Engineering
 
-[Public portfolio](https://sushxnthd.github.io/portfolio/) · [Evidence ledger](EVIDENCE.md) · [Design direction](DESIGN_DIRECTION.md)
+[Personal research archive](https://sushxnthd.github.io/portfolio/) · [Evidence ledger](EVIDENCE.md) · [Design research](DESIGN_DIRECTION.md)
 
-A curated, single-track portfolio of independent research, software, labs and selected recognition. The existing horizontal filing-stack design is preserved: a category opens its child cards into the same rail, and only one deck stays open.
+The site is an editorial, vertical archive of 26 research, software, lab and recognition records. The old horizontal card-deck layout has been retired. Selected work is visible immediately; every entry has a stable deep link and direct source links where available.
 
-## Structure
+The site is plain HTML and CSS with a small optional navigation enhancement. No build, frameworks, external font or tracking scripts are required. Concept diagrams are explicitly illustrative; Somno product artwork comes from its own repository.
 
-- Research: 10 papers and experiments, including CopyCAT, the ScholarQA-CS2 audit, accepted-paper records, and ongoing research.
-- Projects: 5 cards covering Somno, Hush, Orynt, Lattice and focused open-source tools.
-- Labs & ventures: 3 cards.
-- Recognition: 5 cards, with author-reported distinctions and limitations.
-- Elsewhere: 3 cards for source, provenance and public contact.
-
-## Interaction
-
-Native horizontal overflow supports trackpads and touch; vertical desktop wheel input is translated into horizontal movement when appropriate. Mouse drag is available on non-interactive surfaces. Category and individual-card hashes are shareable. The rail supports keyboard arrow navigation, Escape closes a deck, and closed drawers are inert. Reduced motion, a short-viewport vertical layout and a no-JavaScript vertical content fallback are included.
-
-## Run locally
+## Preview and verification
 
 ```sh
 python3 -m http.server 8000
 ```
 
-Visit http://localhost:8000. For the browser suite:
+Visit http://localhost:8000. To run the browser suite:
 
 ```sh
 npm install --no-save playwright@1.56.1
@@ -30,6 +20,4 @@ npx playwright install chromium
 node tests/smoke.mjs
 ```
 
-The browser suite checks actual chapter and card counts, keyboard focus, inert drawers, hash navigation, scrolling, mobile sizes, reduced motion and no-JavaScript fallback. GitHub Actions runs it on main. Deployment status and test status are independent until the workflows report success.
-
-Content is in `index.html`, styling in `styles.css`, interaction in `script.js`. The evidence ledger records the boundaries of research and recognition claims; do not substitute acceptance for publication or prototype status for validation.
+GitHub Actions uses Ubuntu 24.04 and runs JavaScript syntax checks followed by the browser suite. Deployment and verification statuses are independent. See the evidence ledger for qualification of author-reported milestones and research claims.
