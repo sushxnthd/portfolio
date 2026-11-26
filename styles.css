@@ -180,3 +180,10 @@ html{background:var(--bg)}
 .featured-link{margin-left:82px;justify-self:start}
 .featured-work+.work-index{margin-top:26px}
 }
+
+/* Compact, source-linked research process notes; the archive remains independently expandable. */
+.research-process{margin-top:16px;border-left:1px solid var(--line);padding:0 0 1px 14px}
+.process-label{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-bottom:6px}
+.research-process p{font-size:13px;line-height:1.65;color:var(--text)}
+.research-process .record-links{margin-top:7px}
+.reproduce-command{display:block;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink);margin-top:8px;overflow-wrap:anywhere;user-select:all}

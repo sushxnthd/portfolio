@@ -24,6 +24,7 @@ try{
     page.on("pageerror",e=>errors.push(e.message));
     await inspect(page,"",23);
     assert.equal(await page.locator(".work-section").count(),4);
+    assert.equal(await page.locator(".research-process").count(),3);
     assert.equal(await page.locator(".featured-list li").count(),3);
     assert.equal(await page.locator(".featured-list .featured-link[href^='https://']").count(),3);
     assert(await page.locator(".featured-work").isVisible());
@@ -40,6 +41,11 @@ try{
     await page.locator('.featured-description a[href="#copycat"]').click();
     await page.waitForURL("**/#copycat");
     assert(await page.locator("#copycat").isVisible());
+    assert.equal(await page.locator("#copycat .reproduce-command").innerText(),"python code/reproduce_headline.py");
+    assert(await page.locator("#theorica .research-process").isVisible());
+    assert.match(await page.locator("#theorica .research-process").innerText(),/297\/345 → 345\/345/);
+    assert(await page.locator("#k1 .research-process").isVisible());
+    assert.equal(await page.locator(".research-process a[href^=\"https://\"]").count(),7);
     await page.locator("#research > summary").click();
     assert.equal(await page.locator("#copycat").isVisible(),false);
     await page.locator("#research > summary").click();

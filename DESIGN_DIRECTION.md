@@ -97,3 +97,11 @@ HAA's official admissions page (https://theacademysf.com/admissions) prioritizes
 ## Foreground trail, clean typography
 
 User explicitly prefers image impressions over the text and dislikes the prior glyph shadows. Restore the foreground trail (z-index 10), remove the text-shadow rule entirely, and keep the skip link above the trail (z-index 12). Preserve full colors, no mask, pointer transparency, keyboard/selection/link clearing, touch behavior, reduced motion, twelve authentic assets, kinetic bursts and the approved one-page layout. Updated browser assertions check layering and shadow-free typography. Tradeoff: transient overlap can cover text until impressions fade; existing interaction clearing and opt-out remain. New CI and production verification pending.
+
+## HAA proof-of-work: show the process, not only outcomes
+
+Official admissions and FAQ (https://theacademysf.com/admissions and https://theacademysf.com/faq) emphasize proof of work, actual individual contributions and authentic applicant voice. Add three compact technical process notes within existing records, without new homepage clutter: Theorica frozen failure and correction (source blobs 58c21f3 and 4eacf29), K1 active-vs-random routed search (d921805), CopyCAT executable reproduction and provenance (c2e1831). Keep all original scope limitations and avoid attributing unverified personal work. Source reports were inspected. Baseline foreground-trail CI passed 45808924958; Pages artifact race failed 45808924923 and was rerun. New browser regression and live visual review pending. Personal roles, motivation, user traction and collaboration details require author verification before publishing.
+
+## Promotion verification (2026-11-26)
+
+Foreground trail and attempt-specific Pages artifact fix verified: main CI 45816642228 and deployment 45816642206 succeeded; live homepage returned HTTP 200 with one-page-4 stylesheet. Technical process candidate 37b2e3b passed browser CI 45816564416. Promote its four changed files onto 9b8c9ae, retaining the deployment workflow fix. HAA admissions and FAQ rechecked: proof of work and accurate collaborative contributions remain the priority. Combined main CI and deployment pending; no visual inspection claimed.
