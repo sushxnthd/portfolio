@@ -96,6 +96,15 @@ try{
   assert(impressions>0 && impressions<=6,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
+  // Foreground content must paint above images, even on coarse-pointer devices.
+  const verifyTrailLayer=async page=>{
+    const layer=await page.locator(".image-trail").evaluate(e=>({z:Number(getComputedStyle(e).zIndex),mask:getComputedStyle(e).maskImage,opacity:Number(getComputedStyle(e).opacity)}));
+    const foreground=await page.locator(".home").evaluate(e=>({z:Number(getComputedStyle(e).zIndex),position:getComputedStyle(e).position}));
+    assert(foreground.z>layer.z && foreground.position!=="static","trail must paint behind content");
+    assert(layer.mask.includes("linear-gradient") || layer.opacity<=.08,"reading-column contrast veil or fallback required");
+    assert.equal(await page.locator(".skip").evaluate(e=>Number(getComputedStyle(e).zIndex)>Number(getComputedStyle(document.querySelector(".home")).zIndex)),true);
+  };
+  await verifyTrailLayer(trail);
   assert(await trail.locator(".image-trail__item").evaluateAll(nodes=>nodes.every(node=>{
     const style=getComputedStyle(node);
     const matrix=new DOMMatrixReadOnly(style.transform);
@@ -141,6 +150,7 @@ try{
   await phone.goto(base);
   await phone.waitForLoadState("networkidle");
   assert(await phone.locator(".trail-toggle").isVisible());
+  await verifyTrailLayer(phone);
   await phone.touchscreen.tap(25,70);
   assert.equal(await phone.locator(".image-trail__item").count(),1);
   await phone.waitForTimeout(1200);
