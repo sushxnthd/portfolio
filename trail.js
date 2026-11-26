@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   // Pointer-responsive image impressions, using locally stored project assets.
-  const sources = ["assets/trail/somno.png","assets/trail/hush.webp","assets/trail/kernellum-die.svg","assets/trail/greengroove.webp","assets/trail/somno-pvt.png","assets/trail/hush-dawn.webp","assets/trail/kernellum-routing.svg","assets/trail/greengroove-social.png"];
+  const sources = ["assets/trail/somno.png","assets/trail/hush.webp","assets/trail/kernellum-die.svg","assets/trail/greengroove.webp","assets/trail/somno-pvt.png","assets/trail/hush-dawn.webp","assets/trail/kernellum-routing.svg","assets/trail/greengroove-social.png","assets/trail/kernellum-measurement.svg","assets/trail/kernellum-timing.svg","assets/trail/hush-laptop.svg","assets/trail/greengroove-architecture.svg"];
   const media = window.matchMedia("(hover: hover) and (pointer: fine)");
   const touch = window.matchMedia("(any-pointer: coarse)");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -16,7 +16,8 @@
   document.body.append(layer);
   const ready = new Map();
   const items = new Map();
-  let primed = false, index = 0, last = null, lastTime = 0, contact = null;
+  let primed = false, last = null, lastTime = 0, contact = null;
+  let bag = [], previousSource = null;
   let distance = 0, anchor = null;
   const cadence = {desktop:{spacing:38,interval:34,cap:10},mobile:{spacing:28,interval:42,cap:5}};
   const enabled = () => preferred && (media.matches || touch.matches) && !reduce.matches && !document.hidden;
@@ -54,10 +55,18 @@
     if (!enabled()) clear();
     else prime();
   }
-  function spawn(x, y, dx, dy, mobile = false) {
+  function spawn(x, y, dx, dy, mobile = false, delay = 0) {
     const available = sources.filter(src => ready.has(src));
     if (!available.length) return;
-    const src = available[index++ % available.length];
+    // Shuffle without repetition; preserve variety even during fast gestures.
+    bag = bag.filter(src => ready.has(src));
+    if (!bag.length) {
+      bag = available.slice();
+      for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]];}
+      if(bag.length>1 && bag[bag.length-1]===previousSource)[bag[0],bag[bag.length-1]]=[bag[bag.length-1],bag[0]];
+    }
+    const src = bag.pop();
+    previousSource = src;
     const original = ready.get(src);
     const image = original.cloneNode();
     image.className = "image-trail__item";
@@ -87,7 +96,7 @@
       { opacity: 1, clipPath: "inset(0 0 0 0)", transform: "translate(0,0) scale(1)", offset: .13 },
       { opacity: 1, clipPath: "inset(0 0 0 0)", transform: "translate(" + driftX*.32 + "px," + driftY*.32 + "px) scale(1)", offset: .55 },
       { opacity: 0, clipPath: "inset(0 0 0 0)", transform: "translate(" + driftX + "px," + driftY + "px) scale(.90)", offset: 1 }
-    ], {duration: mobile ? 900 : 1080, easing:"cubic-bezier(.22,.68,.28,1)", fill:"both"});
+    ], {duration: mobile ? 900 : 1080, easing:"cubic-bezier(.22,.68,.28,1)", fill:"both",delay});
     items.set(image, animation);
     animation.onfinish = () => discard(image);
   }
@@ -118,8 +127,14 @@
     last = {x,y};
     if (distance < cadence.desktop.spacing || now-lastTime < cadence.desktop.interval) return;
     const dx = x-anchor.x, dy = y-anchor.y;
+    const span = Math.hypot(dx,dy);
+    // Fast jumps produce a bounded spatial sequence rather than a single endpoint stamp.
+    const burst = Math.min(3,Math.max(1,Math.floor(span/76)));
+    for(let i=1;i<=burst;i++){
+      const fraction=i/burst;
+      spawn(anchor.x+dx*fraction,anchor.y+dy*fraction,dx/burst,dy/burst,false,(i-1)*12);
+    }
     anchor = {x,y}; distance = 0; lastTime = now;
-    spawn(x,y,dx,dy);
   }, {passive:true});
   document.documentElement.addEventListener("pointerleave", () => { last = anchor = null; distance = 0; });
   window.addEventListener("pointerdown", event => {

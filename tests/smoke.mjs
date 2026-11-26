@@ -129,6 +129,14 @@ try{
   await trail.mouse.move(45,150);
   await trail.mouse.move(45,170);
   assert.equal(await trail.locator(".image-trail__item").count(),1,"40px curved travel should emit despite 28px net displacement");
+  // A fast pointer jump should leave a spatial sequence rather than one endpoint.
+  await trail.keyboard.press("Escape");
+  await trail.mouse.move(30,80);
+  await trail.mouse.move(330,80);
+  assert.equal(await trail.locator(".image-trail__item").count(),3);
+  const stamps=await trail.locator(".image-trail__item").evaluateAll(nodes=>nodes.map(e=>({src:e.getAttribute("src"),x:parseFloat(e.style.left)})));
+  assert.equal(new Set(stamps.map(s=>s.src)).size,3,"burst must contain distinct images");
+  assert(stamps[0].x<stamps[1].x && stamps[1].x<stamps[2].x,"fast movement must leave intermediate stamps");
   // A visible trail must not obscure the next keyboard focus or hovered link.
   await trail.keyboard.press("Tab");
   assert.equal(await trail.locator(".image-trail__item").count(),0);
