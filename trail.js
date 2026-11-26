@@ -17,6 +17,8 @@
   const ready = new Map();
   const items = new Map();
   let primed = false, index = 0, last = null, lastTime = 0, contact = null;
+  let distance = 0, anchor = null;
+  const cadence = {desktop:{spacing:38,interval:34,cap:10},mobile:{spacing:28,interval:42,cap:5}};
   const enabled = () => preferred && (media.matches || touch.matches) && !reduce.matches && !document.hidden;
   function prime() {
     if (primed) return;
@@ -41,6 +43,8 @@
     last = null;
     lastTime = 0;
     contact = null;
+    distance = 0;
+    anchor = null;
   }
   function sync() {
     toggle.hidden = !(media.matches || touch.matches) || reduce.matches;
@@ -60,22 +64,30 @@
     image.alt = "";
     image.draggable = false;
     const landscape = original.naturalWidth >= original.naturalHeight;
-    const width = mobile ? (landscape ? Math.min(124, innerWidth * .32) : Math.min(88, innerWidth * .23)) : landscape ? Math.min(182, Math.max(126, innerWidth * .125)) : Math.min(118, Math.max(92, innerWidth * .085));
+    const speed = Math.hypot(dx,dy);
+    const emphasis = Math.min(1.16, 1 + speed / 600);
+    const width = emphasis * (mobile ? (landscape ? Math.min(124, innerWidth * .32) : Math.min(88, innerWidth * .23)) : landscape ? Math.min(182, Math.max(126, innerWidth * .125)) : Math.min(118, Math.max(92, innerWidth * .085)));
     const height = Math.min(180, width * original.naturalHeight / original.naturalWidth);
     image.style.setProperty("--trail-width", width + "px");
     // Position around the cursor, retaining a small safe margin at the viewport edge.
     image.style.left = Math.max(5, Math.min(innerWidth - width - 5, x - width * .5)) + "px";
     image.style.top = Math.max(5, Math.min(innerHeight - height - 5, y - height * .5)) + "px";
-    while (items.size >= (mobile ? 3 : 6)) discard(items.keys().next().value);
+    while (items.size >= (mobile ? cadence.mobile.cap : cadence.desktop.cap)) discard(items.keys().next().value);
     layer.append(image);
-    const driftX = Math.max(-14, Math.min(14, dx * .16));
-    const driftY = Math.max(-10, Math.min(10, dy * .12)) + 11;
+    // Directional reveal and momentum. No rotation, filters or layer-wide fade.
+    const magnitude = Math.max(1, speed);
+    const travel = Math.min(mobile ? 24 : 38, 12 + speed * .18);
+    const driftX = dx / magnitude * travel;
+    const driftY = dy / magnitude * travel + 9;
+    const reveal = Math.abs(dx) >= Math.abs(dy)
+      ? (dx >= 0 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)")
+      : (dy >= 0 ? "inset(0 0 100% 0)" : "inset(100% 0 0 0)");
     const animation = image.animate([
-      { opacity: 0, transform: "translate(0, 0) scale(.82)", offset: 0 },
-      { opacity: .96, transform: "translate(0, 0) scale(1)", offset: .15 },
-      { opacity: .96, transform: "translate(" + driftX*.3 + "px, " + driftY*.3 + "px) scale(1)", offset: .43 },
-      { opacity: 0, transform: "translate(" + driftX + "px, " + driftY + "px) scale(.88)", offset: 1 }
-    ], { duration: 1050, easing: "cubic-bezier(.2,.65,.25,1)", fill: "both" });
+      { opacity: .88, clipPath: reveal, transform: "translate(" + (-driftX*.28) + "px," + (-driftY*.28) + "px) scale(.86)", offset: 0 },
+      { opacity: 1, clipPath: "inset(0 0 0 0)", transform: "translate(0,0) scale(1)", offset: .13 },
+      { opacity: 1, clipPath: "inset(0 0 0 0)", transform: "translate(" + driftX*.32 + "px," + driftY*.32 + "px) scale(1)", offset: .55 },
+      { opacity: 0, clipPath: "inset(0 0 0 0)", transform: "translate(" + driftX + "px," + driftY + "px) scale(.90)", offset: 1 }
+    ], {duration: mobile ? 900 : 1080, easing:"cubic-bezier(.22,.68,.28,1)", fill:"both"});
     items.set(image, animation);
     animation.onfinish = () => discard(image);
   }
@@ -89,7 +101,7 @@
       const totalX = x-contact.startX, totalY = y-contact.startY;
       if (Math.abs(totalY) > 12 && Math.abs(totalY) > Math.abs(totalX)) { clear(); return; }
       if (Math.hypot(totalX,totalY) > 12) contact.moved = true;
-      if (Math.hypot(x-contact.x,y-contact.y) < 44 || performance.now()-lastTime < 80) return;
+      if (Math.hypot(x-contact.x,y-contact.y) < cadence.mobile.spacing || performance.now()-lastTime < cadence.mobile.interval) return;
       spawn(x,y,x-contact.x,y-contact.y,true);
       contact.x=x; contact.y=y; lastTime=performance.now();
       return;
@@ -101,13 +113,15 @@
       return;
     }
     const now = performance.now(), x = event.clientX, y = event.clientY;
-    if (!last) { last = {x,y}; return; }
-    const dx = x-last.x, dy = y-last.y;
-    if (Math.hypot(dx,dy) < 66 || now-lastTime < 62) return;
-    last = {x,y}; lastTime = now;
+    if (!last) { last = anchor = {x,y}; return; }
+    distance += Math.hypot(x-last.x,y-last.y);
+    last = {x,y};
+    if (distance < cadence.desktop.spacing || now-lastTime < cadence.desktop.interval) return;
+    const dx = x-anchor.x, dy = y-anchor.y;
+    anchor = {x,y}; distance = 0; lastTime = now;
     spawn(x,y,dx,dy);
   }, {passive:true});
-  document.documentElement.addEventListener("pointerleave", () => { last = null; });
+  document.documentElement.addEventListener("pointerleave", () => { last = anchor = null; distance = 0; });
   window.addEventListener("pointerdown", event => {
     if (event.pointerType !== "touch") { clear(); return; }
     if (!event.isPrimary || !enabled() || interactive(event.target) || selecting()) { clear(); return; }

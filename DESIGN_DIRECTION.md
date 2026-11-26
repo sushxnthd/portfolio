@@ -61,3 +61,7 @@ User reported the central block from the previous reading-column mask. Remove al
 ## Restore full-strength background imagery (2026-11-26)
 
 User reported that the 48% global opacity whitened the trail. Restore the layer to opacity 1; individual images retain their original animated opacity and fade. Keep the foreground stacking, transparent content, no mask, glyph-level text halo, and touch behavior. Updated browser assertion requires full layer opacity; visual contrast over high-contrast images requires review. Cache key bumped. No other visual changes.
+
+## Kinetic background trail experiment
+
+User requested more impressions and special effects. Compare desktop spacing 66→38px, minimum interval 62→34ms, cap 6→10; mobile spacing 44→28px, interval 80→42ms, cap 3→5. Use cumulative desktop path distance; directional rectangular reveal, speed-dependent scale (≤1.16×) and bounded directional momentum followed by the existing fade. Preserve full color, square edges, no rotation, unmasked background layer and all reading, touch and reduced-motion safeguards. No new graphic assets: existing repository contains eight authentic project images; avoid filler or unsupported provenance. Added density, clipping and curved path regression assertions. Visual review and candidate CI pending; increased activity may distract, so this is a separate experiment.

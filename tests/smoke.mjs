@@ -93,7 +93,7 @@ try{
   await trail.mouse.move(50,200);
   for(let i=1;i<=8;i++){await trail.mouse.move(50+i*70,200+(i%2)*70);await trail.waitForTimeout(80);}
   const impressions=await trail.locator(".image-trail__item").count();
-  assert(impressions>0 && impressions<=6,"trail bounds: "+impressions);
+  assert(impressions>=5 && impressions<=10,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
   // Foreground content must paint above images, even on coarse-pointer devices.
@@ -112,7 +112,15 @@ try{
     const matrix=new DOMMatrixReadOnly(style.transform);
     return style.borderRadius==="0px" && Math.abs(matrix.b)<1e-6 && Math.abs(matrix.c)<1e-6;
   })));
+  const motion=await trail.locator(".image-trail__item").first().evaluate(e=>e.getAnimations()[0].effect.getKeyframes());
+  assert(motion[0].clipPath!=="inset(0px)","directional reveal must animate clipping");
+  assert(motion.some(k=>Number(k.opacity)===1),"images must reach original opacity");
   await trail.screenshot({path:"qa-screenshots/image-trail-1440.png"});
+  await trail.keyboard.press("Escape");
+  await trail.mouse.move(25,150);
+  await trail.mouse.move(45,150);
+  await trail.mouse.move(45,170);
+  assert.equal(await trail.locator(".image-trail__item").count(),1,"40px curved travel should emit despite 28px net displacement");
   // A visible trail must not obscure the next keyboard focus or hovered link.
   await trail.keyboard.press("Tab");
   assert.equal(await trail.locator(".image-trail__item").count(),0);
@@ -163,7 +171,7 @@ try{
   for(const x of [75,125,175,225]){await touchEvent("touchMove",x,70);await phone.waitForTimeout(95);}
   await touchEvent("touchEnd",225,70);
   const mobileCount=await phone.locator(".image-trail__item").count();
-  assert(mobileCount>0 && mobileCount<=3,"mobile trail count "+mobileCount);
+  assert(mobileCount>=3 && mobileCount<=5,"mobile trail count "+mobileCount);
   await phone.screenshot({path:"qa-screenshots/touch-trail-390.png"});
   await phone.waitForTimeout(1200);
   await touchEvent("touchStart",25,650);
