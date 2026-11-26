@@ -61,3 +61,7 @@ User reported the central block from the previous reading-column mask. Remove al
 ## Restore full-strength background imagery (2026-11-26)
 
 User reported that the 48% global opacity whitened the trail. Restore the layer to opacity 1; individual images retain their original animated opacity and fade. Keep the foreground stacking, transparent content, no mask, glyph-level text halo, and touch behavior. Updated browser assertion requires full layer opacity; visual contrast over high-contrast images requires review. Cache key bumped. No other visual changes.
+
+## Original-layout inline expansion
+
+User preferred the original three-column composition to the accordion redesign. Preserve the original homepage markup, typography, selected projects, descriptions and responsive grid; insert hidden full-width panels below the grid and Recently section. Existing project links progressively enhance to open a single record, and All links expand the whole category. Hashes are shareable; close restores the initiating link focus; old archive URLs remain functional and no-JS navigation unchanged. All 23 records copied unchanged from source archives, including evidence and diagrams. No image trail changes. Static ID and record checks performed; browser CI and live visual review pending.
