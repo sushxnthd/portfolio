@@ -15,7 +15,7 @@
   document.body.append(layer);
   const ready = new Map();
   const items = new Map();
-  let primed = false, index = 0, last = null, lastTime = 0;
+  let primed = false, index = 0, last = null, lastTime = 0, distance = 0, anchor = null;
   const enabled = () => preferred && media.matches && !reduce.matches && !document.hidden;
   function prime() {
     if (primed) return;
@@ -39,6 +39,8 @@
     for (const node of items.keys()) discard(node);
     last = null;
     lastTime = 0;
+    distance = 0;
+    anchor = null;
   }
   function sync() {
     toggle.hidden = !media.matches || reduce.matches;
@@ -84,13 +86,16 @@
       return;
     }
     const now = performance.now(), x = event.clientX, y = event.clientY;
-    if (!last) { last = {x,y}; return; }
-    const dx = x-last.x, dy = y-last.y;
-    if (Math.hypot(dx,dy) < 66 || now-lastTime < 62) return;
-    last = {x,y}; lastTime = now;
+    if (!last) { last = anchor = {x,y}; return; }
+    distance += Math.hypot(x-last.x,y-last.y);
+    last = {x,y};
+    if (distance < 66 || now-lastTime < 62) return;
+    // Preserve the original cadence and cap; never replay accumulated images.
+    const dx = x-anchor.x, dy = y-anchor.y;
+    anchor = {x,y}; distance = 0; lastTime = now;
     spawn(x,y,dx,dy);
   }, {passive:true});
-  document.documentElement.addEventListener("pointerleave", () => { last = null; });
+  document.documentElement.addEventListener("pointerleave", () => { last = anchor = null; distance = 0; });
   window.addEventListener("pointerdown", clear, {passive:true});
   window.addEventListener("blur", clear);
   document.addEventListener("focusin", clear);
