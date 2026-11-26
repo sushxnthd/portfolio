@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   // Pointer-responsive image impressions, using locally stored project assets.
-  const sources = ["assets/trail/somno.png","assets/trail/hush.webp","assets/trail/kernellum-die.svg","assets/trail/greengroove.webp","assets/trail/somno-pvt.png","assets/trail/hush-dawn.webp","assets/trail/kernellum-routing.svg","assets/trail/greengroove-social.png","assets/trail/kernellum-measurement.svg","assets/trail/kernellum-timing.svg","assets/trail/hush-laptop.svg","assets/trail/greengroove-architecture.svg"];
+  const sources = ["assets/trail/approved/kernellum-exploded.webp","assets/trail/approved/hush-botanical.webp","assets/trail/approved/hush-archive.webp","assets/trail/approved/greengroove-band.webp","assets/trail/approved/greengroove-identity.webp","assets/trail/approved/kernellum-board.webp","assets/trail/approved/copycat-pixel.webp","assets/trail/approved/somno-interface.webp","assets/trail/approved/kernellum-optical.webp","assets/trail/approved/kernellum-macro.webp"];
   const media = window.matchMedia("(hover: hover) and (pointer: fine)");
   const touch = window.matchMedia("(any-pointer: coarse)");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");

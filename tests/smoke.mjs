@@ -106,6 +106,14 @@ try{
   assert.equal(await darkNoJS.locator(".theme-control").isVisible(),false);
   await darkNoJS.close();
 
+  // Decode all ten user-approved images and check their expected dimensions.
+  const approvedPaths=["assets/trail/approved/kernellum-exploded.webp","assets/trail/approved/hush-botanical.webp","assets/trail/approved/hush-archive.webp","assets/trail/approved/greengroove-band.webp","assets/trail/approved/greengroove-identity.webp","assets/trail/approved/kernellum-board.webp","assets/trail/approved/copycat-pixel.webp","assets/trail/approved/somno-interface.webp","assets/trail/approved/kernellum-optical.webp","assets/trail/approved/kernellum-macro.webp"];
+  const approvedDimensions=[[481,640],[640,640],[424,453],[640,501],[640,245],[640,501],[640,640],[640,286],[554,554],[640,640]];
+  const art=await browser.newPage();
+  await art.goto(base);
+  const decoded=await art.evaluate(async paths=>Promise.all(paths.map(async src=>{const img=new Image();img.src=src;await img.decode();return [img.naturalWidth,img.naturalHeight];})),approvedPaths);
+  assert.deepEqual(decoded,approvedDimensions);
+  await art.close();
   // Desktop mouse trail: actual local image impressions, bounded count, fade,
   // pointer transparency, Escape, persistent opt-out and reduced motion.
   const trail=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark",reducedMotion:"no-preference"});
@@ -118,6 +126,7 @@ try{
   const impressions=await trail.locator(".image-trail__item").count();
   assert(impressions>=5 && impressions<=10,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
+  assert(await trail.locator(".image-trail__item").evaluateAll((nodes,paths)=>nodes.every(e=>paths.includes(e.getAttribute("src"))),approvedPaths),"only user-approved artwork appears");
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
   // User prefers foreground image impressions and unshadowed type.
   const verifyTrailLayer=async page=>{
