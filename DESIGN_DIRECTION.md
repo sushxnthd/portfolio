@@ -77,3 +77,7 @@ User requested all changes be published only to the main website; remove separat
 ## Revert inline expansion (2026-11-26)
 
 User requested reversal of expanding section aesthetic. Restore original three-column homepage and direct archive navigation. Preserve kinetic trail, full-opacity background layer, themes, 23 archive records, and production-only Pages workflow. Retain redirects for project hashes and newly introduced all-category hashes. Reuse previously passing kinetic regression suite; new release CI and deployment pending.
+
+## Restore preferred inline expansion (2026-11-26)
+
+User clarified that the original three-column layout with clickable inline-expanding project and category details was the preferred version. The preceding reversal was a misunderstanding. Restore the exact previously consolidated inline implementation and combined kinetic regression suite, bump cache keys, retain production-only deployment, and keep the existing archive URLs for compatibility. No changes to image trail, typography, or collapsed composition. New release CI and deployment pending.
