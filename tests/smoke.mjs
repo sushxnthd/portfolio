@@ -24,6 +24,10 @@ try{
     page.on("pageerror",e=>errors.push(e.message));
     await inspect(page,"",23);
     assert.equal(await page.locator(".work-section").count(),4);
+    assert.equal(await page.locator(".featured-list li").count(),3);
+    assert.equal(await page.locator(".featured-list .featured-link[href^='https://']").count(),3);
+    assert(await page.locator(".featured-work").isVisible());
+    assert(await page.locator(".featured-list").evaluate(e=>e.scrollWidth<=e.clientWidth+1));
     assert.equal(await page.locator(".work-section[open]").count(),0);
     assert.equal(await page.locator(".recent-list li").count(),3);
     assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
@@ -33,6 +37,11 @@ try{
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
     await page.keyboard.press("Tab");
     assert.equal(await page.evaluate(()=>document.activeElement.className),"skip");
+    await page.locator('.featured-description a[href="#copycat"]').click();
+    await page.waitForURL("**/#copycat");
+    assert(await page.locator("#copycat").isVisible());
+    await page.locator("#research > summary").click();
+    assert.equal(await page.locator("#copycat").isVisible(),false);
     await page.locator("#research > summary").click();
     assert(await page.locator("#copycat").isVisible());
     assert.equal(new URL(page.url()).pathname,"/");
