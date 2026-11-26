@@ -57,3 +57,7 @@ User feedback: the moving images must be in the background, not over the text. R
 ## Continuous background trail (2026-11-26)
 
 User reported the central block from the previous reading-column mask. Remove all spatial masking and use a uniform 48% layer across the viewport; retain foreground stacking and transparent content. A small theme-colored text shadow is limited to glyphs rather than a panel. Existing image motion and touch gestures are untouched. Tradeoff: margins are less intense than before, but the full image remains visible as it crosses the center. Updated browser assertions require no mask, uniform opacity and transparent foreground. Visual contrast and physical-device review still pending. Production release also adds a Pages artifact visibility check to mitigate the previously observed upload-to-deploy race.
+
+## Restore full-strength background imagery (2026-11-26)
+
+User reported that the 48% global opacity whitened the trail. Restore the layer to opacity 1; individual images retain their original animated opacity and fade. Keep the foreground stacking, transparent content, no mask, glyph-level text halo, and touch behavior. Updated browser assertion requires full layer opacity; visual contrast over high-contrast images requires review. Cache key bumped. No other visual changes.

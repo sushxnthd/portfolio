@@ -123,7 +123,7 @@ html{background:var(--bg)}
 /* Content paints above the decorative layer; the background stays below both. */
 .home{position:relative;z-index:1}
 .skip{z-index:2}
-.image-trail{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none;contain:strict;opacity:.48}
+.image-trail{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none;contain:strict;opacity:1}
 /* One uninterrupted background plane. A tight glyph halo preserves readability without masking the column. */
 .home h1,.home h2,.home p,.home li,.home footer{text-shadow:0 0 2px var(--bg),0 0 4px var(--bg)}
 .image-trail__item{position:absolute;display:block;width:var(--trail-width,156px);max-height:180px;height:auto;object-fit:contain;transform-origin:center;pointer-events:none;will-change:transform,opacity;box-shadow:0 5px 24px #0002;border-radius:0}
