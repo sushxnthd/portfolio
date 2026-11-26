@@ -73,3 +73,7 @@ User requested more impressions and special effects. Compare desktop spacing 66â
 ## Single production website consolidation
 
 User requested all changes be published only to the main website; remove separate preview deployment from Pages, retain historical Git branches solely for internal reference. Original-layout inline candidate 9aabf5f passed CI (45777325373); kinetic candidate 345448b passed CI (45768997712). Combine their runtime changes and smoke assertions atomically on main. Combined CI and Pages verification pending. Retain old archive URLs as backwards-compatible content, not separate design versions.
+
+## Revert inline expansion (2026-11-26)
+
+User requested reversal of expanding section aesthetic. Restore original three-column homepage and direct archive navigation. Preserve kinetic trail, full-opacity background layer, themes, 23 archive records, and production-only Pages workflow. Retain redirects for project hashes and newly introduced all-category hashes. Reuse previously passing kinetic regression suite; new release CI and deployment pending.
