@@ -23,27 +23,25 @@ try{
     const page=await browser.newPage({viewport:{width,height},reducedMotion:"reduce"});
     page.on("pageerror",e=>errors.push(e.message));
     await inspect(page,"",23);
-    assert.equal(await page.locator(".home-list li").count(),12);
-    assert.equal(await page.locator(".inline-panel:not([hidden])").count(),0);
+    assert.equal(await page.locator(".work-section").count(),4);
+    assert.equal(await page.locator(".work-section[open]").count(),0);
     assert.equal(await page.locator(".recent-list li").count(),3);
     assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
-    assert.equal(await page.locator(".home-list li p").first().evaluate(el=>getComputedStyle(el).fontSize),"14px");
-    assert.equal(await page.locator(".home-columns").evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?1:3);
+    assert.equal(await page.locator(".work-preview").first().evaluate(el=>getComputedStyle(el).fontSize),"13px");
+    assert.equal(await page.locator(".work-summary").first().evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?2:3);
     assert.equal(await page.evaluate(()=>document.fonts.check("italic 450 17px Newsreader")),true);
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
     await page.keyboard.press("Tab");
     assert.equal(await page.evaluate(()=>document.activeElement.className),"skip");
-    await page.locator('#selected-copycat a').click();
+    await page.locator("#research > summary").click();
+    assert(await page.locator("#copycat").isVisible());
+    assert.equal(new URL(page.url()).pathname,"/");
+    if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/expanded-"+width+".png",fullPage:true});
+    await page.locator("#research > summary").click();
+    assert.equal(await page.locator("#copycat").isVisible(),false);
+    await page.locator('.recent-list a[href="#copycat"]').click();
     await page.waitForURL("**/#copycat");
     assert(await page.locator("#copycat").isVisible());
-    assert.equal(await page.locator(".inline-panel .record:visible").count(),1);
-    assert.equal(new URL(page.url()).pathname,"/");
-    if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/inline-expanded-"+width+".png",fullPage:true});
-    await page.locator("#inline-research .inline-close").click();
-    assert.equal(await page.locator(".inline-panel:visible").count(),0);
-    await page.locator("#research .more a").click();
-    assert.equal(await page.locator("#inline-research .record:visible").count(),10);
-    await page.locator("#inline-research .inline-close").click();
     for(const [url,count] of Object.entries(archives)){
       await inspect(page,url,count);
       assert.equal(await page.locator(".archive-nav [aria-current=page]").count(),1);
@@ -52,6 +50,7 @@ try{
     }
     await page.goto(base+"#somno");
     await page.waitForURL("**/#somno");
+    assert(await page.locator("#projects").evaluate(e=>e.open));
     assert.match(await page.locator("#somno").innerText(),/Android v27/);
     await page.locator("#somno summary").click();
     assert(await page.locator("#somno figure").isVisible());
@@ -59,7 +58,7 @@ try{
   }
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
   await inspect(nojs,"",23);
-  await nojs.locator('#selected-copycat a').click();
+  await nojs.locator("#research > summary").click();
   assert(await nojs.locator("#copycat").isVisible());
   await nojs.close();
   for (const colorScheme of ["light","dark"]) {
@@ -136,7 +135,7 @@ try{
   await trail.mouse.move(40,180);
   await trail.mouse.move(140,180);
   assert(await trail.locator(".image-trail__item").count()>0);
-  await trail.locator("#selected-copycat a").hover();
+  await trail.locator(".intro a").hover();
   assert.equal(await trail.locator(".image-trail__item").count(),0);
   await trail.mouse.move(40,180);
   await trail.mouse.move(140,180);

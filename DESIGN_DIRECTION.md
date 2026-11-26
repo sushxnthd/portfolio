@@ -81,3 +81,7 @@ User requested reversal of expanding section aesthetic. Restore original three-c
 ## Restore preferred inline expansion (2026-11-26)
 
 User clarified that the original three-column layout with clickable inline-expanding project and category details was the preferred version. The preceding reversal was a misunderstanding. Restore the exact previously consolidated inline implementation and combined kinetic regression suite, bump cache keys, retain production-only deployment, and keep the existing archive URLs for compatibility. No changes to image trail, typography, or collapsed composition. New release CI and deployment pending.
+
+## Restore native one-page disclosures (2026-11-26)
+
+User explicitly identified the original one-page format at 42789cf, not the three-column inline hybrid. Restore its four native expandable sections, full-width content, all 23 entries, direct hashes, no-JS disclosure, and reduced-motion entrance behavior. Preserve the current kinetic trail (v6), dark/light themes, production-only deployment, and legacy archive URLs. Support previously introduced all-category hashes. Original one-page candidate CI passed (45770003935); combined release regression and deployment pending.
