@@ -25,13 +25,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+        with:
+          fetch-depth: 0
+
+      - name: Assemble production and pinned public previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          site="$RUNNER_TEMP/portfolio-site"
+          mkdir -p "$site"
+          git archive HEAD | tar -x -C "$site"
+          mkdir -p "$site/previews"
+          while read -r slug branch revision; do
+            git fetch --no-tags origin "refs/heads/$branch"
+            git cat-file -e "$revision^{commit}"
+            mkdir -p "$site/previews/$slug"
+            git archive "$revision" | tar -x -C "$site/previews/$slug"
+            test -f "$site/previews/$slug/index.html"
+          done <<'PREVIEW_REFS'
+          trail-path-spacing design/trail-path-spacing cf89f9da1c264302d5a5c75b7e01a0a4c7e5861b
+          trail-reading-safety design/trail-reading-safety 220b8a75fe69964eebdc483aebd342b925a3ed0d
+          fieldnotes redesign/fieldnotes-oct23 e0402ab7a409bb542186ad451a0b26ce4262f835
+          proof-of-work redesign/haa-proof-of-work-2026 d6023a0f32134191baa2a1b1f595303aaaeb1ff0
+          horizontal-stage redesign/rauno-structure-v2 da1912de7e7f734551aaab9700dcc9b879173e93
+          PREVIEW_REFS
+          python3 - "$site/previews" <<'PY'
+          from pathlib import Path
+          import re, sys
+          root = Path(sys.argv[1])
+          for page in root.rglob("*.html"):
+              source = page.read_text(encoding="utf-8")
+              source = re.sub(r"(<head\b[^>]*>)", r'\1<meta name="robots" content="noindex, nofollow">', source, count=1, flags=re.I)
+              page.write_text(source, encoding="utf-8")
+          (root / "index.html").write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Portfolio design archive</title><style>body{color:#222;background:#fff;font:16px/1.6 system-ui,sans-serif;max-width:640px;margin:80px auto;padding:0 24px}a{color:inherit}li{margin:16px 0}small{display:block;color:#666}@media(prefers-color-scheme:dark){body{background:#151515;color:#ddd}small{color:#aaa}}</style></head><body><main><h1>Design archive</h1><p>Public experimental snapshots, not the approved production portfolio. Historical content may differ.</p><p><a href="../">Current production</a></p><ul><li><a href="trail-path-spacing/">Cumulative cursor path</a><small>Latest motion experiment · cf89f9d</small></li><li><a href="trail-reading-safety/">Reading-safe trail</a><small>220b8a7</small></li><li><a href="fieldnotes/">Fieldnotes</a><small>Historical concept · e0402ab</small></li><li><a href="proof-of-work/">Proof of work</a><small>Historical concept · d6023a0</small></li><li><a href="horizontal-stage/">Horizontal stage</a><small>Historical concept · da1912d</small></li></ul></main></body></html>''', encoding="utf-8")
+          PY
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "."
+          path: ${{ runner.temp }}/portfolio-site
 
       - name: Deploy to GitHub Pages
         id: deployment
