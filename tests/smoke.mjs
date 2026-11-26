@@ -101,7 +101,9 @@ try{
     const layer=await page.locator(".image-trail").evaluate(e=>({z:Number(getComputedStyle(e).zIndex),mask:getComputedStyle(e).maskImage,opacity:Number(getComputedStyle(e).opacity)}));
     const foreground=await page.locator(".home").evaluate(e=>({z:Number(getComputedStyle(e).zIndex),position:getComputedStyle(e).position}));
     assert(foreground.z>layer.z && foreground.position!=="static","trail must paint behind content");
-    assert(layer.mask.includes("linear-gradient") || layer.opacity<=.08,"reading-column contrast veil or fallback required");
+    assert.equal(layer.mask,"none","trail must not disappear under a central mask");
+    assert(layer.opacity>=.4 && layer.opacity<=.6,"uniform background opacity");
+    assert.equal(await page.locator(".home").evaluate(e=>getComputedStyle(e).backgroundColor),"rgba(0, 0, 0, 0)","foreground must not create an opaque panel");
     assert.equal(await page.locator(".skip").evaluate(e=>Number(getComputedStyle(e).zIndex)>Number(getComputedStyle(document.querySelector(".home")).zIndex)),true);
   };
   await verifyTrailLayer(trail);
