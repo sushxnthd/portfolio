@@ -135,6 +135,37 @@ try{
   assert.equal(await reduced.locator(".image-trail__item").count(),0);
   await reduced.close();
 
+  // Touch input: tap, horizontal gesture, native vertical scroll and reduced motion.
+  const phone=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:"no-preference"});
+  phone.on("pageerror",e=>errors.push(e.message));
+  await phone.goto(base);
+  await phone.waitForLoadState("networkidle");
+  assert(await phone.locator(".trail-toggle").isVisible());
+  await phone.touchscreen.tap(25,70);
+  assert.equal(await phone.locator(".image-trail__item").count(),1);
+  await phone.waitForTimeout(1200);
+  assert.equal(await phone.locator(".image-trail__item").count(),0);
+  const cdp=await phone.context().newCDPSession(phone);
+  const touchEvent=(type,x,y)=>cdp.send("Input.dispatchTouchEvent",{type,touchPoints:type==="touchEnd"?[]:[{x,y,id:0}]});
+  await touchEvent("touchStart",25,70);
+  for(const x of [75,125,175,225]){await touchEvent("touchMove",x,70);await phone.waitForTimeout(95);}
+  await touchEvent("touchEnd",225,70);
+  const mobileCount=await phone.locator(".image-trail__item").count();
+  assert(mobileCount>0 && mobileCount<=3,"mobile trail count "+mobileCount);
+  await phone.screenshot({path:"qa-screenshots/touch-trail-390.png"});
+  await phone.waitForTimeout(1200);
+  await touchEvent("touchStart",25,650);
+  for(const y of [580,500,420,340]){await touchEvent("touchMove",25,y);await phone.waitForTimeout(95);}
+  await touchEvent("touchEnd",25,340);
+  await phone.waitForTimeout(300);
+  assert(await phone.evaluate(()=>scrollY)>0,"vertical scrolling must stay native");
+  assert.equal(await phone.locator(".image-trail__item").count(),0);
+  await phone.emulateMedia({reducedMotion:"reduce"});
+  assert.equal(await phone.locator(".trail-toggle").isVisible(),false);
+  await phone.touchscreen.tap(25,70);
+  assert.equal(await phone.locator(".image-trail__item").count(),0);
+  await phone.close();
+
   assert.deepEqual(errors,[]);
   console.log("QUIET_PORTFOLIO_SMOKE_PASS");
 }finally{await browser.close();}
