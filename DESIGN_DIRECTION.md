@@ -105,3 +105,7 @@ Official admissions and FAQ (https://theacademysf.com/admissions and https://the
 ## Promotion verification (2026-11-26)
 
 Foreground trail and attempt-specific Pages artifact fix verified: main CI 45816642228 and deployment 45816642206 succeeded; live homepage returned HTTP 200 with one-page-4 stylesheet. Technical process candidate 37b2e3b passed browser CI 45816564416. Promote its four changed files onto 9b8c9ae, retaining the deployment workflow fix. HAA admissions and FAQ rechecked: proof of work and accurate collaborative contributions remain the priority. Combined main CI and deployment pending; no visual inspection claimed.
+
+## Original trail artwork / Edition 01
+
+User requested every trail graphic be designed from scratch using Pinterest inspiration. Replaced the active 12-image list with twelve original, locally served vector concept plates; see TRAIL_ART_DIRECTION.md for palette, reference research, scope boundaries and inventory. Added all-asset decode and contact-sheet tests. Preserve existing motion, foreground layer, no text shadows, all 23 records and both themes. No external art copied, no invented measurements. Candidate tests and actual visual review pending. No separate public preview.

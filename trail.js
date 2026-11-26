@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   // Pointer-responsive image impressions, using locally stored project assets.
-  const sources = ["assets/trail/somno.png","assets/trail/hush.webp","assets/trail/kernellum-die.svg","assets/trail/greengroove.webp","assets/trail/somno-pvt.png","assets/trail/hush-dawn.webp","assets/trail/kernellum-routing.svg","assets/trail/greengroove-social.png","assets/trail/kernellum-measurement.svg","assets/trail/kernellum-timing.svg","assets/trail/hush-laptop.svg","assets/trail/greengroove-architecture.svg"];
+  const sources = ["assets/trail/edition/01-somno-readiness.svg","assets/trail/edition/02-somno-reaction.svg","assets/trail/edition/03-hush-boundary.svg","assets/trail/edition/04-hush-device.svg","assets/trail/edition/05-kernellum-die.svg","assets/trail/edition/06-kernellum-routing.svg","assets/trail/edition/07-kernellum-array.svg","assets/trail/edition/08-kernellum-timing.svg","assets/trail/edition/09-greengroove-retail.svg","assets/trail/edition/10-greengroove-identity.svg","assets/trail/edition/11-greengroove-architecture.svg","assets/trail/edition/12-copycat-verification.svg"];
   const media = window.matchMedia("(hover: hover) and (pointer: fine)");
   const touch = window.matchMedia("(any-pointer: coarse)");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");

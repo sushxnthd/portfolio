@@ -106,6 +106,25 @@ try{
   assert.equal(await darkNoJS.locator(".theme-control").isVisible(),false);
   await darkNoJS.close();
 
+  // Verify all twelve original vector plates decode and capture a private QA contact sheet.
+  const art=await browser.newPage({viewport:{width:1000,height:1000}});
+  await art.goto(base);
+  const artPaths=["assets/trail/edition/01-somno-readiness.svg","assets/trail/edition/02-somno-reaction.svg","assets/trail/edition/03-hush-boundary.svg","assets/trail/edition/04-hush-device.svg","assets/trail/edition/05-kernellum-die.svg","assets/trail/edition/06-kernellum-routing.svg","assets/trail/edition/07-kernellum-array.svg","assets/trail/edition/08-kernellum-timing.svg","assets/trail/edition/09-greengroove-retail.svg","assets/trail/edition/10-greengroove-identity.svg","assets/trail/edition/11-greengroove-architecture.svg","assets/trail/edition/12-copycat-verification.svg"];
+  const artResults=await art.evaluate(async paths=>Promise.all(paths.map(async src=>{
+    const img=new Image();img.src=src;await img.decode();
+    return {src,w:img.naturalWidth,h:img.naturalHeight};
+  })),artPaths);
+  assert.equal(artResults.length,12);
+  assert(artResults.every(a=>a.w>=360&&a.h>=320),"every original plate must decode at intended dimensions");
+  await art.evaluate(paths=>{
+    document.body.innerHTML="";
+    const grid=document.createElement("div");
+    grid.style.cssText="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:24px;background:#555";
+    for(const src of paths){const img=new Image();img.src=src;img.style.cssText="width:100%;height:210px;object-fit:contain";grid.append(img);}
+    document.body.append(grid);
+  },artPaths);
+  await art.screenshot({path:"qa-screenshots/trail-art-contact-sheet.png",fullPage:true});
+  await art.close();
   // Desktop mouse trail: actual local image impressions, bounded count, fade,
   // pointer transparency, Escape, persistent opt-out and reduced motion.
   const trail=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark",reducedMotion:"no-preference"});
@@ -118,6 +137,7 @@ try{
   const impressions=await trail.locator(".image-trail__item").count();
   assert(impressions>=5 && impressions<=10,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
+  assert(await trail.locator(".image-trail__item").evaluateAll(nodes=>nodes.every(e=>e.getAttribute("src").startsWith("assets/trail/edition/"))));
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
   // User prefers foreground image impressions and unshadowed type.
   const verifyTrailLayer=async page=>{
