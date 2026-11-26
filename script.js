@@ -1,7 +1,21 @@
-// Preserve older incoming project hashes after moving records to dedicated pages.
+// Open native disclosure ancestors for shareable project hashes and in-page links.
 (() => {
-  const legacy = {"copycat":"research/#copycat","crzne":"research/#crzne","scholarqa":"research/#scholarqa","trace-corpus":"research/#trace-corpus","grit":"research/#grit","theorica":"research/#theorica","k1":"research/#k1","lucent":"research/#lucent","noesis":"research/#noesis","vektor":"research/#vektor","somno":"projects/#somno","hush":"projects/#hush","orynt":"projects/#orynt","lattice":"projects/#lattice","open-tools":"projects/#open-tools","agnxiv":"building/#agnxiv","kernellum":"building/#kernellum","greengroove":"building/#greengroove","aiyes":"recognition/#aiyes","qhack":"recognition/#qhack","iris":"recognition/#iris","issdc":"recognition/#issdc","prayaas":"recognition/#prayaas"};
-  let id;
-  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
-  if (Object.prototype.hasOwnProperty.call(legacy,id) && !document.getElementById(id)) location.replace(legacy[id]);
+  function reveal(id) {
+    const target=document.getElementById(id);
+    if (!target) return null;
+    let parent=target.parentElement;
+    while(parent){if(parent instanceof HTMLDetailsElement) parent.open=true;parent=parent.parentElement;}
+    if(target.matches(".work-section")) target.open=true;
+    return target;
+  }
+  function readHash(){try{return decodeURIComponent(location.hash.slice(1));}catch{return "";}}
+  function sync(){const target=reveal(readHash());if(target)requestAnimationFrame(()=>target.scrollIntoView({block:"start"}));}
+  document.addEventListener("click",event=>{
+    const link=event.target instanceof Element && event.target.closest('a[href^="#"]');
+    if(!link||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    let id;try{id=decodeURIComponent(link.hash.slice(1));}catch{return;}
+    reveal(id);
+  });
+  window.addEventListener("hashchange",sync);
+  if(location.hash)sync();
 })();

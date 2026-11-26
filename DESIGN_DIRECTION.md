@@ -61,3 +61,7 @@ User reported the central block from the previous reading-column mask. Remove al
 ## Restore full-strength background imagery (2026-11-26)
 
 User reported that the 48% global opacity whitened the trail. Restore the layer to opacity 1; individual images retain their original animated opacity and fade. Keep the foreground stacking, transparent content, no mask, glyph-level text halo, and touch behavior. Updated browser assertion requires full layer opacity; visual contrast over high-contrast images requires review. Cache key bumped. No other visual changes.
+
+## One-page disclosure prototype
+
+User suggested inline expansion rather than separate navigation. Prototype uses four native details/summary rows (10 research, 3 building, 5 software, 5 recognition records), preserving all 23 archive entries verbatim, evidence links and figures. Selected homepage teasers become concise section summaries; Now, Recently and Connect remain. Section bodies expand across the full reading width. Existing archive URLs remain valid as compatibility pages; main navigation is hash-based, opening ancestors for shared record links. Native disclosures work without JS. Independent expand/collapse permits comparison; reduced-motion disables entry animation. No changes to background imagery or theme. Test suite updated for collapsed state, inline expand/collapse, deep-link opening, old archive access and no-JS disclosure; CI and visual review pending. Publish separately before deciding on production.

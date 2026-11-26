@@ -22,18 +22,25 @@ try{
   for(const [width,height] of [[360,640],[390,844],[768,1024],[1280,800],[1440,900]]){
     const page=await browser.newPage({viewport:{width,height},reducedMotion:"reduce"});
     page.on("pageerror",e=>errors.push(e.message));
-    await inspect(page,"",0);
-    assert.equal(await page.locator(".home-list li").count(),12);
+    await inspect(page,"",23);
+    assert.equal(await page.locator(".work-section").count(),4);
+    assert.equal(await page.locator(".work-section[open]").count(),0);
     assert.equal(await page.locator(".recent-list li").count(),3);
     assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
-    assert.equal(await page.locator(".home-list li p").first().evaluate(el=>getComputedStyle(el).fontSize),"14px");
-    assert.equal(await page.locator(".home-columns").evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?1:3);
+    assert.equal(await page.locator(".work-preview").first().evaluate(el=>getComputedStyle(el).fontSize),"13px");
+    assert.equal(await page.locator(".work-summary").first().evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?2:3);
     assert.equal(await page.evaluate(()=>document.fonts.check("italic 450 17px Newsreader")),true);
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
     await page.keyboard.press("Tab");
     assert.equal(await page.evaluate(()=>document.activeElement.className),"skip");
-    await page.locator('#selected-copycat a').click();
-    await page.waitForURL("**/research/#copycat");
+    await page.locator("#research > summary").click();
+    assert(await page.locator("#copycat").isVisible());
+    assert.equal(new URL(page.url()).pathname,"/");
+    if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/expanded-"+width+".png",fullPage:true});
+    await page.locator("#research > summary").click();
+    assert.equal(await page.locator("#copycat").isVisible(),false);
+    await page.locator('.recent-list a[href="#copycat"]').click();
+    await page.waitForURL("**/#copycat");
     assert(await page.locator("#copycat").isVisible());
     for(const [url,count] of Object.entries(archives)){
       await inspect(page,url,count);
@@ -42,21 +49,22 @@ try{
       if((width===390||width===1440)&&url==="research/")await page.screenshot({path:"qa-screenshots/research-"+width+".png",fullPage:true});
     }
     await page.goto(base+"#somno");
-    await page.waitForURL("**/projects/#somno");
+    await page.waitForURL("**/#somno");
+    assert(await page.locator("#projects").evaluate(e=>e.open));
     assert.match(await page.locator("#somno").innerText(),/Android v27/);
     await page.locator("#somno summary").click();
     assert(await page.locator("#somno figure").isVisible());
     await page.close();
   }
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
-  await inspect(nojs,"",0);
-  await nojs.locator('#selected-copycat a').click();
+  await inspect(nojs,"",23);
+  await nojs.locator("#research > summary").click();
   assert(await nojs.locator("#copycat").isVisible());
   await nojs.close();
   for (const colorScheme of ["light","dark"]) {
     const page=await browser.newPage({viewport:{width:1440,height:900},colorScheme,reducedMotion:"reduce"});
     page.on("pageerror",e=>errors.push(e.message));
-    await inspect(page,"",0);
+    await inspect(page,"",23);
     assert.equal(await page.locator("html").getAttribute("data-theme"),colorScheme);
     assert.equal(await page.locator('.theme-control [data-choice="system"]').getAttribute("aria-pressed"),"true");
     await page.locator('.theme-control [data-choice="dark"]').click();
@@ -74,11 +82,11 @@ try{
     await page.close();
   }
   const darkMobile=await browser.newPage({viewport:{width:390,height:844},colorScheme:"dark"});
-  await inspect(darkMobile,"",0);
+  await inspect(darkMobile,"",23);
   await darkMobile.screenshot({path:"qa-screenshots/dark-home-390.png",fullPage:true});
   await darkMobile.close();
   const darkNoJS=await browser.newPage({viewport:{width:390,height:844},colorScheme:"dark",javaScriptEnabled:false});
-  await inspect(darkNoJS,"",0);
+  await inspect(darkNoJS,"",23);
   assert.equal(await darkNoJS.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(21, 21, 21)");
   assert.equal(await darkNoJS.locator(".theme-control").isVisible(),false);
   await darkNoJS.close();
@@ -87,7 +95,7 @@ try{
   // pointer transparency, Escape, persistent opt-out and reduced motion.
   const trail=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark",reducedMotion:"no-preference"});
   trail.on("pageerror",e=>errors.push(e.message));
-  await inspect(trail,"",0);
+  await inspect(trail,"",23);
   await trail.waitForLoadState("networkidle");
   assert(await trail.locator(".trail-toggle").isVisible());
   await trail.mouse.move(50,200);
@@ -119,7 +127,7 @@ try{
   await trail.mouse.move(40,180);
   await trail.mouse.move(140,180);
   assert(await trail.locator(".image-trail__item").count()>0);
-  await trail.locator("#selected-copycat a").hover();
+  await trail.locator(".intro a").hover();
   assert.equal(await trail.locator(".image-trail__item").count(),0);
   await trail.mouse.move(40,180);
   await trail.mouse.move(140,180);
