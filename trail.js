@@ -4,6 +4,7 @@
   const sources = ["assets/trail/approved/kernellum-exploded.webp","assets/trail/approved/hush-botanical.webp","assets/trail/approved/hush-archive.webp","assets/trail/approved/greengroove-band.webp","assets/trail/approved/greengroove-identity.webp","assets/trail/approved/kernellum-board.webp","assets/trail/approved/copycat-pixel.webp","assets/trail/approved/somno-interface.webp","assets/trail/approved/kernellum-optical.webp","assets/trail/approved/kernellum-macro.webp"];
   const media = window.matchMedia("(hover: hover) and (pointer: fine)");
   const touch = window.matchMedia("(any-pointer: coarse)");
+  const touchCapable = () => touch.matches || navigator.maxTouchPoints > 0 || "ontouchstart" in window;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   const key = "portfolio-image-trail";
   const toggle = document.querySelector(".trail-toggle");
@@ -17,10 +18,11 @@
   const ready = new Map();
   const items = new Map();
   let primed = false, last = null, lastTime = 0, contact = null;
+  let lastTouch = -Infinity;
   let bag = [], previousSource = null;
   let distance = 0, anchor = null;
-  const cadence = {desktop:{spacing:38,interval:34,cap:10},mobile:{spacing:28,interval:42,cap:5}};
-  const enabled = () => preferred && (media.matches || touch.matches) && !reduce.matches && !document.hidden;
+  const cadence = {desktop:{spacing:38,interval:34,cap:10},mobile:{spacing:24,interval:34,cap:6}};
+  const enabled = () => preferred && (media.matches || touchCapable()) && !reduce.matches && !document.hidden;
   function prime() {
     if (primed) return;
     primed = true;
@@ -48,8 +50,8 @@
     anchor = null;
   }
   function sync() {
-    toggle.hidden = !(media.matches || touch.matches) || reduce.matches;
-    document.documentElement.classList.toggle("touch-trail-enabled", enabled() && touch.matches);
+    toggle.hidden = !(media.matches || touchCapable()) || reduce.matches;
+    document.documentElement.classList.toggle("touch-trail-enabled", enabled() && touchCapable());
     toggle.setAttribute("aria-pressed", String(preferred));
     toggle.querySelector(".trail-state").textContent = preferred ? "on" : "off";
     if (!enabled()) clear();
@@ -75,7 +77,7 @@
     const landscape = original.naturalWidth >= original.naturalHeight;
     const speed = Math.hypot(dx,dy);
     const emphasis = Math.min(1.16, 1 + speed / 600);
-    const width = emphasis * (mobile ? (landscape ? Math.min(124, innerWidth * .32) : Math.min(88, innerWidth * .23)) : landscape ? Math.min(182, Math.max(126, innerWidth * .125)) : Math.min(118, Math.max(92, innerWidth * .085)));
+    const width = emphasis * (mobile ? (landscape ? Math.min(146, innerWidth * .37) : Math.min(110, innerWidth * .29)) : landscape ? Math.min(182, Math.max(126, innerWidth * .125)) : Math.min(118, Math.max(92, innerWidth * .085)));
     const height = Math.min(180, width * original.naturalHeight / original.naturalWidth);
     image.style.setProperty("--trail-width", width + "px");
     // Position around the cursor, retaining a small safe margin at the viewport edge.
@@ -103,18 +105,8 @@
   const interactive = target => target instanceof Element && target.closest("a,button,input,textarea,select,summary,[contenteditable],.footer");
   const selecting = () => window.getSelection() && !window.getSelection().isCollapsed;
   window.addEventListener("pointermove", event => {
-    if (event.pointerType === "touch") {
-      if (!contact || event.pointerId !== contact.id) return;
-      if (!enabled() || interactive(document.elementFromPoint(event.clientX,event.clientY)) || selecting()) { clear(); return; }
-      const x = event.clientX, y = event.clientY;
-      const totalX = x-contact.startX, totalY = y-contact.startY;
-      if (Math.abs(totalY) > 12 && Math.abs(totalY) > Math.abs(totalX)) { clear(); return; }
-      if (Math.hypot(totalX,totalY) > 12) contact.moved = true;
-      if (Math.hypot(x-contact.x,y-contact.y) < cadence.mobile.spacing || performance.now()-lastTime < cadence.mobile.interval) return;
-      spawn(x,y,x-contact.x,y-contact.y,true);
-      contact.x=x; contact.y=y; lastTime=performance.now();
-      return;
-    }
+    // Touch uses passive Touch Events, including while the browser scrolls.
+    if (event.pointerType === "touch" || performance.now()-lastTouch < 700) return;
     if (!enabled() || event.pointerType !== "mouse" || event.buttons ||
         event.target.closest("a,button,input,textarea,select,summary,[contenteditable],.footer") ||
         (window.getSelection() && !window.getSelection().isCollapsed)) {
@@ -138,22 +130,48 @@
   }, {passive:true});
   document.documentElement.addEventListener("pointerleave", () => { last = anchor = null; distance = 0; });
   window.addEventListener("pointerdown", event => {
-    if (event.pointerType !== "touch") { clear(); return; }
-    if (!event.isPrimary || !enabled() || interactive(event.target) || selecting()) { clear(); return; }
+    if (event.pointerType !== "touch" && performance.now()-lastTouch >= 700) clear();
+  }, {passive:true});
+  // Native Touch Events continue to report movement during ordinary page scrolling.
+  // Never preventDefault: browser scrolling, pinch zoom and link activation remain native.
+  window.addEventListener("touchstart", event => {
+    lastTouch = performance.now();
+    if (!enabled() || event.touches.length !== 1 || selecting()) { clear(); return; }
+    const t = event.touches[0];
     clear();
-    contact = {id:event.pointerId,x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY,moved:false,time:performance.now()};
+    contact = {id:t.identifier,x:t.clientX,y:t.clientY,startX:t.clientX,startY:t.clientY,moved:false,startedInteractive:!!interactive(event.target)};
+    // Draw immediately on noninteractive content; controls never emit on a tap.
+    if (!contact.startedInteractive) spawn(t.clientX,t.clientY,0,0,true);
+    lastTime = performance.now();
   }, {passive:true});
-  window.addEventListener("pointerup", event => {
-    if (!contact || event.pointerId !== contact.id) return;
-    if (!contact.moved && performance.now()-contact.time < 350 && !interactive(document.elementFromPoint(event.clientX,event.clientY)) && !selecting()) spawn(event.clientX,event.clientY,0,0,true);
-    contact = null;
+  window.addEventListener("touchmove", event => {
+    lastTouch = performance.now();
+    if (!contact || !enabled() || event.touches.length !== 1 || selecting()) { clear(); return; }
+    const t = Array.from(event.touches).find(t=>t.identifier===contact.id);
+    if (!t) { clear(); return; }
+    const x=t.clientX,y=t.clientY,dx=x-contact.x,dy=y-contact.y;
+    if (Math.hypot(x-contact.startX,y-contact.startY)>12) contact.moved=true;
+    const now=performance.now();
+    if (!contact.moved || Math.hypot(dx,dy)<cadence.mobile.spacing || now-lastTime<cadence.mobile.interval) return;
+    const burst=Math.min(2,Math.max(1,Math.floor(Math.hypot(dx,dy)/60)));
+    for(let i=1;i<=burst;i++){
+      const f=i/burst;
+      spawn(contact.x+dx*f,contact.y+dy*f,dx/burst,dy/burst,true,(i-1)*12);
+    }
+    contact.x=x;contact.y=y;lastTime=now;
   }, {passive:true});
-  window.addEventListener("pointercancel", clear, {passive:true});
+  window.addEventListener("touchend", event => {
+    lastTouch=performance.now();
+    if (!event.touches.length) contact=null;
+    else clear();
+  }, {passive:true});
+  window.addEventListener("touchcancel", () => { lastTouch=performance.now(); clear(); }, {passive:true});
+  window.addEventListener("pointercancel", event => { if(event.pointerType!=="touch") clear(); }, {passive:true});
   window.addEventListener("blur", clear);
   document.addEventListener("focusin", clear);
   document.addEventListener("selectionchange", () => { if (getSelection() && !getSelection().isCollapsed) clear(); });
-  window.addEventListener("resize", clear, {passive:true});
-  window.addEventListener("scroll", clear, {passive:true});
+  window.addEventListener("resize", () => { if (!contact && performance.now()-lastTouch>1100) clear(); }, {passive:true});
+  window.addEventListener("scroll", () => { if (!contact && performance.now()-lastTouch>1100) clear(); }, {passive:true});
   document.addEventListener("visibilitychange", sync);
   document.addEventListener("keydown", e => { if (e.key === "Escape" || e.key === "Tab") clear(); });
   toggle.addEventListener("click", () => {

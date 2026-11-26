@@ -130,8 +130,8 @@ html{background:var(--bg)}
 .trail-toggle:hover{color:var(--ink)}
 .trail-toggle:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
 .trail-toggle .trail-state{margin-left:2px;color:var(--ink)}
-/* Only an enabled touch trail takes horizontal gestures; vertical scroll and pinch zoom stay native. */
-@media(any-pointer:coarse){.touch-trail-enabled .home{touch-action:pan-y pinch-zoom}}
+/* Passive touch listeners let the browser handle every native gesture. */
+@media(any-pointer:coarse){.touch-trail-enabled .home{touch-action:auto}}
 @media(prefers-reduced-motion:reduce){.image-trail,.trail-toggle{display:none!important}}
 @media print{.image-trail,.trail-toggle{display:none!important}}
 

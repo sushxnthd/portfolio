@@ -210,6 +210,7 @@ try{
   await verifyTrailLayer(phone);
   await phone.touchscreen.tap(25,70);
   assert.equal(await phone.locator(".image-trail__item").count(),1);
+  assert.equal(await phone.locator(".home").evaluate(e=>getComputedStyle(e).touchAction),"auto");
   await phone.waitForTimeout(1200);
   assert.equal(await phone.locator(".image-trail__item").count(),0);
   const cdp=await phone.context().newCDPSession(phone);
@@ -218,14 +219,16 @@ try{
   for(const x of [75,125,175,225]){await touchEvent("touchMove",x,70);await phone.waitForTimeout(95);}
   await touchEvent("touchEnd",225,70);
   const mobileCount=await phone.locator(".image-trail__item").count();
-  assert(mobileCount>=3 && mobileCount<=5,"mobile trail count "+mobileCount);
+  assert(mobileCount>=3 && mobileCount<=6,"mobile trail count "+mobileCount);
   await phone.screenshot({path:"qa-screenshots/touch-trail-390.png"});
   await phone.waitForTimeout(1200);
   await touchEvent("touchStart",25,650);
   for(const y of [580,500,420,340]){await touchEvent("touchMove",25,y);await phone.waitForTimeout(95);}
   await touchEvent("touchEnd",25,340);
+  assert(await phone.locator(".image-trail__item").count()>0,"vertical finger movement must leave visible impressions");
   await phone.waitForTimeout(300);
   assert(await phone.evaluate(()=>scrollY)>0,"vertical scrolling must stay native");
+  await phone.waitForTimeout(1200);
   assert.equal(await phone.locator(".image-trail__item").count(),0);
   await phone.emulateMedia({reducedMotion:"reduce"});
   assert.equal(await phone.locator(".trail-toggle").isVisible(),false);
