@@ -120,12 +120,10 @@ html{background:var(--bg)}
 @media print{:root,:root[data-theme=dark]{color-scheme:light;--bg:#fff;--ink:#111;--text:#222;--muted:#555;--line:#ddd;--underline:#aaa;--figure-bg:#fff}.theme-control{display:none!important}}
 
 /* An ephemeral portfolio image trail. It is never part of the reading or hit-test tree. */
-/* Content paints above the decorative layer; the background stays below both. */
+/* Decorative images paint over the page, but never capture input or cover the skip link. */
 .home{position:relative;z-index:1}
-.skip{z-index:2}
-.image-trail{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none;contain:strict;opacity:1}
-/* One uninterrupted background plane. A tight glyph halo preserves readability without masking the column. */
-.home h1,.home h2,.home p,.home li,.home footer{text-shadow:0 0 2px var(--bg),0 0 4px var(--bg)}
+.skip{z-index:12}
+.image-trail{position:fixed;inset:0;overflow:hidden;z-index:10;pointer-events:none;user-select:none;contain:strict;opacity:1}
 .image-trail__item{position:absolute;display:block;width:var(--trail-width,156px);max-height:180px;height:auto;object-fit:contain;transform-origin:center;pointer-events:none;will-change:transform,opacity;box-shadow:0 5px 24px #0002;border-radius:0}
 .trail-toggle{appearance:none;border:0;background:none;color:var(--muted);font:inherit;padding:4px 0;cursor:pointer;white-space:nowrap}
 .trail-toggle[hidden]{display:none}

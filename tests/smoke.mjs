@@ -113,15 +113,16 @@ try{
   assert(impressions>=5 && impressions<=10,"trail bounds: "+impressions);
   assert(await trail.locator(".image-trail__item").first().evaluate(e=>e.naturalWidth>0));
   assert.equal(await trail.locator(".image-trail").evaluate(e=>getComputedStyle(e).pointerEvents),"none");
-  // Foreground content must paint above images, even on coarse-pointer devices.
+  // User prefers foreground image impressions and unshadowed type.
   const verifyTrailLayer=async page=>{
     const layer=await page.locator(".image-trail").evaluate(e=>({z:Number(getComputedStyle(e).zIndex),mask:getComputedStyle(e).maskImage,opacity:Number(getComputedStyle(e).opacity)}));
     const foreground=await page.locator(".home").evaluate(e=>({z:Number(getComputedStyle(e).zIndex),position:getComputedStyle(e).position}));
-    assert(foreground.z>layer.z && foreground.position!=="static","trail must paint behind content");
+    assert(layer.z>foreground.z && foreground.position!=="static","trail must paint over content");
+    assert(await page.locator(".intro h1,.intro p,.work-name,.record h3,.footer").evaluateAll(nodes=>nodes.every(e=>getComputedStyle(e).textShadow==="none")),"typography must remain free of text shadows");
     assert.equal(layer.mask,"none","trail must not disappear under a central mask");
     assert.equal(layer.opacity,1,"trail layer must not wash out original image colors");
     assert.equal(await page.locator(".home").evaluate(e=>getComputedStyle(e).backgroundColor),"rgba(0, 0, 0, 0)","foreground must not create an opaque panel");
-    assert.equal(await page.locator(".skip").evaluate(e=>Number(getComputedStyle(e).zIndex)>Number(getComputedStyle(document.querySelector(".home")).zIndex)),true);
+    assert.equal(await page.locator(".skip").evaluate(e=>Number(getComputedStyle(e).zIndex)>Number(getComputedStyle(document.querySelector(".image-trail")).zIndex)),true);
   };
   await verifyTrailLayer(trail);
   assert(await trail.locator(".image-trail__item").evaluateAll(nodes=>nodes.every(node=>{
