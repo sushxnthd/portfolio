@@ -24,6 +24,10 @@ try{
     page.on("pageerror",e=>errors.push(e.message));
     await inspect(page,"",23);
     assert.equal(await page.locator(".work-section").count(),4);
+    assert.equal(await page.locator(".record-heading h2").count(),0);
+    assert.equal(await page.locator(".record-permalink").count(),23);
+    assert.equal(await page.locator(".record-permalink").evaluateAll(links=>links.every(a=>a.hash.slice(1)===a.closest(".record").id)),true);
+    assert.equal(await page.locator(".intro h1").evaluate(el=>getComputedStyle(el).fontSize),width<=620?"21px":"23px");
     assert.equal(await page.locator(".research-process").count(),3);
     assert.equal(await page.locator(".featured-list li").count(),3);
     assert.equal(await page.locator(".featured-list .featured-link[href^='https://']").count(),3);
@@ -41,6 +45,8 @@ try{
     await page.locator('.featured-description a[href="#copycat"]').click();
     await page.waitForURL("**/#copycat");
     assert(await page.locator("#copycat").isVisible());
+    await page.locator("#copycat .record-permalink").click();
+    assert.equal(new URL(page.url()).hash,"#copycat");
     assert.equal(await page.locator("#copycat .reproduce-command").innerText(),"python code/reproduce_headline.py");
     assert(await page.locator("#theorica .research-process").isVisible());
     assert.match(await page.locator("#theorica .research-process").innerText(),/297\/345 → 345\/345/);
