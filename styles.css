@@ -123,12 +123,9 @@ html{background:var(--bg)}
 /* Content paints above the decorative layer; the background stays below both. */
 .home{position:relative;z-index:1}
 .skip{z-index:2}
-.image-trail{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none;contain:strict;opacity:.08;--reading-edge:max(24px,calc(50% - 320px))}
-@media(max-width:360px){.image-trail{--reading-edge:18px}}
-/* Preserve full impressions in the margins, feathering to 8% beneath reading content. */
-@supports ((mask-image:linear-gradient(#000,transparent)) or (-webkit-mask-image:linear-gradient(#000,transparent))){
-.image-trail{opacity:1;--trail-mask:linear-gradient(to right,#000 max(0px,calc(var(--reading-edge) - 32px)),rgb(0 0 0 / .08) var(--reading-edge),rgb(0 0 0 / .08) calc(100% - var(--reading-edge)),#000 min(100%,calc(100% - var(--reading-edge) + 32px)));-webkit-mask-image:var(--trail-mask);mask-image:var(--trail-mask)}
-}
+.image-trail{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none;user-select:none;contain:strict;opacity:.48}
+/* One uninterrupted background plane. A tight glyph halo preserves readability without masking the column. */
+.home h1,.home h2,.home p,.home li,.home footer{text-shadow:0 0 2px var(--bg),0 0 4px var(--bg)}
 .image-trail__item{position:absolute;display:block;width:var(--trail-width,156px);max-height:180px;height:auto;object-fit:contain;transform-origin:center;pointer-events:none;will-change:transform,opacity;box-shadow:0 5px 24px #0002;border-radius:0}
 .trail-toggle{appearance:none;border:0;background:none;color:var(--muted);font:inherit;padding:4px 0;cursor:pointer;white-space:nowrap}
 .trail-toggle[hidden]{display:none}
