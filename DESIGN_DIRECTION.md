@@ -121,3 +121,7 @@ User reports mobile trail not working. Earlier implementation intentionally clea
 ## Full portfolio inventory expansion
 
 User requests every known achievement, project and paper PDF where possible. Cross-check academic CV, current author-reported history, public GitHub repositories and actual available manuscript first pages. Expand to 51 named records with 19 research, 3 building, 11 software and 18 recognition/activity records; nest all 25 public small engineering libraries. Add CopyCAT and Kernellum PDF links and environmental AI preprint, official AIYES award URL. Preserve one-page design, artwork, mobile behavior, existing IDs and matching legacy archives. Paper PDF availability and exact statuses remain incomplete; do not upload private drafts or invent URLs. Regression and Pages pending.
+
+## Canonical author manuscript PDF links
+
+Inspected manuscript title/author and confirmed anyone-reader access on nine existing author PDFs in Google Drive. Add links to forensic inversion and APEX; add seven previously absent research manuscript records (post-hoc calibration, grid isoperimetry, examination anxiety, BR-GCF, Certified RASC, PRISM, Somno framework). Exact titles used for Trace Corpus, GRIT and Boolean quantization. Link Somno to its paper group. Main and legacy archives remain synchronized; 58 records total, 26 research. No private Drive sharing change; no unpublished/coauthored drafts copied to production. Prior inventory CI and deployment both passed. New static and CI checks added; new deployment pending.
