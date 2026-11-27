@@ -116,3 +116,33 @@ Checked public-access permissions (anyone with link, reader) and manuscript text
 - **From Personal Baselines to Safe Decisions: The Somno Framework for Multimodal Functional-Readiness Inference Under Sleep Loss** — [Research report PDF](https://drive.google.com/file/d/1Q2QzIMGMDH2F7DIEHYALRLZjWTAsQvCV/view?usp=drivesdk).
 
 The official CopyCAT and Kernellum repository PDFs remain linked, and the Environmental AI DOI remains distinguished from a direct PDF. GRIT camera-ready variants and the mechanistic-identification and Boolean quantization PDFs were located in the private file library. SplitProof's October 25 INSEF manuscript was located and its title/author verified, but is private. CR-ZNE is coauthored and its shareable final version is not established. Trace Corpus's final camera-ready PDF and the ScholarQA canonical PDF were not verified. No private file links or new public copies were published in this pass. Conference titles cross-checked with the author's public profile, not proceedings verification.
+
+## Project website audit — 27 November 2026
+
+Live HTTP checks returned 200 and matching titles for Somno, Hush (landing and workspace), AgnXiv (landing and verifier), Green Groove, Orynt, Lucent E002 instrument, Kernellum landing and research pages, Green Groove Behance, and all 25 engineering tool demos. Kernellum GitHub Pages redirects to http://kernellum.qd.je/; HTTPS on the custom domain returned a certificate error, so links explicitly label HTTP pending certificate repair. CR-ZNE Pages returned 404 for the root, presentation URL and motion-film page; retain the source repository but remove the unavailable animation URL. Theorica, NOESIS, Vektor, Lattice, CopyCAT and ScholarQA-CS2 conventional Pages addresses returned 404; retain source/paper links rather than infer a website. No separate public site verified for earlier projects without a repository. Demo availability is not evidence of adoption or production readiness.
+
+- [evalrift live demo](https://sushxnthd.github.io/evalrift/)
+- [flowseal-agent live demo](https://sushxnthd.github.io/flowseal-agent/)
+- [shiftglass live demo](https://sushxnthd.github.io/shiftglass/)
+- [trajscope-ai live demo](https://sushxnthd.github.io/trajscope-ai/)
+- [faultmesh-ai live demo](https://sushxnthd.github.io/faultmesh-ai/)
+- [memsieve-agent live demo](https://sushxnthd.github.io/memsieve-agent/)
+- [judgeprobe-ai live demo](https://sushxnthd.github.io/judgeprobe-ai/)
+- [spuriograph live demo](https://sushxnthd.github.io/spuriograph/)
+- [pointworth-ml live demo](https://sushxnthd.github.io/pointworth-ml/)
+- [trainpulse-ml live demo](https://sushxnthd.github.io/trainpulse-ml/)
+- [slicehound live demo](https://sushxnthd.github.io/slicehound/)
+- [residualforge live demo](https://sushxnthd.github.io/residualforge/)
+- [odeweaver live demo](https://sushxnthd.github.io/odeweaver/)
+- [invariantlens live demo](https://sushxnthd.github.io/invariantlens/)
+- [meshstress live demo](https://sushxnthd.github.io/meshstress/)
+- [surrogatescope live demo](https://sushxnthd.github.io/surrogatescope/)
+- [prefixmint live demo](https://sushxnthd.github.io/prefixmint/)
+- [routecraft-llm live demo](https://sushxnthd.github.io/routecraft-llm/)
+- [batchwise-llm live demo](https://sushxnthd.github.io/batchwise-llm/)
+- [quantfrontier live demo](https://sushxnthd.github.io/quantfrontier/)
+- [specdraft-lab live demo](https://sushxnthd.github.io/specdraft-lab/)
+- [protocolloom live demo](https://sushxnthd.github.io/protocolloom/)
+- [contractshrink live demo](https://sushxnthd.github.io/contractshrink/)
+- [morphcheck-ml live demo](https://sushxnthd.github.io/morphcheck-ml/)
+- [orderguard-ml live demo](https://sushxnthd.github.io/orderguard-ml/)

@@ -125,3 +125,7 @@ User requests every known achievement, project and paper PDF where possible. Cro
 ## Canonical author manuscript PDF links
 
 Inspected manuscript title/author and confirmed anyone-reader access on nine existing author PDFs in Google Drive. Add links to forensic inversion and APEX; add seven previously absent research manuscript records (post-hoc calibration, grid isoperimetry, examination anxiety, BR-GCF, Certified RASC, PRISM, Somno framework). Exact titles used for Trace Corpus, GRIT and Boolean quantization. Link Somno to its paper group. Main and legacy archives remain synchronized; 58 records total, 26 research. No private Drive sharing change; no unpublished/coauthored drafts copied to production. Prior inventory CI and deployment both passed. New static and CI checks added; new deployment pending.
+
+## Direct project websites and live demos
+
+Audited project README links and live Pages destinations. Added verified landing pages and workspaces for Hush, Lucent, Kernellum, AgnXiv verifier and Green Groove design portfolio; all 25 small engineering libraries now have individual live demo links alongside source. Kernellum custom-domain HTTPS failed certificate validation; its verified HTTP pages are clearly marked. CR-ZNE hosted animation returned 404; retained repository source only. No invented site URLs, no changes to 58 records or approved artwork/layout. Homepage and legacy archives synchronized. CI and Pages pending.
