@@ -39,6 +39,9 @@ try{
     assert.equal(await page.locator(".work-content a[href^='https://drive.google.com/file/d/']").count(),9);
     assert.equal(await page.locator("#aiyes a[href='https://aiyes.org/fall-2026-winners']").count(),1);
     assert.equal(await page.locator(".featured-list li").count(),3);
+    assert.match(await page.locator(".intro").innerText(),/plausible ideas from reality/);
+    assert.match(await page.locator(".intro").innerText(),/AI should decide where to look, not what is true/);
+    assert.deepEqual(await page.locator(".featured-link").allTextContents(),["Android release ↗","Routed timing report ↗","Live verifier ↗"]);
     assert.equal(await page.locator(".featured-list .featured-link[href^='https://']").count(),3);
     assert.deepEqual(await page.locator(".featured-description h3 a").evaluateAll(a=>a.map(x=>x.getAttribute("href"))),["work/somno/","work/kernellum-k1/","work/agnxiv/"]);
     assert(await page.locator(".featured-work").isVisible());
@@ -111,6 +114,7 @@ try{
       await inspect(page,url,0);
       assert.equal(await page.locator("h1").innerText(),title);
       assert.equal(await page.locator(".case-facts>div").count(),4);
+      assert.match(await page.locator(".case-facts").innerText(),/Role|Sole author/);
       assert(await page.locator("a[href$='CITATION.cff']").count()>0,"public citation link: "+url);
       assert.equal(await page.locator(".case-section>h2").first().evaluate(e=>getComputedStyle(e).fontSize),"15px");
       assert(await page.locator(".case-section").evaluateAll(nodes=>nodes.every(e=>e.scrollWidth<=e.clientWidth+1)),"case section overflow: "+url);
@@ -120,13 +124,18 @@ try{
       assert(await page.locator(".case-evidence li").count()>=4);
       assert.equal(await page.locator(".image-trail").count(),0);
       if(url==="work/somno/"){
+        assert.match(await page.locator(".case-facts").innerText(),/Solo project/);
+        assert.equal(await page.locator("text=Atharv Shukla").count(),0);
+        assert.equal(await page.locator("text=Shourya Veer Singh Rana").count(),0);
+        assert.equal(await page.locator("text=Dev Gahlot").count(),0);
+        assert.match(await page.locator(".case-section").first().innerText(),/Two nights with almost the same sleep/);
         const images=page.locator(".case-phone-grid img");
         assert.equal(await images.count(),3);
         assert(await images.evaluateAll(async nodes=>{await Promise.all(nodes.map(n=>n.decode()));return nodes.every(n=>n.naturalWidth>0&&n.naturalHeight>0&&new URL(n.src).origin===location.origin)}),"Somno local image decode");
         if(width===390){assert(await page.locator(".case-phone-grid").evaluate(e=>e.scrollWidth>e.clientWidth&&getComputedStyle(e).overflowX==="auto"));assert(await images.first().evaluate(e=>e.getBoundingClientRect().width>=220));}
       }
-      if(url==="work/kernellum-k1/"){assert.equal(await page.locator(".bar-list li").count(),12);assert.deepEqual(await page.locator(".bar-list strong").allTextContents(),["14.6%","12.1%","14.5%","12.0%","13.3%","15.1%","13.0%","15.1%","13.3%","15.1%","13.0%","15.1%"]);assert.equal(await page.locator(".case-data tbody tr").count(),12);}
-      if(url==="work/agnxiv/")assert.match(await page.locator(".case-terminal").innerText(),/replayable verdict/);
+      if(url==="work/kernellum-k1/"){assert.match(await page.locator(".case-section").first().innerText(),/expensive reasoning kept happening around the run/);assert.equal(await page.locator(".bar-list li").count(),12);assert.deepEqual(await page.locator(".bar-list strong").allTextContents(),["14.6%","12.1%","14.5%","12.0%","13.3%","15.1%","13.0%","15.1%","13.3%","15.1%","13.0%","15.1%"]);assert.equal(await page.locator(".case-data tbody tr").count(),12);}
+      if(url==="work/agnxiv/"){assert.match(await page.locator(".case-section").first().innerText(),/Computational results can look credible/);assert.match(await page.locator(".case-terminal").innerText(),/replayable verdict/);}
       if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/"+url.split("/")[1]+"-"+width+".png",fullPage:true});
       await page.close();
     }
