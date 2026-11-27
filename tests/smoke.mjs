@@ -140,6 +140,15 @@ try{
       await page.close();
     }
   }
+  const printPage=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark"});
+  await inspect(printPage,"work/somno/",0);
+  await printPage.emulateMedia({media:"print"});
+  assert.equal(await printPage.locator(".case-nav").evaluate(e=>getComputedStyle(e).display),"none");
+  assert.equal(await printPage.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(255, 255, 255)");
+  assert.equal(await printPage.locator(".theme-control").evaluate(e=>getComputedStyle(e).display),"none");
+  assert(await printPage.locator(".case-links a").first().evaluate(e=>getComputedStyle(e,"::after").content!=="none"));
+  await printPage.close();
+
   const nf=await browser.newPage({viewport:{width:390,height:844}});
   const nfResponse=await nf.goto(base+"404.html");
   assert(nfResponse.ok());
