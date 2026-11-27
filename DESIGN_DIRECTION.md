@@ -173,3 +173,7 @@ The screenshot-led release passed geometry checks but browser CI caught an exist
 ## Homepage simplification (2026-11-27)
 
 Removed the Now questions at the user's request. Selected work now flows directly into the expandable archive, with a 28px desktop / 24px mobile gap. Preserve all records, evidence links, case studies, themes and trail.
+
+## Authorship and executable evidence pass (2026-11-27)
+
+Cross-checked public CITATION.cff files for all five proof pages; Somno credits its four named software authors without guessing their personal task split. Added project problem statements, K1's documented offline Route Review demo, AgnXiv's source-reported third-party verification result with narrow verdict boundary, CopyCAT's actual historical denominator/alignment corrections and code provenance, and Theorica's author citation and proposed scaling test. Fixed the remaining remote Somno image and absolute social-preview URL. No invented motivations, individual contributions, users, or licensing decisions. All five citation links tested in browser CI; new exact-head run pending.

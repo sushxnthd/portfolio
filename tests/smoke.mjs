@@ -111,6 +111,7 @@ try{
       await inspect(page,url,0);
       assert.equal(await page.locator("h1").innerText(),title);
       assert.equal(await page.locator(".case-facts>div").count(),4);
+      assert(await page.locator("a[href$='CITATION.cff']").count()>0,"public citation link: "+url);
       assert.equal(await page.locator(".case-section>h2").first().evaluate(e=>getComputedStyle(e).fontSize),"15px");
       assert(await page.locator(".case-section").evaluateAll(nodes=>nodes.every(e=>e.scrollWidth<=e.clientWidth+1)),"case section overflow: "+url);
       assert(await page.locator(".case-facts>div").evaluateAll(nodes=>nodes.every(e=>e.scrollWidth<=e.clientWidth+1)),"case facts overflow: "+url);
