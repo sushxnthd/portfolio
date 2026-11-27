@@ -40,10 +40,12 @@ try{
     assert.equal(await page.locator("#aiyes a[href='https://aiyes.org/fall-2026-winners']").count(),1);
     assert.equal(await page.locator(".featured-list li").count(),3);
     assert.equal(await page.locator(".featured-list .featured-link[href^='https://']").count(),3);
+    assert.deepEqual(await page.locator(".featured-description h3 a").evaluateAll(a=>a.map(x=>x.getAttribute("href"))),["work/somno/","work/kernellum-k1/","work/agnxiv/"]);
     assert(await page.locator(".featured-work").isVisible());
     assert(await page.locator(".featured-list").evaluate(e=>e.scrollWidth<=e.clientWidth+1));
     assert.equal(await page.locator(".work-section[open]").count(),0);
-    assert.equal(await page.locator(".recent-list li").count(),3);
+    assert.equal(await page.locator(".recent-list li").count(),5);
+    assert.equal(await page.locator(".question-list li").count(),3);
     assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
     assert.equal(await page.locator(".work-preview").first().evaluate(el=>getComputedStyle(el).fontSize),"13px");
     assert.equal(await page.locator(".work-summary").first().evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?2:3);
@@ -51,8 +53,7 @@ try{
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
     await page.keyboard.press("Tab");
     assert.equal(await page.evaluate(()=>document.activeElement.className),"skip");
-    await page.locator('.featured-description a[href="#copycat"]').click();
-    await page.waitForURL("**/#copycat");
+    await page.locator("#research > summary").click();
     assert(await page.locator("#copycat").isVisible());
     await page.locator("#copycat .record-permalink").click();
     assert.equal(new URL(page.url()).hash,"#copycat");
@@ -86,6 +87,29 @@ try{
     assert(await page.locator("#somno figure").isVisible());
     await page.close();
   }
+  const flagship=[["work/somno/","Somno"],["work/kernellum-k1/","Kernellum / K1"],["work/agnxiv/","agnXiv"]];
+  for(const [url,title] of flagship){
+    for(const [width,height] of [[390,844],[1440,900]]){
+      const page=await browser.newPage({viewport:{width,height},reducedMotion:"reduce"});
+      page.on("pageerror",e=>errors.push(e.message));
+      await inspect(page,url,0);
+      assert.equal(await page.locator("h1").innerText(),title);
+      assert.equal(await page.locator(".case-facts>div").count(),4);
+      assert(await page.locator(".case-evidence li").count()>=4);
+      assert.equal(await page.locator(".image-trail").count(),0);
+      if(url==="work/somno/")assert.equal(await page.locator(".case-phone-grid img").count(),3);
+      if(url==="work/kernellum-k1/")assert.equal(await page.locator(".bar-list li").count(),12);
+      if(url==="work/agnxiv/")assert.match(await page.locator(".case-terminal").innerText(),/replayable verdict/);
+      if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/"+url.split("/")[1]+"-"+width+".png",fullPage:true});
+      await page.close();
+    }
+  }
+  const nf=await browser.newPage({viewport:{width:390,height:844}});
+  const nfResponse=await nf.goto(base+"definitely-not-here.html");
+  assert.equal(nfResponse.status(),404);
+  assert.equal(await nf.locator("h1").innerText(),"Not here.");
+  await nf.close();
+
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
   await inspect(nojs,"",58);
   await nojs.locator("#research > summary").click();
