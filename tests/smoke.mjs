@@ -33,7 +33,7 @@ try{
     assert.equal(await page.locator("#open-tools .record-figure a[href^='https://sushxnthd.github.io/']").count(),25);
     assert.equal(await page.locator("#hush a[href='https://sushxnthd.github.io/hush/']").count(),1);
     assert.equal(await page.locator("#lucent a[href='https://sushxnthd.github.io/lucent/']").count(),1);
-    assert.equal(await page.locator("#kernellum a[href='http://kernellum.qd.je/']").count(),1);
+    assert.equal(await page.locator('a[href^="http://kernellum.qd.je"]').count(),0);
     assert.equal(await page.locator("#copycat a[href$='.pdf']").count(),2);
     assert.equal(await page.locator("#k1 a[href$='.pdf']").count(),4);
     assert.equal(await page.locator(".work-content a[href^='https://drive.google.com/file/d/']").count(),9);
