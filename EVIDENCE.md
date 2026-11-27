@@ -146,3 +146,11 @@ Live HTTP checks returned 200 and matching titles for Somno, Hush (landing and w
 - [contractshrink live demo](https://sushxnthd.github.io/contractshrink/)
 - [morphcheck-ml live demo](https://sushxnthd.github.io/morphcheck-ml/)
 - [orderguard-ml live demo](https://sushxnthd.github.io/orderguard-ml/)
+
+## Proof-page source pins
+
+- K1 validation data: https://github.com/sushxnthd/kernellum/blob/8cc955b2b247aa44a758170313724d6ff0c91276/results/k1_closed_loop_validation.json. Displayed reductions computed as 100 × (1 − active/initial); raw source values retained in the table.
+- Somno award: https://aiyes.org/fall-2026-winners lists Sushanth Dasari. Team citation is distinct from verified individual contribution.
+- CopyCAT: https://github.com/sushxnthd/copyCAT/blob/195ea0ddca5cba43ac3362cfb2624438d6f98660/README.md
+- Theorica: https://github.com/sushxnthd/theorica/blob/598f678e30fdd83637fcd97e952a4621c0e04d5d/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md
+- AgnXiv: https://github.com/sushxnthd/agnXiv/blob/72fb43454b99eebd6699bdf82a823bc3004573cc/README.md

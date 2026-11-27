@@ -145,3 +145,7 @@ The ScholarQA-CS2 and CR-ZNE repositories currently report private visibility. R
 ### Regression repair
 
 Removed a stale browser assertion that expected the old Recently → #copycat navigation after Recently became a source-linked shipping/research log. Hash auto-open behavior remains covered elsewhere in the suite.
+
+## Evidence precision and secondary research briefs
+
+Corrected all twelve K1 bar labels directly from pinned validation JSON (100*(initial-active)/initial); bar scale now explicitly 0–100%. Added source-value table and timing-audit decision record. Added CopyCAT and Theorica permanent secondary proof pages, leaving the three featured works unchanged. Somno's attribution is conservative: official award lists Sushanth, individual division of team labor remains unverified. Product media pinned to repo commit and descriptive alt metadata; decorative K1 image no longer used as evidence preview. agnXiv explicitly requires GitHub confirmation. Now precedes archive. Legacy archive case links synced. No new personal motives or user traction asserted. CI and Pages pending.

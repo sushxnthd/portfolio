@@ -316,3 +316,8 @@ html{background:var(--bg)}
 @media print{
 .case-study{width:100%;max-width:none;padding:0}.case-nav,.case-footer .theme-control{display:none}.case-header h1{font-size:28pt}.case-section{break-inside:avoid}.case-phone-grid{max-width:520px}.case-links a:after,.case-evidence a:after{content:" (" attr(href) ")";font-size:8pt;color:#555}.bar-track i{background:#777}
 }
+
+/* Evidence presentation: honest quantitative scale, compact technical tables and visible focus. */
+.bar-track i{width:var(--bar)}
+.case-data{margin-top:20px;font-size:13px}.case-data summary{cursor:pointer;color:var(--ink);min-height:28px}.case-data table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px;line-height:1.6}.case-data caption{text-align:left;color:var(--muted);padding:8px 0}.case-data th,.case-data td{border-bottom:1px solid var(--line);text-align:right;padding:6px 3px}.case-data th:first-child{text-align:left;font-weight:500}.case-phone-grid img{object-fit:contain}.home .question-list+.work-index{margin-top:36px}.home #now+.work-index{margin-top:30px}.case-links a,.case-evidence a{min-height:24px;display:inline-block}.case-section :focus-visible{outline-offset:3px}.case-terminal{overflow-wrap:anywhere}.case-study .case-section a{overflow-wrap:anywhere}
+@media print{.case-data:not([open])>table{display:table!important}.case-data summary{display:none}.case-links a:after,.case-evidence a:after{overflow-wrap:anywhere}.case-section{break-inside:auto}.metric-grid,.case-media,.case-data table{break-inside:avoid}}

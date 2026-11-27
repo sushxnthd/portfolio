@@ -84,7 +84,7 @@ try{
     assert(await page.locator("#somno figure").isVisible());
     await page.close();
   }
-  const flagship=[["work/somno/","Somno"],["work/kernellum-k1/","Kernellum / K1"],["work/agnxiv/","agnXiv"]];
+  const flagship=[["work/somno/","Somno"],["work/kernellum-k1/","Kernellum / K1"],["work/agnxiv/","agnXiv"],["work/copycat/","CopyCAT"],["work/theorica/","Theorica"]];
   for(const [url,title] of flagship){
     for(const [width,height] of [[390,844],[1440,900]]){
       const page=await browser.newPage({viewport:{width,height},reducedMotion:"reduce"});
@@ -95,7 +95,7 @@ try{
       assert(await page.locator(".case-evidence li").count()>=4);
       assert.equal(await page.locator(".image-trail").count(),0);
       if(url==="work/somno/")assert.equal(await page.locator(".case-phone-grid img").count(),3);
-      if(url==="work/kernellum-k1/")assert.equal(await page.locator(".bar-list li").count(),12);
+      if(url==="work/kernellum-k1/"){assert.equal(await page.locator(".bar-list li").count(),12);assert.deepEqual(await page.locator(".bar-list strong").allTextContents(),["14.6%","12.1%","14.5%","12.0%","13.3%","15.1%","13.0%","15.1%","13.3%","15.1%","13.0%","15.1%"]);assert.equal(await page.locator(".case-data tbody tr").count(),12);}
       if(url==="work/agnxiv/")assert.match(await page.locator(".case-terminal").innerText(),/replayable verdict/);
       if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/"+url.split("/")[1]+"-"+width+".png",fullPage:true});
       await page.close();
@@ -105,7 +105,7 @@ try{
   const nfResponse=await nf.goto(base+"404.html");
   assert(nfResponse.ok());
   assert.equal(await nf.locator("h1").innerText(),"Not here.");
-  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=haa-1");
+  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=haa-2");
   await nf.close();
 
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
