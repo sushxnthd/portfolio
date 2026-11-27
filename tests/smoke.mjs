@@ -117,7 +117,12 @@ try{
 
       assert(await page.locator(".case-evidence li").count()>=4);
       assert.equal(await page.locator(".image-trail").count(),0);
-      if(url==="work/somno/")assert.equal(await page.locator(".case-phone-grid img").count(),3);
+      if(url==="work/somno/"){
+        const images=page.locator(".case-phone-grid img");
+        assert.equal(await images.count(),3);
+        assert(await images.evaluateAll(async nodes=>{await Promise.all(nodes.map(n=>n.decode()));return nodes.every(n=>n.naturalWidth>0&&n.naturalHeight>0&&new URL(n.src).origin===location.origin)}),"Somno local image decode");
+        if(width===390){assert(await page.locator(".case-phone-grid").evaluate(e=>e.scrollWidth>e.clientWidth&&getComputedStyle(e).overflowX==="auto"));assert(await images.first().evaluate(e=>e.getBoundingClientRect().width>=220));}
+      }
       if(url==="work/kernellum-k1/"){assert.equal(await page.locator(".bar-list li").count(),12);assert.deepEqual(await page.locator(".bar-list strong").allTextContents(),["14.6%","12.1%","14.5%","12.0%","13.3%","15.1%","13.0%","15.1%","13.3%","15.1%","13.0%","15.1%"]);assert.equal(await page.locator(".case-data tbody tr").count(),12);}
       if(url==="work/agnxiv/")assert.match(await page.locator(".case-terminal").innerText(),/replayable verdict/);
       if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/"+url.split("/")[1]+"-"+width+".png",fullPage:true});

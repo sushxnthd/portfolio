@@ -483,3 +483,13 @@ html{background:var(--bg)}
  .case-section{padding:20px 0}
  .case-section>h2{font-size:13pt}
 }
+
+/* Product evidence gallery: local, readable, native swipe rather than tiny thumbnails. */
+.case-phone-grid{align-items:start}
+.case-phone-grid img{width:100%;height:auto;display:block}
+.case-phone-grid:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+@media(max-width:620px){
+ .case-phone-grid{display:grid;grid-auto-flow:column;grid-auto-columns:72%;grid-template-columns:none;gap:12px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--underline) transparent}
+ .case-phone-grid img{scroll-snap-align:start}
+}
+@media print{.case-phone-grid{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;max-width:520px}}

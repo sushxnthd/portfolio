@@ -161,3 +161,7 @@ Align desktop featured titles, current questions, archive summaries and log desc
 ## Screenshot-led editorial finish (2026-11-27)
 
 Reviewed exact-head Chromium screenshots from CI run 46005211824: dark desktop homepage, light mobile homepage, expanded research and K1 case page. Identified small section labels, excess first-screen whitespace, uneven status layout and metric/evidence blocks stopping short of the main edge. Refined name and section typography, tightened vertical rhythm, standardized record headings/status stacking, increased mobile control targets to 44px, spaced log entries and aligned all case-study data blocks. Keep the content and approved trail unchanged. Geometry and overflow regression assertions added. Previous release browser, link and Pages workflows passed. New rendered comparison and physical-device verification pending.
+
+## Somno product media repair (2026-11-27)
+
+The exact-head previous mobile screenshot revealed an empty product gallery. Vendor the three unmodified PNGs from Somno commit d3735185e31f53d5e8892d03febc15a70ee02914 into assets/case/somno; each Git blob SHA matched its pinned source. Remove dependency on remote runtime image requests and lazy loading for this gallery. Desktop retains three columns; mobile uses native horizontal scroll and a 72%-width image so details are visible. Add keyboard focus and a swipe hint, plus actual decode/local-origin and mobile geometry tests. No new imagery or artwork, and no change to the trail.
