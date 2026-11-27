@@ -165,3 +165,7 @@ Reviewed exact-head Chromium screenshots from CI run 46005211824: dark desktop h
 ## Somno product media repair (2026-11-27)
 
 The exact-head previous mobile screenshot revealed an empty product gallery. Vendor the three unmodified PNGs from Somno commit d3735185e31f53d5e8892d03febc15a70ee02914 into assets/case/somno; each Git blob SHA matched its pinned source. Remove dependency on remote runtime image requests and lazy loading for this gallery. Desktop retains three columns; mobile uses native horizontal scroll and a 72%-width image so details are visible. Add keyboard focus and a swipe hint, plus actual decode/local-origin and mobile geometry tests. No new imagery or artwork, and no change to the trail.
+
+## Trail shuffle boundary correction
+
+The screenshot-led release passed geometry checks but browser CI caught an existing nondeterministic repeat when a three-image burst crossed the end of the shuffled ten-image bag. Exclude all images already emitted in the same burst, on desktop and touch. Add repeated burst assertions across cycle boundaries. Artwork, timing, count, motion and layer are unchanged.

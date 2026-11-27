@@ -57,7 +57,7 @@
     if (!enabled()) clear();
     else prime();
   }
-  function spawn(x, y, dx, dy, mobile = false, delay = 0) {
+  function spawn(x, y, dx, dy, mobile = false, delay = 0, burstSources = null) {
     const available = sources.filter(src => ready.has(src));
     if (!available.length) return;
     // Shuffle without repetition; preserve variety even during fast gestures.
@@ -67,7 +67,18 @@
       for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]];}
       if(bag.length>1 && bag[bag.length-1]===previousSource)[bag[0],bag[bag.length-1]]=[bag[bag.length-1],bag[0]];
     }
-    const src = bag.pop();
+    // A burst may straddle a shuffle-cycle boundary. Exclude every source
+    // already used in this burst, not just the immediately preceding source.
+    let index = bag.length - 1;
+    if (burstSources) while(index >= 0 && burstSources.has(bag[index])) index--;
+    let src;
+    if(index >= 0) src = bag.splice(index,1)[0];
+    else {
+      const choices = available.filter(s => !burstSources || !burstSources.has(s));
+      if(!choices.length) return;
+      src = choices[Math.floor(Math.random()*choices.length)];
+    }
+    if(burstSources) burstSources.add(src);
     previousSource = src;
     const original = ready.get(src);
     const image = original.cloneNode();
@@ -122,9 +133,10 @@
     const span = Math.hypot(dx,dy);
     // Fast jumps produce a bounded spatial sequence rather than a single endpoint stamp.
     const burst = Math.min(3,Math.max(1,Math.floor(span/76)));
+    const burstSources = new Set();
     for(let i=1;i<=burst;i++){
       const fraction=i/burst;
-      spawn(anchor.x+dx*fraction,anchor.y+dy*fraction,dx/burst,dy/burst,false,(i-1)*12);
+      spawn(anchor.x+dx*fraction,anchor.y+dy*fraction,dx/burst,dy/burst,false,(i-1)*12,burstSources);
     }
     anchor = {x,y}; distance = 0; lastTime = now;
   }, {passive:true});
@@ -154,9 +166,10 @@
     const now=performance.now();
     if (!contact.moved || Math.hypot(dx,dy)<cadence.mobile.spacing || now-lastTime<cadence.mobile.interval) return;
     const burst=Math.min(2,Math.max(1,Math.floor(Math.hypot(dx,dy)/60)));
+    const burstSources = new Set();
     for(let i=1;i<=burst;i++){
       const f=i/burst;
-      spawn(contact.x+dx*f,contact.y+dy*f,dx/burst,dy/burst,true,(i-1)*12);
+      spawn(contact.x+dx*f,contact.y+dy*f,dx/burst,dy/burst,true,(i-1)*12,burstSources);
     }
     contact.x=x;contact.y=y;lastTime=now;
   }, {passive:true});
