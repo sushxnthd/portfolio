@@ -63,7 +63,7 @@ The calibration, computer-vision, and AI-infrastructure items are presented as r
 
 These are biographical claims reported by the portfolio author, distinct from the public, repository-verifiable experimental metrics above. Public organizer-specific verification links or primary acceptance notices should be attached when available.
 
-- **AIYES Fall 2026 Gold:** Somno; award reported by the author. Organizer: https://www.aiyes.org/. Public individual award citation not yet linked here.
+- **AIYES Fall 2026 Gold:** Somno; official winners page lists Sushanth Dasari. https://aiyes.org/fall-2026-winners
 - **QHack 2026:** 23/23 coding challenges completed; captured leaderboard snapshot showed 13th out of 1,651 teams. Contest information: https://qhack.ai/. This is a **provisional screenshot-based placement**, not a certified final organizer result.
 - **IEEE ICA 2026:** Sole-authored research paper accepted for presentation, as reported by the author. Public proceedings / accepted-paper page not yet linked. Do not equate acceptance with publication or in-person presentation.
 
@@ -119,7 +119,7 @@ The official CopyCAT and Kernellum repository PDFs remain linked, and the Enviro
 
 ## Project website audit — 27 November 2026
 
-Live HTTP checks returned 200 and matching titles for Somno, Hush (landing and workspace), AgnXiv (landing and verifier), Green Groove, Orynt, Lucent E002 instrument, Kernellum landing and research pages, Green Groove Behance, and all 25 engineering tool demos. Kernellum GitHub Pages redirects to http://kernellum.qd.je/; HTTPS on the custom domain returned a certificate error, so links explicitly label HTTP pending certificate repair. CR-ZNE Pages returned 404 for the root, presentation URL and motion-film page; retain the source repository but remove the unavailable animation URL. Theorica, NOESIS, Vektor, Lattice, CopyCAT and ScholarQA-CS2 conventional Pages addresses returned 404; retain source/paper links rather than infer a website. No separate public site verified for earlier projects without a repository. Demo availability is not evidence of adoption or production readiness.
+Live HTTP checks returned 200 and matching titles for Somno, Hush (landing and workspace), AgnXiv (landing and verifier), Green Groove, Orynt, Lucent E002 instrument, Green Groove Behance, and all 25 engineering tool demos. Kernellum’s custom domain has an HTTPS certificate problem, so the public portfolio no longer routes reviewers through that domain and instead uses the working K1 proof page and GitHub evidence. CR-ZNE Pages returned 404 for the root, presentation URL and motion-film page; retain the source repository but remove the unavailable animation URL. Theorica, NOESIS, Vektor, Lattice, CopyCAT and ScholarQA-CS2 conventional Pages addresses returned 404; retain source/paper links rather than infer a website. No separate public site verified for earlier projects without a repository. Demo availability is not evidence of adoption or production readiness.
 
 - [evalrift live demo](https://sushxnthd.github.io/evalrift/)
 - [flowseal-agent live demo](https://sushxnthd.github.io/flowseal-agent/)
@@ -150,7 +150,7 @@ Live HTTP checks returned 200 and matching titles for Somno, Hush (landing and w
 ## Proof-page source pins
 
 - K1 validation data: https://github.com/sushxnthd/kernellum/blob/8cc955b2b247aa44a758170313724d6ff0c91276/results/k1_closed_loop_validation.json. Displayed reductions computed as 100 × (1 − active/initial); raw source values retained in the table.
-- Somno award: https://aiyes.org/fall-2026-winners lists Sushanth Dasari. Team citation is distinct from verified individual contribution.
+- Somno ownership: the AI YES final deck labels the entry an individual submission; the current public `CITATION.cff` lists Sushanth Dasari as the sole software author. Award: https://aiyes.org/fall-2026-winners lists Sushanth Dasari.
 - CopyCAT: https://github.com/sushxnthd/copyCAT/blob/195ea0ddca5cba43ac3362cfb2624438d6f98660/README.md
 - Theorica: https://github.com/sushxnthd/theorica/blob/598f678e30fdd83637fcd97e952a4621c0e04d5d/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md
 - AgnXiv: https://github.com/sushxnthd/agnXiv/blob/72fb43454b99eebd6699bdf82a823bc3004573cc/README.md
