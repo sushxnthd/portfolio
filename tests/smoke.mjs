@@ -27,7 +27,7 @@ try{
     assert.equal(await page.locator(".record-heading h2").count(),0);
     assert.equal(await page.locator(".record-permalink").count(),58);
     assert.equal(await page.locator(".record-permalink").evaluateAll(links=>links.every(a=>a.hash.slice(1)===a.closest(".record").id)),true);
-    assert.equal(await page.locator(".intro h1").evaluate(el=>getComputedStyle(el).fontSize),width<=620?"21px":"23px");
+    assert.equal(await page.locator(".intro h1").evaluate(el=>getComputedStyle(el).fontSize),width<=620?"24px":"26px");
     assert.equal(await page.locator(".research-process").count(),3);
     assert.equal(await page.locator("#open-tools .record-figure li").count(),25);
     assert.equal(await page.locator("#open-tools .record-figure a[href^='https://sushxnthd.github.io/']").count(),25);
@@ -55,12 +55,17 @@ try{
       return items.every(({title,desc,proof})=>close(title.left,items[0].title.left)&&axes.every(x=>close(x,desc.left))&&close(proof.right,items[0].proof.right));
     });
     assert(alignment,"index alignment at "+width+"px");
+    assert.equal(await page.locator(".featured-work h2").evaluate(el=>getComputedStyle(el).fontSize),"14px");
+    assert.equal(await page.locator(".home").evaluate(el=>getComputedStyle(el).paddingTop),width<=620?"48px":"96px");
+    assert(await page.locator(".work-summary").evaluateAll(nodes=>nodes.every(e=>e.getBoundingClientRect().height>=44)));
+    if(width<=620)assert(await page.locator(".theme-control button").evaluateAll(nodes=>nodes.every(e=>e.getBoundingClientRect().width>=44&&e.getBoundingClientRect().height>=44)));
+
 
     assert.equal(await page.locator(".work-section[open]").count(),0);
     assert.equal(await page.locator(".recent-list li").count(),5);
     assert.equal(await page.locator(".question-list li").count(),3);
     assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
-    assert.equal(await page.locator(".work-preview").first().evaluate(el=>getComputedStyle(el).fontSize),"13px");
+    assert.equal(await page.locator(".work-preview").first().evaluate(el=>getComputedStyle(el).fontSize),"14px");
     assert.equal(await page.locator(".work-summary").first().evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?2:3);
     assert.equal(await page.evaluate(()=>document.fonts.check("italic 450 17px Newsreader")),true);
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/home-"+width+".png",fullPage:true});
@@ -105,6 +110,11 @@ try{
       await inspect(page,url,0);
       assert.equal(await page.locator("h1").innerText(),title);
       assert.equal(await page.locator(".case-facts>div").count(),4);
+      assert.equal(await page.locator(".case-section>h2").first().evaluate(e=>getComputedStyle(e).fontSize),"15px");
+      assert(await page.locator(".case-section").evaluateAll(nodes=>nodes.every(e=>e.scrollWidth<=e.clientWidth+1)),"case section overflow: "+url);
+      assert(await page.locator(".case-facts>div").evaluateAll(nodes=>nodes.every(e=>e.scrollWidth<=e.clientWidth+1)),"case facts overflow: "+url);
+      assert(await page.locator(".case-evidence").evaluate(e=>Math.abs(e.getBoundingClientRect().right-e.closest(".case-section").getBoundingClientRect().right)<2),"case evidence right edge: "+url);
+
       assert(await page.locator(".case-evidence li").count()>=4);
       assert.equal(await page.locator(".image-trail").count(),0);
       if(url==="work/somno/")assert.equal(await page.locator(".case-phone-grid img").count(),3);
@@ -118,7 +128,7 @@ try{
   const nfResponse=await nf.goto(base+"404.html");
   assert(nfResponse.ok());
   assert.equal(await nf.locator("h1").innerText(),"Not here.");
-  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=craft-1");
+  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=craft-2");
   await nf.close();
 
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});

@@ -365,3 +365,121 @@ html{background:var(--bg)}
  .case-study{width:100%;padding:0}
  .case-data{overflow:visible}
 }
+
+/* Screenshot-led finish: a quiet editorial hierarchy and consistent physical edges. */
+:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:40px;--space-8:48px}
+.site.home{padding-top:96px;padding-bottom:56px}
+.home .intro h1{font-size:26px;line-height:1.24;font-weight:560;letter-spacing:-.044em;margin-bottom:24px}
+.home .intro p{max-width:620px;line-height:1.68;text-wrap:wrap}
+.home .intro p+p{margin-top:12px}
+.home .featured-work{margin-top:40px}
+.home .featured-work h2,.home .home-section h2{font-size:14px;font-weight:510;color:var(--ink);letter-spacing:-.012em;line-height:1.5;margin-bottom:14px}
+.home .featured-list li{padding:14px 0}
+.home .featured-description h3{font-size:15px;line-height:1.5}
+.home .featured-description p,.home .work-preview{font-size:14px;line-height:1.55}
+.home .featured-link{font-size:13px;line-height:1.5}
+.home .home-section{margin-top:40px}
+.home .question-list{gap:12px}
+.home .question-list li{align-items:baseline;line-height:1.55}
+.home #now+.work-index{margin-top:32px}
+.home .work-summary{padding:18px 0}
+.home .work-summary-title{line-height:1.5}
+.home .work-count{font-size:12px}
+.home .work-indicator{width:16px;height:16px}
+.home .work-indicator:before,.home .work-indicator:after{left:2px;right:2px;top:7px}
+.home .work-summary:hover .work-name{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--underline)}
+.home .work-content{padding-top:12px;padding-bottom:32px}
+.home .archive-group-title,.archive-group-title{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
+.home .record{padding:24px 0}
+.record-heading{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;margin-bottom:10px}
+.record-heading h3,.record-heading h2{line-height:1.4;text-wrap:pretty;overflow-wrap:anywhere}
+.record-status{font-size:12px;line-height:1.5;margin:0}
+.record-links{row-gap:8px}
+.record-links a{min-height:24px;display:inline-flex;align-items:baseline;gap:3px}
+.home .record>p.record-note{line-height:1.65}
+.home .recent-list{gap:9px}
+.home .recent-list li{line-height:1.6}
+.home .recent-list time{font-size:12px;line-height:1.8}
+.home .footer{margin-top:48px;padding-top:16px}
+.footer .theme-control{gap:2px}
+.theme-control button{width:32px;height:32px}
+.trail-toggle{min-height:32px}
+.case-study{padding-top:48px;padding-bottom:56px}
+.case-nav{margin-bottom:56px}
+.case-nav a{min-height:28px;display:inline-flex;align-items:center}
+.case-kicker{font-size:13px;line-height:1.5;margin-bottom:12px}
+.case-header{max-width:100%}
+.case-header h1{font-size:36px;letter-spacing:-.048em;line-height:1.13;margin-bottom:16px;text-wrap:balance}
+.case-deck{max-width:700px;line-height:1.6}
+.case-links{gap:8px 18px;margin-top:20px}
+.case-facts{margin-top:40px;column-gap:24px}
+.case-facts>div{padding:16px 0}
+.case-facts dt{font-size:12px;line-height:1.5}
+.case-facts dd{font-size:14px;line-height:1.6}
+.case-section{padding:36px 0 40px}
+.case-section:first-of-type{margin-top:32px}
+.case-section>h2{font-size:15px;font-weight:550;letter-spacing:-.018em;color:var(--ink);line-height:1.45;margin-bottom:16px}
+.case-copy p{line-height:1.7}
+.case-copy,.case-caption,.case-source-note{max-width:680px}
+.case-media,.metric-grid,.case-evidence,.bar-list{max-width:none}
+.case-media{margin-top:24px}
+.case-media figcaption{font-size:12px;line-height:1.6}
+.metric-grid{margin:16px 0 20px}
+.metric-grid>div{padding:16px}
+.metric-grid strong{font-size:22px;font-variant-numeric:tabular-nums;line-height:1.25;margin-bottom:6px}
+.metric-grid span{font-size:12px;line-height:1.5}
+.bar-list{gap:10px}
+.bar-list li{grid-template-columns:112px minmax(0,1fr) 52px;font-size:12px;line-height:1.5}
+.bar-list strong{font-size:12px}
+.bar-track{height:8px}
+.case-evidence li{grid-template-columns:96px minmax(0,1fr) auto;align-items:baseline}
+.case-evidence strong,.case-evidence a{font-size:13px}
+.case-data table{font-size:13px}
+.case-data th,.case-data td{padding:8px 4px}
+.case-terminal{max-width:100%;line-height:1.65}
+.case-phone-grid{max-width:none;gap:16px}
+.case-footer{margin-top:4px}
+@media(max-width:620px){
+ .site.home{padding-top:48px;padding-bottom:32px}
+ .home .intro h1{font-size:24px;line-height:1.25;margin-bottom:20px}
+ .home .intro p{line-height:1.65}
+ .home .featured-work{margin-top:32px}
+ .home .featured-work h2,.home .home-section h2{margin-bottom:12px}
+ .home .featured-list li{padding:13px 0 14px;gap:5px 12px}
+ .home .featured-link{font-size:12px}
+ .home .featured-description p,.home .work-preview{font-size:14px;line-height:1.55}
+ .home .home-section{margin-top:32px}
+ .home .question-list{gap:14px}
+ .home .work-summary{padding:16px 0}
+ .home #now+.work-index{margin-top:28px}
+ .home .recent-list{gap:13px}
+ .home .recent-list li{grid-template-columns:48px minmax(0,1fr);gap:10px;font-size:14px}
+ .home .recent-list time{font-size:12px;line-height:1.85}
+ .home .record{padding:20px 0}
+ .home .work-content{padding-bottom:24px}
+ .home .footer{margin-top:36px;padding-top:12px;gap:8px}
+ .theme-control button{width:44px;height:44px}
+ .trail-toggle{min-height:44px;min-width:44px}
+ .case-study{padding-top:28px;padding-bottom:32px}
+ .case-nav{margin-bottom:36px}
+ .case-nav a{min-height:32px}
+ .case-header h1{font-size:30px;line-height:1.15}
+ .case-deck{font-size:16px;line-height:1.62}
+ .case-facts{margin-top:32px}
+ .case-section{padding:28px 0 32px}
+ .case-section:first-of-type{margin-top:24px}
+ .case-section>h2{margin-bottom:12px}
+ .case-facts>div{padding:12px 0 14px}
+ .metric-grid>div{padding:12px;min-height:90px}
+ .metric-grid strong{font-size:20px}
+ .case-phone-grid{gap:8px}
+ .case-evidence li{grid-template-columns:72px minmax(0,1fr);gap:4px 12px}
+ .bar-list li{grid-template-columns:88px minmax(0,1fr) 45px;gap:8px;font-size:11px}
+ .bar-list strong{font-size:11px}
+ .case-data table{font-size:12px}
+}
+@media print{
+ .site.home,.case-study{padding:0}
+ .case-section{padding:20px 0}
+ .case-section>h2{font-size:13pt}
+}
