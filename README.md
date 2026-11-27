@@ -34,3 +34,7 @@ The homepage includes an ephemeral image trail made of local project artwork. It
 - `/work/agnxiv/` — public verifier, release engineering, production gates and a preserved release blocker.
 
 The homepage also exposes a compact current-questions section and source-linked shipping / research log. These pages are designed to stand alone when shared directly; they preserve the minimalist visual language and keep the full archive secondary.
+
+## Canonical inventory
+
+Edit project records in `index.html`, then run `node scripts/sync-inventory.mjs --write`. This synchronizes the four archives and `data/work.json`; CI rejects drift. `python3 scripts/audit_links.py` checks public destinations without credentials; uncertain results are reported separately from reachability.

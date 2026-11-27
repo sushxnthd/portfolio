@@ -1,0 +1,1105 @@
+{
+  "schema": "portfolio.work/1",
+  "source": "index.html",
+  "records": [
+    {
+      "id": "trace-corpus",
+      "group": "research",
+      "title": "The Trace Corpus is Mostly Redundant: Measuring, Compressing, and Exploiting Agent-Execution Data at Scale",
+      "status": "IEEE BigData · Accepted regular paper, 2026",
+      "description": "Studies redundancy in large-scale agent-execution trajectories, with an emphasis on what repeated steps contribute to evaluation.",
+      "qualification": "25,031 trajectories · 654,021 steps — Author-reported acceptance; public manuscript pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#trace-corpus",
+      "links": [
+        {
+          "label": "Evidence ledger",
+          "url": "https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md#publication-status"
+        }
+      ]
+    },
+    {
+      "id": "grit",
+      "group": "research",
+      "title": "When Agent Rankings Depend on Tool Granularity: Exact Audits and Refinement-Invariant Evaluation",
+      "status": "IEEE ICA · Accepted paper, 2026",
+      "description": "Examines how tool granularity can alter agent rankings and develops exact certificates for ranking robustness.",
+      "qualification": "Evaluation under refinement — Author-reported acceptance; public manuscript pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#grit",
+      "links": [
+        {
+          "label": "Evidence ledger",
+          "url": "https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md#publication-status"
+        }
+      ]
+    },
+    {
+      "id": "copycat",
+      "group": "research",
+      "title": "CopyCAT: Exact Winner Certificates When One Fact Counts Twice",
+      "status": "Manuscript & reproducibility · 2026",
+      "description": "Exact winner certificates for bounded duplication of existing benchmark items. Tests ranking sensitivity without changing model outputs.",
+      "qualification": "588 aligned questions · 10 configurations — Pinned MMLU-ProX-Lite archive; not a claim about every benchmark.",
+      "url": "https://sushxnthd.github.io/portfolio/#copycat",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "https://sushxnthd.github.io/portfolio/work/copycat/"
+        },
+        {
+          "label": "Paper PDF",
+          "url": "https://github.com/sushxnthd/copyCAT/blob/main/paper/CopyCAT%20Research%20Manuscript%20Final.pdf"
+        },
+        {
+          "label": "Supplement PDF",
+          "url": "https://github.com/sushxnthd/copyCAT/blob/main/paper/CopyCAT%20Additional%20Material.pdf"
+        },
+        {
+          "label": "Manuscript & code",
+          "url": "https://github.com/sushxnthd/copyCAT"
+        },
+        {
+          "label": "Reproduction workflow",
+          "url": "https://github.com/sushxnthd/copyCAT/actions/runs/43876320841"
+        },
+        {
+          "label": "Executable reproduction",
+          "url": "https://github.com/sushxnthd/copyCAT/blob/main/code/reproduce_headline.py"
+        },
+        {
+          "label": "Code provenance",
+          "url": "https://github.com/sushxnthd/copyCAT/blob/main/CODE_PROVENANCE.md"
+        }
+      ]
+    },
+    {
+      "id": "scholarqa",
+      "group": "research",
+      "title": "ScholarQA-CS2",
+      "status": "Research submission · 2026",
+      "description": "Reproduces a published meta-evaluation and identifies uncovered tie-calibration targets. Sensitivity analysis is kept separate from ground truth.",
+      "qualification": "Reproduction + paper build — Submission materials are currently private; acceptance not claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#scholarqa",
+      "links": []
+    },
+    {
+      "id": "boolean-quantization",
+      "group": "research",
+      "title": "Certified Boolean Quantization: Seven-Bit Counterexamples and Diffuse Gaussian Limits",
+      "status": "QIP submission · 2026",
+      "description": "Seven-bit counterexamples to coordinate selection and diffuse Gaussian limits, with finite eight-bit witnesses.",
+      "qualification": "Author-reported submission to Quantum Information Processing; manuscript located, public PDF pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#boolean-quantization",
+      "links": []
+    },
+    {
+      "id": "mechanistic-identification",
+      "group": "research",
+      "title": "Separability Does Not Certify Mechanism",
+      "status": "Manuscript · 2026",
+      "description": "Partial identification of neural interventions with sparse surgical calibration.",
+      "qualification": "Manuscript; acceptance not established.",
+      "url": "https://sushxnthd.github.io/portfolio/#mechanistic-identification",
+      "links": []
+    },
+    {
+      "id": "calibration-cross-operator",
+      "group": "research",
+      "title": "Calibration Cross-Operator",
+      "status": "Independent theory",
+      "description": "A spectral, coordinate-free approach to multiclass miscalibration.",
+      "qualification": "Research manuscript; publication not verified.",
+      "url": "https://sushxnthd.github.io/portfolio/#calibration-cross-operator",
+      "links": []
+    },
+    {
+      "id": "calibration-selection",
+      "group": "research",
+      "title": "Calibration-Induced Selection Ambiguity",
+      "status": "Research submission · 2026",
+      "description": "Investigates ambiguity induced by model calibration in selection decisions.",
+      "qualification": "Author-reported IBERAMIA submission; acceptance not established.",
+      "url": "https://sushxnthd.github.io/portfolio/#calibration-selection",
+      "links": []
+    },
+    {
+      "id": "forensic-inversion",
+      "group": "research",
+      "title": "Physics-Informed Forensic Kinematic Inversion",
+      "status": "Research manuscript",
+      "description": "Physics-based simulation, segmentation and uncertainty-aware inverse estimation from stain geometry.",
+      "qualification": "Manuscript; reported JAIDM submission; no acceptance or forensic validation claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#forensic-inversion",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1RhVkRzfDlCAXyq7Z2ctrbQgYVyDNVE_f/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "orbital-compute",
+      "group": "research",
+      "title": "Orbital Compute Fabric / APEX",
+      "status": "Conceptual manuscript",
+      "description": "A distributed orbital AI compute architecture, with thermal, communications and feasibility considerations.",
+      "qualification": "Conceptual design; not implemented or empirically validated.",
+      "url": "https://sushxnthd.github.io/portfolio/#orbital-compute",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1yoIXUL6lQo1_kR0fU3iF0eYVXHN-InqN/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "environmental-ai",
+      "group": "research",
+      "title": "Environmental Externalities of Large-Scale AI",
+      "status": "Public preprint · 2025",
+      "description": "A global review of energy, water and carbon dependencies of AI data centers, including India.",
+      "qualification": "Public author-uploaded preprint; journal acceptance reported separately, publication version not verified.",
+      "url": "https://sushxnthd.github.io/portfolio/#environmental-ai",
+      "links": [
+        {
+          "label": "Preprint DOI",
+          "url": "https://doi.org/10.6084/m9.figshare.29791091"
+        },
+        {
+          "label": "Full text",
+          "url": "https://www.researchgate.net/publication/395055629_Unveiling_the_Environmental_Externalities_of_Large-Scale_Artificial_Intelligence_A_Global_Assessment_of_Energy_Water_and_Carbon_Dependencies_in_AI_Data_Ecosystems"
+        }
+      ]
+    },
+    {
+      "id": "posthoc-calibration",
+      "group": "research",
+      "title": "Post-Hoc Calibration Can Degrade Selective Prediction Performance",
+      "status": "Author manuscript",
+      "description": "Order preservation explains when recalibration leaves selective prediction metrics unchanged; the manuscript studies ranking failures and an order-preserving alternative.",
+      "qualification": "Independent author manuscript; publication status not verified.",
+      "url": "https://sushxnthd.github.io/portfolio/#posthoc-calibration",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1y1iaar3rJ8d66wlDSgEEq6jnEptdimk7/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "grid-isoperimetry",
+      "group": "research",
+      "title": "Minimising the Largest Surviving Component of a Grid: A Vertex-Isoperimetric Characterisation",
+      "status": "Author manuscript",
+      "description": "Studies the smallest possible largest connected component after vertex deletions in a square grid, including single-cut and many-cut regimes.",
+      "qualification": "Independent mathematics manuscript; publication status not verified.",
+      "url": "https://sushxnthd.github.io/portfolio/#grid-isoperimetry",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1G4Ml6kkFOiGbdDE6v021o-H0wXf18a88/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "exam-anxiety",
+      "group": "research",
+      "title": "Integrating Physiological Markers and Machine Learning to Assess and Reduce Examination Anxiety: An Experimental Study",
+      "status": "Author manuscript",
+      "description": "Explores physiological markers and machine learning in the context of examination anxiety.",
+      "qualification": "Author manuscript; reported human-study results have not been independently verified, and no clinical efficacy claim is made.",
+      "url": "https://sushxnthd.github.io/portfolio/#exam-anxiety",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1g7EV2zNsoS3dmSg1jBU8tI8F8-tIr6k6/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "somno-brgcf",
+      "group": "research",
+      "title": "Baseline-Referenced Group-Conformal Fusion for Intermittent Multimodal Alertness Estimation on Smartphones",
+      "status": "Author manuscript",
+      "description": "Personal-baseline multimodal fusion with quality-dependent precision weighting and subject-group conformal calibration.",
+      "qualification": "Author manuscript; virtual-user stress tests, not clinical validation.",
+      "url": "https://sushxnthd.github.io/portfolio/#somno-brgcf",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1ZcSBoOxUPRB4b9RPSTw5qUkUxlZc4qBK/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "somno-rasc",
+      "group": "research",
+      "title": "Certified Baseline-Safe Intervention Control Under Uncertain Alertness: Adaptive Snoozing as a Mobile AI Case Study",
+      "status": "Author manuscript",
+      "description": "A baseline-safe controller for adaptive snoozing with explicit uncertainty sets and wake-deadline constraints.",
+      "qualification": "Author manuscript; simulated episodes, not a medical treatment recommendation.",
+      "url": "https://sushxnthd.github.io/portfolio/#somno-rasc",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1nn_c1NoKouD6_kq7XFiwJAHeQfPC2_8E/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "somno-prism",
+      "group": "research",
+      "title": "PRISM: Personal-Reference Inference with Sparse Modalities for Privacy-Preserving Mobile Sleep-Loss Assessment",
+      "status": "Author manuscript",
+      "description": "Sparse-modality personal-reference fusion using shrinkage covariance and guarded minimum-variance weighting.",
+      "qualification": "Author manuscript; controlled stress tests and secondary human-data analysis, not clinical validation.",
+      "url": "https://sushxnthd.github.io/portfolio/#somno-prism",
+      "links": [
+        {
+          "label": "Author manuscript PDF",
+          "url": "https://drive.google.com/file/d/1DGqn8cH5UKk2glHPwP4cMLHPAY2ZXyYK/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "somno-framework",
+      "group": "research",
+      "title": "From Personal Baselines to Safe Decisions: The Somno Framework for Multimodal Functional-Readiness Inference Under Sleep Loss",
+      "status": "Author manuscript",
+      "description": "Synthesizes personal referencing, uncertainty-aware inference and baseline-safe control within the Somno mobile research platform.",
+      "qualification": "Author research report; synthetic evaluations and secondary analysis are distinct from prospective validation.",
+      "url": "https://sushxnthd.github.io/portfolio/#somno-framework",
+      "links": [
+        {
+          "label": "Research report PDF",
+          "url": "https://drive.google.com/file/d/1Q2QzIMGMDH2F7DIEHYALRLZjWTAsQvCV/view?usp=drivesdk"
+        }
+      ]
+    },
+    {
+      "id": "crzne",
+      "group": "research",
+      "title": "CR-ZNE",
+      "status": "Quantum research · 2026",
+      "description": "Co-authored with Aryan Kumar: factorial diagnostics for gate, latency and measurement noise in dynamic quantum circuits. Distinguishes observed separability from certification.",
+      "qualification": "Certify or refuse — IRIS national finalist project, author-reported. Coauthored manuscript is not publicly linked; animation workspace is private.",
+      "url": "https://sushxnthd.github.io/portfolio/#crzne",
+      "links": []
+    },
+    {
+      "id": "theorica",
+      "group": "research",
+      "title": "Theorica",
+      "status": "Experimental science · Ongoing",
+      "description": "Studies reconstruction from partially observed operations, with falsifiable protocols and retained failed hypotheses.",
+      "qualification": "345 / 345 eligible cases — Frozen v1.2 cross-family challenge; narrower than a universal discovery claim.",
+      "url": "https://sushxnthd.github.io/portfolio/#theorica",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "https://sushxnthd.github.io/portfolio/work/theorica/"
+        },
+        {
+          "label": "Experiment",
+          "url": "https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_2_REPORT.md"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/sushxnthd/theorica"
+        },
+        {
+          "label": "Frozen failure",
+          "url": "https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_1_FAILURE.md"
+        },
+        {
+          "label": "v1.2 reproduction",
+          "url": "https://github.com/sushxnthd/theorica/actions/runs/36138175775"
+        },
+        {
+          "label": "Novelty audit",
+          "url": "https://github.com/sushxnthd/theorica/blob/main/results/EXTERNAL_FALSIFICATION_REPORT.md"
+        }
+      ]
+    },
+    {
+      "id": "k1",
+      "group": "research",
+      "title": "Kernellum / K1",
+      "status": "FPGA study · Ongoing",
+      "description": "Searches workload-specific accelerator architectures using final-route timing and implementation evidence.",
+      "qualification": "36 / 36 routed cases — 23.56% mean modeled workload-latency improvement vs broadcast-only; not physical-board measurements.",
+      "url": "https://sushxnthd.github.io/portfolio/#k1",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "https://sushxnthd.github.io/portfolio/work/kernellum-k1/"
+        },
+        {
+          "label": "Lab research site (HTTP)",
+          "url": "http://kernellum.qd.je/research/"
+        },
+        {
+          "label": "TR-001 PDF",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/research/files/Kernellum_TR-001.pdf"
+        },
+        {
+          "label": "TR-002 PDF",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/research/files/Kernellum_TR-002.pdf"
+        },
+        {
+          "label": "TR-003 PDF",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/research/files/Kernellum_TR-003.pdf"
+        },
+        {
+          "label": "Evidence dossier PDF",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/research/files/Kernellum_Evidence_Dossier.pdf"
+        },
+        {
+          "label": "Confirmation report",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/sushxnthd/kernellum"
+        },
+        {
+          "label": "Experiment report",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/K1_CLOSED_LOOP_REPORT.md"
+        },
+        {
+          "label": "Next physical-validation gate",
+          "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/K2_PLAN.md"
+        }
+      ]
+    },
+    {
+      "id": "lucent",
+      "group": "research",
+      "title": "Lucent",
+      "status": "Human-state sensing · Ongoing",
+      "description": "Studies short display-driven ocular and facial response probes, with personal baselines and explicit replication failures.",
+      "qualification": "APST-5 research program — Five-second human-state inference is not clinically validated.",
+      "url": "https://sushxnthd.github.io/portfolio/#lucent",
+      "links": [
+        {
+          "label": "Live research instrument",
+          "url": "https://sushxnthd.github.io/lucent/"
+        },
+        {
+          "label": "Research",
+          "url": "https://github.com/sushxnthd/lucent"
+        }
+      ]
+    },
+    {
+      "id": "noesis",
+      "group": "research",
+      "title": "NOESIS",
+      "status": "Machine reasoning · Ongoing",
+      "description": "Tests whether transition closure distinguishes reusable algorithms from finite-range heuristics.",
+      "qualification": "Counterexample-first — Open research hypothesis; not a solved general certificate.",
+      "url": "https://sushxnthd.github.io/portfolio/#noesis",
+      "links": [
+        {
+          "label": "Experiments",
+          "url": "https://github.com/sushxnthd/noesis"
+        }
+      ]
+    },
+    {
+      "id": "vektor",
+      "group": "research",
+      "title": "Vektor",
+      "status": "Hardware architecture · Pre-silicon",
+      "description": "Executable simulation, RTL and architecture experiments with separately tracked projected and measured evidence.",
+      "qualification": "Pre-silicon — No RTX 5090 equivalence or fabricated silicon claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#vektor",
+      "links": [
+        {
+          "label": "Source & benchmarks",
+          "url": "https://github.com/sushxnthd/vektor"
+        }
+      ]
+    },
+    {
+      "id": "splitproof",
+      "group": "research",
+      "title": "SplitProof",
+      "status": "Dataset auditing · 2026",
+      "description": "Audits train/test split integrity and evaluation reliability across datasets.",
+      "qualification": "INSEF project submission, author-reported; no award claimed. Submitted manuscript located; not yet publicly released.",
+      "url": "https://sushxnthd.github.io/portfolio/#splitproof",
+      "links": []
+    },
+    {
+      "id": "algebraic-counterplay",
+      "group": "research",
+      "title": "Algebraic Counterplay Theory",
+      "status": "Exploratory research · 2026",
+      "description": "Explores algebraic representations of chess positions and counterplay.",
+      "qualification": "Open research; standard chess is not claimed solved.",
+      "url": "https://sushxnthd.github.io/portfolio/#algebraic-counterplay",
+      "links": []
+    },
+    {
+      "id": "kernellum",
+      "group": "building",
+      "title": "Kernellum",
+      "status": "Independent research lab",
+      "description": "Machine reasoning, scientific discovery, AI systems and architecture, and evaluation reliability.",
+      "qualification": "Independent research — Research lab, not a claim of institutional affiliation or commercial traction.",
+      "url": "https://sushxnthd.github.io/portfolio/#kernellum",
+      "links": [
+        {
+          "label": "Lab website (HTTP)",
+          "url": "http://kernellum.qd.je/"
+        },
+        {
+          "label": "Lab & research",
+          "url": "https://github.com/sushxnthd/kernellum"
+        }
+      ]
+    },
+    {
+      "id": "agnxiv",
+      "group": "building",
+      "title": "agnXiv",
+      "status": "Scientific verification · Public beta",
+      "description": "Turns computational claims into replayable verdicts and signed provenance under explicit evidence and execution policies.",
+      "qualification": "Public beta — Verifies specific claims; does not certify novelty, significance or universal truth.",
+      "url": "https://sushxnthd.github.io/portfolio/#agnxiv",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "https://sushxnthd.github.io/portfolio/work/agnxiv/"
+        },
+        {
+          "label": "Verification workspace",
+          "url": "https://sushxnthd.github.io/agnXiv/verify.html"
+        },
+        {
+          "label": "Open verifier",
+          "url": "https://sushxnthd.github.io/agnXiv/"
+        },
+        {
+          "label": "Source & scope",
+          "url": "https://github.com/sushxnthd/agnXiv"
+        }
+      ]
+    },
+    {
+      "id": "greengroove",
+      "group": "building",
+      "title": "Green Groove",
+      "status": "Retail systems · Prototype",
+      "description": "RFID and sensor-based retail prototype connecting shopper identity, reversible cart changes and billing.",
+      "qualification": "₹50,000 PRAYAAS development grant — Grant reported in project repository; field validation is ongoing.",
+      "url": "https://sushxnthd.github.io/portfolio/#greengroove",
+      "links": [
+        {
+          "label": "Brand design",
+          "url": "https://www.behance.net/gallery/211169339/Green-Groove"
+        },
+        {
+          "label": "Project",
+          "url": "https://sushxnthd.github.io/greengroove/"
+        },
+        {
+          "label": "Source & evidence",
+          "url": "https://github.com/sushxnthd/greengroove"
+        }
+      ]
+    },
+    {
+      "id": "somno",
+      "group": "projects",
+      "title": "Somno",
+      "status": "Android · Public release",
+      "description": "Combines reaction time, facial and ocular features, subjective sleepiness and sleep history with a personal baseline.",
+      "qualification": "Android v27 — Fatigue-awareness software, not a validated medical diagnostic.",
+      "url": "https://sushxnthd.github.io/portfolio/#somno",
+      "links": [
+        {
+          "label": "Case study",
+          "url": "https://sushxnthd.github.io/portfolio/work/somno/"
+        },
+        {
+          "label": "Product",
+          "url": "https://sushxnthd.github.io/somno/"
+        },
+        {
+          "label": "Android release",
+          "url": "https://github.com/sushxnthd/somno/releases/tag/v27"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/sushxnthd/somno"
+        }
+      ]
+    },
+    {
+      "id": "hush",
+      "group": "projects",
+      "title": "Hush",
+      "status": "Privacy · Early access / release candidate",
+      "description": "A local trust layer that lets an agent ask a bounded question without receiving the underlying private profile.",
+      "qualification": "Local-first context — Browser early access; native runtime release candidate, not independently security-certified.",
+      "url": "https://sushxnthd.github.io/portfolio/#hush",
+      "links": [
+        {
+          "label": "Product website",
+          "url": "https://sushxnthd.github.io/hush/"
+        },
+        {
+          "label": "Open workspace",
+          "url": "https://sushxnthd.github.io/hush/app/"
+        },
+        {
+          "label": "Try sample",
+          "url": "https://sushxnthd.github.io/hush/app/#sample"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/sushxnthd/hush"
+        }
+      ]
+    },
+    {
+      "id": "orynt",
+      "group": "projects",
+      "title": "Orynt",
+      "status": "School software · Deployable foundation",
+      "description": "A permission-aware platform connecting school records, operational signals, interventions and outcomes.",
+      "qualification": "Synthetic school demo — Production-capable foundation; real-school pilot and privacy review pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#orynt",
+      "links": [
+        {
+          "label": "Demo",
+          "url": "https://sushxnthd.github.io/orynt/"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/sushxnthd/orynt"
+        }
+      ]
+    },
+    {
+      "id": "lattice",
+      "group": "projects",
+      "title": "Lattice",
+      "status": "Programming systems · Research agenda",
+      "description": "Explores persistent semantic representations for AI-written software, preserving intent and executable constraints.",
+      "qualification": "Research agenda — Compiler and comparative evaluation remain open.",
+      "url": "https://sushxnthd.github.io/portfolio/#lattice",
+      "links": [
+        {
+          "label": "Research agenda",
+          "url": "https://github.com/sushxnthd/lattice/blob/main/docs/RESEARCH_AGENDA.md"
+        }
+      ]
+    },
+    {
+      "id": "open-tools",
+      "group": "projects",
+      "title": "Open-source tools",
+      "status": "Python · Small-scope libraries",
+      "description": "Focused libraries for benchmark fragility, agent data flow, distribution shift and scientific residual checks.",
+      "qualification": "Source · tests · demos — Small-scope tools; no claim of external adoption.",
+      "url": "https://sushxnthd.github.io/portfolio/#open-tools",
+      "links": [
+        {
+          "label": "Evalrift",
+          "url": "https://github.com/sushxnthd/evalrift"
+        },
+        {
+          "label": "Flowseal",
+          "url": "https://github.com/sushxnthd/flowseal-agent"
+        },
+        {
+          "label": "Shiftglass",
+          "url": "https://github.com/sushxnthd/shiftglass"
+        },
+        {
+          "label": "All repositories",
+          "url": "https://github.com/sushxnthd?tab=repositories"
+        },
+        {
+          "label": "evalrift",
+          "url": "https://github.com/sushxnthd/evalrift"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/evalrift/"
+        },
+        {
+          "label": "flowseal-agent",
+          "url": "https://github.com/sushxnthd/flowseal-agent"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/flowseal-agent/"
+        },
+        {
+          "label": "shiftglass",
+          "url": "https://github.com/sushxnthd/shiftglass"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/shiftglass/"
+        },
+        {
+          "label": "trajscope-ai",
+          "url": "https://github.com/sushxnthd/trajscope-ai"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/trajscope-ai/"
+        },
+        {
+          "label": "faultmesh-ai",
+          "url": "https://github.com/sushxnthd/faultmesh-ai"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/faultmesh-ai/"
+        },
+        {
+          "label": "memsieve-agent",
+          "url": "https://github.com/sushxnthd/memsieve-agent"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/memsieve-agent/"
+        },
+        {
+          "label": "judgeprobe-ai",
+          "url": "https://github.com/sushxnthd/judgeprobe-ai"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/judgeprobe-ai/"
+        },
+        {
+          "label": "spuriograph",
+          "url": "https://github.com/sushxnthd/spuriograph"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/spuriograph/"
+        },
+        {
+          "label": "pointworth-ml",
+          "url": "https://github.com/sushxnthd/pointworth-ml"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/pointworth-ml/"
+        },
+        {
+          "label": "trainpulse-ml",
+          "url": "https://github.com/sushxnthd/trainpulse-ml"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/trainpulse-ml/"
+        },
+        {
+          "label": "slicehound",
+          "url": "https://github.com/sushxnthd/slicehound"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/slicehound/"
+        },
+        {
+          "label": "residualforge",
+          "url": "https://github.com/sushxnthd/residualforge"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/residualforge/"
+        },
+        {
+          "label": "odeweaver",
+          "url": "https://github.com/sushxnthd/odeweaver"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/odeweaver/"
+        },
+        {
+          "label": "invariantlens",
+          "url": "https://github.com/sushxnthd/invariantlens"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/invariantlens/"
+        },
+        {
+          "label": "meshstress",
+          "url": "https://github.com/sushxnthd/meshstress"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/meshstress/"
+        },
+        {
+          "label": "surrogatescope",
+          "url": "https://github.com/sushxnthd/surrogatescope"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/surrogatescope/"
+        },
+        {
+          "label": "prefixmint",
+          "url": "https://github.com/sushxnthd/prefixmint"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/prefixmint/"
+        },
+        {
+          "label": "routecraft-llm",
+          "url": "https://github.com/sushxnthd/routecraft-llm"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/routecraft-llm/"
+        },
+        {
+          "label": "batchwise-llm",
+          "url": "https://github.com/sushxnthd/batchwise-llm"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/batchwise-llm/"
+        },
+        {
+          "label": "quantfrontier",
+          "url": "https://github.com/sushxnthd/quantfrontier"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/quantfrontier/"
+        },
+        {
+          "label": "specdraft-lab",
+          "url": "https://github.com/sushxnthd/specdraft-lab"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/specdraft-lab/"
+        },
+        {
+          "label": "protocolloom",
+          "url": "https://github.com/sushxnthd/protocolloom"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/protocolloom/"
+        },
+        {
+          "label": "contractshrink",
+          "url": "https://github.com/sushxnthd/contractshrink"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/contractshrink/"
+        },
+        {
+          "label": "morphcheck-ml",
+          "url": "https://github.com/sushxnthd/morphcheck-ml"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/morphcheck-ml/"
+        },
+        {
+          "label": "orderguard-ml",
+          "url": "https://github.com/sushxnthd/orderguard-ml"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://sushxnthd.github.io/orderguard-ml/"
+        }
+      ]
+    },
+    {
+      "id": "gyaansetu",
+      "group": "projects",
+      "title": "GyaanSetu",
+      "status": "Education · Earlier prototype",
+      "description": "Curriculum-aligned AI textbook assistant.",
+      "qualification": "Author-reported project; public artifact pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#gyaansetu",
+      "links": []
+    },
+    {
+      "id": "orion",
+      "group": "projects",
+      "title": "Orion",
+      "status": "Accessibility · Hackcessible India",
+      "description": "AI-assisted accessibility project for visually impaired users.",
+      "qualification": "Hackathon prototype; no clinical or deployment claim.",
+      "url": "https://sushxnthd.github.io/portfolio/#orion",
+      "links": []
+    },
+    {
+      "id": "aqi-prediction",
+      "group": "projects",
+      "title": "AQI Hazard Prediction",
+      "status": "Applied ML · Earlier project",
+      "description": "Air-quality hazard classification using pollution, weather and fire data.",
+      "qualification": "Author-reported project; evaluation artifact pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#aqi-prediction",
+      "links": []
+    },
+    {
+      "id": "gaplogic",
+      "group": "projects",
+      "title": "GapLogic",
+      "status": "Engineering prototype",
+      "description": "Logic-driven analytical prototype.",
+      "qualification": "Author-reported project; public artifact pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#gaplogic",
+      "links": []
+    },
+    {
+      "id": "gambit",
+      "group": "projects",
+      "title": "Gambit",
+      "status": "Interface design",
+      "description": "Digital chess interface redesign.",
+      "qualification": "Design project; public artifact pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#gambit",
+      "links": []
+    },
+    {
+      "id": "team-viteza",
+      "group": "projects",
+      "title": "Team Viteza",
+      "status": "STEM Racing · Engineering",
+      "description": "Design engineer and assistant team manager; CAD, CFD, design review and manufacturing planning.",
+      "qualification": "Team role reported in academic CV; no individually attributed competition performance.",
+      "url": "https://sushxnthd.github.io/portfolio/#team-viteza",
+      "links": []
+    },
+    {
+      "id": "aiyes",
+      "group": "recognition",
+      "title": "AIYES Gold",
+      "status": "Fall 2026 · Organizer verified",
+      "description": "Gold recognition for Somno in the AI YES competition.",
+      "qualification": "Gold award — One of 11 Gold projects listed by the organizer.",
+      "url": "https://sushxnthd.github.io/portfolio/#aiyes",
+      "links": [
+        {
+          "label": "Official winners",
+          "url": "https://aiyes.org/fall-2026-winners"
+        },
+        {
+          "label": "Somno",
+          "url": "https://sushxnthd.github.io/somno/"
+        },
+        {
+          "label": "Evidence ledger",
+          "url": "https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md#selected-recognition"
+        }
+      ]
+    },
+    {
+      "id": "qhack",
+      "group": "recognition",
+      "title": "QHack",
+      "status": "2026 · Recorded leaderboard",
+      "description": "Completed all 23 challenges; recorded leaderboard placement 13th of 1,651 teams.",
+      "qualification": "23 / 23 challenges — Screenshot-based placement, not independently certified final ranking.",
+      "url": "https://sushxnthd.github.io/portfolio/#qhack",
+      "links": [
+        {
+          "label": "Competition",
+          "url": "https://qhack.ai/"
+        },
+        {
+          "label": "Evidence ledger",
+          "url": "https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md#selected-recognition"
+        }
+      ]
+    },
+    {
+      "id": "iris",
+      "group": "recognition",
+      "title": "IRIS National Fair",
+      "status": "2026–27 · Author-reported",
+      "description": "Selected as a national finalist for research into zero-noise extrapolation in dynamic quantum circuits.",
+      "qualification": "National finalist — No national-fair award or ISEF qualification claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#iris",
+      "links": [
+        {
+          "label": "Evidence ledger",
+          "url": "https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md#selected-recognition"
+        }
+      ]
+    },
+    {
+      "id": "issdc",
+      "group": "recognition",
+      "title": "Space settlement design",
+      "status": "2024 · Author-reported",
+      "description": "ARSSDC runner-up; team qualified for ISSDC international finals through a successful resubmission.",
+      "qualification": "International finals qualifier — Qualification only; no attendance or international award claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#issdc",
+      "links": [
+        {
+          "label": "Evidence ledger",
+          "url": "https://github.com/sushxnthd/portfolio/blob/main/EVIDENCE.md#selected-recognition"
+        }
+      ]
+    },
+    {
+      "id": "prayaas",
+      "group": "recognition",
+      "title": "NCERT PRAYAAS",
+      "status": "Development grant · Project-reported",
+      "description": "Selected under the student research programme; IIT Delhi is the associated higher education institution.",
+      "qualification": "₹50,000 development grant — Project-reported; no claim of IIT Delhi enrollment.",
+      "url": "https://sushxnthd.github.io/portfolio/#prayaas",
+      "links": [
+        {
+          "label": "Project evidence",
+          "url": "https://github.com/sushxnthd/greengroove"
+        }
+      ]
+    },
+    {
+      "id": "scimi",
+      "group": "recognition",
+      "title": "Sci-MI Research Symposium",
+      "status": "2026 · Author-reported",
+      "description": "Research symposium awardee; completed the seven-week research mentorship.",
+      "qualification": "Award and participation reported; primary citation pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#scimi",
+      "links": []
+    },
+    {
+      "id": "inssdc",
+      "group": "recognition",
+      "title": "INSSDC",
+      "status": "National competition · Author-reported",
+      "description": "Indian National Space Settlement Design Competition winner.",
+      "qualification": "Team award; organizer record pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#inssdc",
+      "links": []
+    },
+    {
+      "id": "stem-racing",
+      "group": "recognition",
+      "title": "STEM Racing / F1 in Schools",
+      "status": "National finals · Author-reported",
+      "description": "National top 13; Team Identity Award. Best Pit Display and Enterprise Portfolio nominations reported.",
+      "qualification": "Team distinctions; primary organizer record pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#stem-racing",
+      "links": []
+    },
+    {
+      "id": "odyssey",
+      "group": "recognition",
+      "title": "Odyssey of the Mind",
+      "status": "Author-reported",
+      "description": "Technical winner.",
+      "qualification": "Organizer record pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#odyssey",
+      "links": []
+    },
+    {
+      "id": "exun",
+      "group": "recognition",
+      "title": "Exun SpaceTech",
+      "status": "2022 · Author-reported",
+      "description": "SpaceTech competition winner.",
+      "qualification": "No unrelated game-development award claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#exun",
+      "links": []
+    },
+    {
+      "id": "flamingo",
+      "group": "recognition",
+      "title": "Flamingo ’24",
+      "status": "2024 · Author-reported",
+      "description": "Hackathon runner-up.",
+      "qualification": "Organizer record pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#flamingo",
+      "links": []
+    },
+    {
+      "id": "webolution",
+      "group": "recognition",
+      "title": "Abhyudaya / WEBOLUTION",
+      "status": "Author-reported",
+      "description": "Competition winner.",
+      "qualification": "Issuing organization and primary record pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#webolution",
+      "links": []
+    },
+    {
+      "id": "yimo",
+      "group": "recognition",
+      "title": "YIMO II",
+      "status": "Author-reported",
+      "description": "Silver award, reported top 20%.",
+      "qualification": "Organizer record pending.",
+      "url": "https://sushxnthd.github.io/portfolio/#yimo",
+      "links": []
+    },
+    {
+      "id": "school-honors",
+      "group": "recognition",
+      "title": "School honors",
+      "status": "Author-reported",
+      "description": "Future Innovator Award, Excellence in Scientific Achievement, and two School All-Rounder Awards.",
+      "qualification": "Certificates pending public verification.",
+      "url": "https://sushxnthd.github.io/portfolio/#school-honors",
+      "links": []
+    },
+    {
+      "id": "academic-achievements",
+      "group": "recognition",
+      "title": "Academic distinctions",
+      "status": "Author-reported",
+      "description": "CBSE Class X best-of-five 94.6%; Data Science 100/100; Cambridge C1 Advanced 196.",
+      "qualification": "Academic results reported by author; personal score documents not published.",
+      "url": "https://sushxnthd.github.io/portfolio/#academic-achievements",
+      "links": []
+    },
+    {
+      "id": "programs",
+      "group": "recognition",
+      "title": "Selected research and learning programs",
+      "status": "Author-reported",
+      "description": "Accepted to The Knowledge Society (scholarship), Brown AI Winter School, and Algoverse AI Research Program; Sci-MI completed.",
+      "qualification": "Acceptance is not completion; no university enrollment or fellowship funding claimed.",
+      "url": "https://sushxnthd.github.io/portfolio/#programs",
+      "links": []
+    },
+    {
+      "id": "leadership",
+      "group": "recognition",
+      "title": "Student leadership",
+      "status": "Author-reported",
+      "description": "Vice President, F1 in Schools Club; Head of Design and Joint Secretary, Cygna Space Society.",
+      "qualification": "Roles reported in academic CV.",
+      "url": "https://sushxnthd.github.io/portfolio/#leadership",
+      "links": []
+    },
+    {
+      "id": "other-activities",
+      "group": "recognition",
+      "title": "Other competition and activity experience",
+      "status": "Author-reported",
+      "description": "CERN Beamline for Schools proposal, Hackcessible India participation, Model UN delegate.",
+      "qualification": "Participation, not finalist or winner status.",
+      "url": "https://sushxnthd.github.io/portfolio/#other-activities",
+      "links": []
+    }
+  ]
+}

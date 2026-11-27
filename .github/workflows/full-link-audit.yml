@@ -1,0 +1,19 @@
+name: Full public evidence audit
+on:
+  schedule:
+    - cron: '43 4 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - run: python3 scripts/audit_links.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-evidence-link-audit
+          path: link-audit.json

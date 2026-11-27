@@ -149,3 +149,7 @@ Removed a stale browser assertion that expected the old Recently → #copycat na
 ## Evidence precision and secondary research briefs
 
 Corrected all twelve K1 bar labels directly from pinned validation JSON (100*(initial-active)/initial); bar scale now explicitly 0–100%. Added source-value table and timing-audit decision record. Added CopyCAT and Theorica permanent secondary proof pages, leaving the three featured works unchanged. Somno's attribution is conservative: official award lists Sushanth, individual division of team labor remains unverified. Product media pinned to repo commit and descriptive alt metadata; decorative K1 image no longer used as evidence preview. agnXiv explicitly requires GitHub confirmation. Now precedes archive. Legacy archive case links synced. No new personal motives or user traction asserted. CI and Pages pending.
+
+## Canonical public inventory and audit
+
+Homepage record markup is the editorial source of truth. scripts/sync-inventory.mjs mirrors all 58 records into the four archive pages and generates data/work.json. CI fails on mismatch. Weekly unauthenticated full-link audit reports HTTP errors, access walls and review cases separately from the blocking critical-link workflow. No new accomplishments inferred or private materials published.
