@@ -74,8 +74,8 @@ The portfolio keeps these recognitions lower on the page. The main project-speci
 - **IEEE BigData 2026:** regular-paper acceptance for the Trace Corpus research, author-reported; 25,031 trajectories and 654,021 steps as reported by the author. The public manuscript and official proceedings link are not yet attached. Acceptance is not the same as publication or presentation.
 - **IEEE ICA 2026 / GRIT:** paper on refinement-invariant agent evaluation, acceptance reported by the author. Public manuscript and proceedings links are pending.
 - **CopyCAT:** [repository, manuscript, data lineage and certificates](https://github.com/sushxnthd/copyCAT); [supplementary compilation](https://github.com/sushxnthd/copyCAT/actions/runs/43876320841). The pinned MMLU-ProX-Lite archive covers 588 aligned questions and ten configurations. No acceptance is claimed.
-- **ScholarQA-CS2 audit:** [research workspace](https://github.com/sushxnthd/sandboxedwchatgpt), [reproduction run](https://github.com/sushxnthd/sandboxedwchatgpt/actions/runs/44152138841). The manuscript is a workshop submission; no acceptance is claimed.
-- **CR-ZNE:** [animation and project materials](https://github.com/sushxnthd/crzne-speedrun). The animation is not a substitute for the manuscript; no public manuscript link is asserted.
+- **ScholarQA-CS2 audit:** submission workspace is currently private. The manuscript is a workshop submission; no acceptance is claimed.
+- **CR-ZNE:** coauthored project workspace is currently private. No public manuscript link is asserted; the portfolio does not substitute an animation or inaccessible repository for the paper.
 
 ## Additional software and research
 

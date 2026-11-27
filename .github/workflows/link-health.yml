@@ -1,0 +1,40 @@
+name: Critical public-link health
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check critical public evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          urls=(
+            "https://sushxnthd.github.io/portfolio/"
+            "https://sushxnthd.github.io/somno/"
+            "https://github.com/sushxnthd/somno/releases/tag/v27"
+            "https://sushxnthd.github.io/agnXiv/verify.html"
+            "https://github.com/sushxnthd/agnXiv/releases/tag/v0.1.0"
+            "https://github.com/sushxnthd/kernellum/blob/main/docs/K1_CLOSED_LOOP_REPORT.md"
+            "https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md"
+            "https://github.com/sushxnthd/copyCAT/blob/main/paper/CopyCAT%20Research%20Manuscript%20Final.pdf"
+            "https://aiyes.org/fall-2026-winners"
+          )
+          for url in "${urls[@]}"; do
+            code="$(curl -L --silent --show-error --output /dev/null --max-time 25 --retry 2 --write-out '%{http_code}' "$url")"
+            echo "$code $url"
+            if [[ "$code" -lt 200 || "$code" -ge 400 ]]; then
+              echo "::error::Critical link failed ($code): $url"
+              exit 1
+            fi
+          done

@@ -137,3 +137,7 @@ Research synthesis indicates the homepage should remain visually quiet while 1â€
 ### Release-hygiene correction
 
 Corrected three inconsistencies found during the flagship rollout: robots.txt now contains actual line breaks; custom 404 assets/home link use absolute /portfolio/ paths so deep missing URLs render correctly on GitHub Pages; README now documents the shipped passive touch trail instead of the obsolete desktop-only behavior. Local smoke checks 404.html directly because Python http.server does not emulate GitHub Pages custom-404 fallback; production missing-route behavior must be verified after deployment.
+
+### Public-access audit
+
+The ScholarQA-CS2 and CR-ZNE repositories currently report private visibility. Removed their inaccessible GitHub/Actions links from public portfolio and legacy archives; CR-ZNE remains a public summary with coauthor credit and a pending-public-manuscript boundary. IRIS recognition no longer links to a private repository. This change deliberately does not alter repository visibility or publish coauthored/submission material.
