@@ -141,3 +141,7 @@ Corrected three inconsistencies found during the flagship rollout: robots.txt no
 ### Public-access audit
 
 The ScholarQA-CS2 and CR-ZNE repositories currently report private visibility. Removed their inaccessible GitHub/Actions links from public portfolio and legacy archives; CR-ZNE remains a public summary with coauthor credit and a pending-public-manuscript boundary. IRIS recognition no longer links to a private repository. This change deliberately does not alter repository visibility or publish coauthored/submission material.
+
+### Regression repair
+
+Removed a stale browser assertion that expected the old Recently → #copycat navigation after Recently became a source-linked shipping/research log. Hash auto-open behavior remains covered elsewhere in the suite.

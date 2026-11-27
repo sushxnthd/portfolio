@@ -70,9 +70,6 @@ try{
     if(width===390||width===1440)await page.screenshot({path:"qa-screenshots/expanded-"+width+".png",fullPage:true});
     await page.locator("#research > summary").click();
     assert.equal(await page.locator("#copycat").isVisible(),false);
-    await page.locator('.recent-list a[href="#copycat"]').click();
-    await page.waitForURL("**/#copycat");
-    assert(await page.locator("#copycat").isVisible());
     for(const [url,count] of Object.entries(archives)){
       await inspect(page,url,count);
       assert.equal(await page.locator(".archive-nav [aria-current=page]").count(),1);
