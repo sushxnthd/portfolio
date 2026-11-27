@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 const base="http://127.0.0.1:8000/";
 const browser=await chromium.launch({headless:true});
-const archives={"research/":10,"projects/":5,"building/":3,"recognition/":5};
+const archives={"research/":19,"projects/":11,"building/":3,"recognition/":18};
 const errors=[];
 async function inspect(page,url,count){
   const response=await page.goto(base+url,{waitUntil:"domcontentloaded"});
@@ -22,13 +22,17 @@ try{
   for(const [width,height] of [[360,640],[390,844],[768,1024],[1280,800],[1440,900]]){
     const page=await browser.newPage({viewport:{width,height},reducedMotion:"reduce"});
     page.on("pageerror",e=>errors.push(e.message));
-    await inspect(page,"",23);
+    await inspect(page,"",51);
     assert.equal(await page.locator(".work-section").count(),4);
     assert.equal(await page.locator(".record-heading h2").count(),0);
-    assert.equal(await page.locator(".record-permalink").count(),23);
+    assert.equal(await page.locator(".record-permalink").count(),51);
     assert.equal(await page.locator(".record-permalink").evaluateAll(links=>links.every(a=>a.hash.slice(1)===a.closest(".record").id)),true);
     assert.equal(await page.locator(".intro h1").evaluate(el=>getComputedStyle(el).fontSize),width<=620?"21px":"23px");
     assert.equal(await page.locator(".research-process").count(),3);
+    assert.equal(await page.locator("#open-tools .record-figure li").count(),25);
+    assert.equal(await page.locator("#copycat a[href$='.pdf']").count(),2);
+    assert.equal(await page.locator("#k1 a[href$='.pdf']").count(),4);
+    assert.equal(await page.locator("#aiyes a[href='https://aiyes.org/fall-2026-winners']").count(),1);
     assert.equal(await page.locator(".featured-list li").count(),3);
     assert.equal(await page.locator(".featured-list .featured-link[href^='https://']").count(),3);
     assert(await page.locator(".featured-work").isVisible());
@@ -78,21 +82,21 @@ try{
     await page.close();
   }
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
-  await inspect(nojs,"",23);
+  await inspect(nojs,"",51);
   await nojs.locator("#research > summary").click();
   assert(await nojs.locator("#copycat").isVisible());
   await nojs.close();
   for (const colorScheme of ["light","dark"]) {
     const page=await browser.newPage({viewport:{width:1440,height:900},colorScheme,reducedMotion:"reduce"});
     page.on("pageerror",e=>errors.push(e.message));
-    await inspect(page,"",23);
+    await inspect(page,"",51);
     assert.equal(await page.locator("html").getAttribute("data-theme"),colorScheme);
     assert.equal(await page.locator('.theme-control [data-choice="system"]').getAttribute("aria-pressed"),"true");
     await page.locator('.theme-control [data-choice="dark"]').click();
     assert.equal(await page.locator("html").getAttribute("data-theme"),"dark");
     assert.equal(await page.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(21, 21, 21)");
     await page.screenshot({path:"qa-screenshots/dark-home-"+colorScheme+".png",fullPage:true});
-    await inspect(page,"research/",10);
+    await inspect(page,"research/",19);
     assert.equal(await page.locator("html").getAttribute("data-theme"),"dark");
     await page.screenshot({path:"qa-screenshots/dark-research-"+colorScheme+".png",fullPage:true});
     await page.locator('.theme-control [data-choice="light"]').click();
@@ -103,11 +107,11 @@ try{
     await page.close();
   }
   const darkMobile=await browser.newPage({viewport:{width:390,height:844},colorScheme:"dark"});
-  await inspect(darkMobile,"",23);
+  await inspect(darkMobile,"",51);
   await darkMobile.screenshot({path:"qa-screenshots/dark-home-390.png",fullPage:true});
   await darkMobile.close();
   const darkNoJS=await browser.newPage({viewport:{width:390,height:844},colorScheme:"dark",javaScriptEnabled:false});
-  await inspect(darkNoJS,"",23);
+  await inspect(darkNoJS,"",51);
   assert.equal(await darkNoJS.locator("body").evaluate(e=>getComputedStyle(e).backgroundColor),"rgb(21, 21, 21)");
   assert.equal(await darkNoJS.locator(".theme-control").isVisible(),false);
   await darkNoJS.close();
@@ -124,7 +128,7 @@ try{
   // pointer transparency, Escape, persistent opt-out and reduced motion.
   const trail=await browser.newPage({viewport:{width:1440,height:900},colorScheme:"dark",reducedMotion:"no-preference"});
   trail.on("pageerror",e=>errors.push(e.message));
-  await inspect(trail,"",23);
+  await inspect(trail,"",51);
   await trail.waitForLoadState("networkidle");
   assert(await trail.locator(".trail-toggle").isVisible());
   await trail.mouse.move(50,200);

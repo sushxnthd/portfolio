@@ -96,3 +96,7 @@ AIYES Gold and QHack are scoped in the personal milestones above. Additional aut
 - NCERT PRAYAAS: Green Groove grant and selection as documented in its repository.
 
 Last content review: 26 November 2026. Replace author-reported labels only after attaching public primary evidence.
+
+## Comprehensive inventory expansion — 27 November 2026
+
+Research and earlier work added from the author's academic CV, prior author-reported records and available manuscripts. Boolean quantization manuscript and coauthored CR-ZNE draft were inspected; no public PDF URL was verified for those drafts. Other manuscript titles/statuses remain author-reported until their canonical artifacts are attached. Environmental AI preprint: https://doi.org/10.6084/m9.figshare.29791091 . CopyCAT and Kernellum PDFs linked from public repository trees. AIYES Gold independently supported by https://aiyes.org/fall-2026-winners (Somno, one of 11 Gold projects). New competition and program records are author-reported unless explicitly marked otherwise. HSS acceptance was previously reported but later dropped; do not count it as an active conference acceptance. Exclude awards known to belong to someone else; exclude applications without acceptance. All 25 publicly listed small engineering repositories linked individually, using repository descriptions only; no adoption or independent impact claims. Private manuscripts and certificates are not uploaded without checking their shareable version and publication/coauthor constraints.
