@@ -21,13 +21,21 @@ jobs:
           set -euo pipefail
           urls=(
             "https://sushxnthd.github.io/portfolio/"
+            "https://sushxnthd.github.io/portfolio/work/somno/"
+            "https://sushxnthd.github.io/portfolio/work/kernellum-k1/"
+            "https://sushxnthd.github.io/portfolio/work/agnxiv/"
+            "https://sushxnthd.github.io/portfolio/work/copycat/"
+            "https://sushxnthd.github.io/portfolio/work/theorica/"
             "https://sushxnthd.github.io/somno/"
             "https://github.com/sushxnthd/somno/releases/tag/v27"
+            "https://github.com/sushxnthd/somno/blob/main/CITATION.cff"
             "https://sushxnthd.github.io/agnXiv/verify.html"
             "https://github.com/sushxnthd/agnXiv/releases/tag/v0.1.0"
             "https://github.com/sushxnthd/kernellum/blob/main/docs/K1_CLOSED_LOOP_REPORT.md"
             "https://github.com/sushxnthd/kernellum/blob/main/docs/SIMILARITY_PORTFOLIO_CONFIRMATION_REPORT.md"
+            "https://github.com/sushxnthd/copyCAT/blob/main/REPRODUCE.md"
             "https://github.com/sushxnthd/copyCAT/blob/main/paper/CopyCAT%20Research%20Manuscript%20Final.pdf"
+            "https://github.com/sushxnthd/theorica/blob/main/results/TRANSLATION_ACTION_CHALLENGE_V1_1_FAILURE.md"
             "https://aiyes.org/fall-2026-winners"
           )
           for url in "${urls[@]}"; do
