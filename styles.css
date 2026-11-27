@@ -244,11 +244,6 @@ html{background:var(--bg)}
 }
 
 /* HAA-facing proof layer: quiet homepage hierarchy, deep standalone evidence pages. */
-.question-list{list-style:none;padding:0;display:grid;gap:8px}
-.question-list li{display:grid;grid-template-columns:154px minmax(0,1fr);gap:14px;font-size:14px;line-height:1.65}
-.question-list li>a{font-weight:500;text-decoration-color:transparent}
-.question-list li>a:hover{text-decoration-color:var(--underline)}
-.question-list li>span{color:var(--muted);text-wrap:pretty}
 .case-study{--measure:760px;padding-top:58px}
 .case-nav{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:74px;font-size:13px}
 .case-nav a{color:var(--muted);text-decoration-color:transparent}
@@ -299,7 +294,6 @@ html{background:var(--bg)}
 .not-found>p{font-size:12px;color:var(--muted);margin-bottom:9px}
 .not-found h1{font-size:30px;letter-spacing:-.045em;margin-bottom:20px}
 @media(max-width:620px){
-.question-list{gap:13px}.question-list li{grid-template-columns:1fr;gap:1px}
 .case-study{width:calc(100% - 40px);padding-top:34px}
 .case-nav{margin-bottom:52px}
 .case-header h1{font-size:28px}
@@ -319,7 +313,7 @@ html{background:var(--bg)}
 
 /* Evidence presentation: honest quantitative scale, compact technical tables and visible focus. */
 .bar-track i{width:var(--bar)}
-.case-data{margin-top:20px;font-size:13px}.case-data summary{cursor:pointer;color:var(--ink);min-height:28px}.case-data table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px;line-height:1.6}.case-data caption{text-align:left;color:var(--muted);padding:8px 0}.case-data th,.case-data td{border-bottom:1px solid var(--line);text-align:right;padding:6px 3px}.case-data th:first-child{text-align:left;font-weight:500}.case-phone-grid img{object-fit:contain}.home .question-list+.work-index{margin-top:36px}.home #now+.work-index{margin-top:30px}.case-links a,.case-evidence a{min-height:24px;display:inline-block}.case-section :focus-visible{outline-offset:3px}.case-terminal{overflow-wrap:anywhere}.case-study .case-section a{overflow-wrap:anywhere}
+.case-data{margin-top:20px;font-size:13px}.case-data summary{cursor:pointer;color:var(--ink);min-height:28px}.case-data table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:12px;line-height:1.6}.case-data caption{text-align:left;color:var(--muted);padding:8px 0}.case-data th,.case-data td{border-bottom:1px solid var(--line);text-align:right;padding:6px 3px}.case-data th:first-child{text-align:left;font-weight:500}.case-phone-grid img{object-fit:contain}.case-links a,.case-evidence a{min-height:24px;display:inline-block}.case-section :focus-visible{outline-offset:3px}.case-terminal{overflow-wrap:anywhere}.case-study .case-section a{overflow-wrap:anywhere}
 @media print{.case-data:not([open])>table{display:table!important}.case-data summary{display:none}.case-links a:after,.case-evidence a:after{overflow-wrap:anywhere}.case-section{break-inside:auto}.metric-grid,.case-media,.case-data table{break-inside:avoid}}
 
 /* Final alignment pass: shared reading axes, compact mobile rows, no new visual language. */
@@ -329,13 +323,12 @@ html{background:var(--bg)}
 .home .featured-description h3{grid-column:1;grid-row:1;min-width:0}
 .home .featured-description p{grid-column:2;grid-row:1;min-width:0}
 .home .featured-link{grid-column:3;grid-row:1;margin:0}
-.home .question-list li{grid-template-columns:var(--index-label) minmax(0,1fr);gap:var(--index-gap)}
 .home .work-summary{grid-template-columns:var(--index-label) minmax(0,1fr) 16px;column-gap:var(--index-gap)}
 .home .recent-list li{grid-template-columns:var(--index-label) minmax(0,1fr);column-gap:var(--index-gap)}
 .home .work-summary-title{display:grid;grid-template-columns:minmax(0,1fr) 24px;gap:8px;align-items:baseline}
 .home .work-count{font-variant-numeric:tabular-nums;text-align:right}
 .home .featured-list li:last-child{border-bottom:1px solid var(--line)}
-.home .question-list li>a,.home .recent-list li>span{min-width:0}
+.home .recent-list li>span{min-width:0}
 .case-nav>*{min-width:0}
 .case-nav a:last-child{text-align:right}
 .case-facts dd,.metric-grid>div,.case-evidence li>*{min-width:0;overflow-wrap:anywhere}
@@ -347,7 +340,6 @@ html{background:var(--bg)}
  .home .featured-description h3{grid-column:1;grid-row:1}
  .home .featured-description p{grid-column:1 / -1;grid-row:2;max-width:none}
  .home .featured-link{grid-column:2;grid-row:1;justify-self:end;text-align:right}
- .home .question-list li{grid-template-columns:minmax(0,1fr);gap:2px}
  .home .work-summary{grid-template-columns:minmax(0,1fr) 16px;gap:3px 10px}
  .home .work-summary-title{display:flex;gap:10px}
  .home .work-count{text-align:left}
@@ -379,9 +371,7 @@ html{background:var(--bg)}
 .home .featured-description p,.home .work-preview{font-size:14px;line-height:1.55}
 .home .featured-link{font-size:13px;line-height:1.5}
 .home .home-section{margin-top:40px}
-.home .question-list{gap:12px}
-.home .question-list li{align-items:baseline;line-height:1.55}
-.home #now+.work-index{margin-top:32px}
+
 .home .work-summary{padding:18px 0}
 .home .work-summary-title{line-height:1.5}
 .home .work-count{font-size:12px}
@@ -449,9 +439,8 @@ html{background:var(--bg)}
  .home .featured-link{font-size:12px}
  .home .featured-description p,.home .work-preview{font-size:14px;line-height:1.55}
  .home .home-section{margin-top:32px}
- .home .question-list{gap:14px}
  .home .work-summary{padding:16px 0}
- .home #now+.work-index{margin-top:28px}
+ 
  .home .recent-list{gap:13px}
  .home .recent-list li{grid-template-columns:48px minmax(0,1fr);gap:10px;font-size:14px}
  .home .recent-list time{font-size:12px;line-height:1.85}
@@ -493,3 +482,7 @@ html{background:var(--bg)}
  .case-phone-grid img{scroll-snap-align:start}
 }
 @media print{.case-phone-grid{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;max-width:520px}}
+
+/* Keep the selected-work and archive rules separated by a single deliberate interval. */
+.home .featured-work+.work-index{margin-top:28px}
+@media(max-width:620px){.home .featured-work+.work-index{margin-top:24px}}

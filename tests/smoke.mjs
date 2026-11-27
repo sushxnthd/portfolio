@@ -51,7 +51,7 @@ try{
       const items=rows.map(row=>({title:bounds(row.querySelector("h3")),desc:bounds(row.querySelector("p")),proof:bounds(row.querySelector(".featured-link")),row:bounds(row)}));
       const close=(a,b)=>Math.abs(a-b)<2;
       if(innerWidth<=620)return items.every(({title,desc,proof,row})=>close(desc.left,row.left)&&close(desc.right,row.right)&&desc.top>=Math.max(title.bottom,proof.bottom)-2&&title.right<=proof.left+2);
-      const axes=[".work-preview",".question-list li>span",".recent-list li>span"].map(s=>bounds(document.querySelector(s)).left);
+      const axes=[".work-preview",".recent-list li>span"].map(s=>bounds(document.querySelector(s)).left);
       return items.every(({title,desc,proof})=>close(title.left,items[0].title.left)&&axes.every(x=>close(x,desc.left))&&close(proof.right,items[0].proof.right));
     });
     assert(alignment,"index alignment at "+width+"px");
@@ -63,7 +63,8 @@ try{
 
     assert.equal(await page.locator(".work-section[open]").count(),0);
     assert.equal(await page.locator(".recent-list li").count(),5);
-    assert.equal(await page.locator(".question-list li").count(),3);
+    assert.equal(await page.locator("#now").count(),0);
+    assert.equal(await page.locator(".featured-work + .work-index").count(),1);
     assert.equal(await page.locator("body").evaluate(el=>getComputedStyle(el).fontSize),"16px");
     assert.equal(await page.locator(".work-preview").first().evaluate(el=>getComputedStyle(el).fontSize),"14px");
     assert.equal(await page.locator(".work-summary").first().evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").length),width<=620?2:3);

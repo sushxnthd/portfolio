@@ -33,7 +33,7 @@ The homepage includes an ephemeral image trail made of local project artwork. It
 - `/work/kernellum-k1/` — frozen routed-architecture experiment, machine-readable results and claim boundary.
 - `/work/agnxiv/` — public verifier, release engineering, production gates and a preserved release blocker.
 
-The homepage also exposes a compact current-questions section and source-linked shipping / research log. These pages are designed to stand alone when shared directly; they preserve the minimalist visual language and keep the full archive secondary.
+The homepage also exposes a source-linked shipping / research log. These pages are designed to stand alone when shared directly; they preserve the minimalist visual language and keep the full archive secondary.
 
 ## Canonical inventory
 

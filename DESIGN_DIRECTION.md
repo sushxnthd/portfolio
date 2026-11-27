@@ -169,3 +169,7 @@ The exact-head previous mobile screenshot revealed an empty product gallery. Ven
 ## Trail shuffle boundary correction
 
 The screenshot-led release passed geometry checks but browser CI caught an existing nondeterministic repeat when a three-image burst crossed the end of the shuffled ten-image bag. Exclude all images already emitted in the same burst, on desktop and touch. Add repeated burst assertions across cycle boundaries. Artwork, timing, count, motion and layer are unchanged.
+
+## Homepage simplification (2026-11-27)
+
+Removed the Now questions at the user's request. Selected work now flows directly into the expandable archive, with a 28px desktop / 24px mobile gap. Preserve all records, evidence links, case studies, themes and trail.
