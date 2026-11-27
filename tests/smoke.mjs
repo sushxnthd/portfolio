@@ -43,6 +43,19 @@ try{
     assert.deepEqual(await page.locator(".featured-description h3 a").evaluateAll(a=>a.map(x=>x.getAttribute("href"))),["work/somno/","work/kernellum-k1/","work/agnxiv/"]);
     assert(await page.locator(".featured-work").isVisible());
     assert(await page.locator(".featured-list").evaluate(e=>e.scrollWidth<=e.clientWidth+1));
+    // The index uses a shared description axis on desktop; mobile titles and proof
+    // links share a row, leaving the description the entire readable width.
+    const alignment=await page.evaluate(()=>{
+      const rows=[...document.querySelectorAll(".featured-list li")];
+      const bounds=e=>e.getBoundingClientRect();
+      const items=rows.map(row=>({title:bounds(row.querySelector("h3")),desc:bounds(row.querySelector("p")),proof:bounds(row.querySelector(".featured-link")),row:bounds(row)}));
+      const close=(a,b)=>Math.abs(a-b)<2;
+      if(innerWidth<=620)return items.every(({title,desc,proof,row})=>close(desc.left,row.left)&&close(desc.right,row.right)&&desc.top>=Math.max(title.bottom,proof.bottom)-2&&title.right<=proof.left+2);
+      const axes=[".work-preview",".question-list li>span",".recent-list li>span"].map(s=>bounds(document.querySelector(s)).left);
+      return items.every(({title,desc,proof})=>close(title.left,items[0].title.left)&&axes.every(x=>close(x,desc.left))&&close(proof.right,items[0].proof.right));
+    });
+    assert(alignment,"index alignment at "+width+"px");
+
     assert.equal(await page.locator(".work-section[open]").count(),0);
     assert.equal(await page.locator(".recent-list li").count(),5);
     assert.equal(await page.locator(".question-list li").count(),3);
@@ -105,7 +118,7 @@ try{
   const nfResponse=await nf.goto(base+"404.html");
   assert(nfResponse.ok());
   assert.equal(await nf.locator("h1").innerText(),"Not here.");
-  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=haa-2");
+  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=craft-1");
   await nf.close();
 
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});

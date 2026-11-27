@@ -153,3 +153,7 @@ Corrected all twelve K1 bar labels directly from pinned validation JSON (100*(in
 ## Canonical public inventory and audit
 
 Homepage record markup is the editorial source of truth. scripts/sync-inventory.mjs mirrors all 58 records into the four archive pages and generates data/work.json. CI fails on mismatch. Weekly unauthenticated full-link audit reports HTTP errors, access walls and review cases separately from the blocking critical-link workflow. No new accomplishments inferred or private materials published.
+
+## Shared reading axes and responsive craft pass (2026-11-27)
+
+Align desktop featured titles, current questions, archive summaries and log descriptions on a common 142px label axis and 14px gutter. On mobile, put the flagship title and evidence link on the first row and the description across the full width, avoiding the cramped title column. Keep archive disclosures and all records, ensure predictable two-row footer alignment, and allow narrow evidence tables to scroll independently. Keep the ten approved foreground trail images, animation, themes, and content unchanged. Add geometry assertions at the existing five browser viewport sizes. Source-level implementation; browser and physical-device review still required.
