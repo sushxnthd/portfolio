@@ -2,7 +2,7 @@
 
 [Portfolio](https://sushxnthd.github.io/portfolio/) · [Evidence ledger](EVIDENCE.md) · [Design direction](DESIGN_DIRECTION.md)
 
-A deliberately quiet personal website. The homepage is a quiet index into three standalone flagship proof pages — Somno, Kernellum / K1 and agnXiv — plus the complete Research, Building, Projects and Recognition archive.
+A deliberately quiet personal website. The homepage leads with a first-person research principle, three standalone flagship proof pages — Somno, Kernellum / K1 and agnXiv — and the complete Research, Building, Projects and Recognition archive.
 
 Plain HTML and CSS; locally hosted Inter and Newsreader under their upstream open font licenses. JavaScript is used only for old incoming project hash redirects. No build or external tracking is required.
 
@@ -29,7 +29,7 @@ The homepage includes an ephemeral image trail made of local project artwork. It
 
 ## Flagship proof pages
 
-- `/work/somno/` — shipped Android product, actual product media, release and research evidence.
+- `/work/somno/` — solo shipped Android product, first-person origin, actual product media, release and research evidence.
 - `/work/kernellum-k1/` — frozen routed-architecture experiment, machine-readable results and claim boundary.
 - `/work/agnxiv/` — public verifier, release engineering, production gates and a preserved release blocker.
 
