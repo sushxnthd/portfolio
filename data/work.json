@@ -334,10 +334,6 @@
           "url": "https://sushxnthd.github.io/portfolio/work/kernellum-k1/"
         },
         {
-          "label": "Lab research site (HTTP)",
-          "url": "http://kernellum.qd.je/research/"
-        },
-        {
           "label": "TR-001 PDF",
           "url": "https://github.com/sushxnthd/kernellum/blob/main/docs/research/files/Kernellum_TR-001.pdf"
         },
@@ -450,8 +446,8 @@
       "url": "https://sushxnthd.github.io/portfolio/#kernellum",
       "links": [
         {
-          "label": "Lab website (HTTP)",
-          "url": "http://kernellum.qd.je/"
+          "label": "K1 proof page",
+          "url": "https://sushxnthd.github.io/portfolio/work/kernellum-k1/"
         },
         {
           "label": "Lab & research",
