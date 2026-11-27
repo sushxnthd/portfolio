@@ -105,9 +105,10 @@ try{
     }
   }
   const nf=await browser.newPage({viewport:{width:390,height:844}});
-  const nfResponse=await nf.goto(base+"definitely-not-here.html");
-  assert.equal(nfResponse.status(),404);
+  const nfResponse=await nf.goto(base+"404.html");
+  assert(nfResponse.ok());
   assert.equal(await nf.locator("h1").innerText(),"Not here.");
+  assert.equal(await nf.locator("link[rel=stylesheet]").getAttribute("href"),"/portfolio/styles.css?v=haa-1");
   await nf.close();
 
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});

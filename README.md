@@ -24,7 +24,7 @@ The second visual pass refines the reading measure, type scale, mobile project l
 
 The site supports light, dark and system color schemes. The small footer control stores the choice locally; the system preference works without JavaScript. Use `?theme=dark` to open the dark theme explicitly.
 
-The homepage includes an ephemeral image trail made of local project artwork. It only responds to a desktop mouse, honors reduced motion, and can be disabled with the Trail control in the footer.
+The homepage includes an ephemeral image trail made of local project artwork. It responds to desktop pointer movement and passive single-touch gestures while preserving native scrolling and pinch zoom. It honors reduced motion and can be disabled with the Trail control in the footer.
 
 
 ## Flagship proof pages

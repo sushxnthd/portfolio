@@ -1,1 +1,4 @@
-User-agent: *\nAllow: /\n\nSitemap: https://sushxnthd.github.io/portfolio/sitemap.xml\n
+User-agent: *
+Allow: /
+
+Sitemap: https://sushxnthd.github.io/portfolio/sitemap.xml
