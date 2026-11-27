@@ -177,3 +177,12 @@ Removed the Now questions at the user's request. Selected work now flows directl
 ## Authorship and executable evidence pass (2026-11-27)
 
 Cross-checked public CITATION.cff files for all five proof pages; Somno credits its four named software authors without guessing their personal task split. Added project problem statements, K1's documented offline Route Review demo, AgnXiv's source-reported third-party verification result with narrow verdict boundary, CopyCAT's actual historical denominator/alignment corrections and code provenance, and Theorica's author citation and proposed scaling test. Fixed the remaining remote Somno image and absolute social-preview URL. No invented motivations, individual contributions, users, or licensing decisions. All five citation links tested in browser CI; new exact-head run pending.
+
+
+## Authenticated voice and ownership pass (2026-11-27)
+
+Replace generic homepage language with phrases the author had already used in prior work: a preference for tests that distinguish plausible ideas from reality, and the research rule “AI should decide where to look, not what is true.” Preserve the user's rejection of a separate Now section; current direction lives inside the introduction and each proof page.
+
+Correct Somno's stale four-author citation after checking the author's individual AI YES submission and later project records: Somno is a solo project. Update the source repository CITATION.cff and README before changing the portfolio. Add the author's own Somno origin story from the AI YES Gold deck, including the nearly-identical-sleep / different-morning observation and the medical-shift trigger. Add a source-grounded “what changed after testing” section and prospective validation gate.
+
+Add first-person origin to K1 from the author's Kernellum venture deck: the expensive reasoning happens around the run—controls, metrics, alternatives and next decisions. Add the same deck's AgnXiv motivation as first-person product rationale. Make sole authorship explicit for CopyCAT and THEORICA and add Person authors to their structured data. Keep all claims bounded; no invented hobbies, contact details, traction, licensing choices or collaborator roles.
